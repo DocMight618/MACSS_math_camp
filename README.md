@@ -4,7 +4,7 @@
 |-|-|
 | Email | clipperton@uchicago.edu |
 | Office | Room 219, 1155 E. 60th St. |
-| GitHub | [bensoltoff](https://github.com/bensoltoff) |
+| GitHub | [jmclip](https://github.com/jmclip) |
 
 * Meeting day: August 28-September 18, MTWThF
 * Time: To be determined
