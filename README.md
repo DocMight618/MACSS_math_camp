@@ -1,4 +1,4 @@
-# MACS 33000 - Computational Mathematics and Statistics Camp (Pre-Fall 2020)
+# MACS 33000 - Computational Mathematics and Statistics Camp (Pre-Fall 2023)
 
 |  | Jean Clipperton|
 |-|-|
@@ -6,9 +6,9 @@
 | Office | Room 219, 1155 E. 60th St. |
 | GitHub | [jmclip](https://github.com/jmclip) |
 
-* Meeting day: August 28-September 18, MTWThF
-* Time: To be determined
-* Location: To be determined
+* Meeting day: August 28-September 15, MTWThF
+* Time: 9:00am-1:00pm
+* Location: Room 142, 1155 E 60th St
 
 ## Course description
 
@@ -32,7 +32,7 @@ This course is open to all students who meet the academic requirements for parti
 
 ## Core texts
 
-**Course texts are subject to change for fall 2020**
+**Course texts are subject to change for fall 2023**
 
 * Bertsekas, D. P., & Tsitsiklis, J. N. (2008). *Introduction to probability*, 2nd edition. Belmont, MA: Athena Scientific.
 * Pemberton, M., & Rau, N. (2015). *Mathematics for economists: an introductory textbook*, 4th edition. Oxford University Press.
@@ -41,18 +41,18 @@ This course is open to all students who meet the academic requirements for parti
 
 | Date | Topic | Subtopic |
 |-|-|-|
-| 31-Aug | Linear equations | Linear equations, inequalities, and sets and functions |
-| 1-Sep | Linear equations | Quadratics, logarithms, sequences, and limits |
-| 2-Sep | Calculus | Differentiation |
-| 3-Sep | Calculus | Critical points and approximation |
-| 4-Sep | Linear algebra | Matrix algebra |
-| 7-Sep | No class (Labor Day) |  |
-| 8-Sep | Linear algebra | Systems of linear equations and determinants |
-| 9-Sep | Calculus | Functions of several variables and optimization with several variables |
-| 10-Sep | Calculus | Integration and integral calculus |
-| 11-Sep | Probability | Sample space and probability |
-| 14-Sep | Probability | Discrete random variables |
-| 15-Sep | Probability | General random variables |
-| 16-Sep | Probability | Multivariate distributions |
-| 17-Sep | Statistical inference | Classical statistical inference |
-| 18-Sep | Statistical inference | Bayesian statistical inference |
+| 28-Aug | Linear equations | Linear equations, inequalities, and sets and functions |
+| 29-Sep | Linear equations | Quadratics, logarithms, sequences, and limits |
+| 30-Aug | Calculus | Differentiation |
+| 31-Aug | Calculus | Critical points and approximation |
+| 1-Sep | Linear algebra | Matrix algebra |
+| 4-Sep | No class (Labor Day) |  |
+| 5-Sep | Linear algebra | Systems of linear equations and determinants |
+| 6-Sep | Calculus | Functions of several variables and optimization with several variables |
+| 7-Sep | Calculus | Integration and integral calculus |
+| 8-Sep | Probability | Sample space and probability |
+| 11-Sep | Probability | Discrete random variables |
+| 12-Sep | Probability | General random variables |
+| 13-Sep | Probability | Multivariate distributions |
+| 14-Sep | Statistical inference | Classical statistical inference |
+| 15-Sep | Statistical inference | Bayesian statistical inference |
