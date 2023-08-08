@@ -1,0 +1,820 @@
+---
+title: Linear equations, inequalities, sets and functions, quadratics, and logarithms
+---
+
+```{r common-r, code = xfun::read_utf8(here::here("_common.R")), include = FALSE}
+```
+
+```{r setup}
+library(tidyverse)
+```
+
+# Simplify expressions
+
+Simplify the following expressions as much as possible:^[Gill 1.1]
+
+a. $(-x^4y^2)^2$
+
+    <!--
+    
+    1. Distribute exponents over products.
+    
+        $$(-1)^2 x^{(2 \times 4)} y^{(2 \times 2)}$$
+        
+    1. Multiply 2 and 2 together.
+    
+        $$(-1)^2 x^{(2 \times 4)} y^4$$
+        
+    1. Multiply 2 and 4 together.
+    
+        $$(-1)^2 x^8 y^4$$
+        
+    1. Evaluate $(-1)^2$.
+    
+        $$x^8 y^4$$
+        
+    -->
+        
+a. $9(3^0)$
+
+    <!--
+
+    1. Any nonzero number to the zero power is 1.
+    
+        $$9(1)$$
+        
+    1. Anything times 1 is the same value.
+    
+        $$9$$
+
+    -->
+    
+a. $(2a^2)(4a^4)$
+
+    <!--
+
+    1. Combine products of like terms.
+    
+        $$2 a^2 \times 4 a^4 = 2  \times 4a^{(2 + 4)}$$
+        
+    1. Evaluate $2 + 4$.
+    
+        $$2 \times 4 a^6$$
+        
+    1. Multiply 2 and 4 together.
+    
+        $$8 a^6$$
+        
+    -->
+    
+a. $\dfrac{x^4}{x^3}$
+
+    <!--
+
+    1. For all exponents, $\dfrac{a^n}{a^m} = a^{(n - m)}$.
+    
+        $$x^{(4 - 3)}$$
+        
+    1. Evaluate $4 - 3$.
+    
+        $$x$$
+        
+    -->
+    
+a. $(-2)^{7-4}$
+
+    <!--
+
+    1. Subtract $4$ from $7$.
+    
+        $$(-2)^3$$
+        
+    1. In order to evaluate $2^3$ express $2^3$ as $2 \times 2^2$.
+    
+        $$-2 \times 2^2$$
+        
+    1. Evaluate $2^2$.
+    
+        $$-2 \times 4$$
+        
+    1. Multiply $-2$ and $4$ together.
+    
+        $$-8$$
+        
+    -->
+    
+a. $\left(\dfrac{1}{27b^3}\right)^{1/3}$
+
+    <!--
+
+    1. Separate component terms.
+    
+        $$\dfrac{1}{27}^{1/3} \times \dfrac{1}{b^3}^{1/3}$$
+        
+    1. Evaluate cube roots.
+    
+        $$\dfrac{1}{3} \times \dfrac{1}{b}$$
+        
+    1. Combine terms.
+    
+        $$\dfrac{1}{3b}$$
+    
+    -->
+    
+a. $y^7y^6y^5y^4$
+
+    <!--
+
+    1. Combine products of like terms.
+    
+        $$y^{(7 + 6 + 5 + 4)}$$
+        
+    1. Evaluate $7 + 6 + 5 + 4$.
+    
+        $$y^{22}$$
+        
+    -->
+    
+a. $\dfrac{2a/7b}{11b/5a}$
+
+    <!--
+
+    1. Write as a single fraction by multiplying the numerator by the reciprocal of the denominator.
+    
+        $$\dfrac{2a}{7b} \times \dfrac{5a}{11b}$$
+        
+    1. Product property of exponents: $x^a \times x^b = x^{(a+b)}$
+    
+        $$\dfrac{5a \times 2a}{7b \times 11b} = \dfrac{5 \times 2a^{1+1}}{7 \times 11b^{1+1}}$$
+        
+    1. Evaluate $1+1$.
+    
+        $$\dfrac{5 \times 2a^2}{7 \times 11b^2}$$
+        
+    1. Multiple scalars together.
+    
+        $$\dfrac{10a^2}{77b^2}$$
+
+    -->
+    
+a. $(z^2)^4$
+
+    <!--
+
+    1. Nested exponents rule: $(x^a)^b = x^{ab}$
+    
+        $$z^{2 \times 4}$$
+        
+    1. Evaluate $2 \times 4$
+    
+        $$z^8$$
+
+    -->
+    
+# Simplify a (more complex) expression
+ 
+Simplify the following expression:^[Gill 1.2]
+
+$$(a+b)^2 + (a-b)^2 + 2(a+b)(a-b) - 3a^2$$
+<!--
+
+1. Expand $(a + b)^2$ with FOIL.
+
+    $$a^2 + 2 a b + b^2 + (a - b)^2 + 2 (a + b) (a - b) - 3 a^2$$
+    
+1. Expand $(a - b)^2$ with FOIL.
+
+    $$a^2 + 2 a b + b^2 + a^2 - 2 a b + b^2 + 2 (a + b) (a - b) - 3 a^2$$
+    
+1. Multiply $a + b$ and $a - b$ together using FOIL.
+
+    $$a^2 + 2 a b + b^2 + a^2 - 2 a b + b^2 + 2 (a^2 - b^2) - 3 a^2$$
+    
+1. Distribute $2$ over $a^2 - b^2$.
+
+    $$a^2 + 2 a b + b^2 + a^2 - 2 a b + b^2 + 2 a^2 - 2 b^2 - 3 a^2$$
+    
+1. Group like terms.
+
+    $$(a^2 + a^2 + 2 a^2 - 3 a^2) + (b^2 + b^2 - 2 b^2) + (2 a b - 2 a b)$$
+    
+1. Combine like terms.
+
+    $$a^2 + (b^2 + b^2 - 2 b^2) + (2 a b - 2 a b)$$
+    
+1. Look for the difference of two identical terms.
+
+    $$a^2$$
+
+-->
+
+# Graph sketching
+
+Let the functions $f(x)$ and $g(x)$ be defined for all $x \in \Re$ by
+    
+$$
+f(x) = \left\{
+    \begin{array}{ll}
+        | x | & \quad \mbox{if} \ x < 1 \\
+        1 & \quad \mbox{if} \ x \geq 1
+    \end{array}
+\right., \quad
+g(x) = \left\{
+    \begin{array}{ll}
+        x^2 & \quad \mbox{if} \ x < 2 \\
+        4 & \quad \mbox{if} \ x \geq 2
+    \end{array}
+\right.
+$$
+
+Sketch the graphs of:^[Pemberton and Rau problem 3-1]
+
+1. $y = f(x)$
+    
+    <!--
+    
+    ```{r y-f-x, dependson = "base-plot"}
+f_x <- function(x) {
+  ifelse(x < 1, abs(x), 1)
+}
+
+function_plot +
+  stat_function(fun = f_x, n = 1000) +
+  ggtitle(expression(f(x)))
+    ```
+    
+    -->
+    
+1. $y = g(x)$
+
+    <!--
+
+    ```{r y-g-x, dependson = "base-plot"}
+g_x <- function(x) {
+  ifelse(x < 2, x^2, 4)
+}
+
+function_plot +
+  stat_function(fun = g_x, n = 1000) +
+  ggtitle(expression(g(x)))
+    ```
+    
+    -->
+
+1. $y = f(g(x))$
+
+    <!--
+
+    To sketch the composite function, we first evaluate $g(x)$ for different values of $x$, and then evaluate $f(g(x))$ for different outputs of $g(x)$.
+    
+    * For $x \geq 2$, $g(x)$ is a constant value: 
+        $$
+        \begin{aligned}
+        x \geq 2 \\
+        g(x) = 4 \\
+        f(g(x)) = f(4) = 1
+        \end{aligned}
+        $$
+    
+    * For $x < 2$, $g(x)$ is not constant: $g(x) = x^2$. $f(x)$ evaluates differently depending on its input, so we have two cases based on the output of $g(x)$:
+    
+        * if $g(x) < 1$, $f(g(x)) = |g(x)| = |x^2| = x^2$. This is the case when:
+            $$
+            \begin{aligned}
+            g(x) < 1 \\
+            x^2 <1 \text{ and } x < 2\\
+            -1 < x < 1
+            \end{aligned}
+            $$
+    
+        * if $g(x) \geq 1$, $f(g(x)) = 1$. This is the case when:
+            $$
+            \begin{aligned}
+            g(x) \geq 1 \\
+            x^2 \geq 1 \text{ and } x < 2\\
+            x \leq -1 \mbox{ or }  1 \leq x < 2
+            \end{aligned}
+            $$
+    
+    * Therefore, $f(g(x))$ has the following values:
+    
+        $$
+        f(g(x)) = 
+        \begin{cases}
+            \begin{array}{ll}
+                1 & \quad \mbox{if} \ x \leq -1 \\
+                x^2 & \quad \mbox{if} \ -1 < x < 1 \\
+                1 & \quad \mbox{if} \ x \geq 1
+            \end{array}
+        \end{cases}
+        $$
+        
+
+    ```{r f-g-x, dependson = "base-plot"}
+function_plot +
+  stat_function(fun = function(x) f_x(g_x(x)), n = 1000) +
+  ggtitle(expression(f(g(x))))
+    ```
+
+    -->
+    
+1. $y = g(f(x))$
+
+    <!--
+
+    To sketch the composite function, we first evaluate $f(x)$ for different values of $x$, and then evaluate $g(f(x))$ for different outputs of $f(x)$.
+    
+    * For $x \geq 1$, $f(x)$ is a constant value: 
+        $$
+        \begin{aligned}
+        x \geq 1 \\
+        f(x) = 1 \\
+        g(f(x)) = f(1) = 1^2 = 1
+        \end{aligned}
+        $$
+    
+    * For $x < 1$, $f(x)$ is not constant: $f(x) = |x|$. $g(x)$ evaluates differently depending on its input, so we have two cases based on the output of $f(x)$:
+    
+        * if $f(x) < 2$, $g(f(x)) = f(x)^2 = |x|^2 = x^2$. This is the case when:
+            $$
+            \begin{aligned}
+            f(x) < 2 \\
+            |x| < 2 \text{ and } x < 1\\
+            -2 < x < 1
+            \end{aligned}
+            $$
+    
+        * if $f(x) \geq 2$, $g(f(x)) = 4$. This is the case when:
+            $$
+            \begin{aligned}
+            f(x) \geq 2 \\
+            |x| \geq 2 \text{ and } x < 1\\
+            x \leq -2 
+            \end{aligned}
+            $$
+
+    * Therefore, $g(f(x))$ has the following values:
+        $$
+        g(f(x)) = 
+        \begin{cases}
+            \begin{array}{ll}
+                4 & \quad \mbox{if} \ x \leq -2 \\
+                x^2 & \quad \mbox{if} \ -2 < x < 1 \\
+                1 & \quad \mbox{if} \ x \geq 1 
+            \end{array}
+        \end{cases}
+        $$
+
+    ```{r g-f-x, dependson = "base-plot"}
+function_plot +
+  stat_function(fun = function(x) g_x(f_x(x)), n = 1000) +
+  ggtitle(expression(g(f(x))))
+    ```
+
+    -->
+    
+# Root finding
+
+Find the roots (solutions) to the following quadratic equations.^[Gill 1.25]
+
+$$x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+  
+a. $9x^2 - 3x - 12 = 0$
+
+    <!--
+
+    * Factor the left-hand side.
+    
+        $$3 (x + 1)(3x - 4) = 0$$
+    
+    * Divide both sides by 3 to simplify the equation.
+        
+        $$(x + 1)(3x - 4) = 0$$
+    
+    * Find the roots of each term in the product separately by solving for $x$.
+    
+        $$
+        \begin{aligned}
+        x + 1 &= 0 \\
+        x &= -1 \\
+        \end{aligned} \qquad
+        \begin{aligned}
+        3x &= 4 \\
+        x &= \dfrac{4}{3}
+        \end{aligned}
+        $$
+
+    -->
+    
+a. $x^2 - 2x - 16 = 0$
+
+    <!--
+
+    1. Complete the square
+    
+        $$
+        \begin{aligned}
+        x^2 - 2x - 16 &= 0 \\
+        x^2 - 2x &= 16 \\
+        x^2 - 2x + 1 &= 17 \\
+        (x - 1)^2 &= 17 \\
+        x - 1 &= \pm \sqrt{17} \\
+        x &= 1 \pm \sqrt{17}
+        \end{aligned}
+        $$
+        
+    1. Quadratic formula
+        
+        * Using the quadratic formula, solve for $x$
+        
+            $$
+            \begin{aligned}
+            x &= \dfrac{-(-2) \pm \sqrt{(-2)^2 - (4 \times 1 \times 16)}}{2 \times 1} \\
+            x &= \dfrac{2 \pm \sqrt{4 + 64}}{2} \\
+            x &= \dfrac{2 \pm \sqrt{68}}{2}
+            \end{aligned}
+            $$
+
+        * Simplify the radical
+        
+            $$
+            \begin{aligned}
+            x &= \dfrac{2 \pm \sqrt{2^2 \times 17}}{2} \\
+            x &= \dfrac{2 \pm 2\sqrt{17}}{2}
+            \end{aligned}
+            $$
+        
+        * Factor the greatest common divisor
+        
+            $$x = 1 \pm \sqrt{17}$$
+
+    -->
+    
+a. $6x^2 - 6x - 6 = 0$
+    
+    <!--
+
+    * Divide both sides by 6 to simplify the equation.
+        
+        $$x^2 - x - 1 = 0$$
+            
+    * Using the quadratic formula, solve for $x$
+        
+        $$
+        \begin{aligned}
+        x &= \dfrac{-(-1) \pm \sqrt{(-1)^2 - (4 \times 1 \times -1)}}{2 \times 1} \\
+        x &= \dfrac{1 \pm \sqrt{1 - 4 (-1)}}{2} \\
+        x &= \dfrac{1 \pm \sqrt{1 + 4}}{2} \\
+        x &= \dfrac{1 \pm \sqrt{5}}{2}
+        \end{aligned}
+        $$
+    
+    -->
+    
+
+# Systems of linear equations
+
+Solve the following systems of equations for their unknown values. If there is no solution, indicate as such.
+
+a. Two unknowns^[OpenStax Algebra ex 7.1.12]
+
+    $$
+    \begin{aligned}
+    3x - 2y &= 18 \\
+    5x + 10y &= -10
+    \end{aligned}
+    $$
+
+    <!--
+    
+    Via substitution:
+    
+    1. Solve for $x$ in the first equation
+    
+    $$
+    \begin{aligned}
+    3x - 2y &= 18 \\
+    3x &= 18 + 2y \\
+    x &= \frac{2}{3}y + 6
+    \end{aligned}
+    $$
+    
+    1. Substitute $x = \frac{2}{3}y + 6$ into the second equation and solve for $y$
+    
+    $$
+    \begin{aligned}
+    5\left( \frac{2}{3}y + 6 \right) + 10y &= -10 \\
+    \frac{10}{3}y + 30 + 10y &= -10 \\
+    \frac{40}{3}y + 30 &= -10 \\
+    \frac{40}{3}y &= -40 \\
+    y &= -3
+    \end{aligned}
+    $$
+    
+    1. Substitute $y$ back into the first equation
+    
+    $$
+    \begin{aligned}
+    3x - 2(-3) &= 18 \\
+    3x + 6 &= 18 \\
+    3x &= 12 \\
+    x &= 4
+    \end{aligned}
+    $$
+    
+    $$x = 4, y = -3$$
+    -->
+
+a. Three unknowns^[OpenStax Algebra ex 7.2.12]
+
+    $$
+    \begin{aligned}
+    5x - 2y + 3z &= 20 \\
+    2x - 4y - 3z &= -9 \\
+    x + 6y - 8z &= 21
+    \end{aligned}
+    $$
+    
+    <!--
+    
+    1. Subtract 2/5 × (equation 1) from equation 2:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x - \frac{16 y}{5} - \frac{21 z}{5} &= -17 \\
+        x + 6 y - 8 z &= 21
+        \end{aligned}
+        $$
+    
+    1. Multiply equation 2 by -5:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x+16 y + 21 z &= 85 \\
+        x + 6 y - 8 z &= 21
+        \end{aligned}
+        $$
+    1. Subtract 1/5 × (equation 1) from equation 3:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x+16 y + 21 z &= 85 \\
+        0 x + \frac{32 y}{5} - \frac{43 z}{5} &= 17
+        \end{aligned}
+        $$
+    1. Multiply equation 3 by 5:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x+16 y + 21 z &= 85 \\
+        0 x + 32y - 43z &= 85
+        \end{aligned}
+        $$
+    
+    1. Swap equation 2 with equation 3:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x + 32y - 43z &= 85 \\
+        0 x+16 y + 21 z &= 85 \\
+        \end{aligned}
+        $$
+    
+    1. Subtract 1/2 × (equation 2) from equation 3:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x + 32y - 43z &= 85 \\
+        0 x + 0 y + \frac{85z}{2} &= \frac{85}{2} \\
+        \end{aligned}
+        $$
+    
+    1. Multiply equation 3 by 2/85:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x + 32y - 43z &= 85 \\
+        0 x + 0 y + z &= 1 \\
+        \end{aligned}
+        $$
+    
+    1. Add 43 × (equation 3) to equation 2:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x + 32y + 0z &= 128 \\
+        0 x + 0 y + z &= 1 \\
+        \end{aligned}
+        $$
+    
+    1. Divide equation 2 by 32:
+    
+        $$
+        \begin{aligned}
+        5 x - 2 y + 3 z &= 20 \\
+        0 x + y + 0z &= 4 \\
+        0 x + 0 y + z &= 1 \\
+        \end{aligned}
+        $$
+    
+    1. Add 2 × (equation 2) to equation 1:
+    
+        $$
+        \begin{aligned}
+        5 x + 0y + 3 z &= 28 \\
+        0 x + y + 0z &= 4 \\
+        0 x + 0 y + z &= 1 \\
+        \end{aligned}
+        $$
+    
+    1. Subtract 3 × (equation 3) from equation 1:
+    
+        $$
+        \begin{aligned}
+        5 x + 0y + 0 z &= 25 \\
+        0 x + y + 0z &= 4 \\
+        0 x + 0 y + z &= 1 \\
+        \end{aligned}
+        $$
+    
+    1. Divide equation 1 by 5:
+    
+        $$
+        \begin{aligned}
+         x + 0y + 0 z &= 5 \\
+        0 x + y + 0z &= 4 \\
+        0 x + 0 y + z &= 1 \\
+        \end{aligned}
+        $$
+    
+    $$x = 5, y = 4, z = 1$$
+    
+    -->
+
+a. An animal shelter has a total of 350 animals comprised of cats, dogs, and rabbits. If the number of rabbits is 5 less than one-half the number of cats, and there are 20 more cats than dogs, how many of each animal are at the shelter?^[OpenStax Algebra 7.2.54]
+    
+    <!--
+    
+    * Let $x =$ number of cats
+    * Let $y =$ number of dogs
+    * Let $z =$ number of rabbits
+    
+    This gives us the system of equations
+    
+    $$
+    \begin{aligned}
+    x + y + z &= 350 \\
+    z &= \frac{1}{2}x - 5 \\
+    x &= 20 + y
+    \end{aligned}
+    $$
+    
+    1. Substitute $z = \frac{1}{2}x - 5$ into the first equation
+    
+        $$
+        \begin{aligned}
+        x + y + \frac{x}{2} - 5 &= 350 \\
+        \frac{3}{2}x + y - 5 &= 350
+        \end{aligned}
+        $$
+    
+    1. Substitute $x = y + 20$ into the first equation
+    
+        $$
+        \begin{aligned}
+        \frac{3}{2}(y + 20) + y - 5 &= 350 \\
+        \frac{3}{2}y + 30 + y - 5 &= 350 \\
+        \frac{5}{2}y + 25 &= 350 \\
+        \frac{5}{2}y &= 325 \\
+        y &= 130
+        \end{aligned}
+        $$
+    
+    1. Substitute $y = 130$ into the third equation
+    
+        $$
+        \begin{aligned}
+        x &= y + 20 \\
+        x &= 130 + 20 \\
+        x &= 150
+        \end{aligned}
+        $$
+    
+    1. Substitute $x = 150$ into the second equation
+    
+        $$
+        \begin{aligned}
+        z &= \frac{1}{2}x - 5 \\
+        z &= \frac{1}{2}(150) - 5 \\
+        z &= 70
+        \end{aligned}
+        $$
+    
+    $$x = 150, y = 130, z = 70$$
+    
+    There are 150 cats, 130 dogs, and 70 rabbits.
+    
+    -->
+
+# Work with sets
+
+Using the sets
+
+$$
+\begin{aligned}
+A&=\left\{2,3,7,9,13 \right\} \\
+B&=\left\{ x: 4\leq x \leq 8 \  \mbox{and} \ x \ \mbox{is an integer} \right\} \\
+C&=\left\{ x: 2< x < 25 \  \mbox{and} \  x \  \mbox{is prime}  \right\} \\
+D&=\left\{ 1,4,9,16,25, \ldots  \right\} \\
+\end{aligned}
+$$
+
+identify the following:^[Grimmer HW1.1]
+
+1. $A\cup B$
+    
+    <!--
+
+    $E = \{2,3,4,5,6,7,8,9,13\}$, combine all integers between 4 and 8 inclusive with the numbers in set $A$.
+
+    -->
+
+1. ($A\cup B) \cap C$
+
+    <!--
+
+    $F = \{3,5,7,13\}$, Since $C$ is only prime numbers greater than 2 and less than 25, we take all the prime numbers that are also included in $E$, but remember to drop out 2 since it is not included in $C$.
+    
+    -->
+    
+1. $C \cap D$
+    
+    <!--
+
+    $G = \emptyset$, there are no prime numbers in $D$, so nothing is shared between $C$ and $D$.
+        
+    -->
+
+# Simplify logarithms
+
+Express each of the following as a single logarithm:^[Grimmer HW1.3]
+
+a. $\log(x) + \log(y) - \log(z)$
+    
+    <!--
+
+    * Multiplication rule of logarithms: $\log(x \times y) = \log(x) + \log(y)$
+    
+    * Division rule of logarithms: $\log(\dfrac{x}{y}) = \log(x) - \log(y)$
+    
+    * Applying the log rules, we combine logs that are added through multiplication and then combine logs that are subtracted with division.
+    
+    $$\log(x) + \log(y) - \log(z)$$
+    
+    $$\log(xy) - \log(z)$$
+    
+    $$\log(\dfrac{xy}{z})$$
+    
+    -->
+    
+a. $2 \log(x) + 1$
+
+    <!--
+
+    * Exponentiation rule of logarithms: $\log(x^y) = y \log(x)$
+    
+    * $\log(e) = 1$
+    
+    $$2 \log(x) + 1$$
+    
+    $$2 \log(x) + \log(e)$$
+    
+    $$\log(x^2) + \log(e)$$
+    
+    $$\log(ex^2)$$
+    
+    -->
+    
+a. $\log(x) - 2$
+
+    <!--
+
+    * $\log(e) = 1$
+    
+    $$\log(x) - 2$$
+    
+    $$\log(x) - 2 \log(e)$$
+    
+    $$\log(x) - \log(e^2)$$
+    
+    $$\log(\dfrac{x}{e^2})$$
+    
+    -->
