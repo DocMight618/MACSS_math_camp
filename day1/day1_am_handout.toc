@@ -1,0 +1,4 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Review Topics}{5}{0}{1}
+\beamer@sectionintoc {2}{Broad Overview}{6}{0}{2}
+\beamer@sectionintoc {3}{Inequalities}{29}{0}{3}
