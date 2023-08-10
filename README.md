@@ -39,20 +39,20 @@ This course is open to all students who meet the academic requirements for parti
 
 ## Course schedule
 
-| Date | Topic | Subtopic |
-|-|-|-|
-| 28-Aug | Linear equations | Linear equations, inequalities, and sets and functions |
-| 29-Sep | Linear equations | Quadratics, logarithms, sequences, and limits |
-| 30-Aug | Calculus | Differentiation |
-| 31-Aug | Calculus | Critical points and approximation |
-| 1-Sep | Linear algebra | Matrix algebra |
-| 4-Sep | No class (Labor Day) |  |
-| 5-Sep | Linear algebra | Systems of linear equations and determinants |
-| 6-Sep | Calculus | Functions of several variables and optimization with several variables |
-| 7-Sep | Calculus | Integration and integral calculus |
-| 8-Sep | Probability | Sample space and probability |
-| 11-Sep | Probability | Discrete random variables |
-| 12-Sep | Probability | General random variables |
-| 13-Sep | Probability | Multivariate distributions |
-| 14-Sep | Statistical inference | Classical statistical inference |
-| 15-Sep | Statistical inference | Bayesian statistical inference |
+| Date | Topic | Subtopic/Slides | Assignment
+|-|-|-|-|
+| 28-Aug | Linear equations | Linear equations, inequalities, and sets and functions | Pset 1
+| 29-Sep | Linear equations | Quadratics, logarithms, sequences, and limits | Pset 2
+| 30-Aug | Calculus | Differentiation | Pset 3
+| 31-Aug | Calculus | Critical points and approximation | Pset 4
+| 1-Sep | Linear algebra | Matrix algebra | Pset 5
+| 4-Sep | No class (Labor Day) |  | Pset 6
+| 5-Sep | Linear algebra | Systems of linear equations and determinants | Pset 7
+| 6-Sep | Calculus | Functions of several variables and optimization with several variables | Pset 8
+| 7-Sep | Calculus | Integration and integral calculus | Pset 9
+| 8-Sep | Probability | Sample space and probability | Pset 10
+| 11-Sep | Probability | Discrete random variables | Pset 11
+| 12-Sep | Probability | General random variables | Pset 12
+| 13-Sep | Probability | Multivariate distributions | Pset 13
+| 14-Sep | Statistical inference | Classical statistical inference | Pset 14
+| 15-Sep | Statistical inference | Bayesian statistical inference | Placement exam
