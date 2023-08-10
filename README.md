@@ -41,7 +41,7 @@ This course is open to all students who meet the academic requirements for parti
 
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
-| 28-Aug | Linear equations | Linear equations, inequalities, and sets and functions | Pset 1
+| 28-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://github.com/jmclip/MACSS_math_camp/blob/master/slides/01-functions-sets.html) | Pset 1
 | 29-Sep | Linear equations | Quadratics, logarithms, sequences, and limits | Pset 2
 | 30-Aug | Calculus | Differentiation | Pset 3
 | 31-Aug | Calculus | Critical points and approximation | Pset 4
