@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Classical statistical inference</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MACS 33000   University of Chicago" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/lucy-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Classical statistical inference
+### <a href="https://github.com/math-camp/course">MACS 33000</a> <br /> University of Chicago
+
+---
+
+
+
+
+
+
+
+`$$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}} \newcommand{\se}{\text{se}} \newcommand{\sd}{\text{sd}} \newcommand{\Cor}{\mathrm{Cor}} \newcommand{\Lagr}{\mathcal{L}} \newcommand{\lagr}{\mathcal{l}}$$`
+
+---
+
+# Learning objectives
+
+* Define classical statistical inference
+* Summarize core concepts of point estimates
+* Define maximum likelihood estimation (MLE)
+* Review the properties of the maximum likelihood estimator
+* Demonstrate MLE for basic estimators
+* Identify confidence intervals
+* Define hypothesis testing and `\(p\)`-value
+* Explain the Wald test
+* Summarize the `\(\chi^2\)` test of significance
+
+---
+
+# Statistical inference
+
+Process of using data to infer the probability distribution/random variable that generated the data
+
+--
+
+Given a sample `\(X_1, \ldots, X_n \sim F\)`, how do we infer `\(F\)`?
+
+---
+
+# Parametric models
+
+* Statistical model `\(\xi\)`
+* Parametric model is a finite set `\(\xi\)`
+* Examples of parametric models
+
+    `$$\xi \equiv f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left[ -\frac{1}{2\sigma^2} (x - \mu)^2 \right], \quad \mu \in \Re, \sigma &gt; 0$$`
+
+* General form
+
+    `$$\xi \equiv f(x; \theta) : \theta \in \Theta$$`
+
+* Nuisance parameters
+
+---
+
+# Examples of parametric models
+
+#### One-dimensional parametric estimation
+
+Let `\(X_1, \ldots, X_n\)` be independent observations drawn from a Bernoulli random variable with probability `\(\pi\)` of success
+
+--
+
+The problem is to estimate the parameter `\(\pi\)`
+
+--
+
+#### Two-dimensional parametric estimation
+
+Suppose that `\(X_1, \ldots, X_n \sim F\)` and we assume that the PDF `\(f \in \xi\)` where
+
+`$$\xi \equiv f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left[ -\frac{1}{2\sigma^2} (x - \mu)^2 \right], \quad \mu \in \Re, \sigma &gt; 0$$`
+
+--
+
+* Estimate `\(\mu, \sigma^2\)`
+* Estimate `\(\mu\)` alone
+
+---
+
+# Point estimates
+
+A single "best guess" of some quantity of interest
+
+* Parameter in a parametric model
+* CDF `\(F\)`
+* PDF `\(f\)`
+* Regression function `\(r\)`
+* Prediction for a future value `\(Y\)` of some random variable
+
+--
+
+Denote a point estimate of `\(\theta\)` by `\(\hat{\theta}\)` or `\(\hat{\theta}_n\)`
+
+--
+
+* `\(\theta\)` is a fixed, unknown quantity
+* `\(\hat{\theta}\)` is a random variable
+
+--
+
+Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(F\)`. A point estimator `\(\hat{\theta}_n\)` of a parameter `\(\theta\)` is some function of `\(X_1, \ldots, X_n\)`:
+
+`$$\hat{\theta}_n = g(X_1, \ldots, X_n)$$`
+
+---
+
+# Properties of point estimates
+
+##### Bias
+
+`$$\text{bias}(\hat{\theta}_n) = \E_\theta (\hat{\theta_n}) - \theta$$`
+
+--
+
+* `\(\E (\hat{\theta_n}) - \theta = 0\)`
+* Importance of unbiased estimators
+
+--
+
+##### Consistency
+
+As the number of observations `\(n\)` increases, the estimator converges towards the true parameter `\(\theta\)`
+
+--
+
+##### Sampling distribution
+
+* Distribution of `\(\hat{\theta}_n\)`
+* Standard error of `\(\hat{\theta}_n\)`
+
+    `$$\se = \sd(\hat{\theta}_n) = \sqrt{\Var (\hat{\theta}_n)}$$`
+
+* Estimating the standard error `\(\widehat{\se}\)`
+
+---
+
+# Mean squared error
+
+$$
+`\begin{align}
+\text{MSE} &amp;= \E_\theta [(\hat{\theta}_n - \theta)^2] \\
+&amp;= \text{bias}^2(\hat{\theta}_n) + \Var_\theta (\hat{\theta}_n)
+\end{align}`
+$$
+
+* `\(\E_\theta (\cdot)\)` with respect to the distribution `\(f(x_1, \ldots, x_n; \theta)\)`
+
+--
+
+`$$\frac{\hat{\theta}_n - \theta}{\se} \leadsto N(0,1)$$`
+
+---
+
+# Bernoulli random variable
+
+Let `\(X_1, \ldots, X_n ~ \text{Bernoulli}(\pi)\)` and let `\(\hat{\pi}_n = \frac{1}{n} \sum_{i=1}^n X_i\)`. Then
+
+`$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$`
+
+so `\(\hat{\pi}_n\)` is unbiased
+
+---
+
+# Bernoulli random variable
+
+The standard error is
+
+`$$\se = \sqrt{\Var (\hat{\pi}_n)} = \sqrt{\frac{\pi (1 - \pi)}{n}}$$`
+
+--
+
+`$$\widehat{\se} = \sqrt{\frac{\hat{\pi} (1 - \hat{\pi})}{n}}$$`
+
+--
+
+$$
+`\begin{align}
+\text{bias}(\hat{\pi}_n) &amp;= \E_\pi (\hat{\pi}) - \pi \\
+&amp;= \pi - \pi \\
+&amp;= 0
+\end{align}`
+$$
+
+and
+
+`$$\se = \sqrt{\frac{\pi (1 - \pi)}{n}} \rightarrow 0$$`
+
+--
+
+`\(\hat{\pi}_n\)` is a consistent estimator of `\(\pi\)`
+
+---
+
+# Maximum likelihood
+
+Let `\(X_1, \ldots, X_n\)` be IID with PDF `\(f(x; \theta)\)`. The **likelihood function** is defined by
+
+`$$\Lagr_n(\theta) = \prod_{i=1}^n f(X_i; \theta)$$`
+
+--
+
+The **log-likelihood function** is defined by `\(\lagr_n (\theta) = \log \Lagr_n(\theta)\)`
+
+--
+
+* Likelihood function is the joint density of the data
+* Not the same as a PDF - it is a likelihood function
+
+--
+
+The **maximum likelihood estimator** `\(\hat{\theta}_n\)` is the value of `\(\theta\)` that maximizes `\(\Lagr_n(\theta)\)`
+
+--
+
+`$$\max (\Lagr_n(\theta)) \equiv \max (\lagr_n(\theta))$$`
+
+---
+
+# Bernoulli random variable
+
+Suppose that `\(X_1, \ldots, X_n \sim \text{Bernoulli} (\pi)\)`. The probability function is
+
+`$$f(x; \pi) = \pi^x (1 - \pi)^{1 - x}$$`
+
+for `\(x = 0,1\)`. The unknown parameter is `\(\pi\)`.
+
+--
+
+$$
+`\begin{align}
+\Lagr_n(\pi) &amp;= \prod_{i=1}^n f(X_i; \pi) \\
+&amp;= \prod_{i=1}^n \pi^{X_i} (1 - \pi)^{1 - X_i} \\
+&amp;= \pi^S (1 - \pi)^{n - S}
+\end{align}`
+$$
+
+where `\(S = \sum_{i} X_i\)`.
+
+--
+
+The log-likelihood function is therefore
+
+`$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$`
+
+--
+
+1. Take the derivative of `\(\lagr_n (\pi)\)`
+1. Set it equal to 0
+1. Solve for `\(\hat{\pi}_n = \frac{S}{n}\)`
+
+---
+
+# Bernoulli random variable
+
+&lt;img src="13-frequentist-inference_files/figure-html/loglik-bern-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Properties of maximum likelihood estimators
+
+1. Consistency
+1. Equivariant
+1. Asymptotically Normal
+1. Asymptotically optimal or efficient
+
+--
+
+* Large sample sizes
+* Smooth conditions for `\(f(x; \theta)\)`
+
+---
+
+# Properties of maximum likelihood estimators
+
+##### Consistency
+
+`$$\hat{\theta}_n \xrightarrow{P} \theta_*$$`
+
+--
+
+##### Equivariance
+
+If `\(\hat{\theta}_n\)` is the MLE of `\(\theta\)`, then `\(g(\hat{\theta}_n)\)` is the MLE of `\(g(\theta)\)`
+
+--
+
+##### Asymptotic normality
+
+Let `\(\se = \sqrt{\Var (\hat{\sigma}_n)}\)`
+
+`$$\frac{\hat{\theta}_n - \theta_*}{\se} \leadsto N(0,1)$$`
+
+--
+
+`$$\frac{\hat{\theta}_n - \theta_*}{\widehat{\se}} \leadsto N(0,1)$$`
+
+---
+
+# Properties of maximum likelihood estimators
+
+##### Optimality
+
+Suppose that `\(X_1, \ldots, X_n \sim N(\theta, \sigma^2)\)`. The MLE is `\(\hat{\sigma}_n = \bar{X}_n\)`
+
+--
+
+Another reasonable estimator of `\(\theta\)` is the sample median `\(\tilde{\theta}_n\)`. The MLE satisfies
+
+`$$\sqrt{n} (\hat{\theta}_n - \theta) \leadsto N(0, \sigma^2)$$`
+
+--
+
+Median satisfies
+
+`$$\sqrt{n} (\tilde{\theta}_n - \theta) \leadsto N \left(0, \sigma^2 \frac{\pi}{2} \right)$$`
+
+--
+
+* The MLE has the smallest (asymptotic) variance
+* No other estimator produces smaller variance
+
+---
+
+# MLE of the mean of the Normal variable
+
+`$$\Pr(X_i = x_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]$$`
+
+&lt;img src="13-frequentist-inference_files/figure-html/plot-normal-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# MLE of the mean of the Normal variable
+
+$$
+`\begin{align}
+\lagr_n(\mu, \sigma^2 | X) &amp;= \log \prod_{i = 1}^{N}{\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]} \\
+&amp;= \sum_{i=1}^{N}{\log\left(\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]\right)} \\
+&amp;= -\frac{N}{2} \log(2\pi) - \left[ \sum_{i = 1}^{N} \log{\sigma^2 - \frac{1}{2\sigma^2}} (X_i - \mu)^2 \right]
+\end{align}`
+$$
+
+---
+
+# MLE of the mean of the Normal variable
+
+&lt;table&gt;
+&lt;caption&gt;Salaries of assistant professors&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; id &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; salary &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# MLE of the mean of the Normal variable
+
+&lt;img src="13-frequentist-inference_files/figure-html/loglik-normal-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Confidence sets
+
+A `\(1 - \alpha\)` **confidence interval** for a parameter `\(\theta\)` is an interval `\(C_n = (a,b)\)` where `\(a = a(X_1, \ldots, X_n)\)` and `\(b = b(X_1, \ldots, X_n)\)` are functions of the data such that
+
+`$$\Pr_{\theta} (\theta \in C_n) \geq 1 - \alpha, \quad \forall \, \theta \in \Theta$$`
+
+--
+
+`\((a,b)\)` traps `\(\theta\)` with probability `\(1- \alpha\)`
+
+--
+
+Call `\(1 - \alpha\)` the **coverage** of the confidence interval
+
+---
+
+# Caution interpreting CIs
+
+* `\(C_n\)` is random and `\(\theta\)` is fixed
+* Common value of `\(\alpha = 0.05\)`
+* A confidence interval is not a probability statement about `\(\theta\)`
+    * `\(\theta\)` is a fixed quantity, not a random variable
+    * `\(\theta\)` is or is not in the interval with probability `\(1\)`
+
+--
+
+&gt; On day 1, you collect data and construct a 95% confidence interval for a parameter `\(\theta_1\)`. On day 2, you collect new data and construct a 95% confidence interval for a parameter `\(\theta_2\)`. You continue this way constructing confidence intervals for a sequence of unrelated parameters `\(\theta_1, \theta_2, \ldots\)`. Then 95% of your intervals will trap the true parameter value.
+
+---
+
+# Constructing confidence intervals
+
+Suppose that `\(\hat{\theta}_n \approx N(\theta, \widehat{\se}^2)\)`. Let `\(\Phi\)` be the CDF of a standard Normal distribution and let
+
+`$$z_{\frac{\alpha}{2}} = \Phi^{-1} \left(1 - \frac{\alpha}{2} \right)$$`
+
+--
+
+`$$\Pr (Z &gt; \frac{\alpha}{2}) = \frac{\alpha}{2}$$`
+
+and
+
+`$$\Pr (-z_{\frac{\alpha}{2}} \leq Z \leq z_{\frac{\alpha}{2}}) = 1 - \alpha$$`
+
+where `\(Z \sim N(0,1)\)`
+
+--
+
+`$$C_n = (\hat{\theta}_n - z_{\frac{\alpha}{2}} \widehat{\se}, \hat{\theta}_n + z_{\frac{\alpha}{2}} \widehat{\se})$$`
+
+--
+
+$$
+`\begin{align}
+\Pr_\theta (\theta \in C_n) &amp;= \Pr_\theta (\hat{\theta}_n - z_{\frac{\alpha}{2}} \widehat{\se} &lt; \theta &lt; \hat{\theta}_n + z_{\frac{\alpha}{2}} \widehat{\se}) \\
+&amp;= \Pr_\theta (- z_{\frac{\alpha}{2}} &lt; \frac{\hat{\theta}_n - \theta}{\widehat{\se}} &lt; z_{\frac{\alpha}{2}}) \\
+&amp;\rightarrow \Pr ( - z_{\frac{\alpha}{2}} &lt; Z &lt; z_{\frac{\alpha}{2}}) \\
+&amp;= 1 - \alpha
+\end{align}`
+$$
+
+---
+
+# Hypothesis testing
+
+* Null hypothesis
+* Ask if the data provide sufficient evidence to reject the theory
+
+--
+
+Formally, partition the parameter space `\(\Theta\)` into two disjoint sets `\(\Theta_0\)` and `\(\Theta_1\)` and that we wish to test
+
+`$$H_0: \theta \in \Theta_0 \quad \text{versus} \quad H_1: \theta \in \Theta_1$$`
+
+* `\(H_0\)`
+* `\(H_1\)`
+
+--
+
+Let `\(X\)` be a random variable and let `\(\chi\)` be the range of `\(X\)`. Test a hypothesis by finding an appropriate subset of outcomes `\(R \subset \chi\)` called the **rejection region**
+
+--
+
+If `\(X \subset R\)` we reject the null hypothesis, otherwise we do not reject the null hypothesis
+
+`$$R = \left\{ x: T(x) &gt; c \right\}$$`
+
+--
+
+* `\(T\)`
+* `\(c\)`
+
+---
+
+# Types of errors
+
+&lt;img src="https://2378nh2nfow32gm3mb25krmuyy-wpengine.netdna-ssl.com/wp-content/uploads/2014/05/Type-I-and-II-errors1-625x468.jpg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Power function
+
+Power - probability of correctly rejecting the null hypothesis
+
+--
+
+The **power function** of a test with rejection region `\(R\)` is defined by
+
+`$$\beta(\theta) = \Pr_\theta (X \in R)$$`
+
+--
+
+The size of a test is defined to be
+
+`$$\alpha = \text{sup}_{\theta \in \Theta_0} \beta(\theta)$$`
+
+--
+
+A test is said to have **level** `\(\alpha\)` if its size is less than or equal to `\(\alpha\)`
+
+---
+
+# Sided tests
+
+### Two-sided test
+
+`$$H_0: \theta = \theta_0 \quad \text{versus} \quad H_1: \theta \neq \theta_0$$`
+
+### One-sided test
+
+`$$H_0: \theta \leq \theta_0 \quad \text{versus} \quad H_1: \theta &gt; \theta_0$$`
+
+or
+
+`$$H_0: \theta \geq \theta_0 \quad \text{versus} \quad H_1: \theta &lt; \theta_0$$`
+
+---
+
+# Example hypothesis test
+
+Let `\(X_1, \ldots, X_n \sim N(\mu, \sigma^2)\)` where `\(\sigma\)` is known
+
+Test `\(H_0: \mu \leq 0\)` versus `\(H_1: \mu &gt; 0\)`
+
+`$$\Theta_0 = (-\infty, 0], \quad\Theta_1 = (0, \infty]$$`
+
+--
+
+Consider the test
+
+`$$\text{reject } H_0 \text{ if } T&gt;c$$`
+
+where `\(T = \bar{X}\)`. The rejection region is
+
+`$$R = \left\{(x_1, \ldots, x_n): T(x_1, \ldots, x_n) &gt; c \right\}$$`
+
+---
+
+# Example hypothesis test
+
+Let `\(Z\)` denote the standard Normal random variable. The power function is
+
+$$
+`\begin{align}
+\beta(\mu) &amp;= \Pr_\mu (\bar{X} &gt; c) \\
+&amp;= \Pr_\mu \left(\frac{\sqrt{n} (\bar{X} - \mu)}{\sigma} &gt; \frac{\sqrt{n} (c - \mu)}{\sigma} \right) \\
+&amp;= \Pr_\mu \left(Z &gt; \frac{\sqrt{n} (c - \mu)}{\sigma} \right) \\
+&amp;= 1 - \Phi \left( \frac{\sqrt{n} (c - \mu)}{\sigma} \right)
+\end{align}`
+$$
+
+---
+
+# Example hypothesis test
+
+&lt;img src="13-frequentist-inference_files/figure-html/normal-cdf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Example hypothesis test
+
+`$$\alpha = \text{sup}_{\mu \leq 0} \beta(\mu) = \beta(0) = 1 - \Phi \left( \frac{\sqrt{n} (c)}{\sigma} \right)$$`
+
+For a size `\(\alpha\)` test, we set this equal to `\(\alpha\)` and solve for `\(c\)` to get
+
+`$$c = \frac{\sigma \Phi^{-1} (1 - \alpha)}{\sqrt{n}}$$`
+
+--
+
+We reject `\(H_0\)` when
+
+`$$\bar{X} &gt; \frac{\sigma \Phi^{-1} (1 - \alpha)}{\sqrt{n}}$$`
+
+--
+
+Equivalently, we reject when
+
+`$$\frac{\sqrt{n}(\bar{X} - 0)}{\sigma} &gt; z_\alpha$$`
+
+where `\(z_\alpha = \Phi^{-1} (1 - \alpha)\)`.
+
+---
+
+# Wald test
+
+Let `\(\theta\)` be a scalar parameter, let `\(\hat{\theta}\)` be an estimate of `\(\theta\)`, and let `\(\widehat{\se}\)` be the estimated standard error of `\(\hat{\theta}\)`. Consider testing
+
+`$$H_0: \theta = \theta_0 \quad \text{versus} \quad H_1: \theta \neq \theta_0$$`
+
+--
+
+Assume that `\(\hat{\theta}\)` is asymptotically Normal:
+
+`$$\frac{\hat{\theta} - \theta_0}{\widehat{\se}} \leadsto N(0,1)$$`
+
+--
+
+The size `\(\alpha\)` Wald test is: reject `\(H_0\)` when `\(|W| &gt; z_{\alpha / 2}\)` where
+
+`$$W = \frac{\hat{\theta} - \theta_0}{\widehat{\se}}$$`
+
+---
+
+# Power of the Wald test
+
+Suppose the true value of `\(\theta\)` is `\(\theta_* \neq \theta_0\)`. The power `\(\beta(\theta_*)\)` is given (approximately) by
+
+`$$1 - \Phi \left( \frac{\hat{\theta} - \theta_0}{\widehat{\se}} + z_{\alpha/2} \right) + \Phi \left( \frac{\hat{\theta} - \theta_0}{\widehat{\se}} - z_{\alpha/2} \right)$$`
+
+--
+
+* The power is large if `\(\theta_*\)` is far from `\(\theta_0\)`
+* The power is large if the sample size is large
+
+---
+
+# Example: comparing two means
+
+Let `\(X_1, \ldots, X_m\)` and `\(Y_1, \ldots, Y_n\)` be two independent samples from populations with means `\(\mu_1, \mu_2\)` respectively. Test the null hypothesis that `\(\mu_1 = \mu_2\)`
+
+`$$H_0: \delta = 0 \quad \text{versus} \quad H_1: \delta \neq 0$$`
+
+where `\(\delta = \mu_1 - \mu_2\)`
+
+--
+
+The estimate of `\(\delta\)` is `\(\hat{\delta} = \bar{X} - \bar{Y}\)` with estimated standard error
+
+`$$\widehat{\se} = \sqrt{\frac{s_1^2}{m} + \frac{s_2^2}{n}}$$`
+
+where `\(s_1^2\)` and `\(s_2^2\)` are the sample variances
+
+--
+
+The size `\(\alpha\)` Wald test rejects `\(H_0\)` when `\(|W| &gt; z_{\alpha / 2}\)` where
+
+`$$W = \frac{\hat{\delta} - 0}{\widehat{\se}} = \frac{\bar{X} - \bar{Y}}{\sqrt{\frac{s_1^2}{m} + \frac{s_2^2}{n}}}$$`
+
+---
+
+# `\(t\)`-test
+
+&lt;img src="13-frequentist-inference_files/figure-html/t-dist-1.gif" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Statistical vs. scientific significance
+
+&lt;img src="http://www.azquotes.com/picture-quotes/quote-the-absence-of-evidence-is-not-the-evidence-of-absence-carl-sagan-43-51-12.jpg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# `\(p\)`-values
+
+Generally, if the test rejects at level `\(\alpha\)` it will also reject at level `\(\alpha' &gt; \alpha\)`
+
+Smallest `\(\alpha\)` at which the test rejects - the `\(p\)`-value
+
+--
+
+The smaller the `\(p\)`-value, the stronger the evidence against `\(H_0\)`
+
+---
+
+# Interpreting `\(p\)`-values
+
+`\(p\)`-value  | evidence
+-----------|-----------------------------------------
+`\(&lt; .01\)`    | very strong evidence against `\(H_0\)`
+`\(.01 - .05\)`| strong evidence against `\(H_0\)`
+`\(.05 - .10\)`| weak evidence against `\(H_0\)`
+`\(&gt; .1\)`     | little or no evidence against `\(H_0\)`
+
+---
+
+# Calculating `\(p\)`-values
+
+Suppose that the size `\(\alpha\)` test is of the form
+
+`$$\text{reject } H_0 \text{ if and only if } T(X_n) \geq c_\alpha$$`
+
+Then,
+
+`$$\text{p-value} = \text{sup}_{\theta \in \Theta_0} \Pr_\theta (T(X^n) \geq T(x^n))$$`
+
+where `\(x^n\)` is the observed value of `\(X^n\)`. If `\(\Theta_0 = \{ \theta_0 \}\)` then
+
+`$$\text{p-value} = \Pr_{\theta_0} (T(X^n) \geq T(x^n))$$`
+
+---
+
+# `\(p\)`-value for Wald test
+
+Let
+
+`$$w = \frac{\hat{\theta} - \theta_0}{\widehat{\se}}$$`
+
+denote the observed value of the Wald statistic `\(W\)`. The `\(p\)`-value is given by
+
+`$$\text{p-value} = \Pr_{\theta_0} (|W| &gt; |w|) \approx \Pr (|Z| &gt; |w| = 2 \Phi(-|w|)$$`
+
+where `\(Z \sim N(0,1)\)`
+
+---
+
+# `\(p\)`-value for Wald test
+
+&lt;img src="13-frequentist-inference_files/figure-html/wald-p-val-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Example: cholesterol data
+
+Consider a set of 371 individuals in a health study examining cholesterol levels (in mg/dl). 320 individuals have narrowing of the arteries, while 51 patients have no evidence of heart disease. Is the mean cholesterol different in the two groups?
+
+--
+
+Let the estimated mean cholesterol levels for the first group be `\(\bar{X} = 216.2\)` and for the second group `\(\bar{Y} = 195.3\)`. Let the estimated standard error for each group be `\(\widehat{\se}(\hat{\mu}_1) = 5.0\)` and `\(\widehat{\se}(\hat{\mu}_2) = 2.4\)`
+
+--
+
+The Wald test statistic is
+
+`$$W = \frac{\hat{\delta} - 0}{\widehat{\se}} = \frac{\bar{X} - \bar{Y}}{\sqrt{\widehat{\se}_1^2 + \widehat{\se}_2^2}} = \frac{216.2 - 195.3}{\sqrt{5^2 + 2.4^2}} = 3.78$$`
+
+--
+
+To compute the `\(p\)`-value, let `\(Z \sim N(0,1)\)` denote a standard Normal random variable. Then
+
+`$$\text{p-value} = \Pr (|Z| &gt; 3.78) = 2 \Pr(Z &lt; -3.78) = 0.0002$$`
+
+---
+
+# Pearson's `\(\chi^2\)` test for multinomial data
+
+* Used for multinomial data
+* If `\(X = (X_1, \ldots, X_k)\)` has a multinomial `\((n,p)\)` distribution, then the MLE of `\(p\)` is `\(\hat{p} = (\hat{p}_1, \ldots, \hat{p}_k) = (x_1 / n, \ldots, x_k / n)\)`.
+
+--
+
+Let `\(p_0 = (p_{01}, \ldots, p_{0k})\)` be some fixed vector and suppose we want to test
+
+`$$H_0: p = p_0 \quad \text{versus} \quad H_1: p \neq p_0$$`
+
+--
+
+Pearson's `\(\chi^2\)` statistic is
+
+`$$T = \sum_{j=1}^k \frac{(X_j - np_{0j})^2}{np_{0j}} = \sum_{j=1}^k \frac{(X_j - \E[X_j])^2}{\E[X_j]}$$`
+
+where `\(\E[X_j] = np_{0j}\)` is the expected value under `\(H_0\)`.
+
+---
+
+# Attitudes towards abortion
+
+* `\(H_A\)` - In a comparison of individuals, liberals are more likely to favor allowing a woman to obtain an abortion for any reason than conservatives
+* `\(H_0\)` - There is no difference in support between liberals and conservatives for allowing a woman to obtain an abortion for any reason. Any difference is the result of random sampling error.
+
+---
+
+# Attitudes towards abortion
+
+| Right to Abortion | Liberal | Moderate | Conservative | Total |
+|-------------------|----------|----------|--------------|--------|
+| Yes | 40.8% | 40.8% | 40.8% | 40.8% |
+|  | (206.45) | (289.68) | (271.32) | (768) |
+| No | 59.2% | 59.2% | 59.2% | 59.2% |
+|  | (299.55) | (420.32) | (393.68) | (1113) |
+| Total | 26.9% | 37.7% | 35.4% | 100% |
+|  | (506) | (710) | (665) | (1881) |
+
+---
+
+# Attitudes towards abortion
+
+| Right to Abortion | Liberal | Moderate | Conservative | Total |
+|-------------------|---------|----------|--------------|--------|
+| Yes | 62.6% | 36.6% | 28.7% | 40.8% |
+|  | (317) | (260) | (191) | (768) |
+| No | 37.4% | 63.4% | 71.28% | 59.2% |
+|  | (189) | (450) | (474) | (1113) |
+| Total | 26.9% | 37.7% | 35.4% | 100% |
+|  | (506) | (710) | (665) | (1881) |
+
+---
+
+# Attitudes towards abortion
+
+| Right to Abortion |     | Liberal | Moderate | Conservative |
+|-------------------|---------------|---------|----------|--------------|
+|  Yes | Observed Frequency `\(X_j\)` | 317.0 | 260.0 | 191.0 |
+|     | Expected Frequency `\(\E[X_j]\)` | 206.6 | 289.9 | 271.5 |
+|     | `\(X_j - \E[X_j]\)` | 110.4 | -29.9 | -80.5 |
+|     | `\((X_j - \E[X_j])^2\)` | 12188.9 | 893.3 | 6482.7 |
+|     | `\(\frac{(X_j - \E[X_j])^2}{\E[X_j]}\)` | **59.0** | **4.1** | **23.9** |
+|  No   | Observed Frequency `\(X_j\)` | 189.0 | 450.0 | 474.0 |
+|     | Expected Frequency `\(\E[X_j]\)` | 299.4 | 420.1 | 393.5 |
+|     | `\(X_j - \E[X_j]\)` | -110.4 | 29.9 | 80.5 |
+|     | `\((X_j - \E[X_j])^2\)` | 12188.9 | 893.3 | 6482.7 |
+|     | `\(\frac{(X_j - \E[X_j])^2}{\E[X_j]}\)` | **40.7** | **2.1** | **16.5** |
+
+---
+
+# Attitudes towards abortion
+
+Calculating test statistic
+
+* `\(\chi^2=\sum{\frac{(X_j - \E[X_j])^2}{\E[X_j]}}=145.27\)`
+* `\(\text{Degrees of freedom} = (\text{number of rows}-1)(\text{number of columns}-1)=2\)`
+
+--
+
+Calculating `\(p\)`-value
+
+* `\(\text{p-value} = \Pr (\chi_2^2 &gt; 145.27) = 0\)`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://cfss.uchicago.edu/slides/macros.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script src="https://www.redditstatic.com/comment-embed.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "r",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

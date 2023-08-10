@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Bayesian inference</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MACS 33000   University of Chicago" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/lucy-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Bayesian inference
+### <a href="https://github.com/math-camp/course">MACS 33000</a> <br /> University of Chicago
+
+---
+
+
+
+
+
+
+
+`$$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}} \newcommand{\se}{\text{se}} \newcommand{\sd}{\text{sd}} \newcommand{\Cor}{\mathrm{Cor}} \newcommand{\Lagr}{\mathcal{L}} \newcommand{\lagr}{\mathcal{l}}$$`
+
+---
+
+# Learning objectives
+
+* Define the Bayesian philosophy and distinguish from frequentist inference
+* Define core concepts for Bayesian methods
+* Discuss the importance of simulation to estimate density functions
+* Assess methods for defining priors
+* Identify the strengths and weaknesses of Bayesian inference
+
+---
+
+# Bayesian philosophy
+
+## Classical (frequentist) inference
+
+1. Probability refers to limiting relative frequencies
+1. Probabilities are objective properties of the real world
+1. Parameters are fixed, unknown constants
+1. Statistical procedures should be designed to have well-defined long run frequency properties
+
+--
+
+## Bayesian inference
+
+1. Probability describes degree of belief, not limiting frequency
+
+    &gt; The probability that Donald Trump offended someone on November 25, 2018 is `\(0.99\)`
+
+1. We can make probability statements about parameters, even though they are fixed constants
+1. We make inferences about a parameter `\(\theta\)` by producing a probability distribution for `\(\theta\)`
+
+---
+
+# Bayes' theorem
+
+For two events `\(A\)` and `\(B\)`:
+
+`$$\Pr(B|A) = \frac{\Pr(A|B) \times \Pr(B)}{\Pr(A)}$$`
+
+--
+
+* Inverting conditional probabilities
+
+---
+
+# Coin tossing
+
+Toss a coin 5 times
+
+* `\(H_1 =\)` first toss is heads
+* `\(H_A =\)` all 5 tosses are heads
+
+--
+
+$$
+`\begin{aligned}
+\Pr(H_1 | H_A) &amp;= 1 \\
+\Pr(H_A | H_1) &amp;= \frac{1}{16}
+\end{aligned}`
+$$
+
+--
+
+Calculate `\(\Pr(H_1 | H_A)\)` using `\(\Pr(H_A | H_1)\)`
+
+--
+
+* `\(\Pr(H_A | H_1) = \frac{1}{16}\)`
+* `\(\Pr(H_1) = \frac{1}{2}\)`
+* `\(\Pr(H_A) = \frac{1}{32}\)`
+
+--
+
+`$$\Pr(H_A | H_1) = \frac{\Pr(H_A | H_1) \times \Pr(H_1)}{\Pr(H_A)} = \frac{\frac{1}{16} \times \frac{1}{2}}{\frac{1}{32}} = 1$$`
+
+---
+
+# False positive fallacy
+
+A test for a certain rare disease is assumed to be correct 95% of the time:
+
+* If a person has the disease, then the test results are positive with probability `\(0.95\)`
+* If the person does not have the disease, then the test results are negative with probability `\(0.95\)`
+
+A random person drawn from a certain population has probability `\(0.001\)` of having the disease. Given that the person just tested positive, what is the probability of having the disease?
+
+---
+
+# False positive fallacy
+
+* `\(A = {\text{person has the disease}}\)`
+* `\(B = {\text{test result is positive for the disease}}\)`
+* `\(\Pr(A) = 0.001\)`
+* `\(\Pr(B | A) = 0.95\)`
+* `\(\Pr(B | A = 0) = 0.05\)`
+
+--
+
+$$
+`\begin{align}
+\Pr(\text{person has the disease} | \text{test is positive}) &amp;= \Pr(A|B) \\
+&amp; = \frac{\Pr(A) \times \Pr(B|A)}{\Pr(B)} \\
+&amp; = \frac{\Pr(A) \times \Pr(B|A)}{\Pr(A) \times \Pr(B|A) + \Pr(A = 0) \times(B | A = 0)} \\
+&amp; = \frac{0.001 \times 0.95}{0.001 \times 0.95 + 0.999 \times 0.05} \\
+&amp; = 0.0187
+\end{align}`
+$$
+
+---
+
+# Bayesian inference
+
+1. Choose a prior distribution `\(f(\theta)\)`
+1. Choose a statistical model `\(f(x|\theta)\)`
+    * `\(f(x|\theta) \neq f(x; \theta)\)`
+1. Calculate the posterior distribution `\(f(\theta | X_1, \ldots, X_n)\)`
+
+---
+
+# Bayesian inference
+
+* Suppose that `\(\theta\)` is discrete and that there is a single, discrete observation `\(X\)`
+* `\(\Theta\)` is a random variable
+
+--
+
+##### Discrete random variable
+
+$$
+`\begin{align}
+\Pr(\Theta = \theta | X = x) &amp;= \frac{\Pr(X = x, \Theta = \theta)}{\Pr(X = x)} \\
+&amp;= \frac{\Pr(X = x | \Theta = \theta) \Pr(\Theta = \theta)}{\sum_\theta \Pr (X = x| \Theta = \theta) \Pr (\Theta = \theta)}
+\end{align}`
+$$
+
+##### Continuous random variable
+
+`$$f(\theta | x) = \frac{f(x | \theta) f(\theta)}{\int f(x | \theta) f(\theta) d\theta}$$`
+
+---
+
+# Bayesian inference
+
+Replace `\(f(x | \theta)\)` with
+
+`$$f(x_1, \ldots, x_n | \theta) = \prod_{i = 1}^n f(x_i | \theta) = \Lagr_n(\theta)$$`
+
+--
+
+* Write `\(X^n\)` to mean `\((X_1, \ldots, X_n)\)`
+* Write `\(x^n\)` to mean `\((x_1, \ldots, x_n)\)`
+
+$$
+`\begin{align}
+f(\theta | x^n) &amp;= \frac{f(x^n | \theta) f(\theta)}{\int f(x^n | \theta) f(\theta) d\theta} \\
+&amp;= \frac{\Lagr_n(\theta) f(\theta)}{c_n} \\
+&amp;\propto \Lagr_n(\theta) f(\theta)
+\end{align}`
+$$
+
+--
+
+`$$c_n = \int f(x^n | \theta) f(\theta) d\theta$$`
+
+--
+
+`$$f(\theta | x^n) \propto \Lagr_n(\theta) f(\theta)$$`
+
+---
+
+# Bayesian inference
+
+##### Point estimate
+
+`$$\bar{\theta}_n = \int \theta f(\theta | x^n) d\theta = \frac{\int \theta \Lagr_n(\theta) f(\theta)}{\int \Lagr_n(\theta) f(\theta) d\theta}$$`
+
+--
+
+##### Posterior/credible interval
+
+* Find `\(a\)` and `\(b\)` such that
+
+    `$$\int_{-\infty}^a f(\theta | x^n) d\theta = \int_b^\infty f(\theta | x^n) d\theta = \frac{\alpha}{2}$$`
+
+* Let `\(C = (a,b)\)`. Then
+
+    `$$\Pr (\theta \in C | x^n) = \int_a^b f(\theta | x^n) d\theta = 1 - \alpha$$`
+
+---
+
+# Example: coin tossing
+
+Three types of coins with different probabilities of landing heads when tossed
+
+* Type `\(A\)` coins are fair, with `\(p = 0.5\)` of heads
+* Type `\(B\)` coins are bent, with `\(p = 0.6\)` of heads
+* Type `\(C\)` coins are bent, with `\(p = 0.9\)` of heads
+
+--
+
+Suppose a drawer contains 5 coins
+
+* 2 of type `\(A\)`
+* 2 of type `\(B\)`
+* 1 of type `\(C\)`
+
+--
+
+Reach into the drawer and pick a coin at random. Without looking you flip the coin once and get heads. What is the probability it is type `\(A\)`? Type `\(B\)`? Type `\(C\)`?
+
+---
+
+# Terminology
+
+* Let `\(A\)`, `\(B\)`, and `\(C\)` be the event the chosen coin was of the respective type
+* Let `\(D\)` be the event that the toss is heads
+
+`$$\Pr(A|D), \Pr(B|D), \Pr(C|D)$$`
+
+--
+
+* Experiment
+* Data
+    * `\(D = \text{heads}\)`
+* Hypotheses
+
+--
+
+##### Prior probability
+
+`$$\Pr(A) = 0.4, \Pr(B) = 0.4, \Pr(C) = 0.2$$`
+
+--
+
+##### Likelihood
+
+`$$\Pr(D|A) = 0.5, \Pr(D|B) = 0.6, \Pr(D|C) = 0.9$$`
+
+--
+
+##### Posterior probability
+
+`$$\Pr(A|D), \Pr(B|D), \Pr(C|D)$$`
+
+---
+
+# Apply Bayesian inference
+
+$$
+`\begin{align}
+\Pr(A|D) &amp;= \frac{\Pr(D|A) \times \Pr(A)}{\Pr(D)} \\
+\Pr(B|D) &amp;= \frac{\Pr(D|B) \times \Pr(B)}{\Pr(D)} \\
+\Pr(C|D) &amp;= \frac{\Pr(D|C) \times \Pr(C)}{\Pr(D)}
+\end{align}`
+$$
+
+$$
+`\begin{align}
+\Pr(D) &amp; = \Pr(D|A) \times \Pr(A) + \Pr(D|B) \times \Pr(B) + \Pr(D|C) \times \Pr(C) \\
+&amp; = 0.5 \times 0.4 + 0.6 \times 0.4 + 0.9 \times 0.2 = 0.62
+\end{align}`
+$$
+
+---
+
+# Apply Bayesian inference
+
+$$
+`\begin{align}
+\Pr(A|D) &amp;= \frac{\Pr(D|A) \times \Pr(A)}{\Pr(D)} = \frac{0.5 \times 0.4}{0.62} = \frac{0.2}{0.62} \\
+\Pr(B|D) &amp;= \frac{\Pr(D|B) \times \Pr(B)}{\Pr(D)} = \frac{0.6 \times 0.4}{0.62} = \frac{0.24}{0.62} \\
+\Pr(C|D) &amp;= \frac{\Pr(D|C) \times \Pr(C)}{\Pr(D)} = \frac{0.9 \times 0.2}{0.62} = \frac{0.18}{0.62}
+\end{align}`
+$$
+
+---
+
+# Apply Bayesian inference
+
+hypothesis | prior | likelihood | Bayes numerator | posterior
+----|--------|----------|---------------------|---------------
+`\(H\)` | `\(\Pr(H)\)` | `\(\Pr(D\mid H)\)` | `\(\Pr(D \mid H) \times \Pr(H)\)` | `\(\Pr(H \mid D)\)`
+A | 0.4 | 0.5 | 0.2 | 0.3226
+B | 0.4 | 0.6 | 0.24 | 0.3871
+C | 0.2 | 0.9 | 0.18 | 0.2903
+total | 1 | | 0.62 | 1
+
+--
+
+##### Things to notice
+
+1. Posterior probabilities
+1. Bayes numerator determines the posterior probability
+1. Bayes numerator can find the most likely hypothesis
+1. The posterior probability represents the outcome of a tug-of-war between the likelihood and the prior
+
+---
+
+# Bayesian inference
+
+$$
+`\begin{aligned}
+\Pr(\text{hypothesis}| \text{data}) &amp;= \frac{\Pr(\text{data} | \text{hypothesis}) \times \Pr(\text{hypothesis})}{\Pr(\text{data})} \\
+\Pr(H|D) &amp;= \frac{\Pr(D | H) \times \Pr(H)}{\Pr(D)}
+\end{aligned}`
+$$
+
+--
+
+$$
+`\begin{aligned}
+\Pr(\text{hypothesis}| \text{data}) &amp;\propto \Pr(\text{data} | \text{hypothesis}) \times \Pr(\text{hypothesis}) \\
+\text{Posterior} &amp;\propto \text{Likelihood} \times \text{Prior}
+\end{aligned}`
+$$
+
+---
+
+# Bernoulli random variable
+
+* Let `\(X_1, \ldots, X_n \sim \text{Bernoulli} (p)\)`
+* Uniform prior `\(f(p) = 1\)` as a prior
+
+--
+
+Posterior distribution
+
+$$
+`\begin{align}
+f(p | x^n) &amp;\propto f(p) \Lagr_n(p) \\
+&amp;= p^s (1 - p)^{n - s} \\
+&amp;= p^{s + 1 - 1} (1 - p)^{n - s + 1 - 1}
+\end{align}`
+$$
+
+`\(s = \sum_{i=1}^n x_i\)` is the number of successes
+
+---
+
+# Bernoulli random variable
+
+##### Beta distribution
+
+`$$f(p; \alpha, \beta) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}p^{\alpha - 1} (1 - p)^{\beta - 1}$$`
+
+&lt;img src="14-bayesian-inference_files/figure-html/beta-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Bernoulli random variable
+
+##### Posterior for `\(p\)`
+
+`$$f(p | x^n) = \frac{\Gamma(n + 2)}{\Gamma(s + 1) \Gamma(n - s + 1)}p^{(s + 1) - 1} (1 - p)^{(n - s + 1) - 1}$$`
+
+`$$p | x^n \sim \text{Beta} (s + 1, n - s + 1)$$`
+
+`$$c_n = \frac{\Gamma(n + 2)}{\Gamma(s + 1) \Gamma(n - s + 1)}$$`
+
+---
+
+# Bernoulli random variable
+
+##### Bayes estimator
+
+Mean of a `\(\text{Beta}(\alpha, \beta)\)` distribution is `\(\frac{\alpha}{\alpha + \beta}\)`
+
+$$
+`\begin{aligned}
+\bar{p} &amp;= \frac{s + 1}{n + 2} \\
+\bar{p} &amp;= \lambda_n \hat{p} + (1 - \lambda_n) \tilde{p}
+\end{aligned}`
+$$
+
+---
+
+# Bernoulli random variable
+
+##### 95% credible interval
+
+Find `\(a\)` and `\(b\)` such that `\(\int_a^b f(p | x^n) dp = 0.95\)`
+
+--
+
+##### Use the prior `\(p \sim \text{Beta} (\alpha, \beta)\)`
+
+`$$p | x^n \sim \text{Beta} (\alpha + s, \beta + n - s)$$`
+
+* Flat prior is Beta distribution where `\(\alpha = \beta = 1\)`
+* Posterior mean is
+
+    `$$\bar{p} = \frac{\alpha + s}{\alpha + \beta + n} = \left( \frac{n}{\alpha + \beta + n} \right) \hat{p} + \left( \frac{\alpha + \beta}{\alpha + \beta + n} \right) p_0$$`
+
+* Prior mean: `\(p_0 = \frac{\alpha}{\alpha + \beta}\)`
+
+---
+
+# Updating your prior beliefs
+
+&gt; Today's posterior is tomorrow's prior
+
+--
+
+* September 11, 2001
+* Prior to first strike, probability of a terror attack on tall buildings in Manhattan was just `\(p = 0.00005\)`
+* Probability to a plane hitting the World Trade Center by accident `\(p = 0.00008\)`
+* What is the probability of terrorists crashing planes into Manhattan skyscrapers given the first plane hitting the World Trade Center?
+
+---
+
+# Updating your prior beliefs
+
+* `\(A =\)` terror attack
+* `\(B =\)` plane hitting the World Trade Center
+* `\(\Pr(A) = 0.00005 =\)` probability that terrorists would crash a plane into the World Trade Center
+* `\(\Pr(A^C) = 0.99995 =\)` probability that terrorists would not crash a plane into the World Trade Center
+* `\(\Pr(B|A) = 1 =\)` probability of a plane crashing into the World Trade Center if terrorists are attacking the World Trade Center
+* `\(\Pr(B|A^C) = 0.00008 =\)` probability of a plane hitting if terrorists are not attacking the World Trade Center (i.e. an accident)
+
+--
+
+$$
+`\begin{align}
+\Pr(A|B) &amp;= \frac{\Pr(A) \times \Pr(B|A)}{\Pr(B)} \\
+ &amp;= \frac{\Pr(A) \times \Pr(B|A)}{ \Pr(A) \times \Pr(B|A) + \Pr(A^C) \times \Pr(B| A^C)} \\
+&amp; = \frac{0.00005 \times 1}{0.00005 \times 1 + 0.99995 \times 0.00008} \\
+&amp; = 0.385
+\end{align}`
+$$
+
+---
+
+# The second strike
+
+What is the probability of terrorists crashing planes into Manhattan skyscrapers given the second plane hitting the World Trade Center?
+
+--
+
+$$
+`\begin{align}
+\Pr(A|B) &amp;= \frac{\Pr(A) \times \Pr(B|A)}{\Pr(B)} \\
+ &amp;= \frac{\Pr(A) \times \Pr(B|A)}{ \Pr(A) \times \Pr(B|A) + \Pr(A^C) \times \Pr(B| A^C)} \\
+&amp; = \frac{0.385 \times 1}{0.385 \times 1 + 0.615 \times 0.00008} \\
+&amp; \approx .9998
+\end{align}`
+$$
+
+---
+
+# Simulation
+
+##### Point estimate
+
+* Approximate posterior
+* Draw `\(\theta_1, \ldots, \theta_B \sim p(\theta | x^n)\)`
+* Histogram of `\(\theta_1, \ldots, \theta_B\)` approximates the posterior density `\(p(\theta | x^n)\)`
+
+    `$$\bar{\theta}_n = \E (\theta | x^n) \equiv \frac{\sum_{j=1}^B \theta_j}{B}$$`
+
+--
+
+##### Credible `\(1 - \alpha\)` interval
+
+`$$C_n \approx (\theta_{\alpha / 2}, \theta_{1 - \alpha /2})$$`
+
+* `\(\theta_{\alpha / 2}\)` is the `\(\alpha / 2\)` sample quantile of `\(\theta_1, \ldots, \theta_B\)`
+* Generate sample `\(\theta_1, \ldots, \theta_B\)` from `\(f(\theta | x^n)\)`
+* Let `\(\tau_i = g(\theta_i)\)`
+* `\(\tau_1, \ldots, \tau_B\)` is a sample from `\(f(\tau | x^n)\)`
+* Avoids complex analytical calculations
+
+---
+
+# Bernoulli random variable
+
+* `\(X_1, \ldots, X_n \sim \text{Bernoulli} (p)\)`
+* `\(f(p) = 1\)`
+* `\(p | X^n \sim \text{Beta} (s + 1, n - s + 1)\)`
+* `\(\psi = \log \left( \frac{p}{1 - p} \right)\)`
+
+--
+
+* Analytic approach
+* Simulation
+    1. Draw `\(P_1, \ldots, P_B \sim \text{Beta} (s + 1, n - s + 1)\)`
+    1. Let `\(\psi_i = \log \left( \frac{P_i}{1 - P_i} \right)\)`, for `\(i = 1, \ldots, B\)`
+    * `\(\psi_1, \ldots, \psi_B\)` are IID draws from `\(h(\psi | x^n)\)`
+    * Histogram of these values provides an estimate of `\(h(\psi | x^n)\)`
+
+---
+
+# Priors
+
+* Subjective prior
+* Problems with subjective priors
+* Noninformative priors
+    * Flat prior
+    * `\(f(p) = 1\)`
+
+---
+
+# Improper priors
+
+* Let `\(X \sim N(\theta, \sigma^2)\)` with `\(\sigma\)` known
+* Adopt a flat prior `\(f(\theta) \propto c\)` where `\(c &gt; 0\)` is a constant
+* `\(\int f(\theta) d\theta = \infty\)`
+
+--
+
+* Can still compute the posterior density by multiplying the prior and the likelihood:
+
+    `$$f(\theta) \propto \Lagr_n(\theta) f(\theta) = \Lagr_n(\theta)$$`
+
+* `\(\theta | X^n \sim N(\bar{X}, \sigma^2 / n)\)`
+* Improper priors are not a problem as long as the resulting posterior is a well-defined probability distribution
+
+---
+
+# Flat priors are not invariant
+
+* Let `\(X \sim \text{Bernoulli} (p)\)`
+* `\(f(p) = 1\)`
+* `\(\psi = \log(p / (1 - p))\)`
+
+    `$$f_\Psi (\psi) = \frac{e^\psi}{(1 + e^\psi)^2}$$`
+    * Should be a flat prior, but it is not
+* Flat prior on a parameter does not imply a flat prior on a transformed version of the parameter
+* Transformation invariant
+
+---
+
+# Multiparameter problems
+
+* `\(\theta = (\theta_1, \ldots, \theta_p)\)`
+* Posterior density
+
+    `$$f(\theta | x^n) \propto \Lagr_n(\theta) f(\theta)$$`
+
+* Inferences about a single parameter
+* Marginal posterior density
+
+    `$$f(\theta_1 | x^n) = \int \cdots \int f(\theta_1, \ldots, \theta_p | x^n) d\theta_2 \cdots d\theta_p$$`
+
+* Via simulation
+
+    `$$\theta^1, \ldots, \theta^B \sim f(\theta | x^n)$$`
+
+    * `\(\theta^j = (\theta_1^j, \ldots, \theta_p^j)\)`
+    * `\(\theta_1^1, \ldots, \theta_1^B\)`
+        * Sample from `\(f(\theta_1 | x^n)\)`
+
+---
+
+# Critique of Bayesian inference
+
+1. The subjective prior is subjective
+
+--
+
+1. Probabilities on hypotheses are wrong. There is only one outcome
+
+--
+
+1. For many parametric models with large samples, Bayesian and frequentist methods give approximately the same inferences
+
+--
+
+1. Bayesian inference depends entirely on the likelihood function
+
+---
+
+# Defense of Bayesian inference
+
+1. The probability of hypotheses is exactly what we need to make decisions
+
+--
+
+1. Bayes' theorem is logically rigorous (once we obtain a prior)
+
+--
+
+1. By testing different priors we can see how sensitive our results are to the choice of prior
+
+--
+
+1. It is easy to communicate a result framed in terms of probabilities of hypotheses
+
+--
+
+1. Priors can be defended based on the assumptions made to arrive at it
+
+--
+
+1. Evidence derived from the data is independent of notions about "data more extreme" that depend on the exact experimental setup
+
+--
+
+1. Data can be used as it comes in. We don't have to wait for every contingency to be planned for ahead of time
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://cfss.uchicago.edu/slides/macros.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script src="https://www.redditstatic.com/comment-embed.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "r",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

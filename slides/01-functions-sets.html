@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Linear equations, notation, sets, and functions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MACS 33000   University of Chicago" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/lucy-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Linear equations, notation, sets, and functions
+]
+.author[
+### <a href="https://jmclip.github.io/MACSS_math_camp/">MACS 33000</a> <br /> University of Chicago
+]
+
+---
+
+
+
+
+
+
+
+# Learning objectives
+
+* Define computational social science
+* Connect mathematics and statistics to social scientific inquiry
+* Review course logistics
+* Explain the pedagogical approach for the camp
+* Define basic mathematical notation
+* Assess the use of mathematical notation in the rational voter theory
+* Define functions and their properties
+* Define sets
+* Practice root finding
+
+---
+
+# Computational social science
+
+* Social science - the scientific study of human society and social relationships
+
+--
+
+### Disciplines within social science
+
+* Anthropology
+* Economics
+* History
+* Political science
+* Psychology
+* Sociology
+
+### Interdisciplinary programs
+
+* Comparative human development
+* Conceptual and historical studies of science
+* Computational social science
+
+---
+
+# Computational social science
+
+* Computational approaches to the social sciences
+* Historic definition
+* Modern definition
+
+---
+
+# Computational social science
+
+&lt;img src="images/ccsvenn.jpeg" width="213" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Acquiring CSS skills
+
+* Computer science
+    * CAPP 30121/122/123 sequence
+    * [MACS 30500](https://cfss.uchicago.edu)
+--
+* Social science
+    * Perspectives sequence (MACS 30000/100/200)
+    * Seminars
+    * Non-computational courses
+--
+* Math/statistics
+    * Mathematical models of social worlds
+    * Probability and statistics used across sciences
+    * Start with Computational Math Camp
+    * Math/stats electives
+--
+        * Machine learning
+        * Causal inference
+        * Bayesian inference
+        * Network analysis
+        * Deep learning
+        * Spatial data science
+        * Natural language processing
+
+---
+
+# Math, probability, and statistics
+
+## Mathematics
+
+* Purely abstract
+* Based on axioms that are independent from the real world
+* Language for expressing structure and relationships
+
+--
+
+## Probability
+
+* Systematic and rigorous method for treating uncertainty
+* "Mathematical models of uncertain reality"
+* Derivation of "applied mathematics"
+
+--
+
+## Statistics
+
+* Collecting and analyzing numerical data in large quantities
+* Purpose of inferring proportions in a whole from those in a sample
+* Making inferences from data that are not entirely certain
+
+---
+
+# Their uses
+
+* Mathematical models
+    * Game theory
+    * Formal theory
+    * Much bigger in economics
+    * Defining statistical models and relationships
+* Probability/statistics
+    * Establishing a structure for relationships between variables using data
+    * Inferring relationships and assessing their validity
+
+---
+
+# Goals for the math/stats camp
+
+* Computational Math Camp `\(\leadsto\)` Computational Mathematics and Statistics Camp
+
+--
+* Survey math and statistical tools that are foundational to CSS
+* Review common mathematical notation
+* Apply math/statistics methods
+
+---
+
+# Course logistics
+
+* [Course site](https://github.com/math-camp/course)
+
+--
+
+## Course staff
+
+* Dr. Benjamin Soltoff
+* Sanja Miklin
+* Shilin Jia
+* Jiaxu Han
+
+---
+
+# Prerequisites
+
+* No formal prerequisites
+* Prior training in:
+    * Linear algebra
+    * Calculus
+    * Probability theory
+    * Statistical inference
+* High school/AP/IB training may be sufficient
+* We assume prior exposure to the content covered in this camp
+* Alternatives to this camp
+
+---
+
+# Evaluation
+
+* Pass/fail (no credit)
+* Show up, complete the problem sets satisfactorily (not perfectly), and you'll pass
+* The irony of grad school
+    * Grades no longer matter (or should not)
+    * Learn as much material as possible
+    * **If you truly only care about learning material, you'll get amazing grades**
+
+---
+
+# Pedagogical approach
+
+* Flipped-classroom design
+* Instructional staff is to be your "sherpa" and guide you along your journey
+
+## Paths to success
+
+* Work together
+* Ask for help
+* Get quick feedback
+
+---
+    
+# Why are we doing this?
+
+&lt;div class="reddit-embed" data-embed-media="www.redditmedia.com" data-embed-parent="false" data-embed-live="false" data-embed-uuid="8304bbaa-04bb-4a98-b866-ebc381d9afff" data-embed-created="2018-08-30T17:34:20.160Z"&gt;&lt;a href="https://www.reddit.com/r/AskReddit/comments/9anxn8/kids_in_school_used_to_say_well_never_need_to/e4x4j3a/"&gt;Comment&lt;/a&gt; from discussion &lt;a href="https://www.reddit.com/r/AskReddit/comments/9anxn8/kids_in_school_used_to_say_well_never_need_to/"&gt;Kids in school used to say “We’ll never need to know this in the real world”. What, in your experience, were they wrong about?&lt;/a&gt;.&lt;/div&gt;
+
+---
+
+# Why math is important to social science
+
+* Consistent language to communicate ideas in an orderly and systematic way
+* Science uses highly precise language that is not easily interpretable to outsiders
+* Mathematics is an effective way to describe our world
+* Mathematical notation lets us convey **precision** and minimizes the risk of misinterpretation by other scholars
+
+---
+
+# "Theory of evolution"
+
+.center[
+
+![*On the Origin of Species* by Charles Darwin](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Origin_of_Species_title_page.jpg/374px-Origin_of_Species_title_page.jpg)
+
+]
+
+---
+
+# Example: Rational voter theory
+
+* Rational voters should weigh the rewards vs. costs of voting
+    * If it costs more to vote than the rewards gained from the action, then individuals should not vote in elections
+    * Difference between cost and reward is defined as the **utility** that the person receives from the act (based on an unknown preference scale)
+* How can we codify this model using mathematical notation?
+
+---
+
+# Example: Rational voter theory
+
+`$$R = PB - C$$`
+
+* `\(R =\)` the utility satisfaction of voting
+* `\(P =\)` the actual probability that the voter will affect the outcome with her particular vote
+* `\(B =\)` the perceived difference in benefits between the two candidates measured in **utiles** (units of utility)
+* `\(C =\)` the actual cost of voting in utiles (e.g. time, effort, money)
+
+--
+* What implications does the model provide?
+* How would you express them mathematically?
+
+---
+
+# Example: Rational voter theory
+
+Implication | Formal statement
+------------|------------------
+If individuals do not get enough benefit from voting, they will abstain | The voter will abstain if `\(R &lt; 0\)`.
+Individuals have other things to do on election day (like going to work). If the benefit of voting is not as large as alternative benefits, then individuals will abstain. | The voter may still not vote even if `\(R &gt; 0\)` if there exist other competing activities that produce a higher `\(R\)`.
+Most elections have thousands, if not millions, of ballots cast. There is no point to voting since any individual ballot is unlikely to change the outcome of the election. Therefore everyone should abstain. | If `\(P\)` is very small, then it is unlikely that this individual will vote.
+
+--
+
+* Paradox of voting
+* Simple model, but incredibly impactful
+* Pure mathematical model may not be fully accurate, but allows us to delve deeper into the paradox
+    * How to measure `\(B\)`
+    * How to measure `\(C\)`
+
+---
+
+# Sets
+
+* Collection of objects
+
+$$
+`\begin{aligned}
+A &amp; = \{1, 2, 3\} \nonumber  \\
+B  &amp; = \{4, 5, 6\}\nonumber  \\
+C  &amp; = \{ \text{First year cohort} \} \\
+D &amp; = \{ \text{U of Chicago Lecturers} \}
+\end{aligned}`
+$$
+
+---
+
+# Sets
+
+* If `\(A\)` is a set, we say that `\(x\)` is an element of `\(A\)` by writing `\(x \in A\)`
+* If `\(x\)` is not an element of `\(A\)` then, we write `\(x \notin A\)`
+
+--
+
+* `\(1 \in \{ 1, 2, 3\}\)`
+* `\(4 \in \{4, 5, 6\}\)`
+* `\(\text{Will} \notin \{ \text{First year cohort} \}\)`
+* `\(\text{Benjamin} \in \{ \text{U of Chicago Lecturers} \}\)`
+
+--
+
+Why do we care about sets?
+
+* Sets are necessary for probability theory
+* Defining **set** is equivalent to choosing population of interest (usually)
+
+---
+
+# Subsets
+
+* If `\(A\)` and `\(B\)` are sets, then we say that `\(A = B\)` if, for all `\(x \in A\)` then `\(x \in B\)` and for all `\(y \in B\)` then `\(y \in A\)`
+* Test to determine equality:
+    * Take all elements of `\(A\)`, see if in `\(B\)`
+    * Take all elements of `\(B\)`, see if in `\(A\)`
+
+--
+
+-----------
+
+* If `\(A\)` and `\(B\)` are sets, then we say that `\(A \subset B\)` is, for all `\(x \in A\)`, then `\(x \in B\)`
+    * What is the difference between the definitions?
+
+---
+
+# Set builder notation
+
+Some famous sets:
+
+* `\(\mathbb{N} = \{1, 2, 3, \ldots \}\)`
+* `\(\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots, \}\)`
+* `\(\Re = \mbox{Real numbers}\)`
+
+--
+
+Use **set builder notation** to identify subsets:
+
+* `\([a, b]  = \{x: x \in \Re \text{ and } a \leq x \leq b \}\)`
+* `\((a, b]  = \{x: x \in \Re \text{ and } a &lt; x \leq b \}\)`
+* `\([a, b)  = \{x: x \in \Re \text{ and } a \leq x &lt;  b \}\)`
+* `\((a, b)  = \{x: x \in \Re \text{ and } a &lt; x &lt; b \}\)`
+* `\(\emptyset\)`
+
+---
+
+# Union
+
+* `\(A\)` and `\(B\)` are sets
+* New set that contains all elements in set `\(A\)` *or* in set `\(B\)`
+
+    `$$\begin{aligned}C &amp; = A \cup B  \\   &amp; = \{x: x \in A \text{ or } x \in B \}\end{aligned}$$`
+
+--
+
+* `\(A = \{1, 2, 3\}, B = \{3, 4, 5\}\)`, then `\(C = A \cup B  = \{ 1, 2, 3, 4, 5\}\)`
+* `\(D  = \{\text{First Year Cohort} \}, E = \{\text{Me} \}\)`, then `\(F = D \cup E = \{ \text{First Year Cohort, Me} \}\)`
+
+---
+
+# Intersection
+
+* New set that contains all elements in set `\(A\)` *and* set `\(B\)`
+
+    `$$\begin{aligned}C  &amp; = A \cap B \\  &amp; = \{x: x \in A \text{ and } x \in B \}\end{aligned}$$`
+
+--
+
+* `\(A =\{1, 2, 3\}, B = \{3, 4, 5\}\)`, then, `\(C = A \cap B = \{3\}\)`
+* `\(D = \{\text{First Year Cohort} \}, E = \{\text{Me} \}\)`, then `\(F = D \cap E = \emptyset\)`
+
+---
+
+# Some facts about sets
+
+1. `\(A \cap B = B \cap A\)`
+1. `\(A \cup B = B \cup A\)`
+1. `\((A \cap B) \cap C = A \cap (B \cap C)\)`
+1. `\((A \cup B) \cup C = A \cup (B \cup C)\)`
+1. `\(A \cap (B \cup C) = (A \cap B) \cup (A \cap C)\)`
+1. `\(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)\)`
+
+---
+
+# Ordered pairs
+
+`$$(a, b)$$`
+
+* Two sets `\(A\)` and `\(B\)`
+* Cartesian product
+
+    `$$A \times B = \{(a, b): a \in A \text{ and } b \in B \}$$`
+
+--
+  
+Example: `\(A = \{1, 2\}\)` and `\(B = \{3, 4\}\)`, then,
+
+`$$A \times B = \{ (1, 3); (1, 4); (2, 3); (2, 4) \}$$`
+
+---
+
+# Relation
+
+* Relation
+* Function `\(F\)` - a relation such that,
+
+    $$
+    (x, y) \in F ; (x, z) \in F \Rightarrow y = z
+    $$
+
+* `\(F(x)\)`
+    * `\(x \in \mbox{Domain} \, F\)`
+    * `\(F(x) \in \mbox{Codomain} \, F\)`
+    * `\(F:A \rightarrow B\)`
+
+---
+
+# Relation
+
+&lt;img src="01-functions-sets_files/figure-html/x-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Relation
+
+&lt;img src="01-functions-sets_files/figure-html/x-squared-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Relation
+
+&lt;img src="01-functions-sets_files/figure-html/x-sqrt-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Relation vs. function
+
+* Mathematical function - a mapping which gives a correspondence from one measure onto exactly one other for that value
+* Mapping from one defined space to another, such as `\(F \colon \Re \rightarrow \Re\)`
+
+    `$$F(x) = x^2 - 1$$`
+    
+    * Maps `\(x\)` to `\(F(x)\)` by squaring `\(x\)` and subtracting 1
+
+--
+
+## Not a function
+
+* All functions are relations, but not all relations are functions
+
+---
+
+# Not a function
+
+&lt;img src="01-functions-sets_files/figure-html/y2-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Not a function
+
+&lt;img src="01-functions-sets_files/figure-html/less-than-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Two major properties of functions
+
+`$$F(x) = y$$`
+
+1. A function is **continuous** if it has no gaps in its mapping from `\(x\)` to `\(y\)`
+1. A function is **invertible** if its reverse operation exists:
+
+    `$$G^{-1}(y) = x, \text{where } G^{-1}(G(x)) = x$$`
+
+---
+
+# Non-continuous
+
+`$$F(x) = \left\{
+        \begin{array}{ll}
+            \frac{1}{x} &amp; \quad x \neq 0 \text{ and } x \text{ is rational}\\
+            0 &amp; \quad \text{otherwise}
+        \end{array}
+\right.$$`
+
+&lt;img src="01-functions-sets_files/figure-html/non-continuous-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Non-invertible
+
+&lt;img src="01-functions-sets_files/figure-html/non-invertible-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Two properties of functions
+
+* We want functions to be continuous **and** invertible
+* Non-continuous functions
+* Non-invertible functions
+    * Can make invertible by restricting the **domain**
+
+---
+
+# Restrict the domain
+
+&lt;img src="01-functions-sets_files/figure-html/restrict-domain-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Quadratic functions
+
+`$$y = ax^2$$`
+
+&lt;img src="01-functions-sets_files/figure-html/u-shape-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Quadratic functions
+
+`$$y = ax^2 + bx + c$$`
+
+--
+
+## Quadratic equation
+
+* `\(f(x) = 0\)` where `\(f\)` is a quadratic function
+
+--
+* To **solve the equation**, we need to determine the value of `\(x\)` which satisfies the equation
+
+---
+
+# Quadratic equation
+
+.pull-left[
+
+$$
+`\begin{aligned}
+x^2 - 7 &amp;= 0 \\
+x^2 &amp;= 7 \\
+x &amp;= \pm \sqrt{7}
+\end{aligned}`
+$$
+
+]
+
+--
+
+.pull-right[
+
+&lt;img src="01-functions-sets_files/figure-html/quad-eq1-1.png" width="432" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Quadratic equation
+
+.pull-left[
+
+$$
+`\begin{aligned}
+-3x^2 + 30x - 27 &amp;= 0 \\
+-3 (x^2 - 10x + 9) &amp;= 0 \\
+-3(x - 9)(x - 1) &amp;= 0 \\
+(x - 9)(x - 1) &amp;= 0 \\
+x &amp;= 1, 9
+\end{aligned}`
+$$
+
+]
+
+--
+
+.pull-right[
+
+&lt;img src="01-functions-sets_files/figure-html/quad-eq2-1.png" width="432" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Quadratic formula
+
+`$$ax^2 + bx + c = 0$$`
+  
+* Quadratic formula
+
+    `$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$`
+
+---
+
+# Quadratic formula
+
+`$$x^2 + x - 12 = 0$$`
+
+.pull-left[
+
+$$
+`\begin{aligned}
+x &amp;= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
+&amp;= \frac{-1 \pm \sqrt{1^2 - 4 \times 1 \times 12}}{2 \times 1} \\
+&amp;= \frac{-1 \pm \sqrt{1 - (-48)}}{2} \\
+&amp;= \frac{-1 \pm \sqrt{49}}{2} \\
+&amp;= \frac{-1 \pm 7}{2} \\
+&amp;= 3, -4 \\
+\end{aligned}`
+$$
+
+]
+
+--
+
+.pull-right[
+
+&lt;img src="01-functions-sets_files/figure-html/quad-eq3-1.png" width="432" style="display: block; margin: auto;" /&gt;
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://cfss.uchicago.edu/slides/macros.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightLanguage": "r",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
