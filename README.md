@@ -55,4 +55,4 @@ This course is open to all students who meet the academic requirements for parti
 | 12-Sep | Probability | [General random variables](https://jmclip.github.io/MACSS_math_camp/11-general-random-vars.html) | Pset 11
 | 13-Sep | Probability | [Multivariate distributions](https://jmclip.github.io/MACSS_math_camp/12-multivariate-pdf.html) | Pset 12
 | 14-Sep | Statistical inference | [Classical statistical inference](https://jmclip.github.io/MACSS_math_camp/13-frequentist-inference.html)  | Pset 13
-| 15-Sep | Statistical inference | [Bayesian statistical inference]](https://jmclip.github.io/MACSS_math_camp/14-bayesian-inference.html) | Placement exam
+| 15-Sep | Statistical inference | [Bayesian statistical inference](https://jmclip.github.io/MACSS_math_camp/14-bayesian-inference.html) | Placement exam
