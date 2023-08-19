@@ -1,0 +1,909 @@
+---
+title: "Matrix inversion and decomposition"
+author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
+output:
+  xaringan::moon_reader
+---
+
+```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
+
+```
+
+```{r packages, include=FALSE}
+library(tidyverse)
+library(patchwork)
+library(here)
+library(gganimate)
+library(broom)
+```
+
+# Learning objectives
+
+* Define matrix inversion
+* Demonstrate how to solve systems of linear equations using matrix inversion
+* Define the determinant of a matrix
+* Define matrix decomposition
+* Explain singular value decomposition and demonstrate the applicability of matrix algebra to real-world problems
+
+---
+
+# Matrix inversion
+
+* $\mathbf{X}$ is an $n \times n$ matrix
+* Find the matrix $\mathbf{X}^{-1}$ such that 
+
+    $$\mathbf{X}^{-1} \mathbf{X} = \mathbf{X} \mathbf{X}^{-1} = \mathbf{I}$$
+
+    where $\mathbf{I}$ is the $n \times n$ identity matrix
+
+--
+
+* Why?
+    * Solve systems of equations
+    * Perform linear regression
+    * Provide intuition about colinearity, fixed effects, and other relevant design matricies
+
+---
+
+# Calculating matrix inversions
+
+$$
+\begin{aligned}
+x_{1} + x_{2} + x_{3} &= 0 \\
+0x_{1} 	+ 	5x_{2} + 0x_{3}  & = 5 \\
+0 x_{1} + 0 x_{2} + 3 x_{3} & =  6 \\
+\end{aligned}
+$$
+
+--
+
+$$
+\begin{aligned}
+\mathbf{A}  &= \begin{bmatrix} 1 & 1 & 1 \\ 0 & 5 & 0 \\ 0 & 0 & 3 \end{bmatrix} \\
+\mathbf{x} &= (x_{1} , x_{2}, x_{3} ) \\
+\mathbf{b} &= (0, 5, 6)
+\end{aligned}
+$$
+
+* System of equations
+
+    $$\mathbf{A}\mathbf{x} =\mathbf{b}$$
+
+* $\mathbf{A}^{-1}$ exists **if and only if** $\mathbf{A}\mathbf{x}  =  \mathbf{b}$ has only one solution
+
+---
+
+# Definition
+
+* Suppose $\mathbf{X}$ is an $n \times n$ matrix
+* Call $\mathbf{X}^{-1}$ the **inverse** of $\mathbf{X}$ if
+
+    $$\mathbf{X}^{-1} \mathbf{X} = \mathbf{X} \mathbf{X}^{-1} = \mathbf{I}$$
+
+* If $\mathbf{X}^{-1}$ exists then $\mathbf{X}$ is invertible
+* If $\mathbf{X}^{-1}$ does not exist, $\mathbf{X}$ is **singular**
+
+---
+
+# Inverting a matrix
+
+* $\mathbf{A}^{-1}$
+    
+```{r matrix-inverse}
+A <- matrix(c(1, 1, 1, 0, 5, 0, 0, 0, 3),
+  nrow = 3,
+  ncol = 3, byrow = TRUE
+)
+
+b <- c(0, 5, 6)
+
+solve(A) # inverse of A
+# solve(A) %*% A # verify inverse times itself is identity matrix
+# solve(A, b)   # inverse of A times y = x
+```
+
+--
+
+* $\mathbf{x}$
+    
+```{r matrix-solve, dependson = "matrix-inverse"}
+solve(A, b)
+```
+
+---
+
+# When do inverses exist
+
+* Linear independence
+
+--
+
+### Example 1
+
+$$\mathbf{v}_{1} = (1, 0, 0), \quad \mathbf{v}_{2} = (0,1,0), \quad \mathbf{v}_{3} = (0,0,1)$$
+
+--
+
+### Example 2
+
+$$\mathbf{v}_{1} = (1, 0, 0), \quad \mathbf{v}_{2} = (0,1,0), \quad \mathbf{v}_{3} = (0,0,1), \quad \mathbf{v}_{4} = (1, 2, 3)$$
+
+--
+
+$$\mathbf{v}_{4} = \mathbf{v}_{1} + 2 \mathbf{v}_{2} + 3\mathbf{v}_{3}$$
+
+---
+
+# Inverting a $2 \times 2$ matrix
+
+* If $\mathbf{A} = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$ and $ad \neq bc$, then $\mathbf{A}$ is invertible and
+
+    $$\mathbf{A}^{-1} = \frac{1}{ad - bc} \begin{bmatrix}d & -b \\-c & a\end{bmatrix}$$
+
+---
+
+# Inverting a $2 \times 2$ matrix
+
+$$\mathbf{A} = \begin{bmatrix}9 & 7 \\2 & 1\end{bmatrix} \\\mathbf{A}^{-1} = \frac{1}{(-5)} \begin{bmatrix}1 & -7 \\-2 & 9\end{bmatrix} = \begin{bmatrix}-0.2 & 1.4 \\0.4 & -1.8\end{bmatrix}$$
+
+--
+
+## Verification
+
+$$\mathbf{A}^{-1} \mathbf{A} = \begin{bmatrix}9 & 7 \\2 & 1\end{bmatrix} \begin{bmatrix}-0.2 & 1.4 \\0.4 & -1.8\end{bmatrix} = \begin{bmatrix}1 & 0 \\0 & 1\end{bmatrix} = \mathbf{I}$$
+
+---
+
+# Inverting an $n \times n$ matrix
+
+* Gauss-Jordan elimination
+* Augmented matrix
+* Elementary row operations
+    1. Exchanging two rows in the matrix
+    1. Subtracting a multiple of one row from another row
+* Obtain a diagonal matrix
+
+---
+
+# Example of Gauss-Jordan
+
+$$\mathbf{A} = \begin{bmatrix}
+2 & 1 & 2 \\
+3 & 1 & 1 \\
+3 & 1 & 2
+\end{bmatrix}$$
+
+##### Setup the augmented matrix
+
+$$\left[\begin{array}{rrr|rrr}2 & 1 & 2 & 1 & 0 & 0 \\3 & 1 & 1 & 0 & 1 & 0 \\3 & 1 & 2 & 0 & 0 & 1\end{array}\right]$$
+
+##### Substract $3/2$ times the first row from each of the other rows
+
+$$\left[\begin{array}{rrr|rrr}2 & 1 & 2 & 1 & 0 & 0 \\0 & -1/2 & -2 & -3/2 & 1 & 0 \\0 & -1/2 & -1 & -3/2 & 0 & 1\end{array}\right]$$
+
+---
+
+# Example of Gauss-Jordan
+
+##### Substract $3/2$ times the first row from each of the other rows
+
+$$\left[\begin{array}{rrr|rrr}2 & 1 & 2 & 1 & 0 & 0 \\0 & -1/2 & -2 & -3/2 & 1 & 0 \\0 & -1/2 & -1 & -3/2 & 0 & 1\end{array}\right]$$
+
+##### Add twice the second row to the first row, and subtract the second row from the third row
+
+$$\left[\begin{array}{rrr|rrr}2 & 0 & -2 & -2 & 2 & 0 \\0 & -1/2 & -2 & -3/2 & 1 & 0 \\0 & 0 & 1 & 0 & -1 & 1\end{array}\right]$$
+
+---
+
+# Example of Gauss-Jordan
+
+##### Add twice the second row to the first row, and subtract the second row from the third row
+
+$$\left[\begin{array}{rrr|rrr}2 & 0 & -2 & -2 & 2 & 0 \\0 & -1/2 & -2 & -3/2 & 1 & 0 \\0 & 0 & 1 & 0 & -1 & 1\end{array}\right]$$
+
+##### Add twice the third row to the first and second rows
+
+$$\left[\begin{array}{rrr|rrr}2 & 0 & 0 & -2 & 0 & 2 \\0 & -1/2 & 0 & -3/2 & -1 & 2 \\0 & 0 & 1 & 0 & -1 & 1\end{array}\right]$$
+    
+---
+
+# Example of Gauss-Jordan
+
+##### Add twice the third row to the first and second rows
+
+$$\left[\begin{array}{rrr|rrr}2 & 0 & 0 & -2 & 0 & 2 \\0 & -1/2 & 0 & -3/2 & -1 & 2 \\0 & 0 & 1 & 0 & -1 & 1\end{array}\right]$$
+
+##### Norm out the diagonal matrix to be $\mathbf{I}$
+    
+$$\mathbf{A}^{-1} = \begin{bmatrix}-1 & 0 & 1 \\3 & 2 & -4 \\0 & -1 & 1\end{bmatrix}$$
+
+---
+
+# Another example
+
+$$\mathbf{A} = \begin{bmatrix}
+1 & 3 & 5 \\
+1 & 7 & 5 \\
+5 & 10 & 15
+\end{bmatrix}$$
+
+##### First setup the augmented matrix
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\1 & 7 & 5 & 0 & 1 & 0 \\5 & 10 & 15 & 0 & 0 & 1\end{array}\right]$$
+
+##### Subtract 3 x row 1 from row 2
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & -8 & -3 & 1 & 0 \\5 & 10 & 15 & 0 & 0 & 1\end{array}\right]$$
+    
+---
+
+# Another example
+
+##### Subtract 3 x row 1 from row 2
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & -8 & -3 & 1 & 0 \\5 & 10 & 15 & 0 & 0 & 1\end{array}\right]$$
+    
+##### Subtract 2 x row 1 from row 3
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & -8 & -3 & 1 & 0 \\0 & -3 & -3 & -2 & 0 & 1\end{array}\right]$$
+    
+---
+
+# Another example
+
+##### Subtract 2 x row 1 from row 3
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & -8 & -3 & 1 & 0 \\0 & -3 & -3 & -2 & 0 & 1\end{array}\right]$$
+    
+##### Subtract $\frac{3}{4}$ x row 2 from row 3
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & -8 & -3 & 1 & 0 \\0 & 0 & 3 & \frac{1}{4} & -\frac{3}{4} & 1\end{array}\right]$$
+    
+---
+
+# Another example
+
+##### Subtract $\frac{3}{4}$ x row 2 from row 3
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & -8 & -3 & 1 & 0 \\0 & 0 & 3 & \frac{1}{4} & -\frac{3}{4} & 1\end{array}\right]$$
+    
+##### Divide row 3 by 3
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & -8 & -3 & 1 & 0 \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+---
+
+# Another example
+
+##### Divide row 3 by 3
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & -8 & -3 & 1 & 0 \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+##### Add 8 times row 3 to row 2
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & 0 & -\frac{7}{3} & -1 & \frac{8}{3} \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+---
+
+# Another example
+
+##### Add 8 times row 3 to row 2
+
+$$\left[\begin{array}{rrr|rrr}1 & 3 & 5 & 1 & 0 & 0 \\0 & -4 & 0 & -\frac{7}{3} & -1 & \frac{8}{3} \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+##### Subtract 3 x row 3 from row 1
+
+$$\left[\begin{array}{rrr|rrr}1 & 2 & 0 & \frac{3}{4} & \frac{3}{4} & -1 \\0 & -4 & 0 & -\frac{7}{3} & -1 & \frac{8}{3} \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+---
+
+# Another example
+
+##### Subtract 3 x row 3 from row 1
+
+$$\left[\begin{array}{rrr|rrr}1 & 2 & 0 & \frac{3}{4} & \frac{3}{4} & -1 \\0 & -4 & 0 & -\frac{7}{3} & -1 & \frac{8}{3} \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+##### Divide row 2 by -4
+
+$$\left[\begin{array}{rrr|rrr}1 & 2 & 0 & \frac{3}{4} & \frac{3}{4} & -1 \\0 & 1 & 0 & \frac{7}{12} & \frac{1}{4} & -\frac{2}{3} \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+---
+
+# Another example
+
+##### Divide row 2 by -4
+
+$$\left[\begin{array}{rrr|rrr}1 & 2 & 0 & \frac{3}{4} & \frac{3}{4} & -1 \\0 & 1 & 0 & \frac{7}{12} & \frac{1}{4} & -\frac{2}{3} \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+##### Subtract 2 x row 2 from row 1
+
+$$\left[\begin{array}{rrr|rrr}1 & 0 & 0 & -\frac{5}{12} & \frac{1}{4} & \frac{1}{3} \\0 & 1 & 0 & \frac{7}{12} & \frac{1}{4} & -\frac{2}{3} \\0 & 0 & 1 & \frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{array}\right]$$
+
+--
+
+$$\mathbf{A}^{-1} = \begin{bmatrix}-\frac{5}{12} & \frac{1}{4} & \frac{1}{3} \\\frac{7}{12} & \frac{1}{4} & -\frac{2}{3} \\\frac{1}{12} & -\frac{1}{4} & \frac{1}{3}\end{bmatrix} = \frac{1}{12}\begin{bmatrix}-5 & 3 & 4 \\7 & 3 & -8 \\1 & -3 & 4\end{bmatrix}$$
+
+---
+
+# Regression analysis
+
+$$
+\begin{aligned}
+Y_{1} & = \beta_{0} + \beta_{1} x_{11} + \beta_{2} x_{12} + \ldots + \beta_{k} x_{1k} \\
+Y_{2} & = \beta_{0} + \beta_{1} x_{21} + \beta_{2} x_{22} + \ldots + \beta_{k} x_{2k} \\
+\vdots & \vdots & \vdots \\
+Y_{i} & = \beta_{0} + \beta_{1} x_{i1} + \beta_{2} x_{i2} + \ldots + \beta_{k} x_{ik} \\
+\vdots & \vdots & \vdots \\
+Y_{n} & = \beta_{0} + \beta_{1} x_{n1} + \beta_{2} x_{n2} + \ldots + \beta_{k} x_{nk}
+\end{aligned}
+$$
+
+* $\mathbf{x}_{i} = (1, x_{i1}, x_{i2}, \ldots, x_{ik})$
+* $\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}\\\mathbf{x}_{2}\\ \vdots \\ \mathbf{x}_{n} \end{bmatrix}$
+* $\boldsymbol{\beta} = (\beta_{0}, \beta_{1}, \ldots, \beta_{k} )$
+* $\mathbf{Y} = (Y_{1}, Y_{2}, \ldots, Y_{n})$
+
+---
+
+# Solve the system of equations
+
+$$
+\begin{aligned}
+\mathbf{Y} &= \mathbf{X}\mathbf{\beta} \\
+\mathbf{X}^{'} \mathbf{Y} &= \mathbf{X}^{'} \mathbf{X} \mathbf{\beta} \\
+(\mathbf{X}^{'}\mathbf{X})^{-1} \mathbf{X}^{'} \mathbf{Y} &= (\mathbf{X}^{'}\mathbf{X})^{-1}\mathbf{X}^{'} \mathbf{X} \mathbf{\beta} \\
+(\mathbf{X}^{'}\mathbf{X})^{-1} \mathbf{X}^{'} \mathbf{Y} &=\mathbf{\beta} 
+\end{aligned}
+$$
+
+---
+
+# Tax benefits of charitable contributions
+
+* Company earns before-tax profits of $100,000
+* 10% contribution of after-tax profits to charity
+* State tax is 5% of profits (after charitable deduction)
+* Federal tax is 40% of profits (after charitable and state tax deduction)
+* How much does the company pay in state taxes, federal taxes, and Red Cross donation?
+
+---
+
+# Tax benefits of charitable contributions
+
+$$
+\begin{aligned}
+C &+ 0.1S &+ 0.1F &= 10{,}000 \\
+0.05C &+ S & &= 5{,}000 \\
+0.4C &+ 0.4S &+ F &= 40{,}000
+\end{aligned}
+$$
+
+---
+
+# Solve via matrix inversion
+
+##### $\mathbf{A}$
+
+```{r profits}
+A <- matrix(c(1, .1, .1, .05, 1, 0, .4, .4, 1),
+            nrow = 3,
+            ncol = 3, byrow = TRUE)
+A
+```
+
+--
+
+##### $\mathbf{b}$
+
+```{r profits-b, dependson = "profits"}
+b <- c(10000, 5000, 40000)
+b
+```
+
+--
+
+##### $\mathbf{A}^{-1} \mathbf{b}$
+    
+```{r profits-solve, dependson = c("profits", "profits-b")}
+solve(A, b)     # inverse of A times b = x
+```
+    
+---
+
+# Determinant
+
+* Single number summary of a square matrix
+* Summary of structure
+* Complicated to calculate
+
+---
+
+# $2 \times 2$ matrix
+
+$$\det(\mathbf{X}) = \mid \mathbf{X} \mid = \left| \begin{matrix}
+x_{11} & x_{12} \\
+x_{21} & x_{22}
+\end{matrix} \right| = x_{11}x_{22} - x_{12}x_{21}$$
+
+--
+
+$$\left| \begin{matrix}
+1 & 2 \\
+3 & 4
+\end{matrix} \right| = (1)(4) - (2)(3) = 4 - 6 = -2$$
+
+$$\left| \begin{matrix}
+10 & \frac{1}{2} \\
+4 & 1
+\end{matrix} \right| = (10)(1) - \left( \frac{1}{2} \right)(4) = 10 - 2 = 8$$
+
+$$\left| \begin{matrix}
+2 & 3 \\
+6 & 9
+\end{matrix} \right| = (2)(9) - (3)(6) = 18 - 18 = 0$$
+
+---
+
+# $n \times n$ matrix
+
+### Submatrix
+
+$$\mathbf{X} = \begin{bmatrix}
+x_{11} & x_{12} & x_{13} & x_{14} \\
+x_{21} & x_{22} & x_{23} & x_{24} \\
+x_{31} & x_{32} & x_{33} & x_{34} \\
+x_{41} & x_{42} & x_{43} & x_{44} \\
+\end{bmatrix}$$
+
+$$\mathbf{X}_{[11]} = \begin{bmatrix}
+x_{22} & x_{23} & x_{24} \\
+x_{32} & x_{33} & x_{34} \\
+x_{42} & x_{43} & x_{44} \\
+\end{bmatrix},
+\mathbf{X}_{[24]} = \begin{bmatrix}
+x_{11} & x_{12} & x_{13}  \\
+x_{31} & x_{32} & x_{33}  \\
+x_{41} & x_{42} & x_{43}  \\
+\end{bmatrix}$$
+
+---
+
+# $n \times n$ matrix
+
+$$\mid \mathbf{X} \mid = \sum_{j=1}^n (-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid$$
+
+* $ij$th **minor** of $\mathbf{X}$ for $x_{ij}$, $\mid\mathbf{X}_{[ij]}\mid$
+    * Determinant of the $(n - 1) \times (n - 1)$ submatrix that results from taking the $i$th row and $j$th column out
+* **Cofactor** of $\mathbf{X}$
+    * Minor signed as $(-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid$
+* Cycle recursively through columns
+
+---
+
+# $3 \times 3$ matrix
+
+$$
+\begin{aligned}
+\mathbf{X} &= \begin{bmatrix}
+x_{11} & x_{12} & x_{13} \\
+x_{21} & x_{22} & x_{23} \\
+x_{31} & x_{32} & x_{33} \\
+\end{bmatrix} \\
+\det(\mathbf{X}) &= (+1)x_{11} \left| \begin{matrix}
+x_{22} & x_{23} \\
+x_{32} & x_{33} \\
+\end{matrix} \right| +(-1)x_{12} \left| \begin{matrix}
+x_{21} & x_{23} \\
+x_{31} & x_{33} \\
+\end{matrix} \right| + (+1)x_{13} \left| \begin{matrix}
+x_{21} & x_{22} \\
+x_{31} & x_{32} \\
+\end{matrix} \right|
+\end{aligned}
+$$
+
+---
+
+# Why do we care?
+
+$$\mathbf{A}^{-1} = \frac{1}{ad - bc} \begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix}$$
+
+---
+
+# Matrix decomposition
+
+* Factorization of a matrix into a product of matricies
+* Decomposed into more efficient matricies depending on the calculations needing to be performed.
+
+--
+
+## LU decomposition
+
+$$\mathbf{A} = \mathbf{L}\mathbf{U}$$
+
+* Only for square matricies
+
+---
+
+# Dimension reduction
+
+* Decreasing the number of dimensions in your dataset
+* Rational
+    1. Visualization
+    1. Improving a statistical learning model
+* Identify a smaller set of representative variables/vectors/columns that collectively explain most of the variability in the original dataset
+
+---
+
+# DW-NOMINATE
+
+* Studying legislative voting
+* Roll-call votes
+* Multidimensional scaling techniques
+* DW-NOMINATE dimensions
+    * Ideology (liberal-conservative)
+    * Issue of the day
+
+---
+
+# House: First dimension
+
+```{r polarize-house, fig.caption = "Source: Voteview.org"}
+knitr::include_graphics("images/house_party_means_1879-2015.png")
+```
+
+---
+
+# House: Second dimension
+
+```{r polarize-house2, fig.caption = "Source: Voteview.org"}
+knitr::include_graphics("images/house_party_means_1879-2015_2nd.png")
+```
+
+---
+
+# Senate: First dimension
+
+```{r polarize-senate, fig.caption = "Source: Voteview.org"}
+knitr::include_graphics("images/senate_party_means_1879-2015.png")
+```
+
+---
+
+# Senate: Second dimension
+
+```{r polarize-senate2, fig.caption = "Source: Voteview.org"}
+knitr::include_graphics("images/senate_party_means_1879-2015_2nd.png")
+```
+
+---
+
+# Singular value decomposition
+
+* Matrix decomposition method
+* Works with any rectangular matrix 
+* $\mathbf{M}$ is an $m \times n$ matrix. There exists a factorization of the form
+
+    $$\mathbf{M} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{*}$$
+
+    where
+
+    * $\mathbf{U}$ is an $m \times n$ matrix
+    * $\boldsymbol{\Sigma}$ is an $n \times n$ diagonal matrix
+    * $\mathbf{V}^{*}$ is the transpose of an $n \times n$ matrix
+
+---
+
+# Image compression
+
+```{r plot-svd}
+svd.rank <- function(svd.out, j) {
+  svd.out$u[, 1:j] %*% diag(svd.out$d[1:j]) %*% t(svd.out$v[, 1:j])
+}
+
+svd.plot <- function(svd.out, j) {
+  svd.rank(svd.out, j) %>%
+    as_tibble() %>%
+    mutate(row = row_number()) %>%
+    gather(column, value, -row) %>%
+    mutate(column = parse_number(column)) %>%
+    ggplot(aes(row, -column, fill = value)) +
+    geom_raster() +
+    ggtitle(str_c("Rank", j, sep = " ")) +
+    scale_fill_continuous(high = "white", low = "black", guide = "none") +
+    theme_void()
+}
+```
+
+```{r read-image}
+library(imager)
+
+lion <- load.image("images/lion.jpg") %>%
+  grayscale()
+
+svd.plot(svd(lion), ncol(lion)) +
+  ggtitle(NULL)
+```
+
+---
+
+# Image compression
+
+```{r str-lion}
+# first rows and columns of R
+lion[1:5, 1:5]
+```
+
+---
+
+# Applying SVD
+
+```{r svd}
+lion.svd <- svd(lion)
+```
+
+##### $\mathbf{U}$
+
+```{r lion-u}
+lion.svd$u[1:3, 1:3]
+```
+    
+##### $\boldsymbol{\Sigma}$
+
+```{r lion-sigma}
+diag(lion.svd$d)[1:3, 1:3]
+```
+
+##### $\mathbf{V}^{*}$
+
+```{r lion-vstar}
+lion.svd$v[1:3, 1:3]
+```
+
+---
+
+# Recovering the data
+
+* Multiply back together
+
+    $$\mathbf{M} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{*}$$
+
+```{r svd-recombine}
+svd.rank(lion.svd, j = ncol(lion))[1:5, 1:5]
+```
+
+---
+
+# Data reduction
+
+* $\Sigma$
+
+```{r svd-sigma-descend}
+lion.svd$d
+```
+
+---
+
+# Data reduction
+
+```{r svd-sigma-prop}
+tibble(
+  sigma2 = lion.svd$d^2,
+  prop = sigma2 / sum(sigma2)
+) %>%
+  mutate(row = row_number()) %>%
+  ggplot(aes(row, prop)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    x = expression(sigma[i]),
+    y = "Percentage of variance explained"
+  )
+```
+
+---
+
+# Draw image using rank 2
+
+```{r lions-rank1}
+svd.plot(lion.svd, 2)
+```
+
+---
+
+# Different ranks
+
+```{r lions-rank-all}
+lion_ranks <- 2^seq(1:8)
+lion_ranks_images <- map(.x = lion_ranks,
+    .f = svd.rank,
+    svd.out = lion.svd)
+names(lion_ranks_images) <- lion_ranks
+
+map(lion_ranks_images, ~ as_tibble(.x) %>%
+        mutate(row = row_number()) %>%
+        gather(column, value, -row) %>%
+        mutate(column = parse_number(column))) %>%
+  bind_rows(.id = "rank") %>%
+  mutate(rank = as.numeric(rank)) %>%
+  ggplot(aes(row, -column, fill = value)) +
+  geom_raster() +
+  scale_fill_continuous(high = "white", low = "black", guide = "none") +
+  ggtitle("Rank {closest_state}") +
+  theme_void() +
+  transition_states(states = rank, wrap = FALSE)
+```
+
+---
+
+# Principal components analysis
+
+* Technique for dimension reduction
+* Find a low-dimensional representation of the data that contains as much as possible of the variation
+* Dimensions are linear combinations of the variables
+
+---
+
+# Implementing PCA
+
+1. Rescale each column to be mean 0 and standard deviation 1
+1. Compute the covariance matrix $\mathbf{S}$
+    $$\mathbf{S} = \dfrac{1}{N} \mathbf{X}' \mathbf{X}$$
+1. Compute the $K$ largest **eigenvectors** of $\mathbf{S}$
+    * Eigenvector - principal directions
+    * Values of observations along eigenvector - principal components
+    * Eigenvalues - amount of variance along the eigenvector
+
+--
+
+* Not an efficient approach
+* Let's use SVD!
+
+---
+
+# Calculating the PCA
+
+$$\mathbf{M} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{*}$$
+
+* $\mathbf{V}^{*}$ = principal directions (eigenvector)
+* Columns of $\mathbf{U} \boldsymbol{\Sigma}$ = principal components (values along eigenvector)
+* Values of the diagonal elements of $\boldsymbol{\Sigma}$ $\approx$ eigenvalues
+
+---
+
+# `USArrests`
+
+```{r usarrests}
+df <- USArrests %>%
+  rownames_to_column(var = "State") %>%
+  as_tibble()
+
+scaled_df <- df %>%
+  mutate_at(.vars = vars(-State), scale)
+```
+
+```{r usarrests-cov, dependson = "usarrests-scale"}
+arrests_cov <- scaled_df %>%
+  select(-State) %>%
+  cov()
+```
+
+```{r usarrests-eigen, dependson = "usarrests"}
+arrests_eigen <- eigen(arrests_cov)
+```
+
+```{r usarrests-phi, dependson = "usarrests-eigen"}
+# extract first two loadings
+phi <- arrests_eigen$vectors[, 1:2]
+
+phi <- -phi
+row.names(phi) <- c("Murder", "Assault", "UrbanPop", "Rape")
+colnames(phi) <- c("PC1", "PC2")
+```
+
+```{r usarrests-pc-scores, dependson = "usarrests-phi"}
+# Calculate Principal Components scores
+PC1 <- as.matrix(select_if(scaled_df, is.numeric)) %*% phi[,1]
+PC2 <- as.matrix(select_if(scaled_df, is.numeric)) %*% phi[,2]
+
+# Create data frame with Principal Components scores
+PC <- tibble(
+  State = scaled_df$State,
+  PC1 = PC1[,1],
+  PC2 = PC2[,1]
+)
+```
+
+```{r usarrests-pc-scores-plot, dependson = "usarrests-pc-scores"}
+ggplot(PC, aes(PC1, PC2)) + 
+  geom_vline(xintercept = 0, size = 2, color = "black", alpha = .5) +
+  geom_hline(yintercept = 0, size = 2, color = "black", alpha = .5) +
+  geom_point() +
+  ggrepel::geom_text_repel(aes(label = State), size = 5) +
+  labs(title = "First two principal components of USArrests",
+       x = "First principal component",
+       y = "Second principal component")
+```
+
+---
+
+# `USArrests`
+
+```{r usarrests-pc-scores-biplot, dependson = "usarrests-pc-scores"}
+phi_df <- (phi * 1.75) %>%
+  as.data.frame %>%
+  rownames_to_column(var = "variable")
+
+ggplot(PC, aes(PC1, PC2)) + 
+  geom_vline(xintercept = 0, size = 2, color = "black", alpha = .5) +
+  geom_hline(yintercept = 0, size = 2, color = "black", alpha = .5) +
+  geom_point() +
+  ggrepel::geom_text_repel(aes(label = State), alpha = .25, size = 5) +
+  geom_segment(data = phi_df,
+               aes(x = 0, y = 0,
+                   xend = PC1,
+                   yend = PC2),
+               arrow = arrow(length = unit(0.03, "npc")),
+               color = "purple") +
+  ggrepel::geom_text_repel(data = phi_df,
+                           aes(x = PC1, y = PC2, label = variable),
+                           color = "purple",
+                           size = 5) +
+  labs(title = "First two principal components of USArrests",
+       x = "First principal component",
+       y = "Second principal component")
+```
+
+---
+
+# MNIST data set
+
+```{r mnist, fig.caption = "MNIST digits"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png")
+```
+
+```{r mnist-raw}
+mnist_raw <- read_csv("https://pjreddie.com/media/files/mnist_train.csv", col_names = FALSE)
+```
+
+```{r pixels-gathered, dependson = "mnist-raw"}
+pixels <- mnist_raw %>%
+  rename(label = X1) %>%
+  group_by(label) %>%
+  sample_n(100) %>%
+  ungroup() %>%
+  # remove pixels with no variance - cannot rescale for PCA
+  select_if(.predicate = ~ !(min(.) == max(.)))
+```
+
+```{r pixels-pca, dependson = "pixels-gathered"}
+pixels_pca <- prcomp(pixels[, -1], center = TRUE, scale = TRUE)
+```
+
+---
+
+# MNIST data set
+
+```{r pixels-pca-pc12, dependson = "pixels-pca"}
+pixels_pca_plot <- augment(pixels_pca, data = pixels) %>%
+  ggplot(aes(.fittedPC1, .fittedPC2, color = factor(label))) +
+  geom_point() +
+  scale_color_brewer(type = "qual", palette = "Paired") +
+  labs(x = "First principal component",
+       y = "Second principal component",
+       color = "Label")
+pixels_pca_plot
+```
+
+---
+
+# MNIST data set
+
+```{r pixels-pca-pc12-facet, dependson = "pixels-pca", message = FALSE}
+pixels_pca_plot +
+  facet_wrap(~ label) +
+  scale_color_brewer(type = "qual", palette = "Paired", guide = FALSE)
+```

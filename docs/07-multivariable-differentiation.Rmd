@@ -1,0 +1,631 @@
+---
+title: "Functions of several variables and optimization with several variables"
+author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
+output:
+  xaringan::moon_reader
+---
+
+```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
+
+```
+
+```{r packages, include=FALSE}
+library(tidyverse)
+library(patchwork)
+library(here)
+library(gganimate)
+library(plotly)
+```
+
+# Learning objectives
+
+* Define a partial derivative
+* Identify higher order derivatives and partial derivatives
+* Define notation for calculus performed on vector and matrix forms
+* Demonstrate multivariable calculus methods on social scientific research
+* Calculate critical points, partial derivatives, and double integrals
+
+---
+
+# Higher order derivatives
+
+* Derivatives of derivatives
+* First derivative
+
+    $$f'(x),  ~~ y',  ~~ \frac{d}{dx}f(x), ~~ \frac{dy}{dx}$$
+
+* Second derivative
+
+    $$f''(x), ~~ y'', ~~ \frac{d^2}{dx^2}f(x), ~~ \frac{d^2y}{dx^2}$$
+
+* $n$th derivative
+
+    $$\frac{d^n}{dx^n}f(x), \quad \frac{d^ny}{dx^n}$$
+
+---
+
+# Multivariate function
+
+$$f(x_{1}, x_{2}) = x_{1}  + x_{2}$$
+
+```{r multivariate-fun1}
+x1 <- seq(from = -5, to = 5, by = 0.1)
+x2 <- seq(from = -5, to = 5, by = 0.1)
+
+z <- expand.grid(x1 = x1,
+                 x2 = x2) %>%
+  as_tibble() %>%
+  mutate(y = x1 + x2)
+z <- matrix(data = z$y, nrow = length(x1), ncol = length(x2), byrow = TRUE)
+
+plot_ly(x = ~x1, y = ~x2, z = ~z) %>%
+  add_surface() %>%
+  layout(
+    scene = list(
+      xaxis = list(title = "x1"),
+      yaxis = list(title = "x2"),
+      zaxis = list(title = "x1 + x2")
+    ))
+```
+
+---
+
+# Multivariate function
+
+$$f(x_{1}, x_{2}) = x_{1}^2 + x_{2}^2$$
+
+```{r multivariate-fun2}
+x1 <- seq(from = -5, to = 5, by = 0.1)
+x2 <- seq(from = -5, to = 5, by = 0.1)
+
+z <- expand.grid(x1 = x1,
+                 x2 = x2) %>%
+  as_tibble() %>%
+  mutate(y = x1^2 + x2^2)
+z <- matrix(data = z$y, nrow = length(x1), ncol = length(x2), byrow = TRUE)
+
+plot_ly(x = ~x1, y = ~x2, z = ~z) %>%
+  add_surface() %>%
+  layout(
+    scene = list(
+      xaxis = list(title = "x1"),
+      yaxis = list(title = "x2"),
+      zaxis = list(title = "x1^2 + x2^2")
+    ))
+```
+
+---
+
+# Multivariate function
+
+$$f(x_{1}, x_{2}) = \sin(x_1)\cos(x_2)$$
+
+```{r multivariate-fun3}
+x1 <- seq(from = -5, to = 5, by = 0.1)
+x2 <- seq(from = -5, to = 5, by = 0.1)
+
+z <- expand.grid(x1 = x1,
+                 x2 = x2) %>%
+  as_tibble() %>%
+  mutate(y = sin(x1) * cos(x2))
+z <- matrix(data = z$y, nrow = length(x1), ncol = length(x2), byrow = TRUE)
+
+plot_ly(x = ~x1, y = ~x2, z = ~z) %>%
+  add_surface() %>%
+  layout(
+    scene = list(
+      xaxis = list(title = "x1"),
+      yaxis = list(title = "x2"),
+      zaxis = list(title = "sin(x1) * cos(x2)")
+    ))
+```
+
+---
+
+# Multivariate function
+
+$$f(x_{1}, x_{2}) =  -(x-5)^2 - (y-2)^2$$
+
+```{r multivariate-fun4}
+x1 <- seq(from = -5, to = 5, by = 0.1)
+x2 <- seq(from = -5, to = 5, by = 0.1)
+
+z <- expand.grid(x1 = x1,
+                 x2 = x2) %>%
+  as_tibble() %>%
+  mutate(y = -(x1 - 5)^2 - (x2 - 2)^2)
+z <- matrix(data = z$y, nrow = length(x1), ncol = length(x2), byrow = TRUE)
+
+plot_ly(x = ~x1, y = ~x2, z = ~z) %>%
+  add_surface() %>%
+  layout(
+    scene = list(
+      xaxis = list(title = "x1"),
+      yaxis = list(title = "x2"),
+      zaxis = list(title = "f(x1, x2)")
+    ))
+```
+
+---
+
+# Multivariate function
+
+$$f(x_{1}, x_{2}, x_{3} ) = x_1 + x_2 + x_3$$
+
+--
+
+$$
+\begin{aligned}
+f(\mathbf{x} )&= f(x_{1}, x_{2}, \ldots, x_{N} ) \\
+							&= x_{1} +x_{2} + \ldots + x_{N} \\
+							&= \sum_{i=1}^{N} x_{i} 
+\end{aligned}
+$$
+
+---
+
+# Multivariate function
+
+* $f:\Re^{n} \rightarrow \Re^{1}$
+* $f$ is a multivariate function
+
+    $$f(\mathbf{x}) = f(x_{1}, x_{2}, x_{3}, \ldots, x_{n} )$$
+
+* $\Re^{n} = \Re \underbrace{\times}_{\text{cartesian}} \Re \times \Re \times \ldots \Re$
+* $n$ inputs
+* $1$ output
+
+---
+
+# Evaluating multivariate functions
+
+$$f(x_{1}, x_{2}, x_{3}) = x_1  + x_2 + x_3$$
+
+--
+
+### Evaluate at $\mathbf{x} = (x_{1}, x_{2}, x_{3}) = (2, 3, 2)$
+
+$$\begin{aligned}f(2, 3, 2) & = 2 + 3 + 2 \\			& = 7  \end{aligned}$$
+
+---
+
+# Evaluating multivariate functions
+
+$$f(x_{1}, x_{2} ) = x_{1} + x_{2} + x_{1} x_{2}$$
+
+--
+
+### Evaluate at $\mathbf{w} = (w_{1}, w_{2} ) = (1, 2)$ 
+
+$$\begin{aligned}f(w_{1}, w_{2}) & = w_{1} + w_{2} + w_{1} w_{2}  \\								& = 1  + 2  + 1 \times 2  \\								& = 5  \end{aligned}$$						
+
+---
+
+# Preferences for multidimensional policy
+
+* Spatial policy model
+* Policy and political actors
+* Policy is $N$ dimensional - or $\mathbf{x} \in \Re^{N}$
+* Legislator $i$'s utility is $U:\Re^{N} \rightarrow \Re^{1}$
+
+    $$\begin{aligned}U(\mathbf{x}) & = U(x_{1}, x_{2}, \ldots, x_{N} )  \\					& = - (x_{1} - \mu_{1} )^2 - (x_{2} - \mu_{2})^2 - \ldots - (x_{N} -\mu_{N})^{2} \\	& = -\sum_{j=1}^{N} (x_{j} - \mu_{j} )^{2}\end{aligned}$$
+
+--
+
+* $\mathbf{\mu} = (\mu_{1}, \mu_{2}, \ldots, \mu_{N} ) = (0, 0, \ldots, 0)$
+* Evaluate legislator's utility for a policy proposal of $\mathbf{m} = (1, 1, \ldots, 1)$
+
+    $$\begin{aligned}U(\mathbf{m} ) & = U(1, 1, \ldots, 1) \\						  & = - (1 - 0)^2 - (1- 0) ^2 - \ldots - (1- 0) ^2 \\				& = -\sum_{j=1}^{N} 1 = - N   \\\end{aligned}$$
+
+---
+
+# Regression models
+
+* Randomized experiments
+* Voter mobilization - if individual $i$ turns out to vote, $\text{Vote}_{i}$
+    * $T = 1$ (treated): voter receives mobilization 
+    * $T = 0$ (control): voter does not receive mobilization
+
+--
+
+## Regression model
+
+* $x_{2} =$ participant's age
+
+    $$\begin{aligned}f(T,x_2) & = \Pr(\text{Vote}_{i} = 1 | T, x_{2} ) \\	& =   \beta_{0} + \beta_{1} T + \beta_{2} x_{2} \end{aligned}$$
+
+* Effect of the experiment as:
+
+    $$\begin{aligned}f(T = 1, x_2) - f(T=0, x_2) & = \beta_{0} + \beta_{1} 1  + \beta_{2} x_{2} - (\beta_{0} + \beta_{1}  0 + \beta_{2} x_{2}) \\& = \beta_{0} - \beta_{0}  + \beta_{1}(1 - 0) + \beta_{2}(x_{2} - x_{2} ) \\	& = \beta_{1} \end{aligned}$$
+
+---
+
+# Multivariate derivatives
+
+* More than one variable changing simultaneously
+* Partial derivative
+* Let $f$ be a function of the variables $(x_1,\ldots,x_n)$. Partial derivative of $f$ with respect to $x_i$ is 
+
+    $$\frac{\partial f}{\partial x_i} (x_1,\ldots,x_n) = \lim\limits_{h\to 0} \frac{f(x_1,\ldots,x_i+h,\ldots,x_n)-f(x_1,\ldots,x_i,\ldots,x_n)}{h}$$
+
+    * Only the $i$th variable changes
+
+---
+
+# Multivariate derivatives
+
+$$f(x,y)=x^2+y^2$$
+
+$$
+\begin{aligned}
+\frac{\partial f}{\partial x}(x,y) &= 2x \\
+\frac{\partial f}{\partial y}(x,y) &= 2y\\
+\frac{\partial^2 f}{\partial x^2}(x,y) &= 2\\
+\frac{\partial^2 f}{\partial x \partial y}(x,y) &= 0
+\end{aligned}
+$$
+
+---
+
+# Multivariate derivatives
+
+$$f(x,y)=x^3 y^4 +e^x -\log y$$
+
+$$
+\begin{aligned}
+\frac{\partial f}{\partial x}(x,y) &= 3x^2y^4 + e^x\\
+\frac{\partial f}{\partial y}(x,y) &=4x^3y^3 - \frac{1}{y}\\
+\frac{\partial^2 f}{\partial x^2}(x,y) &= 6xy^4 + e^x\\
+\frac{\partial^2 f}{\partial x \partial y}(x,y) &= 12x^2y^3
+\end{aligned}
+$$
+
+---
+
+# Rate of change, linear regression
+
+* Regress $\text{Approval}_{i}$ rate for Trump in month $i$ on $\text{Employ}_{i}$ and $\text{Gas}_{i}$
+
+    $$\text{Approval}_{i} = 0.8  -0.5 \text{Employ}_{i}  -0.25 \text{Gas}_{i}$$
+
+* $\text{Approval}_{i} = f(\text{Employ}_{i}, \text{Gas}_{i} )$
+* Partial derivative with respect to employment
+
+    $$\frac{\partial f(\text{Employ}_{i}, \text{Gas}_{i} ) }{\partial \text{Employ}_{i} } = -0.5$$
+
+---
+
+# Optimizing multivariate functions 
+
+* Parameters $\mathbf{\beta} = (\beta_{1}, \beta_{2}, \ldots, \beta_{n} )$ such that $f(\mathbf{\beta}| \mathbf{X}, \mathbf{Y})$ is maximized
+* Policy $\mathbf{x} \in \Re^{n}$ that maximizes $U(\mathbf{x})$
+* Weights $\mathbf{\pi} = (\pi_{1}, \pi_{2}, \ldots, \pi_{K})$ such that a weighted average of forecasts $\mathbf{f}  =  (f_{1} , f_{2}, \ldots, f_{k})$ have minimum loss
+
+    $$\min_{\mathbf{\pi}} = - (\sum_{j=1}^{K} \pi_{j} f_{j}  - y ) ^ 2$$
+
+--
+
+## Methods
+
+* Analytic approach
+* Computational approach
+    * Multivariate Newton-Raphson
+    * Grid search
+    * Gradient descent
+
+---
+
+# Differences from single variable optimization
+
+* Multiple parameters of interest
+* Use linear algebra to track all the components and optimize over the multidimensional space
+
+---
+
+# Neighborhood
+
+* Let $\mathbf{x} \in \Re^{n}$ and let $\delta >0$
+* Define a **neighborhood** of $\mathbf{x}$, $B(\mathbf{x}, \delta)$, as the set of points such that,
+
+    $$B(\mathbf{x}, \delta) = \{ \mathbf{y} \in \Re^{n} : ||\mathbf{x} - \mathbf{y}||< \delta \}$$
+
+* $B(\mathbf{x}, \delta)$ is the set of points where the vector $\mathbf{y}$ is a vector in n-dimensional space such that vector norm of $\mathbf{x} - \mathbf{y}$  is less than $\delta$
+
+---
+
+# Maxima/minima
+
+* $f:X \rightarrow \Re$ with $X \subset \Re^{n}$
+* Global maximum - a vector $\mathbf{x}^{*} \in X$ if, for all other $\mathbf{x} \in X$
+
+    $$f(\mathbf{x}^{*}) > f(\mathbf{x} )$$
+
+* Local maximum - a vector $\mathbf{x}^{\text{local}}$ if there is a neighborhood around $\mathbf{x}^{\text{local}}$, $Q \subset X$ such that, for all $x \in Q$,
+
+    $$f(\mathbf{x}^{\text{local} }) > f(\mathbf{x} )$$
+
+* Reverse for minima
+* Values for $f:X \rightarrow \Re$ on the real number line (in n-dimensional space)
+* Fall somewhere along $\mathbf{X}$
+
+---
+
+# First derivative test: Gradient
+
+* $f:X \rightarrow \Re^{n}$ with $X \subset \Re^{1}$ is a differentiable function
+* Gradient vector of $f$ at $\mathbf{x}_{0}$
+
+    $$\nabla f (\mathbf{x}_{0}) = \left(\frac{\partial f (\mathbf{x}_{0}) }{\partial x_{1} }, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{2} }, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{3} }, \ldots, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{n} } \right)$$
+
+* First partial derivatives for each variable $x_n$ stored in a vector
+* Gradient points in the direction that the function is **increasing** in the fastest direction
+
+--
+
+* If $\mathbf{a} \in X$ is a **local** extremum, then, 
+
+    $$\begin{aligned}\nabla f(\mathbf{a}) &= \mathbf{0}  \\									&= (0, 0, \ldots, 0)  				\end{aligned}$$
+
+---
+
+# Example
+
+$$
+\begin{aligned}
+f(x,y) &= x^2+y^2 \\
+\nabla f(x,y) &= (2x, \, 2y)
+\end{aligned}
+$$
+
+--
+
+$$
+\begin{aligned}
+f(x,y) &= x^3 y^4 +e^x -\log y \\
+\nabla f(x,y) &= (3x^2 y^4 + e^x, \, 4x^3y^3 - \frac{1}{y})
+\end{aligned}
+$$
+
+---
+
+# Critical values
+
+1. Maximum
+1. Minimum
+1. Saddle point
+* Second derivative test
+
+---
+
+# Second derivative test: Hessian
+
+* $f:X \rightarrow \Re^{1}$, $X \subset \Re^{n}$, with $f$ a twice differentiable function
+* Hessian matrix of second derivatives at $\mathbf{x}^{*} \in X$
+
+    $$\mathbf{H}(f)(\mathbf{x}^{*} ) = \begin{bmatrix} 		\frac{\partial^{2} f }{\partial x_{1} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{1} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{1} \partial x_{n} } (\mathbf{x}^{*} ) \\		\frac{\partial^{2} f }{\partial x_{2} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{2} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{2} \partial x_{n} } (\mathbf{x}^{*} ) \\		\vdots & \vdots & \ddots & \vdots \\		\frac{\partial^{2} f }{\partial x_{n} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{n} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{n} \partial x_{n} } (\mathbf{x}^{*} ) \\\end{bmatrix}$$
+
+--
+
+* Hessians are symmetric
+* Describe the **curvature** of the function
+* Requires differentiating on the entire gradient with respect to each $x_n$
+
+---
+
+# Example Hessians
+
+$$\begin{aligned}f(x,y) &= x^2+y^2 \\\nabla f(x,y) &= (2x, \, 2y) \\\mathbf{H}(f)(x,y) &= \begin{bmatrix}2 & 0 \\0 & 2\end{bmatrix}\end{aligned}$$
+
+--
+
+$$\begin{aligned}f(x,y) &= x^3 y^4 +e^x -\log y \\\nabla f(x,y) &= (3x^2 y^4 + e^x, \, 4x^3y^3 - \frac{1}{y}) \\\mathbf{H}(f)(x,y) &= \begin{bmatrix}6xy^4 + e^x & 12x^2y^3 \\12x^2y^3 & 12x^3y^2 + \frac{1}{y^2}\end{bmatrix}\end{aligned}$$
+
+---
+
+# Definiteness of a matrix
+
+* Consider $n \times n$ matrix $\mathbf{A}$
+* If, for all $\mathbf{x} \in \Re^{n}$ where $\mathbf{x} \neq \mathbf{0}$
+
+$$\begin{aligned}\mathbf{x}^{'} \mathbf{A} \mathbf{x} &> 0, \quad \mathbf{A} \text{ is positive definite} \\ \mathbf{x}^{'} \mathbf{A} \mathbf{x} &< 0, \quad \mathbf{A} \text{ is negative definite } \end{aligned}$$
+
+* If $\mathbf{x}^{'} \mathbf{A} \mathbf{x} >0$ for some $\mathbf{x}$ and $\mathbf{x}^{'} \mathbf{A} \mathbf{x}<0$ for other $\mathbf{x}$, then we say $\mathbf{A}$ is **indefinite**
+
+--
+
+## Second derivative test
+
+* If $\mathbf{H}(f)(\mathbf{a})$ is positive definite then $\mathbf{a}$ is a local minimum 
+* If $\mathbf{H}(f)(\mathbf{a})$ is negative definite then $\mathbf{a}$ is a local maximum 
+* If $\mathbf{H}(f)(\mathbf{a})$ is indefinite then $\mathbf{a}$ is a saddle point
+
+---
+
+# Use the determinant
+
+* Determinant of the Hessian of $f$ at the critical value $\mathbf{a}$
+
+    $$\mathbf{H}(f)(\mathbf{a}) = \begin{bmatrix} 	A & B \\	B & C \\ \end{bmatrix}$$
+    
+* Formula for the determinant for a $2 \times 2$ matrix
+
+    $$AC - B^2$$
+
+--
+
+* $AC - B^2> 0$ and $A>0$ $\leadsto$ positive definite $\leadsto$ $\mathbf{a}$ is a local minimum 
+* $AC - B^2> 0$ and $A<0$ $\leadsto$ negative definite $\leadsto$ $\mathbf{a}$ is a local maximum
+* $AC - B^2<0$ $\leadsto$ indefinite $\leadsto$ saddle point 
+* $AC- B^2 = 0$ inconclusive
+
+---
+
+# Basic procedure summarized
+
+1. Calculate gradient
+1. Set equal to zero, solve system of equations
+1. Calculate Hessian
+1. Assess Hessian at critical values
+1. Boundary values? (if relevant)
+
+---
+
+# A simple optimization example
+
+* $f:\Re^{2} \rightarrow \Re$ with 
+
+    $$f(x_{1}, x_{2}) = 3(x_1 + 2)^2  + 4(x_{2}  + 4)^2$$
+
+--
+
+$$
+\begin{aligned}
+\nabla f(\mathbf{x}) &= (6 x_{1} + 12 , 8x_{2} + 32 )  \\
+\mathbf{0} &= (6 x_{1}^{*} + 12 , 8x_{2}^{*} + 32 )  
+\end{aligned}
+$$
+
+--
+
+$$x_{1}^{*}  = - 2, \quad x_{2}^{*}  = -4$$
+
+--
+
+$$\textbf{H}(f)(\mathbf{x}^{*}) = \begin{bmatrix} 6 & 0 \\ 0 & 8 \\ \end{bmatrix}$$
+
+--
+
+* $\det(\textbf{H}(f)(\mathbf{x}^{*}))$ = 48 and $6>0$ so $\textbf{H}(f)(\mathbf{x}^{*})$ is positive definite
+* $\mathbf{x^{*}}$ is a **local minimum**
+
+---
+
+# Maximum likelihood estimation
+
+$$
+\begin{aligned}
+Y_{i} &\sim \text{Normal}(\mu, \sigma^2)  \\  
+\mathbf{Y} &= (Y_{1}, Y_{2}, \ldots, Y_{n} )   
+\end{aligned}
+$$
+
+* Obtain likelihood (summary estimator)
+* Derive maximum likelihood estimators for $\mu$ and $\sigma^2$
+
+--
+
+$$\begin{aligned}L(\mu, \sigma^2 | \mathbf{Y} ) &\propto \prod_{i=1}^{n} f(Y_{i}|\mu, \sigma^2) \\  &\propto  \prod_{i=1}^{N} \frac{\exp[ - \frac{ (Y_{i} - \mu)^2 }{2\sigma^2} ]}{\sqrt{2 \pi \sigma^2}} \\&\propto \frac{\exp[ -\sum_{i=1}^{n} \frac{(Y_{i} - \mu)^2}{2\sigma^2}  ]}{ (2\pi)^{n/2} \sigma^{2n/2} } \end{aligned}$$
+ 
+---
+
+# Maximum likelihood estimation
+
+$$l(\mu, \sigma^2|\mathbf{Y} ) = -\sum_{i=1}^{n} \frac{(Y_{i} - \mu)^2}{2\sigma^2} - \frac{n}{2} \log(2 \pi) - \frac{n}{2} \log (\sigma^2)$$
+
+--
+
+$$
+\begin{aligned}
+l(\mu, \sigma^2|\mathbf{Y} ) &=  -\sum_{i=1}^{n} \frac{(Y_{i} - \mu)^2}{2\sigma^2} - \frac{n}{2} \log (\sigma^2) \\
+\frac{\partial l(\mu, \sigma^2)|\mathbf{Y} )}{\partial \mu }  &= \sum_{i=1}^{n} \frac{2(Y_{i} - \mu)}{2\sigma^2} \\
+\frac{\partial l(\mu, \sigma^2)|\mathbf{Y})}{\partial \sigma^2} &=  -\frac{n}{2\sigma^2}  + \frac{1}{2\sigma^4} \sum_{i=1}^{n} (Y_{i} - \mu)^2
+\end{aligned}
+$$
+
+--
+
+$$
+\begin{aligned}
+0 &= -\sum_{i=1}^{n} \frac{2(Y_{i} - \widehat{\mu})}{2\widehat{\sigma}^2} \\
+0 &=  -\frac{n}{2\widehat{\sigma}^2 }  + \frac{1}{2\widehat{\sigma}^4} \sum_{i=1}^{n} (Y_{i} - \mu^{*})^2 
+\end{aligned}
+$$
+
+---
+
+# Maximum likelihood estimation
+
+$$\begin{aligned} \widehat{\mu} &= \frac{\sum_{i=1}^{n} Y_{i} }{n} \\ \widehat{\sigma}^{2} &= \frac{1}{n} \sum_{i=1}^{n} (Y_{i} - \overline{Y})^2 \end{aligned}$$
+
+--
+
+$$\textbf{H}(f)(\widehat{\mu}, \widehat{\sigma}^2)  =  \begin{bmatrix} \frac{\partial^{2} l(\mu, \sigma^2|\mathbf{Y} )}{\partial \mu^{2}} & \frac{\partial^{2} l(\mu, \sigma^2|\mathbf{Y} )}{\partial \sigma^{2} \partial \mu} \\ \frac{\partial^{2} l(\mu, \sigma^2|\mathbf{Y} )}{\partial \sigma^{2} \partial \mu} & \frac{\partial^{2} l(\mu, \sigma^2|\mathbf{Y} )}{\partial^{2} \sigma^{2}} \end{bmatrix}$$
+
+--
+
+$$\textbf{H}(f)(\widehat{\mu}, \widehat{\sigma}^2) = \begin{bmatrix} \frac{-n}{\widehat{\sigma}^2} & 0 \\ 0 & \frac{-n}{2(\widehat{\sigma}^2)^2}  \\ \end{bmatrix}$$
+
+--
+
+* $\text{det}(\textbf{H}(f)(\widehat{\mu}, \widehat{\sigma}^2)) = \dfrac{n^2}{2(\widehat{\sigma}^2)^3} > 0$ and $A = \dfrac{-n}{\widehat{\sigma}^2} < 0$ $\leadsto$ maximum
+* Determinant is greater than 0 and $A$ is less than zero - local maximum
+
+---
+
+# Computational optimization procedures
+
+* Multivariate analogies
+* Different algorithms available with benefits/drawbacks
+    * Newton-Raphson
+    * Grid search
+    * Gradient descent
+
+---
+
+# Multivariate Newton-Raphson
+
+* $f:\Re^{n} \rightarrow \Re$
+* Initial guess $\mathbf{x}_{t}$
+
+    $$\mathbf{x}_{t+1} = \mathbf{x}_{t} - [\textbf{H}(f)(\mathbf{x}_{t})]^{-1} \nabla f(\mathbf{x}_{t})$$
+
+* Approximate function with **tangent plane**
+* Find value of $x_{t+1}$ that makes the plane equal to zero
+* Update again
+
+---
+
+# Grid search
+
+* MLE for a normal distribution
+* Simulate 10,000 realizations from $Y_{i} \sim \text{Normal}(0.25, 100)$
+* Evaluate $l(\mu, \sigma^2| \mathbf{y} )$ across a range of values
+
+---
+
+# Grid search
+
+```{r loglik}
+log.like <- function(mu, sigma.2, y) {
+  part1 <- -(1 / (2 * sigma.2)) * sum((y - mu)^2)
+  part2 <- -(length(y) / 2) * log(sigma.2)
+  out <- part1 + part2
+  return(out)
+}
+
+x <- rnorm(n = 10000, mean = 0.25, sd = 10)
+
+grid_search_plot <- expand.grid(
+  mu = seq(-2, 2, by = .05),
+  sigma2 = seq(8^2, 12^2, by = .1)
+) %>%
+  as_tibble() %>%
+  mutate(logLik = map2_dbl(mu, sigma2, log.like, y = x)) %>%
+  ggplot(aes(mu, sigma2, fill = logLik)) +
+  geom_raster() +
+  geom_contour(aes(z = logLik)) +
+  scale_fill_continuous(type = "viridis") +
+  labs(
+    x = expression(mu),
+    y = expression(sigma^2)
+  )
+grid_search_plot
+```
+
+---
+
+# Gradient descent
+
+```{r grad-descent}
+vembedr::embed_url("http://www.youtube.com/watch?v=DpdndQUZKqs")
+```

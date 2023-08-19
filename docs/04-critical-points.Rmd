@@ -1,0 +1,981 @@
+---
+title: "Critical points and approximation"
+author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
+output:
+  xaringan::moon_reader
+---
+
+```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
+
+```
+
+```{r packages, include=FALSE}
+library(tidyverse)
+library(patchwork)
+library(here)
+library(gganimate)
+```
+
+# Learning objectives
+
+* Define critical points
+* Calculate critical points via analytical methods
+* Demonstrate optimization using maximum likelihood estimation
+* Identify need for approximation methods for calculating critical points
+* Explain and demonstrate root finding procedures using Newton-Raphson hill climber
+* Demonstrate comptuational optimization using gradient descent
+
+---
+
+# Rolle's theorem
+
+* Suppose $f:[a, b] \rightarrow \Re$
+* Suppose $f$ has a relative maxima or minima on $(a,b)$ and call that $c \in (a, b)$
+* Then $f'(c) = 0$
+
+--
+
+.pull-left[
+
+```{r rolles-theorem, fig.width = 6}
+function_plot +
+  stat_function(aes(color = "f(x)"), fun = function(x) -1 * (x^2) + 4) +
+  geom_hline(aes(color = "f'(x)", yintercept = 4), linetype = 2) +
+  xlim(-3, 3) +
+  scale_color_brewer(type = "qual", guide = guide_legend(reverse = TRUE)) +
+  labs(
+    title = "Rolle's theorem",
+    y = expression(f(x)),
+    color = NULL
+  ) +
+  theme(legend.position = "bottom")
+```
+
+]
+
+.pull-right[
+
+* Rolle's theorem guarantee's that, at some point, $f^{'}(x) = 0$
+* Intuition from proof - what happens as we approach from the left? 
+* Intuition from proof - what happens as we approach from the right? 
+
+]
+
+---
+
+# Higher order derivatives
+
+* Derivatives of derivatives
+* First derivative
+
+    $$f'(x),  ~~ y',  ~~ \frac{d}{dx}f(x), ~~ \frac{dy}{dx}$$
+
+* Second derivative
+
+    $$f''(x), ~~ y'', ~~ \frac{d^2}{dx^2}f(x), ~~ \frac{d^2y}{dx^2}$$
+
+* $n$th derivative
+
+    $$\frac{d^n}{dx^n}f(x), \quad \frac{d^ny}{dx^n}$$
+
+---
+
+# Higher order derivatives
+
+$$
+\begin{aligned}
+f(x) &=x^3\\
+f^{\prime}(x) &=3x^2\\
+f^{\prime\prime}(x) &=6x \\
+f^{\prime\prime\prime}(x) &=6\\
+f^{\prime\prime\prime\prime}(x) &=0\\
+\end{aligned}
+$$
+
+* If $f(x)$ is differentiable, also continuous
+* If $f'(x)$ is differentiable, then **continuously differentiable**
+* Optimization requires differentiation
+
+---
+
+# Inflection point
+
+> For a given function $y = f(x)$, a point $(x^∗, y^∗)$ where the second derivative immediately on one side of the point is signed oppositely to the second derivative immediately on the other side
+
+```{r inflect, fig.height = 6}
+fx <- function_plot +
+  stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
+  geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 2) +
+  labs(y = expression(f(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+
+fx1 <- function_plot +
+  stat_function(fun = function(x) (x^2 / 5) - 2 * x + 4, size = 0.5) +
+  geom_abline(slope = 0, intercept = -1, linetype = 2) +
+  labs(y = expression({
+    f * minute
+  }(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+
+fx2 <- function_plot +
+  stat_function(fun = function(x) (2 * (x - 5)) / 5, size = 0.5) +
+  geom_abline(slope = 0, intercept = 0, linetype = 2) +
+  labs(y = expression({
+    f * second
+  }(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+
+fx + fx1 + fx2 +
+  plot_layout(ncol = 1)
+```
+
+---
+
+# Concavity
+
+* Chord
+* Concave up (convex)
+* Concave down (concave)
+* Verification
+    * Graphically
+    * Analytically
+
+---
+
+# Concavity
+
+* Where a function is twice differentiable and concave over some area, then the function is concave down where $f''(x) < 0$ and concave up where $f''(x) > 0$
+
+```{r concave}
+concave_func <- function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15
+
+tibble(
+  x = seq(0, 10, by = .001),
+  y = concave_func(x),
+  concave_up = x > 5,
+  min = ifelse(concave_up, y, 2),
+  max = ifelse(concave_up, 10, y)
+) %>%
+  mutate(concave_up = factor(concave_up,
+    levels = c(TRUE, FALSE),
+    labels = c("Concave up", "Concave down")
+  )) %>%
+  ggplot(aes(x = x)) +
+  stat_function(fun = concave_func, size = 0.5) +
+  geom_ribbon(aes(y = y, ymin = min, ymax = max, fill = concave_up),
+    alpha = .5
+  ) +
+  scale_fill_brewer(type = "qual") +
+  labs(
+    x = expression(x),
+    y = expression(f(x)),
+    fill = NULL
+  ) +
+  theme(legend.position = "bottom")
+```
+
+---
+
+# Exponential function
+
+.pull-left[
+
+```{r strict-e, fig.width = 6}
+function_plot +
+  stat_function(fun = function(x) exp(x), size = 0.5) +
+  labs(y = expression(e[x])) +
+  xlim(0, 5)
+```
+
+]
+
+.pull-right[
+
+$$
+\begin{aligned}
+f(x) & =  e^{x} \\
+f^{'}(x) & =  e^{x} \\
+f^{''}(x) & =  e^{x} 
+\end{aligned}
+$$
+
+]
+
+---
+
+# Natural logarithm
+
+
+.pull-left[
+
+```{r strict-log, fig.width = 6}
+function_plot +
+  stat_function(fun = function(x) log(x), size = 0.5, n = 1000) +
+  labs(y = expression(log[x])) +
+  xlim(0, 5)
+```
+
+]
+
+.pull-right[
+
+$$
+\begin{aligned}
+f(x) & =  \log(x) \\
+f^{'}(x) & =  \frac{1}{x} \\
+f^{''}(x) & =  -\frac{1}{x^2}
+\end{aligned}
+$$
+
+]
+
+---
+
+# Types of extreme values
+
+* Maximum or minimum
+* Local or global
+
+---
+
+# Types of extreme values
+
+```{r endpoints}
+function_plot +
+  stat_function(fun = function(x) x, size = .5) +
+  geom_point(
+    data = tibble(
+      x = c(0, 5),
+      y = x
+    ),
+    aes(x, y)
+  ) +
+  labs(
+    title = expression(f(x) == x),
+    x = expression(x),
+    y = expression(f(x))
+  ) +
+  xlim(0, 5)
+```
+
+---
+
+# Types of extreme values
+
+```{r max-middle}
+function_plot +
+  stat_function(fun = function(x) -(x^2) + 5, size = .5) +
+  geom_hline(yintercept = 5, linetype = 2) +
+  labs(
+    title = expression(f(x) == -x^2 + 5),
+    y = expression(f(x))
+  )
+```
+
+---
+
+# Types of extreme values
+
+```{r min-middle}
+function_plot +
+  stat_function(fun = function(x) x^2 + 9 * x + 9, size = .5) +
+  geom_hline(yintercept = -11.25, linetype = 2) +
+  labs(
+    title = expression(f(x) == x^2 + 9 * x + 9),
+    y = expression(f(x))
+  ) +
+  xlim(-10, 1)
+```
+
+---
+
+# Types of extreme values
+
+```{r local-all}
+function_plot +
+  stat_function(fun = function(x) sin(x), size = .5, n = 1000) +
+  labs(
+    title = expression(f(x) == sin(x)),
+    y = expression(f(x))
+  ) +
+  xlim(-20, 20)
+```
+
+---
+
+# Types of extreme values
+
+```{r inflection-point}
+function_plot +
+  stat_function(fun = function(x) x^3, size = .5) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point(
+    data = tibble(
+      x = 0,
+      y = 0
+    ),
+    aes(x, y)
+  ) +
+  labs(
+    title = expression(f(x) == x^3),
+    x = expression(x),
+    y = expression(f(x))
+  )
+```
+
+---
+
+# Framework for analytical optimization
+
+1. Find $f'(x)$
+1. Set $f'(x)=0$ and solve for $x$. Call all $x_0$ such that $f'(x_0)=0$ **critical values**
+1. Find $f''(x)$. Evaluate at each $x_0$
+    * If $f''(x) > 0$, concave up, and therefore a local minimum
+    * If $f''(x) < 0$, concave down, and therefore a local maximum
+    * If it's the global maximum/minimum, it will produce the largest/smallest value for $f(x)$
+    * On a closed range along the domain, check the endpoints as well
+
+---
+
+# $f(x) = -x^2$,  $x \in [-3, 3]$
+
+```{r ex-1}
+function_plot +
+  stat_function(fun = function(x) -x^2, size = .5) +
+  labs(
+    title = expression(f(x) == -x^2),
+    y = expression(f(x))
+  ) +
+  xlim(-3, 3)
+```
+
+---
+
+# $f(x) = x^3$, $x \in [-3, 3]$
+
+```{r ex-2}
+function_plot +
+  stat_function(fun = function(x) x^3, size = .5) +
+  labs(
+    title = expression(f(x) == x^3),
+    y = expression(f(x))
+  ) +
+  xlim(-3, 3)
+```
+
+---
+
+# Maximum likelihood estimation
+
+* Likelihood function
+* Distinguish from probability
+* Known data, unknown parameters
+* Maximize to find the values located at the **global maximum** of the likelihood function
+
+---
+
+# Maximum likelihood estimation
+
+$$
+\begin{aligned}
+f(\mu) & = \prod_{i=1}^{N} \exp( \frac{-(Y_{i} - \mu)^2}{ 2}) \\
+& = \exp(- \frac{(Y_{1} - \mu)^2}{ 2}) \times \ldots \times \exp(- \frac{(Y_{N} - \mu)^2}{ 2}) \\
+& = \exp( - \frac{\sum_{i=1}^{N} (Y_{i} - \mu)^2} {2})
+\end{aligned}
+$$
+
+* Maximizing a function with very very very small numbers
+
+---
+
+# Maximum likelihood estimation
+
+* Log-likelihood
+    * $f:\Re \rightarrow (0, \infty)$
+    * If $x_{0}$ maximizes $f$, then $x_{0}$ maximizes $\log(f(x))$
+* Maximize the log-likelihood instead
+
+---
+
+# Maximum likelihood estimation
+
+$$
+\begin{aligned}
+\log f(\mu) & = \log \left( \exp( - \frac{\sum_{i=1}^{N} (Y_{i} - \mu)^2} {2}) \right)  \\
+& = - \frac{\sum_{i=1}^{N} (Y_{i} - \mu)^2} {2} \\
+	& = -\frac{1}{2} \left(\sum_{i=1}^{N} Y_{i}^2 - 2\mu \sum_{i=1}^{N} Y_{i} + N\times\mu^2 \right) \\
+\frac{ \partial \log f(\mu) }{ \partial \mu } & = 		-\frac{1}{2} \left( - 2\sum_{i=1}^{N} Y_{i} + 2 N \mu \right) 
+\end{aligned}
+$$
+
+---
+
+# Maximum likelihood estimation
+
+$$
+\begin{aligned}
+0 & = -\frac{1}{2} \left( - 2 \sum_{i=1}^{N} Y_{i} + 2 N \mu^{*} \right) \\
+0 & = \sum_{i=1}^{N} Y_{i} - N \mu^{*}  \\
+N \mu^{*}  & =  \sum_{i=1}^{N}Y_{i} \\
+\mu^{*} & = \frac{\sum_{i=1}^{N}Y_{i}}{N} \\
+\mu^{*} & = \bar{Y}
+\end{aligned}
+$$
+
+---
+
+# Maximum likelihood estimation
+
+* Second derivative test
+
+$$
+\begin{aligned}
+f^{'}(\mu ) & = -\frac{1}{2} \left( - 2\sum_{i=1}^{N} Y_{i} + 2 N \mu \right) \\
+f^{'}(\mu ) & = \sum_{i=1}^{N} Y_{i} - N \mu \\
+f^{''}(\mu ) & = -N 
+\end{aligned}
+$$
+
+--
+
+* $-N<0 \leadsto \text{concave down}$
+
+---
+
+# Computational optimization procedures
+
+* Analytical approaches can be difficult/impossible
+* Computational approaches simplify the problem
+* Different algorithms available with benefits/drawbacks
+    * Newton-Raphson
+    * Grid search
+    * Gradient descent
+
+---
+
+# Newton-Raphson root finding
+
+* Roots of a function where $f(x) = 0$
+* Analytical method
+* Iterative procedures to approximate $x^{*}$
+
+---
+
+# Tangent lines
+
+$$g(x) = f^{'}(x_{0}) (x - x_{0} ) + f(x_{0})$$
+
+```{r tangent-anim, fig.height = 6}
+# tangent lines for f(x) = x^2
+tan_lines <- tibble(
+  x_0 = seq(from = -4, to = 4, by = 0.05),
+  y_0 = x_0^2,
+  tan_slope = 2 * x_0,
+  tan_intercept = x_0^2 - x_0 * tan_slope
+) %>%
+  mutate(id = row_number())
+
+tan_lines_anim <- function_plot +
+  stat_function(fun = function(x) x^2) +
+  geom_abline(
+    data = tan_lines,
+    mapping = aes(
+      intercept = tan_intercept,
+      slope = tan_slope
+    ), linetype = 2, color = "blue"
+  ) +
+  geom_point(
+    data = tan_lines,
+    mapping = aes(
+      x = x_0,
+      y = y_0
+    )
+  ) +
+  labs(
+    title = expression(f(x) == x^2),
+    y = expression(f(x))
+  ) +
+  transition_states(
+    states = id,
+    transition_length = 2,
+    state_length = 1
+  )
+
+animate(tan_lines_anim, nframes = nrow(tan_lines) * 2)
+```
+
+---
+
+# Newton-Raphson method
+
+* Initial guess $x_{0}$
+* Approximate $f(x)$ with the tangent line to generate a new guess:
+
+    $$\begin{aligned}g(x) & = f^{'}(x_{0})(x - x_{0} ) + f(x_{0} ) \\0 & = f^{'}(x_{0}) (x_{1} - x_{0}) + f(x_{0} ) \\x_{1} & =  x_{0} - \frac{f(x_{0}) }{f^{'}(x_{0})}\end{aligned}$$
+
+* Iterate until updated values are the same
+
+---
+
+# Example of Newton-Raphson
+
+.pull-left[
+
+```{r base-plot, fig.width = 6}
+f0 <- function_plot +
+  stat_function(fun = function(x) -1 * x^2, size = .5) +
+  labs(y = expression(f(x))) +
+  xlim(-2, 2)
+f0
+```
+
+]
+
+.pull-right[
+
+$$
+\begin{aligned}
+y &= -x^2 \\
+\frac{\partial y}{\partial x} &= -2x \\
+\frac{\partial^2 y}{\partial x^2} &= -2
+\end{aligned}
+$$
+
+]
+
+---
+
+# Example of Newton-Raphson
+
+.pull-left[
+
+```{r optims, dependson = "base-plot", fig.width = 6}
+f0 +
+  geom_point(
+    data =
+      tibble(
+        x = 0, y = 0
+      ),
+    aes(x, y, color = "maximum")
+  ) +
+  geom_hline(
+    data =
+      tibble(
+        intercept = 0,
+        color = "maximum"
+      ),
+    aes(yintercept = intercept, color = color), linetype = 2
+  ) +
+  geom_vline(
+    data =
+      tibble(
+        intercept = 0,
+        color = "maximum"
+      ),
+    aes(xintercept = intercept, color = color), linetype = 2
+  ) +
+  scale_color_brewer(type = "qual", guide = FALSE)
+```
+
+]
+
+.pull-right[
+
+$$
+\begin{aligned}
+y &= -x^2 \\
+\frac{\partial y}{\partial x} &= -2x \\
+\frac{\partial^2 y}{\partial x^2} &= -2
+\end{aligned}
+$$
+
+]
+
+
+---
+
+# Implementing Newton-Raphson
+
+$$x_1 = x_0 - \frac{f'(x_0)}{f''(x_0)}$$
+
+--
+
+$$x_{n+1} = x_n - \frac{f'(x_n)}{f''(x_n)}$$
+
+--
+
+$$x_{n+1} = x_n - \frac{-2x}{-2}$$
+
+* Stop at $x_n$ if $\mid x_n - x_{n-1} \mid < 0.0001$
+
+---
+
+# Implementing Newton-Raphson
+
+```{r newton-raphson}
+## function for newton's method
+## source: https://lovetoken.github.io/r/data_visualization/2018/04/24/netwon_raphson_method.html
+newton <- function(fun, tol = 1e-7, x0 = 1, N = 300) {
+  h <- 1e-7
+  i <- 1
+  x1 <- x0
+  p <- numeric(N)
+  while (i <= N) {
+    df.dx <- (fun(x0 + h) - fun(x0)) / h
+    x1 <- (x0 - (fun(x0) / df.dx))
+    p[i] <- x1
+    i <- i + 1
+    if (abs(x1 - x0) < tol) break
+    x0 <- x1
+  }
+  return(p[1:(i - 1)])
+}
+```
+
+```{r first-func}
+## Let's code three functions R to implement this function and its first and second derivatives
+fun <- function(x) -1 * x^2
+fun.first.deriv <- function(x) -2 * x
+fun.sec.deriv <- function(x) {
+  rep(-2, times = length(x))
+}
+```
+
+```{r first-func-first-guess, dependson = c("newton-raphson", "first-func")}
+newton1 <- newton(fun.first.deriv, x0 = 3)
+
+# generate iterations
+d <- tibble(
+  x = newton(fun.first.deriv, x0 = 3),
+  y = fun.first.deriv(x)
+) %>%
+  mutate(label = row_number())
+
+# animate the plot
+function_plot +
+  stat_function(fun = fun.first.deriv) +
+  geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
+  geom_point(data = d, aes(x = x, y = y), color = "red") +
+  xlim(-1e-7, 1e-7) +
+  labs(
+    title = expression(-x^2),
+    y = expression({
+      f * minute
+    }(x)),
+    subtitle = "Iteration #{frame_along}"
+  ) +
+  transition_reveal(label)
+```
+
+---
+
+# Implementing Newton-Raphson
+
+.pull-left[
+
+```{r base-plot-two-points, fig.width = 6}
+f0 <- function_plot +
+  stat_function(fun = function(x) x^3 + 2 * x^2 - 3 * x + 4, size = .5) +
+  labs(y = expression(f(x))) +
+  xlim(-4, 2)
+f0
+```
+
+]
+
+.pull-right[
+
+$$
+\begin{aligned}
+y &= x^3 + 2x^2 - 3x + 4 \\
+\frac{\partial y}{\partial x} &=  3x^2 + 4x - 3 \\
+\frac{\partial^2 y}{\partial x^2} &= 6x + 4
+\end{aligned}
+$$
+
+]
+
+---
+
+# Implementing Newton-Raphson
+
+.pull-left[
+
+```{r optims-two-points, dependson = "base-plot-two-points", fig.width = 6}
+f0 +
+  geom_point(
+    data =
+      tibble(
+        x = 0.5351838, y = 3.12058
+      ),
+    aes(x, y, color = "minimum")
+  ) +
+  geom_point(
+    data =
+      tibble(
+        x = -1.868517, y = 10.0646
+      ),
+    aes(x, y, color = "maximum")
+  ) +
+  geom_hline(
+    data =
+      tibble(
+        intercept = c(3.12058, 10.0646),
+        color = c("minimum", "maximum")
+      ),
+    aes(yintercept = intercept, color = color), linetype = 2
+  ) +
+  geom_vline(
+    data =
+      tibble(
+        intercept = c(0.5351838, -1.868517),
+        color = c("minimum", "maximum")
+      ),
+    aes(xintercept = intercept, color = color), linetype = 2
+  ) +
+  scale_color_brewer(type = "qual", guide = FALSE)
+```
+
+]
+
+.pull-right[
+
+$$
+\begin{aligned}
+y &= x^3 + 2x^2 - 3x + 4 \\
+\frac{\partial y}{\partial x} &=  3x^2 + 4x - 3 \\
+\frac{\partial^2 y}{\partial x^2} &= 6x + 4
+\end{aligned}
+$$
+
+]
+
+---
+
+# Initial guess $x_0 = 10$
+
+```{r second-func}
+fun <- function(x) x^3 + 2 * x^2 - 3 * x + 4
+fun.first.deriv <- function(x) 3 * x^2 + 4 * x - 3
+fun.sec.deriv <- function(x) 6 * x + 4
+```
+
+```{r second-func-first-guess, dependson = c("newton-raphson", "second-func")}
+newton1 <- newton(fun.first.deriv, x0 = 10)
+
+# generate iterations
+d <- tibble(
+  x = newton(fun.first.deriv, x0 = 10),
+  y = fun.first.deriv(x)
+) %>%
+  mutate(label = row_number())
+
+# animate the plot
+function_plot +
+  stat_function(fun = fun.first.deriv) +
+  geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
+  geom_point(data = d, aes(x = x, y = y), color = "red") +
+  xlim(-4, 5) +
+  labs(
+    title = expression(x^3 + 2 * x^2 - 3 * x + 4),
+    y = expression({
+      f * minute
+    }(x)),
+    subtitle = "Iteration #{frame_along}"
+  ) +
+  transition_reveal(label)
+```
+
+---
+
+# Initial guess $x_0 = -10$
+
+```{r second-func-second-guess, dependson = "first-guess"}
+newton2 <- newton(fun, x0 = -10)
+
+# generate iterations
+d <- tibble(
+  x = newton(fun.first.deriv, x0 = -10),
+  y = fun.first.deriv(x)
+) %>%
+  mutate(label = row_number())
+
+# animate the plot
+function_plot +
+  stat_function(fun = fun.first.deriv) +
+  geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
+  geom_point(data = d, aes(x = x, y = y), color = "red") +
+  xlim(-6, 2) +
+  labs(
+    title = expression(x^3 + 2 * x^2 - 3 * x + 4),
+    y = expression({
+      f * minute
+    }(x)),
+    subtitle = "Iteration #{frame_along}"
+  ) +
+  transition_reveal(label)
+```
+
+---
+
+# Grid search
+
+* Exhaustive search algorithm
+* Define a specified set of $f_i$
+* Calculate $f(x_i) \forall i$
+* Compare all resulting values
+
+---
+
+# Grid search
+
+$$y = -x^2$$
+
+* Evaluate the function for all $x \in \{ -2, -1.99, -1.98, \ldots, 1.98, 1.99, 2 \}$
+
+--
+
+```{r grid-search, fig.height = 6}
+neg_x_2 <- tibble(
+  x = seq(from = -2, to = 2, by = 0.01),
+  y = -x^2
+)
+
+function_plot +
+  geom_point(
+    data = neg_x_2,
+    mapping = aes(x, y), shape = 1
+  ) +
+  xlim(-2, 2) +
+  labs(title = expression(f(x) == -x^2))
+```
+
+---
+
+# Gradient descent
+
+```{r grad-ex}
+function_plot +
+  stat_function(fun = function(x) 1.2 * x^2 - 4.8 * x + 8) +
+  xlim(0, 4) +
+  labs(
+    title = expression(f(x) == 1.2 * x^2 - 4.8 * x + 8),
+    y = expression(f(x))
+  )
+```
+
+---
+
+# Analytically optimize
+
+$$
+\begin{aligned}
+f'(x) &= 2.4x - 4.8 \\
+0 &= 2.4x - 4.8 \\
+4.8 &= 2.4x \\
+x &= 2
+\end{aligned}
+$$
+
+--
+
+$$
+\begin{aligned}
+f''(x) &= 2.4 \\
+f''(2) &= 2.4
+\end{aligned}
+$$
+
+---
+
+# Gradient descent
+
+$$x_1 = x_0 - \alpha f'(x_0)$$
+
+* Gradient
+* Learning rate
+* Iterative algorithm
+* Important components
+
+---
+
+# $\alpha = 0.6$
+
+```{r grad-descent-func}
+# function for basic gradient descent
+grad_descent <- function(func, deriv, learning_rate = 0.6, x_new = .1, x_old = 0,
+                         epsilon = 1e-3, step = 1, iteration = 100) {
+  # records the x and y value for visualization ; add the inital guess
+  xtrace <- vector(mode = "numeric", length = iteration)
+  ytrace <- vector(mode = "numeric", length = iteration)
+  xtrace[[1]] <- x_new
+  ytrace[[1]] <- func(x_new)
+
+  while (abs(x_new - x_old) > epsilon & step <= iteration) {
+    # update iteration count
+    step <- step + 1
+
+    # gradient descent
+    x_old <- x_new
+    x_new <- x_old - learning_rate * deriv(x_old)
+
+    # record keeping
+    xtrace[[step]] <- x_new
+    ytrace[[step]] <- func(x_new)
+  }
+
+  # create the data points' dataframe
+  record <- tibble(x = xtrace[1:step], y = ytrace[1:step]) %>%
+    mutate(label = row_number())
+  return(record)
+}
+```
+
+```{r grad-descent-func-example}
+# original function
+grad_func <- function(x) 1.2 * x^2 - 4.8 * x + 8
+
+# first derivative of the formula above
+grad_deriv <- function(x) 2.4 * x - 4.8
+```
+
+```{r grad-descent-learn-rate-6, dependson = c("grad-descent-func", "grad-descent-func-example")}
+# plot the gradient descent
+grad_steps_6 <- grad_descent(func = grad_func, deriv = grad_deriv)
+
+function_plot +
+  stat_function(fun = grad_func) +
+  xlim(0, 4) +
+  geom_point(data = grad_steps_6, aes(x = x, y = y, group = seq_along(label))) +
+  geom_point(data = grad_steps_6, aes(x = x, y = y), color = "red") +
+  labs(
+    title = expression(f(x) == 1.2 * x^2 - 4.8 * x + 8),
+    y = expression(f(x)),
+    subtitle = expression(alpha == 0.6)
+  ) +
+  transition_reveal(label)
+```
+
+---
+
+# $\alpha = 0.1$
+
+```{r grad-descent-learn-rate-2, dependson = c("grad-descent-func", "grad-descent-func-example")}
+# plot the gradient descent
+grad_steps_2 <- grad_descent(func = grad_func, deriv = grad_deriv, learning_rate = 0.1)
+
+function_plot +
+  stat_function(fun = grad_func) +
+  xlim(0, 4) +
+  geom_point(data = grad_steps_2, aes(x = x, y = y, group = seq_along(label))) +
+  geom_point(data = grad_steps_2, aes(x = x, y = y), color = "red") +
+  labs(
+    title = expression(f(x) == 1.2 * x^2 - 4.8 * x + 8),
+    y = expression(f(x)),
+    subtitle = expression(alpha == 0.1)
+  ) +
+  transition_reveal(label)
+```

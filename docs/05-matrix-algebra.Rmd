@@ -1,0 +1,772 @@
+---
+title: "Matrix algebra"
+author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
+output:
+  xaringan::moon_reader
+---
+
+```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
+
+```
+
+```{r packages, include=FALSE}
+library(tidyverse)
+library(patchwork)
+library(here)
+library(gganimate)
+```
+
+# Learning objectives
+
+* Define vector and matrix
+* Visualize vectors in multiple dimensions
+* Demonstrate applicability of linear algebra to text analysis and cosine similarity
+* Perform basic algebraic operations on vectors and matricies
+* Generalize linear algebra to tensors and neural networks
+
+---
+
+# Linear algebra
+
+* Data stored in **matricies**
+* Higher dimensional spaces
+    * Flood of big data, stored in many dimensions
+* Linear algebra
+    * Algebra of matricies
+    * Geometry of high dimensional space
+    * Calculus (multivariable) in many dimensions
+* Very important for regression/machine learning/deep learning
+
+---
+
+# Points and vectors
+
+* A point in $\Re^1$
+    * $1$
+    * $\pi$
+    * $e$
+
+--
+* An ordered pair in $\Re^2 = \Re \times \Re$
+    * $(1,2)$
+    * $(0,0)$
+    * $(\pi, e)$
+
+--
+* An ordered triple in $\Re^3 = \Re \times \Re \times \Re$
+    * $(3.1, 4.5, 6.1132)$
+
+--
+* An ordered $n$-tuple in $R^n = \Re \times \Re \times \ldots \times \Re$
+    * $(a_{1}, a_{2}, \ldots, a_{n})$
+
+---
+
+# One dimensional example
+
+```{r one-d, fig.asp = .65}
+vector_one <- function(df) {
+  ggplot(data = df,
+         aes(x = x1, y = y1, xend = x2, yend = y2)) +
+    geom_hline(yintercept = 0,
+               alpha = .2) +
+    geom_segment(arrow = arrow(length = unit(0.07, "npc"))) +
+    xlim(-1, 1) +
+    theme(
+      axis.title = element_blank(),
+      axis.text.y = element_blank(),
+      axis.ticks.y = element_blank(),
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor.y = element_blank(),
+      panel.grid.minor.x = element_blank()
+    )
+}
+
+{tibble(
+  x1 = 0,
+  x2 = 0.5,
+  y1 = 0,
+  y2 = 0
+) %>%
+  vector_one +
+  labs(title = expression((0.5)))} +
+  {
+
+tibble(
+  x1 = 0,
+  x2 = -0.5,
+  y1 = 0,
+  y2 = 0
+) %>%
+  vector_one +
+  labs(title = expression((-0.5)))} +{
+
+tibble(
+  x1 = 0,
+  x2 = -0.25,
+  y1 = 0,
+  y2 = 0
+) %>%
+  vector_one +
+  labs(title = expression((-0.25)))} +
+  plot_layout(ncol = 1)
+```
+
+---
+
+# Two dimensional example
+
+```{r two-d}
+vector_two <- function(df) {
+  ggplot(data = df,
+         aes(x = x1, y = y1, xend = x2, yend = y2)) +
+    geom_hline(yintercept = 0,
+               alpha = .2) +
+    geom_vline(xintercept = 0,
+               alpha = .2) +
+    geom_segment(arrow = arrow(length = unit(0.03, "npc"))) +
+    xlim(-1, 1) +
+    ylim(-1, 1) +
+  theme_classic() + #base_size = rcfss::base_size) +
+    theme(
+      axis.title = element_blank(),
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor.y = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank()
+    )
+}
+
+tibble(
+  x1 = 0,
+  x2 = .5,
+  y1 = 0,
+  y2 = .5
+) %>%
+  vector_two +
+  labs(title = expression(paste("(", 0.5, ", ", 0.5, ")")))
+```
+
+---
+
+# Two dimensional example
+
+```{r two-d2, dependson = "two-d"}
+tibble(
+  x1 = 0,
+  x2 = -.5,
+  y1 = 0,
+  y2 = .5
+) %>%
+  vector_two +
+  labs(title = expression(paste("(", -0.5, ", ", 0.5, ")")))
+```
+
+---
+
+# Two dimensional example
+
+```{r two-d3, dependson = "two-d"}
+tibble(
+  x1 = 0,
+  x2 = 0,
+  y1 = 0,
+  y2 = -.5
+) %>%
+  vector_two +
+  labs(title = expression(paste("(", 0, ", ", -0.5, ")")))
+```
+
+---
+
+# Three dimensional example
+
+* (Latitude, Longitude, Elevation)
+* $(1,2,3)$
+* $(0,1,2)$
+
+--
+
+## $N$-dimensional example
+
+* Individual campaign donation records
+    $$\mathbf{x} = (1000, 0, 10, 50, 15, 4, 0, 0, 0, \ldots, 2400000000)$$
+* Counties have proportion of vote for Trump
+    $$\mathbf{y} = (0.8, 0.5, 0.6, \ldots, 0.2)$$
+* Run experiment, assess feeling thermometer of elected official
+    $$\mathbf{t} = (0, 100, 50, 70, 80, \ldots, 100)$$ 
+
+---
+
+# Vector/scalar addition/multiplication
+
+$$
+\begin{aligned}
+\mathbf{u} & =  (1, 2, 3, 4, 5)  \\
+\mathbf{v} & =  (1, 1, 1, 1, 1)  \\
+k & =  2
+\end{aligned}
+$$
+
+--
+
+$$
+\begin{aligned}
+\mathbf{u}  + \mathbf{v} & = (1 + 1, 2 + 1, 3+ 1, 4 + 1, 5+ 1)  = (2, 3, 4, 5, 6) \\
+k \mathbf{u} & = (2 \times 1, 2 \times 2, 2 \times 3, 2 \times 4, 2 \times 5) = (2, 4, 6, 8, 10)  \\
+k \mathbf{v} & = (2 \times 1,2 \times 1,2 \times 1,2 \times 1,2 \times 1) = (2, 2, 2, 2, 2)
+\end{aligned}
+$$
+
+---
+
+# Linear dependence
+
+* Linear combinations of vectors $\mathbf{a}$ and $\mathbf{b}$
+
+    $$\mathbf{a} + \mathbf{b}$$
+
+    $$2\mathbf{a} - 3\mathbf{b}$$
+
+* Generic form
+
+    $$\alpha \mathbf{a} + \beta\mathbf{b} + \gamma\mathbf{c} + \delta\mathbf{d} + \ldots$$
+
+* Linear independence
+
+---
+
+# Linear dependence
+
+$$\mathbf{a} = \begin{bmatrix}
+3 \\
+1
+\end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
+2 \\
+2
+\end{bmatrix}, \quad \mathbf{c} = \begin{bmatrix}
+1 \\
+3
+\end{bmatrix}$$
+
+---
+
+# Detecting linear dependence
+
+* $\mathbf{b}^1, \mathbf{b}^2, \ldots \mathbf{b}^k$ are linearly dependent if and only if there exist scalars $\alpha_1, \alpha_2, \ldots, \alpha_k$ *not all zero* such that
+
+    $$\alpha_1 \mathbf{b}^1 + \alpha_2 \mathbf{b}^2 + \ldots + \alpha_k \mathbf{b}^k = \mathbf{0}$$
+
+---
+
+# Example
+
+$$\mathbf{a} = \begin{bmatrix}
+2 \\
+1 \\
+2
+\end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
+4 \\
+1 \\
+3
+\end{bmatrix}, \quad \mathbf{c} = \begin{bmatrix}
+1 \\
+1 \\
+2
+\end{bmatrix}$$
+
+* Express as a **system of equations**
+
+    $$\begin{aligned}2\alpha &+ 4\beta &+ \gamma &= 0 \\\alpha &+ \beta &+ \gamma &= 0 \\2\alpha &+ 3\beta &+ 2\gamma &= 0\end{aligned}$$
+
+---
+
+# Solve the system of equations
+
+$$\begin{aligned}2\alpha &+ 4\beta &+ \gamma &= 0 \\\alpha &+ \beta &+ \gamma &= 0 \\2\alpha &+ 3\beta &+ 2\gamma &= 0\end{aligned}$$
+
+--
+
+$$
+\begin{aligned}
+2\alpha &+ 4\beta &+ \gamma &= 0 \\
+ &- \beta &+ \frac{1}{2}\gamma &= 0 \\
+ &- \beta &+ \gamma &= 0
+\end{aligned}
+$$
+
+--
+
+$$
+\begin{aligned}
+2\alpha &+ 4\beta &+ \gamma &= 0 \\
+ &- \beta &+ \frac{1}{2}\gamma &= 0 \\
+ & &+ \frac{1}{2} \gamma &= 0
+\end{aligned}
+$$
+
+---
+
+# Example
+
+$$\mathbf{a} = \begin{bmatrix}
+2 \\
+1 \\
+2
+\end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
+4 \\
+1 \\
+3
+\end{bmatrix}, \quad \mathbf{c} = \begin{bmatrix}
+2 \\
+2 \\
+3
+\end{bmatrix}$$
+
+---
+
+# Example
+
+$$
+\begin{aligned}
+2\alpha &+ 4\beta &+ 2\gamma &= 0 \\
+\alpha &+ \beta &+ 2\gamma &= 0 \\
+2\alpha &+ 3\beta &+ 3\gamma &= 0
+\end{aligned}
+$$
+
+--
+
+$$
+\begin{aligned}
+2\alpha &+ 4\beta &+ 2\gamma &= 0 \\
+ &- \beta &+ \gamma &= 0 \\
+ &- \beta &+ \gamma &= 0
+\end{aligned}
+$$
+
+--
+
+$$
+\begin{aligned}
+2\alpha &+ 4\beta &+ 2\gamma &= 0 \\
+ &- \beta &+ \gamma &= 0
+\end{aligned}
+$$
+
+--
+
+$$\gamma = 1, \quad \beta = 1, \quad \alpha = -3$$
+
+---
+
+# Inner product
+
+$$
+\begin{aligned}
+\mathbf{u} \cdot \mathbf{v} &=  u_{1} v_{1} + u_{2}v_{2} + \ldots + u_{n} v_{n}  \\
+														& =  \sum_{i=1}^{N} u_{i} v_{i} 
+\end{aligned}
+$$
+
+* Aka **dot product**
+* Results in a scalar value
+
+---
+
+# Inner product
+
+* $\mathbf{u} = (1, 2, 3)$ and $\mathbf{v} = (2, 3, 1)$
+
+$$\begin{aligned} \mathbf{u} \cdot \mathbf{v} & =  1 \times 2 +  2 \times 3 +  3 \times 1 \\ 				& = 2+ 6 + 3 \\				& = 11				\end{aligned}$$
+
+---
+
+# Calculating vector length
+
+```{r pythagorean-theorem}
+tribble(
+~x1, ~x2, ~y1, ~y2,
+0, 3, 0, 0,
+3, 3, 0, 4,
+0, 3, 0, 4
+) %>%
+  ggplot(aes(x = x1, y = y1, xend = x2, yend = y2)) +
+  geom_segment(arrow = arrow(length = unit(0.03, "npc"))) +
+  annotate("text", x = 1.5, y = .25, label = "a", size = 7) +
+  annotate("text", x = 2.75, y = 2, label = "b", size = 7) +
+  annotate("text", x = 0.75, y = 2, label = "c == sqrt(a^2 + b^2)", parse = TRUE, size = 7) +
+  coord_fixed() +
+  ggtitle("The Pythagorean Theorem") +
+  theme_void() #base_size = rcfss::base_size)
+```
+
+---
+
+# Vector norm
+
+$$
+\begin{aligned}
+\| \mathbf{v}\| & = (\mathbf{v} \cdot \mathbf{v} )^{1/2} \\
+						   & = (v_{1}^2 + v_{2}^{2} + v_{3}^{2} + \ldots + v_{n}^{2} )^{1/2}
+\end{aligned}
+$$
+
+--
+
+* Vector norm of a three-dimensional vector $\mathbf{x} = (1,1,1)$:
+
+    $$\begin{aligned}\| \mathbf{x}\| & = (\mathbf{x} \cdot \mathbf{x} )^{1/2} \\						   & = (x_{1}^2 + x_{2}^{2} + x_{3}^{2})^{1/2} \\						   & = (1 + 1 + 1)^{1/2} \\						   &= \sqrt{3}\end{aligned}$$
+
+---
+
+# Text analysis
+
+```
+ a abandoned abc ability able about above abroad absorbed absorbing abstract
+43         0   0       0    0    10     0      0        0         0        1
+```
+
+--
+
+$$(43,0,0,0,0,10,\dots)$$
+
+---
+
+# Text analysis
+
+$$
+\begin{aligned}
+\text{Doc1} & = (1, 1, 3, \ldots, 5) \\
+\text{Doc2} & = (2, 0, 0, \ldots, 1) \\
+\textbf{Doc1}, \textbf{Doc2} & \in \Re^{M}
+\end{aligned}
+$$
+
+---
+
+# Inner product
+
+$$
+\begin{aligned}
+\textbf{Doc1} \cdot \textbf{Doc2}  &  =  (1, 1, 3, \ldots, 5) (2, 0, 0, \ldots, 1)'  \\
+ & =  1 \times 2 + 1 \times 0 + 3 \times 0 + \ldots + 5 \times 1 \\
+& = 7 
+\end{aligned}
+$$
+
+---
+
+# Length
+
+$$
+\begin{aligned}
+\| \textbf{Doc1} \| & \equiv  \sqrt{ \textbf{Doc1} \cdot \textbf{Doc1} } \\
+ & =  \sqrt{(1, 1, 3, \ldots , 5) (1, 1, 3, \ldots, 5)' } \\
+  & =  \sqrt{1^{2} +1^{2} + 3^{2} + 5^{2} } \\
+   & =   6
+\end{aligned}
+$$
+
+---
+
+# Cosine similarity
+
+$$
+\begin{aligned}
+\cos (\theta) & \equiv  \left(\frac{\textbf{Doc1} \cdot \textbf{Doc2}}{\| \textbf{Doc1}\| \|\textbf{Doc2} \|} \right) \\
+ & = \frac{7} { 6 \times  2.24} \\
+  & = 0.52
+\end{aligned}
+$$
+
+---
+
+# Measuring similarity
+
+* Usefulness
+* Desirable properties
+    * The **maximum** should be the document with itself
+    * The **minimum** should be documents which have no words in common
+    * Increasing when more of the same words are used
+    * Normalize for document length
+
+---
+
+# Using the inner product
+
+$$(2,1) \cdot (1,4) = 6$$
+
+```{r inner-product}
+tribble(
+~x1, ~x2, ~y1, ~y2, ~notorig,
+0, 2, 0, 1, FALSE,
+0, 1, 0, 4, FALSE
+) %>%
+  ggplot(aes(x = x1, y = y1, xend = x2, yend = y2,
+             color = notorig)) +
+  geom_segment(arrow = arrow(length = unit(0.03, "npc"))) +
+  scale_color_brewer(type = "qual", guide = FALSE) +
+  labs(x = "Doc1",
+       y = "Doc2") +
+  xlim(0, 4) +
+  coord_fixed()
+```
+
+---
+
+# Length dependence
+
+$$(4,2) \cdot (1,4) = 12$$
+
+```{r inner-product-not-same}
+tribble(
+~x1, ~x2, ~y1, ~y2, ~notorig,
+0, 4, 0, 2, TRUE,
+0, 2, 0, 1, FALSE,
+0, 1, 0, 4, FALSE
+) %>%
+  ggplot(aes(x = x1, y = y1, xend = x2, yend = y2,
+             color = notorig)) +
+  geom_segment(arrow = arrow(length = unit(0.03, "npc"))) +
+  scale_color_brewer(type = "qual", guide = FALSE) +
+  labs(x = "Doc1",
+       y = "Doc2") +
+  xlim(0, 4) +
+  coord_fixed()
+```
+
+---
+
+# Cosine similarity
+
+```{r cosine-sim}
+# hacky way to create angle visual
+circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
+  r = diameter / 2
+  tt <- seq(0,2*pi,length.out = npoints)
+  xx <- center[1] + r * cos(tt)
+  yy <- center[2] + r * sin(tt)
+  return(tibble(x = xx, y = yy))
+}
+
+tribble(
+  ~x1, ~x2, ~y1, ~y2, ~notorig,
+  0, 4, 0, 2, TRUE,
+  0, 2, 0, 1, FALSE,
+  0, 1, 0, 4, FALSE
+) %>%
+  ggplot() +
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2, color = notorig),
+               arrow = arrow(length = unit(0.03, "npc"))) +
+  geom_path(data = circleFun(center = c(0, 0),
+                             diameter = 2) %>%
+              filter(x > .23, y > .44),
+            aes(x, y)) +
+  scale_color_brewer(type = "qual", guide = FALSE) +
+  annotate("text", x = .8, y = .95, label = "theta", parse = TRUE, size = 7) +
+  xlim(0, 4) +
+  labs(x = "Doc1",
+       y = "Doc2") +
+  coord_fixed()
+```
+
+---
+
+# Cosine similarity
+
+$$
+\begin{aligned}
+(4,2) \cdot (1,4) &= 12 \\
+\mathbf{a} \cdot \mathbf{b} &= \|\mathbf{a} \| \times \|\mathbf{b} \| \times \cos(\theta) \\
+\frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a} \| \times \|\mathbf{b} \|}  &= \cos(\theta)
+\end{aligned}
+$$
+
+---
+
+# Cosine similarity
+
+$$
+\begin{aligned}
+\cos (\theta) & \equiv  \left(\frac{\textbf{Doc1} \cdot \textbf{Doc2}}{\| \textbf{Doc1}\| \|\textbf{Doc2} \|} \right) \\
+ & = \frac{(2, 1) \cdot (1, 4)} {\| (2,1)\| \| (1,4) \|} \\
+ & = \frac{6} {(\sqrt{2^2 + 1^2}) (\sqrt{1^2 + 4^2})} \\
+ & = \frac{6} {(\sqrt{5}) (\sqrt{17})} \\
+  & \approx 0.65
+\end{aligned}
+$$
+
+---
+
+# Cosine similarity
+
+$$
+\begin{aligned}
+\cos (\theta) & \equiv  \left(\frac{\textbf{Doc3} \cdot \textbf{Doc2}}{\| \textbf{Doc3}\| \|\textbf{Doc2} \|} \right) \\
+ & = \frac{(4,2) \cdot (1, 4)} {\| (24,2)\| \| (1,4) \|} \\
+ & = \frac{12} {(\sqrt{4^2 + 2^2}) (\sqrt{1^2 + 4^2})} \\
+ & = \frac{12} {(\sqrt{20}) (\sqrt{17})} \\
+  & \approx 0.65
+\end{aligned}
+$$
+
+---
+
+# Matricies
+
+* Rectangular arrangement (array) of numbers defined by two **axes**
+    1. Rows
+    1. Columns
+
+$$\mathbf{A} = \begin{bmatrix}
+a_{11} & a_{12} & \ldots & a_{1n} \\
+a_{21} & a_{22} & \ldots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \ldots & a_{mn} \\
+\end{bmatrix}$$
+
+---
+
+# Example matricies
+
+$$\begin{aligned}\mathbf{X} &= \left[ \begin{array}{rrr}1 & 2 & 3 \\
+2 & 1 & 4 \\
+\end{array} \right] \\
+\mathbf{Y} &= \left[ \begin{array}{rr}
+1 & 2 \\
+3 & 2 \\
+1 & 4 \\
+\end{array} \right]
+\end{aligned}$$
+
+---
+
+# Matrix addition
+
+* $\mathbf{X}$ and $\mathbf{Y}$ are $m \times n$ matrices
+
+$$\begin{aligned} 
+\mathbf{X} + \mathbf{Y} & =  \begin{pmatrix} 
+x_{11} & x_{12} & \ldots & x_{1n} \\
+x_{21} & x_{22} & \ldots & x_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{m1} & x_{m2} & \ldots & x_{mn} \\
+\end{pmatrix} + 
+\begin{pmatrix} 
+y_{11} & y_{12} & \ldots & y_{1n} \\
+y_{21} & y_{22} & \ldots & y_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+y_{m1} & y_{m2} & \ldots & y_{mn} \\
+\end{pmatrix} \\
+& = \begin{pmatrix} 
+x_{11} + y_{11} & x_{12} + y_{12} & \ldots & x_{1n} + y_{1n} \\
+x_{21} + y_{21} & x_{22} + y_{22} & \ldots & x_{2n} + y_{2n} \\
+\vdots & \vdots & \ddots & \vdots\\
+x_{m1} + y_{m1} & x_{m2} + y_{m2} & \ldots & x_{mn} + y_{mn} \\
+\end{pmatrix} 
+\end{aligned}$$
+
+---
+
+# Scalar addition
+
+* $\mathbf{X}$ is an $m \times n$ matrix and $k \in \Re$
+
+$$k \mathbf{X} = \begin{pmatrix} 
+k x_{11} & k x_{12} & \ldots &  k x_{1n} \\
+k x_{21} & k x_{22} & \ldots & k x_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+k x_{m1} & k x_{m2} & \ldots & k x_{mn} \\
+\end{pmatrix}$$
+
+---
+
+# Matrix transposition
+
+$$\mathbf{X} = \begin{pmatrix}
+x_{11} & x_{12} & \ldots & x_{1n} \\
+x_{21} & x_{22} & \ldots & x_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{m1} & x_{m2} & \ldots & x_{mn} \\
+\end{pmatrix} \\
+\mathbf{X}' = \begin{pmatrix} 
+x_{11} & x_{21} & \ldots & x_{m1} \\
+x_{12} & x_{22} & \ldots & x_{m2} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{1n} & x_{2n} & \ldots & x_{mn}
+\end{pmatrix}$$
+
+---
+
+# Matrix multiplication
+
+$$\mathbf{X} = \begin{pmatrix} 1 & 1 \\ 1& 1 \\ \end{pmatrix} , \quad \mathbf{Y} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ \end{pmatrix}$$
+
+$$\begin{aligned} \mathbf{A} & = \mathbf{X} \mathbf{Y} \\& = \begin{pmatrix}1 & 1 \\ 1 & 1 \\\end{pmatrix} \begin{pmatrix}1 & 2 \\3 & 4 \\\end{pmatrix} \\&= \begin{pmatrix}1 \times 1 + 1 \times 3 & 1 \times 2 + 1 \times 4 \\1 \times 1 + 1 \times 3 & 1 \times 2 + 1 \times 4\\\end{pmatrix} \\&= \begin{pmatrix}4 & 6 \\4 & 6\end{pmatrix}\end{aligned}$$
+
+---
+
+# Algebraic properties
+
+* Matricies must be **conformable**
+* Associative property: $(\mathbf{XY})\mathbf{Z} = \mathbf{X}(\mathbf{YZ})$
+* Additive distributive property: $(\mathbf{X} + \mathbf{Y})\mathbf{Z} = \mathbf{XZ} + \mathbf{YZ}$
+* Zero property: $\mathbf{X0} = 0$
+* Order matters: $\mathbf{XY} \neq \mathbf{YX}$
+    * Different from scalar multiplication: $xy = yx$
+
+---
+
+# Neural networks
+
+```{r neural-network, fig.caption = "Source: Wikipedia"}
+knitr::include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/9/99/Neural_network_example.svg")
+```
+
+---
+
+# Uses for neural networks
+
+* Self-driving cars
+* Voice activated assistants
+* Automatic machine translation
+* Image recognition
+* Detection of diseases
+
+---
+
+# Linear algebra roots
+
+* Tensor
+* Scalars (0D tensors)
+* Vectors (1D tensors)
+* Matricies (2D tensors)
+* 3D tensors and higher-dimensional tensors
+
+---
+
+# Tensor operations
+
+* Generalizations of matrix operations
+* Tensor addition
+* Tensor multiplication
+* **If you can do it with a matrix, you can do it with a tensor**
+
+---
+
+# Linear algebra notation
+
+$$\mathbf{Y} = \text{activation}(\mathbf{W} \cdot \mathbf{X} + \mathbf{B})$$
+
+* $\mathbf{X}$
+* $\mathbf{Y}$
+* $\mathbf{W}, \mathbf{B}$
+* $\text{activation}()$
+    * Rectified Linear Units (RELU)
+        
+        $$R(z) = \max(0, z)$$
+            
+    * Sigmoid function (aka logistic regression)
+        
+        $$S(z) = \frac{1}{1 + e^{-z}}$$

@@ -1,0 +1,347 @@
+--- 
+title: "Computational Math Camp"
+subtitle: "Lecture Slides"
+author: "Jean Clipperton"
+date: "`r lubridate::today()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: krantz
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: math-camp/notes
+description: "Contains lecture slides for the 2023 Computational Math Camp."
+---
+
+# Overview {-}
+
+## Meeting information {-}
+
+* Meeting day: August 28-September 15, MTWThF
+* Time: 9am-1pm CT 
+* Location:
+    Room 142 in 1155 E 60th Street, Chicago
+
+## Instructional staff {-}
+
+* Dr. Jean Clipperton
+* Email: [clipperton@uchicago.edu](mailto:clipperton@uchicago.edu)
+* Office: Room 219, [1155 E. 60th St.](https://goo.gl/maps/KWgm792dKjdoBWjWA)
+* Office hours: [By appointment] 
+
+### Teaching assistants {-}
+
+- 
+-
+-
+
+## Course description {-}
+
+This course surveys mathematical and statistical tools that are foundational to computational social science. Topics to be reviewed include mathematical notation and linear equations, calculus, linear algebra, probability theory, and statistical inference. Students are assumed to have encountered most of these topics previously, so that the camp serves as a refresher rather than teaching entirely new topics. Class sessions will emphasize problem solving and in-class exercises applying these techniques. Students who successfully complete the camp are situated to pass the MACSS math and statistics placement exam and enroll in computationally-enhanced course offerings at the University of Chicago without prior introductory coursework.
+
+## Who should take this course {-}
+
+* Students in the MACCS program and the MAPSS QMSA concentration
+* MA and PhD students in the social sciences who have significant prior training and experience in mathematics and statistics and seek to complete the [Certificate in Computational Social Science](https://macss.uchicago.edu/content/css-certificate-non-macss-students)
+* Students looking for a slower-paced camp focused specifically on algebra, calculus, and probability should enroll in SOSC 30100 - Mathematics for Social Sciences. This three-week course makes no assumption of prior math/stats training.
+
+## Grades {-}
+
+This course may only be taken for pass/fail (non-credit). Assignments are comprised of daily problem sets. You are encouraged to work in groups, and the instructional staff is available for consultation during class hours. We expect most students should be able to finish the problem sets during class hours. Students must satisfactorily complete a minimum of ten problem sets to pass the camp.
+
+## Disability services {-}
+
+The University of Chicago is committed to diversity and rigorous inquiry from multiple perspectives. The MAPSS, CIR, and Computation programs share this commitment and seek to foster productive learning environments based upon inclusion, open communication, and mutual respect for a diverse range of identities, experiences, and positions.
+
+This course is open to all students who meet the academic requirements for participation. Any student who has a documented need for accommodation should contact Student Disability Services (773-702-6000 or [disabilities@uchicago.edu](mailto:disabilities@uchicago.edu)) and provide me (Dr. Soltoff) with a copy of your Accommodation Determination Letter as soon as possible.
+
+## Core texts {-}
+
+There are no required textbooks for the camp. Readings will be drawn from course notes. For topics where you have less confidence, supplementary readings are drawn from:
+
+* Bertsekas, D. P., & Tsitsiklis, J. N. (2008). *Introduction to probability*, 2nd edition. Belmont, MA: Athena Scientific.
+    - This book is only available in hardcopy
+    - The authors have provided digital copies of lecture notes published prior to publishing the full textbook. They will be made available in Canvas. Note the lecture notes do not include any of the chapters on frequentist or Bayesian statistical inference, nor do they include the full set of practice exercises from the textbook.
+* Pemberton, M., & Rau, N. (2015). *Mathematics for economists: an introductory textbook*, 4th edition. Oxford University Press.
+* OpenStax
+    * [Calculus, Volume 1](https://openstax.org/details/books/calculus-volume-1)
+    * [Calculus, Volume 2](https://openstax.org/details/books/calculus-volume-2)
+    * [Calculus, Volume 3](https://openstax.org/details/books/calculus-volume-3)
+    * [College Algebra](https://openstax.org/details/books/college-algebra)
+- [Wasserman, Larry. 2013. *All of Statistics: A Concise Course in Statistical Inference*. Springer Science & Business Media.](https://link-springer-com.proxy.uchicago.edu/book/10.1007/978-0-387-21736-9)
+
+## Course format {-}
+
+Each day's material, including course notes, supplementary readings, and problem sets, will be released at 5pm Chicago time the night before the date on the course schedule below. This includes any required readings and the assigned problem set. I strongly encourage you to complete the reading that evening.
+
+Each day you are invited to come to campus between 9am-1pm in week 1 and between 9am-5pm in week 2 to work on the problem sets in small groups. Myself or a TA will be available to answer any questions you have about the readings or the problem sets. You may leave as soon as you are finished with the problem set, and it should be submitted before 9pm.
+
+If you have questions or confusions about the material or problem sets, **come speak to a TA**. I recognize not all students will be able to utilize these hours. You can also post questions on the discussion thread for that day's material and myself or a TA will respond as soon as possible.
+
+I also have office hours available by appointment. You can schedule them by sending an email. Feel free to meet with me to discuss any concepts or questions regarding the material in the math camp, as well as any other questions you have about the MACSS program or upcoming fall quarter.
+
+### Problem sets {-}
+
+Each problem set is designed to take no more than **three hours**. If you are spending more than three hours on a problem set, you should make sure you are asking questions when you are confused. All problem sets will be submitted via Canvas. For each problem set, write out your answers to each exercise on paper **and show your work**. You will need to scan your answers to a PDF to upload on Canvas. If you do not have a scanner at home (and why would you?), you can use your phone to scan your work. A couple recommended scanning apps are:
+
+* For iOS, [Evernote](https://itunes.apple.com/us/app/evernote-scannable/id883338188?mt=8) is a good choice
+* For Android, [Genius Scan](https://play.google.com/store/apps/details?id=com.thegrizzlylabs.geniusscan.free) works well
+
+It is crucial you show your work on your responses, otherwise you will receive an incomplete for the assignment. I care more about the process you follow to get the answer, rather than the answer itself. And please make sure your writing is legible!
+
+
+## Course schedule {-}
+
+| Date | Topic |
+|-|-|
+| 6-Sept | Linear equations, inequalities, sets and functions, quadratics, and logarithms |
+| 7-Sept | Sequences, limits, continuity, derivatives |
+| 8-Sep | Critical points and approximation |
+| 9-Sep | Linear algebra |
+| 12-Sep | Functions of several variables and optimization with several variables; Integration and integral calculus |
+| 13-Sep | Sample space and probability; Discrete random variables|
+| 14-Sep |  General random variables; Multivariate distributions|
+| 15-Sep |  Properties of random variables and limit theorems; Classical statistical inference|
+| 16-Sep |  Maximum likelihood estimation and linear regression; Bayesian statistical inference|
+
+<!--chapter:end:index.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+### Disciplines within social science
+### Interdisciplinary programs
+## Mathematics
+## Probability
+## Statistics
+## Course staff
+## Paths to success
+## Not a function
+## Quadratic equation
+
+<!--chapter:end:01-functions-sets.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+## Divergence and boundedness
+## Uses of limits
+## Right-hand limits
+## Left-hand limits
+
+<!--chapter:end:02-sequences-limits.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+## Potential uses
+### Substitute values
+## Derivative notation
+## Strategy
+##### Constant rule
+##### Sum rule
+##### Product rule
+##### Quotient rule
+##### Power rule
+
+<!--chapter:end:03-differentiation.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+
+<!--chapter:end:04-critical-points.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+## $N$-dimensional example
+
+<!--chapter:end:05-matrix-algebra.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+### Example 1
+### Example 2
+## Verification
+##### Setup the augmented matrix
+##### Substract $3/2$ times the first row from each of the other rows
+##### Substract $3/2$ times the first row from each of the other rows
+##### Add twice the second row to the first row, and subtract the second row from the third row
+##### Add twice the second row to the first row, and subtract the second row from the third row
+##### Add twice the third row to the first and second rows
+##### Add twice the third row to the first and second rows
+##### Norm out the diagonal matrix to be $\mathbf{I}$
+##### First setup the augmented matrix
+##### Subtract 3 x row 1 from row 2
+##### Subtract 3 x row 1 from row 2
+##### Subtract 2 x row 1 from row 3
+##### Subtract 2 x row 1 from row 3
+##### Subtract $\frac{3}{4}$ x row 2 from row 3
+##### Subtract $\frac{3}{4}$ x row 2 from row 3
+##### Divide row 3 by 3
+##### Divide row 3 by 3
+##### Add 8 times row 3 to row 2
+##### Add 8 times row 3 to row 2
+##### Subtract 3 x row 3 from row 1
+##### Subtract 3 x row 3 from row 1
+##### Divide row 2 by -4
+##### Divide row 2 by -4
+##### Subtract 2 x row 2 from row 1
+##### $\mathbf{A}$
+##### $\mathbf{b}$
+##### $\mathbf{A}^{-1} \mathbf{b}$
+### Submatrix
+## LU decomposition
+##### $\mathbf{U}$
+##### $\boldsymbol{\Sigma}$
+##### $\mathbf{V}^{*}$
+
+<!--chapter:end:06-matrix-inversion-decomposition.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+### Evaluate at $\mathbf{x} = (x_{1}, x_{2}, x_{3}) = (2, 3, 2)$
+### Evaluate at $\mathbf{w} = (w_{1}, w_{2} ) = (1, 2)$ 
+## Regression model
+## Methods
+## Second derivative test
+
+<!--chapter:end:07-multivariable-differentiation.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+### Estimation procedure for definite integral
+## Convergence of integrals
+## Monte Carlo simulation
+
+<!--chapter:end:08-integration.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+## Union: $\cup$
+## Intersection: $\cap$
+## Complement of set $E$: $E^{c}$
+## Examples
+### Example 1
+### Example 2
+### Incumbency advantage
+## Example with three events
+## Binomial formula
+
+<!--chapter:end:09-sample-space-probability.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+### Intuition
+### Topic 1
+### Topic 2
+#### Using the binomial PMF
+#### Using the Poisson PMF
+### Expected value rule for functions of random variables
+
+<!--chapter:end:10-discrete-random-vars.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+### Requirements to be a PDF
+### Why rely on the standard normal distribution
+
+<!--chapter:end:11-general-random-vars.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+### Discrete case
+### Continuous case
+
+<!--chapter:end:12-multivariate-pdf.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+#### One-dimensional parametric estimation
+#### Two-dimensional parametric estimation
+##### Bias
+##### Consistency
+##### Sampling distribution
+##### Consistency
+##### Equivariance
+##### Asymptotic normality
+##### Optimality
+### Two-sided test
+### One-sided test
+
+<!--chapter:end:13-frequentist-inference.Rmd-->
+
+
+# Learning objectives
+
+Placeholder
+
+
+## Classical (frequentist) inference
+## Bayesian inference
+##### Discrete random variable
+##### Continuous random variable
+##### Point estimate
+##### Posterior/credible interval
+##### Prior probability
+##### Likelihood
+##### Posterior probability
+##### Things to notice
+##### Beta distribution
+##### Posterior for $p$
+##### Bayes estimator
+##### 95% credible interval
+##### Use the prior $p \sim \text{Beta} (\alpha, \beta)$
+##### Point estimate
+##### Credible $1 - \alpha$ interval
+
+<!--chapter:end:14-bayesian-inference.Rmd-->
+
