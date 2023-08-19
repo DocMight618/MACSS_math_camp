@@ -41,18 +41,18 @@ This course is open to all students who meet the academic requirements for parti
 
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
-| 28-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://github.com/jmclip/MACSS_math_camp/blob/master/slides/01-functions-sets.html) | Pset 1
-| 29-Sep | Linear equations | Quadratics, logarithms, sequences, and limits | Pset 2
-| 30-Aug | Calculus | Differentiation | Pset 3
-| 31-Aug | Calculus | Critical points and approximation | Pset 4
-| 1-Sep | Linear algebra | Matrix algebra | Pset 5
-| 4-Sep | No class (Labor Day) |  | Pset 6
-| 5-Sep | Linear algebra | Systems of linear equations and determinants | Pset 7
-| 6-Sep | Calculus | Functions of several variables and optimization with several variables | Pset 8
-| 7-Sep | Calculus | Integration and integral calculus | Pset 9
-| 8-Sep | Probability | Sample space and probability | Pset 10
-| 11-Sep | Probability | Discrete random variables | Pset 11
-| 12-Sep | Probability | General random variables | Pset 12
-| 13-Sep | Probability | Multivariate distributions | Pset 13
-| 14-Sep | Statistical inference | Classical statistical inference | Pset 14
-| 15-Sep | Statistical inference | Bayesian statistical inference | Placement exam
+| 28-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | Pset 1
+| 29-Sep | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) | Pset 2
+| 30-Aug | Calculus | [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html) | Pset 3
+| 31-Aug | Calculus | [Critical points and approximation](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | Pset 4
+| 1-Sep | Linear algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | Pset 5
+| 4-Sep | No class (Labor Day) |  | 
+| 5-Sep | Linear algebra | [Systems of linear equations and determinants](https://jmclip.github.io/MACSS_math_camp/06-matrix-inversion-decomposition.html) | Pset 6
+| 6-Sep | Calculus | [Functions of several variables and optimization with several variables](https://jmclip.github.io/MACSS_math_camp/07-multivariable-differentiation.html)| Pset 7
+| 7-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | Pset 8
+| 8-Sep | Probability | [Sample space and probability](https://jmclip.github.io/MACSS_math_camp/09-sample-space-probability.html) | Pset 9
+| 11-Sep | Probability | [Discrete random variables](https://jmclip.github.io/MACSS_math_camp/10-discrete-random-vars.html) | Pset 10
+| 12-Sep | Probability | [General random variables](https://jmclip.github.io/MACSS_math_camp/11-general-random-vars.html) | Pset 11
+| 13-Sep | Probability | [Multivariate distributions](https://jmclip.github.io/MACSS_math_camp/12-multivariate-pdf.html) | Pset 12
+| 14-Sep | Statistical inference | [Classical statistical inference](https://jmclip.github.io/MACSS_math_camp/13-frequentist-inference.html)  | Pset 13
+| 15-Sep | Statistical inference | [Bayesian statistical inference](https://jmclip.github.io/MACSS_math_camp/14-bayesian-inference.html) | Placement exam
