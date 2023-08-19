@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Discrete random variables</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MACS 33000   University of Chicago" />
+    <script src="10-discrete-random-vars_files/header-attrs/header-attrs.js"></script>
+    <link href="10-discrete-random-vars_files/remark-css/default.css" rel="stylesheet" />
+    <link href="10-discrete-random-vars_files/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Discrete random variables
+]
+.author[
+### <a href="https://jmclip.github.io/MACSS_math_camp/">MACS 33000</a> <br /> University of Chicago
+]
+
+---
+
+
+
+
+
+
+
+`$$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$`
+
+---
+
+# Learning objectives
+
+* Define random variables
+* Distinguish between discrete and interval variables
+* Identify discrete random variable distributions relevant to social science
+* Review measures of central tendency and dispersion
+* Define expected value and variance
+* Define cumulative mass functions (CMFs) for discrete random variables
+
+---
+
+# Random variable
+
+* A random process or variable with a numerical outcome
+* Random variable `\(X\)` that is a function of the sample space
+    * Number of incumbents who win
+    * An indicator whether a country defaults on a loan (1 if a default, 0 otherwise)
+    * Number of casualties in a war (rather than all possible outcomes)
+    
+    `$$X:\text{Sample Space} \rightarrow \Re$$`
+
+---
+
+# Treatment assignment
+
+* `\(3\)` units, flipping fair coin `\(\frac{1}{2}\)` to assign each unit
+* Assign to `\(T=\)`Treatment or `\(C=\)`control
+* `\(X\)` = Number of units received treatment
+* Defining the function
+
+    `$$X  = \left \{ \begin{array} {ll}0  \text{  if  } (C, C, C)  \\1 \text{  if  } (T, C, C) \text{ or } (C, T, C) \text{ or } (C, C, T) \\2 \text{ if  }  (T, T, C) \text{ or } (T, C, T) \text{ or } (C, T, T) \\3 \text{ if } (T, T, T) \end{array} \right.$$`
+    
+    `$$\begin{aligned}X( (C, C, C) )  &amp; = 0 \\X( (T, C, C)) &amp; =  1 \\X((T, C, T)) &amp; = 2 \\X((T, T, T)) &amp; = 3 \end{aligned}$$`
+
+---
+
+# Examples
+
+* `\(X\)` = Number of Calls into congressional office in some period `\(p\)`
+    * `\(X(c) = c\)`
+* Outcome of Election
+    * Define `\(v\)` as the proportion of vote the candidate receives
+    * Define `\(X = 1\)` if `\(v&gt;0.50\)`
+    * Define `\(X = 0\)` if `\(v&lt;0.50\)`
+    * For example, if `\(v = 0.48\)`, then `\(X(v) = 0\)`
+* An indicator whether a country defaults on a loan (1 if a default, 0 otherwise)
+* Not all are experimental - most are observational
+
+---
+
+# Discrete random variables
+
+* A random variable with a finite or countably infinite range
+* A random variable with an uncountably infinite number of values is **continuous**
+
+---
+
+# Probability mass functions
+
+* Probability of the values that it can take
+
+### Intuition
+
+* `\(\Pr(C, T, C) = \Pr(C)\Pr(T)\Pr(C) = \frac{1}{2}\frac{1}{2}\frac{1}{2} = \frac{1}{8}\)`
+* This applies to all outcomes
+
+    `$$\begin{aligned}p(X = 0) &amp; = \Pr(C, C, C) = \frac{1}{8}\\p(X = 1) &amp; = \Pr(T, C, C) + \Pr(C, T, C) + \Pr(C, C, T) = \frac{3}{8} \\p(X = 2) &amp; = \Pr(T, T, C)  + \Pr(T, C, T) + \Pr(C, T, T) = \frac{3}{8} \\p(X = 3) &amp; = \Pr(T, T, T) = \frac{1}{8}\end{aligned}$$`
+    
+* `\(p(X = a) = 0\)`, for all `\(a \notin (0, 1, 2, 3)\)`
+
+---
+
+# Probability mass function
+
+&lt;img src="10-discrete-random-vars_files/figure-html/pmf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Probability mass function
+
+* For a discrete random variable `\(X\)`
+
+    `$$p_X(x) = \Pr(X = x)$$`
+    
+* Note that
+
+    `$$\sum_x p_{X}(x) = 1$$`
+    
+* Can also add probabilities for smaller sets `\(S\)` of possible values of `\(X \in S\)`
+
+    `$$\Pr(X \in S) = \sum_{x \in S} p_X (x)$$`
+    `$$\Pr (X &gt; 0) = \sum_{x=1}^2 p_X (x) = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}$$`
+
+--
+
+To calculate the PMF of a random variable `\(X\)`
+
+* For each possible value `\(x\)` of `\(X\)`, collect all possible outcomes that give rise to the event `\(\{ X=x \}\)`
+* Add their probabilities to obtain `\(p_X (x)\)`
+
+---
+
+# Topic model example
+
+* Topics: distinct concepts (war in Afghanistan, national debt, fire department grants)
+* Mathematically: PMF on words
+* Set of words `\(\{ \text{afghanistan, fire, department, soldier, troop, war, grant}\}\)`
+
+--
+
+### Topic 1
+
+`\(\Pr(\text{afghanistan}) = 0.3\)`; `\(\Pr(\text{fire}) = 0.0001\)`; `\(\Pr(\text{department}) = 0.0001\)`; `\(\Pr(\text{soldier}) = 0.2\)`; `\(\Pr(\text{troop}) = 0.2\)`; `\(\Pr(\text{war})=0.2997\)`; `\(\Pr(\text{grant})=0.0001\)`
+
+--
+
+### Topic 2
+
+`\(\Pr(\text{afghanistan}) = 0.0001\)`; `\(\Pr(\text{fire}) = 0.3\)`; `\(\Pr(\text{department}) = 0.2\)`; `\(\Pr(\text{soldier}) = 0.0001\)`; `\(\Pr(\text{troop}) = 0.0001\)`; `\(\Pr(\text{war})=0.0001\)`; `\(\Pr(\text{grant})=0.2997\)`
+
+--
+
+* Topic models: take a set of documents and estimate topics
+
+---
+
+# Cumulative mass function
+
+* For a random variable `\(X\)`
+
+    `$$F(x) = \Pr(X \leq x)$$`
+    
+* Characterizes how probability cumulates as `\(X\)` gets larger
+* `\(F(x) \in [0,1]\)`
+* `\(F(x)\)` is non-decreasing
+
+---
+
+# Three person experiment
+
+Consider the three person experiment: `\(\Pr(T) = \Pr(C) =  1/2\)`
+
+--
+
+What is `\(F(2)\)`?
+
+`$$\begin{aligned}F(2) &amp; = \Pr(X = 0) + \Pr(X = 1) + \Pr(X = 2) \\&amp; = \frac{1}{8} + \frac{3}{8} + \frac{3}{8} \\&amp; = \frac{7}{8} \end{aligned}$$`
+
+--
+
+What is `\(F(2) - F(1)\)`?
+
+`$$\begin{aligned} F(2)  - F(1) &amp; = [\Pr(X = 0) + \Pr(X = 1) + \Pr(X = 2)]  \nonumber \\&amp; \quad -[\Pr(X = 0) + \Pr(X = 1)] \\F(2) - F(1) &amp; = \Pr(X = 2)\end{aligned}$$`
+
+---
+
+# PMFs and CMFs
+
+&lt;img src="10-discrete-random-vars_files/figure-html/cmf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+* Similar to integration, but over a discrete set of values
+
+---
+
+# Bernoulli
+
+Suppose `\(X\)` is a random variable, with `\(X \in \{0, 1\}\)` and `\(\Pr(X = 1) = \pi\)`. Then we will say that `\(X\)` is **Bernoulli** random variable,
+
+`$$p_X(k)= \pi^{k} (1- \pi)^{1 - k}$$`
+
+for `\(k \in \{0,1\}\)` and `\(p_X(k) = 0\)` otherwise
+
+--
+
+`$$Y \sim \text{Bernoulli}(\pi)$$`
+
+---
+
+# Bernoulli
+
+Suppose we flip a fair coin and `\(Y = 1\)` if the outcome is Heads
+
+$$
+`\begin{aligned}
+Y &amp; \sim \text{Bernoulli}(1/2) \nonumber \\
+p_X(1) &amp; = (1/2)^{1} (1- 1/2)^{ 1- 1} = 1/2 \nonumber \\
+p_X(0) &amp; = (1/2)^{0} (1- 1/2)^{1 - 0} = (1- 1/2) \nonumber 
+\end{aligned}`
+$$
+
+---
+
+# Bernoulli PMF
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="10-discrete-random-vars_files/figure-html/bernoulli-1.png" alt="Example Bernoulli probability mass functions" width="864" /&gt;
+&lt;p class="caption"&gt;Example Bernoulli probability mass functions&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# Binomial
+
+A model to count the number of successes across `\(N\)` trials
+
+--
+
+Suppose `\(X\)` is a random variable that counts the number of successes in `\(N\)` independent and identically distributed Bernoulli trials.  Then `\(X\)` is a **Binomial** random variable, 
+
+`$$p_X(k) = {N\choose{k}}\pi^{k} (1- \pi)^{n-k}$$`
+    
+for `\(k \in \{0, 1, 2, \ldots, N\}\)` and `\(p_X(k) = 0\)` otherwise
+
+`$$\binom N{k} = \frac{N!}{(N-k)! k!}$$`
+
+--
+
+`$$Y \sim \text{Binomial}(N, \pi)$$`
+
+---
+
+# Binomial PMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/binomial-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Binomial
+
+Recall our experiment example
+
+* `\(\Pr(T) = \Pr(C) = 1/2\)`
+* `\(Z =\)` number of units assigned to treatment
+
+--
+
+$$
+`\begin{aligned}
+Z &amp; \sim  \text{Binomial}(1/2)\\
+p_Z(0) &amp; = {3\choose0} (1/2)^0 (1- 1/2)^{3-0} = 1 \times \frac{1}{8}\\
+p_Z(1) &amp; = {3\choose1} (1/2)^2 (1 - 1/2)^{2} = 3 \times \frac{1}{8} \\
+p_Z(2) &amp; = {3\choose2} (1/2)^3 (1- 1/2)^1 = 3 \times \frac{1}{8} \\
+p_Z(3) &amp; = {3\choose3} (1/2)^3 (1 - 1/2)^{0} = 1 \times \frac{1}{8}
+\end{aligned}`
+$$
+
+---
+
+# Geometric
+
+* A model to count the number of trials of a Bernoulli outcome before success occurs the first time
+* Suppose `\(X\)` is a random variable that counts the number of tosses needed for a head to come up the first time. Its PMF is 
+
+    `$$p_X(k) = (1 - p)^{k-1}p, \quad k = 1, 2, \ldots$$`
+    
+--
+
+$$
+`\begin{aligned}
+\sum_{k=1}^{\infty} p_X(k) &amp;= \sum_{k=1}^{\infty} (1 - p)^{k-1}p \\
+&amp;= p \sum_{k=1}^{\infty} (1 - p)^{k-1} \\&amp;
+= p \times \frac{1}{1 - (1-p)} \\
+&amp;= 1
+\end{aligned}`
+$$
+
+---
+
+# Geometric PMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/geometric-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Poisson
+
+&lt;div style='position:relative; padding-bottom:calc(75.00%)'&gt;&lt;iframe src='https://gfycat.com/ifr/AcceptableRegalAfricanharrierhawk' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;
+
+---
+
+# Poisson
+
+* Often interested in counting number of events that occur
+    * Number of wars started
+    * Number of speeches made
+    * Number of bribes offered
+    * Number of people waiting for license
+* Generally referred to as **event counts**
+
+---
+
+# Poisson
+
+Suppose `\(X\)` is a random variable that takes on values `\(X \in \{0, 1, 2, \ldots, \}\)` and that `\(\Pr(X = k) = p_X(k)\)` is,
+
+`$$p_X(k) = e^{-\lambda} \frac{\lambda^{k}}{k!}, \quad k = 0,1,2,\ldots$$`
+    
+for `\(k \in \{0, 1, \ldots, \}\)` and `\(0\)` otherwise
+
+--
+
+`$$X \sim \text{Poisson}(\lambda)$$`
+
+---
+
+# Poisson PMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/poisson-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Example
+
+* Suppose the number of threats a president makes in a term is given by `\(X \sim \text{Poisson}(5)\)`
+* What is the probability the president will make ten threats?
+
+--
+
+`$$p_X(10) = e^{-\lambda} \frac{5^{10}}{10!}$$`
+
+&lt;img src="10-discrete-random-vars_files/figure-html/poisson-president-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Approximating a binomial RV
+
+The Poisson PMF with parameter `\(\lambda\)` is a good approximation for a binomial PMF with parameters `\(n\)` and `\(p\)`
+    
+`$$e^{-\lambda} \frac{\lambda^{k}}{k!} \approx {N\choose{k}}\pi^{k} (1- \pi)^{n-k}, \quad \text{if } k \ll n$$`
+
+* Assumes
+    * `\(\lambda = np\)`
+    * `\(n\)` is very large
+    * `\(p\)` is very small
+
+---
+
+# Approximating a binomial RV
+
+* `\(n = 100\)` and `\(p = 0.01\)`
+
+--
+
+#### Using the binomial PMF
+
+`$$\frac{100!}{95! 5!} \times 0.01^5 (1 - 0.01)^{95} = 0.00290$$`
+
+--
+
+#### Using the Poisson PMF
+
+* `\(\lambda = np = 100 \times 0.01 = 1\)`
+
+`$$e^{-1} \frac{1}{5!} = 0.00306$$`
+
+---
+
+# Functions of random variables
+
+Given a random variable `\(X\)`, you may wish to create a new random variable `\(Y\)` using transformations of `\(X\)`
+
+`$$Y = g(X) = aX + b$$`
+
+`$$g(X) = \log(X)$$`
+
+--
+
+* If `\(Y = g(X)\)` is a function of a random variable `\(X\)`, then `\(Y\)` is also a random variable
+* All outcomes in the sample space defined with a numerical value `\(x\)` for `\(X\)` also have a numerical value `\(y = g(x)\)` for `\(Y\)`
+
+---
+
+# Expectation, mean, and variance
+
+* PMF of a random variable `\(X\)` provides probabilities of all possible values of `\(X\)`
+* Often desirable to summarize this information into a single representative number
+* **Expectation** of `\(X\)`
+
+---
+
+# Motivation
+
+* Consider spinning a wheel of fortune many times
+* At each spin, one of the numbers `\(m_1, m_2, \ldots, m_n\)` comes up with corresponding probability `\(p_1, p_2, \ldots, p_n\)`, and this is your monetary reward from that spin
+* What is the amount of money that you "expect" to get "per spin"?
+
+--
+
+* Spin `\(k\)` times
+* `\(k_i\)` and `\(m_i\)`
+* `\(m_1 k_1 + m_2 k_2 + \ldots + m_n k_n\)`
+
+    `$$M = \frac{m_1 k_1 + m_2 k_2 + \ldots + m_n k_n}{k}$$`
+
+    `$$\frac{k_i}{k} \approx p_i, i = 1, \ldots,n$$`
+
+    `$$M = \frac{m_1 k_1 + m_2 k_2 + \ldots + m_n k_n}{k} \approx m_1p_1 + m_2p_2 + \ldots + m_np_n$$`
+
+---
+
+# Expectation
+
+Random variable `\(X\)`, with PMF `\(p_X\)`
+
+`$$\E[X] = \sum_{x:p(x)&gt;0} x p(x)$$`
+
+---
+
+# Example of expected value
+
+Suppose `\(X\)` is number of units assigned to treatment
+
+`$$X  = \left \{ \begin{array} {ll}0  \text{  if  } (C, C, C)  \\1 \text{  if  } (T, C, C) \text{ or } (C, T, C) \text{ or } (C, C, T) \\2 \text{ if  }  (T, T, C) \text{ or } (T, C, T) \text{ or } (C, T, T) \\3 \text{ if } (T, T, T) \end{array} \right.$$`
+
+What is `\(\E[X]\)`?
+
+--
+
+`$$\begin{aligned}\E[X]  &amp; = 0\times \frac{1}{8} + 1 \times \frac{3}{8} + 2 \times \frac{3}{8} + 3 \times \frac{1}{8} \\&amp; = 1.5 \end{aligned}$$`
+
+--
+
+* Weighted average
+* Measure of central tendency
+
+---
+
+# A single person poll
+
+Suppose that there is a group of `\(N\)` people
+
+* Suppose `\(M&lt; N\)` people approve of Donald Trump's performance as president
+* `\(N - M\)` disapprove of his performance
+
+--
+
+Draw one person `\(i\)`, with `\(\Pr(\text{Draw } i ) = \frac{1}{N}\)`
+
+`$$X  = \left \{ \begin{array} {ll}	1  \text{  if  person Approves}  \\    0 \text{  if  Disapproves}   \\\end{array} \right.$$`
+
+--
+
+What is `\(\E[X]\)`?
+
+--
+
+`$$\begin{aligned}\E[X] &amp; = 1 \times \Pr(\text{Approve})  + 0 \times \Pr(\text{Disapprove}) \\ &amp; = 1 \times \frac{M}{N} \\ &amp; = \frac{M}{N}  \end{aligned}$$`
+
+---
+
+# Indicator variables and probabilities
+
+Suppose `\(A\)` is an event. Define random variable `\(I\)` such that `\(I= 1\)` if an outcome in `\(A\)` occurs and `\(I =0\)` if an outcome in `\(A^{c}\)` occurs.
+
+Then,
+
+`$$\E[I] = \Pr(A)$$`
+
+--
+
+
+`$$\begin{aligned}\E[I]  &amp; =  1 \times \Pr(A) + 0 \times \Pr(A^{c}) \\ &amp; = \Pr(A) \end{aligned}$$`
+
+---
+
+# Moments
+
+* 1st moment: `\(\E[X^1] = \E[X]\)`
+* 2nd moment: `\(\E[X^2]\)`
+* `\(n\)`th moment: `\(\E[X^n]\)`
+
+---
+
+# Variance
+
+* Expected value is a measure of **central tendency**
+* What about **spread** or **dispersion**?
+
+--
+
+For each value, measure distance from the center
+
+`$$d(x, E[X])^{2} = (x - E[X])^2$$`
+
+--
+
+Weighted average of these distances
+    
+`$$\begin{aligned} \E[(X - \E[X])^2] &amp; = \sum_{x:p_X(x)&gt;0} (x  - \E[X])^2p_X(x) \\&amp; = \sum_{x:p_X(x)&gt;0} \left(x^2 p_X(x)\right)  - 2 \E[X]\sum_{x:p_X(x)&gt;0} \left(x p_X(x)\right) + \E[X]^2\sum_{x:p_X(x)&gt;0} p_X(x)  \\&amp; =  \E[X^2] - 2\E[X]^2 + \E[X]^2 \\&amp; = \E[X^2] - \E[X]^2 \\&amp; = \text{Var}(X)\end{aligned}$$`
+
+---
+
+# Variance
+
+Expected value of the random variable `\((X - \E[X])^2\)`
+
+`$$\begin{aligned}\Var(X) &amp;= \E[(X - \E[X])^2] \\&amp;= \E[X^2] - \E[X]^2\end{aligned}$$`
+    
+* Measure of **dispersion** of `\(X\)` around its mean
+* Standard deviation of `\(X\)` - `\(\sigma_X = \sqrt{\Var(X)}\)`
+
+---
+
+# Calculating variance of a random variable
+
+* Generate the PMF of the random variable `\((X - \E[X])^2\)`
+* Calculate the expectation of this function
+
+--
+
+### Expected value rule for functions of random variables
+
+Let `\(X\)` be a random variable with PMF `\(p_X\)`, and let `\(g(X)\)` be a function of `\(X\)`. Then, the expected value of the random variable `\(g(X)\)` is given by
+
+`$$\E[g(X)] = \sum_{x} g(x) p_X(x)$$`
+
+--
+
+`$$\begin{align}\Var(X) &amp;= \E[(X - \E[X])^2] \\\Var(X) &amp;= \E[X^2] - \E[X]^2\end{align}$$`
+    
+---
+
+# Bernoulli variable
+
+* Suppose `\(Y \sim \text{Bernoulli}(\pi)\)`
+
+    `$$\begin{aligned} \E[Y] &amp; = 1 \times \Pr(Y = 1) + 0 \times \Pr(Y = 0) \nonumber \\&amp; = \pi + 0 (1 - \pi) \nonumber  = \pi \\\Var(Y) &amp; = \E[Y^2] - \E[Y]^2 \nonumber  \\\E[Y^2] &amp; = 1^{2} \Pr(Y = 1) + 0^{2} \Pr(Y = 0) \nonumber \\&amp; = \pi \nonumber \\ \Var(Y) &amp; = \pi - \pi^{2} \nonumber \\&amp; = \pi(1 - \pi ) \nonumber\end{aligned}$$`
+
+--
+
+* `\(\E[Y] = \pi\)`
+* `\(\Var(Y) = \pi(1- \pi)\)`
+* What is the maximum variance?
+
+--
+
+`$$\begin{aligned} \Var(Y) &amp; = \pi - \pi^{2} \nonumber \\&amp; = 0.5(1 - 0.5 ) \\&amp; = 0.25\end{aligned}$$`
+
+---
+
+# Binomial
+
+`$$Z = \sum_{i=1}^N Y_{i} \text{ where } Y_{i} \sim \text{Bernoulli}(\pi)$$`
+
+--
+
+`$$\begin{aligned}\E[Z] &amp; = \E[Y_{1} + Y_{2} + Y_3 + \ldots + Y_N ] \\&amp; = \sum_{i=1}^N \E[Y_{i} ] \\&amp; = N \pi \\\Var(Z) &amp; = \sum_{i=1}^N \Var(Y_{i}) \\&amp; = N \pi (1-\pi)\end{aligned}$$`
+
+---
+
+# Decision making using expected values
+
+* Optimizes the choice between several candidate decisions that result in random rewards
+* View the expected reward of a decision as its average payoff over a large number of trials
+* Choose a decision with maximum expected reward
+
+---
+
+# Example: going to war
+
+* Suppose country `\(1\)` is engaged in a conflict and can either win or lose
+* Define `\(Y = 1\)` if the country wins and `\(Y = 0\)` otherwise
+
+    `$$Y \sim \text{Bernoulli}(\pi)$$`
+
+--
+
+* Suppose country `\(1\)` is deciding whether to fight a war
+* Engaging in the war will cost the country `\(c\)`
+* If they win, country `\(1\)` receives `\(B\)`
+* What is `\(1\)`'s expected utility from fighting a war?
+
+--
+
+`$$\begin{aligned}\E[U(\text{war})] &amp; = U(\text{war} | \text{win}) \times \Pr(\text{win}) + U(\text{war} | \text{lose}) \times \Pr(\text{lose}) \\&amp; = (B - c) \Pr(Y = 1) + (- c) \Pr(Y = 0 ) \\&amp; = B \times \Pr(Y = 1)  - c(\Pr(Y = 1)  + \Pr(Y = 0)) \\&amp; = B \times \pi - c \end{aligned}$$`
+
+---
+
+# Cumulative mass function
+
+* Defines the the cumulative probability `\(F_X(x)\)` up to the value of `\(x\)`
+* For a discrete random variable `\(X\)`
+
+    `$$F_X(x) = \Pr (X \leq x) = \sum_{k \leq x} p_X(k)$$`
+
+* All random variables with a PMF have a CMF
+
+---
+
+# Cumulative mass function
+
+* `\(F_X\)` is monotonically non-decreasing - if `\(x \leq y\)`, then `\(F_X(x) \leq F_X(y)\)`
+* `\(F_X(x)\)` tends to `\(0\)` as `\(x \rightarrow -\infty\)`, and to `\(1\)` as `\(x \rightarrow \infty\)`
+* `\(F_X(x)\)` is a piecewise constant function of `\(x\)`
+* If `\(X\)` is discrete and takes integer values, the PMF and the CMF can be obtained from each other by summing or differencing:
+
+    `$$F_X(k) = \sum_{i = -\infty}^k p_X(i),$$`
+    `$$p_X(k) = \Pr (X \leq k) - \Pr (X \leq k-1) = F_X(k) - F_X(k-1)$$`
+    
+    for all integers `\(k\)`
+    
+---
+
+# Bernoulli CMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/bernoulli-cmf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Binomial CMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/binomial-cmf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Binomial CMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/binomial-cmf-2-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Binomial CMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/binomial-cmf-3-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Binomial CMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/binomial-cmf-4-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Geometric CMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/geometric-cmf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Poisson CMF
+
+&lt;img src="10-discrete-random-vars_files/figure-html/poisson-cmf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
