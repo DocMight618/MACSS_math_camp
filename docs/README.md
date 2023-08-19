@@ -1,1 +1,0 @@
-# Slides for Math Camp
