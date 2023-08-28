@@ -154,10 +154,10 @@ knitr::include_graphics("images/ccsvenn.jpeg")
 
 ## Course staff
 
-* Dr. Benjamin Soltoff
-* Sanja Miklin
-* Shilin Jia
-* Jiaxu Han
+* Dr. Jean Clipperton
+* Loizos Bitsikokos
+* Bhavya Pandey
+* Adam Wu
 
 ---
 
@@ -211,16 +211,6 @@ knitr::include_graphics("images/ccsvenn.jpeg")
 * Science uses highly precise language that is not easily interpretable to outsiders
 * Mathematics is an effective way to describe our world
 * Mathematical notation lets us convey **precision** and minimizes the risk of misinterpretation by other scholars
-
----
-
-# "Theory of evolution"
-
-.center[
-
-![*On the Origin of Species* by Charles Darwin](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Origin_of_Species_title_page.jpg/374px-Origin_of_Species_title_page.jpg)
-
-]
 
 ---
 
