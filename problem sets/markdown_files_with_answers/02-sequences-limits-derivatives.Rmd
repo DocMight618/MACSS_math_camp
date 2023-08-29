@@ -1,0 +1,846 @@
+---
+title: Sequences, limits, continuity, and derivatives
+---
+
+```{r common-r, code = xfun::read_utf8(here::here("_common.R")), include = FALSE}
+```
+
+# Sequences
+
+Write down the first three terms of each of the following sequences. In each case, state whether the sequence is an arithmetric progression, a geometric progression, or neither.^[Pemberton and Rau 5.1.1]
+    
+a. $u_n = 4 + 3n$
+
+    <!--
+
+    $$7, 10, 13$$
+    
+    Arithmetic progression.
+    
+    -->
+    
+a. $u_n = 4^n$
+    
+    <!--
+
+    $$4, 16, 64$$
+    
+    Geometric progression.
+    
+    -->
+    
+a. $u_n = n \times 3^n$
+
+    <!--
+
+    $$3, 18, 81$$
+    
+    Neither.
+    
+    -->
+
+# Find the limit
+
+In each of the following cases, state whether the sequence $\{ u_n \}$ tends to a limit, and find the limit if it exists:^[Pemberton and Rau 5.1.3]
+
+a. $u_n = 1 + \frac{1}{2} n$
+
+    <!--
+
+    No limit ($u_n \to \infty$)
+    
+    -->
+    
+a. $u_n = \left( \frac{1}{2} \right)^n$
+
+    <!--
+
+    Yes. $\underset{x \to \infty}{\lim} u_n = 0$
+    
+    -->
+    
+# Determine convergence or divergence
+
+Determine whether each of the following sequences converges or diverges. If it converges, find the limit.^[Grimmer 2012 HW2.2]
+
+a. $a_n = \frac{3 + 5n^2}{n + n^2}$
+
+    <!--
+
+    The sequence converges to 5. We can see this by factoring $n^2$ from both the numerator and denominator and then cancelling it out.
+
+    $$      
+    \lim_{n \to \infty} a_n = \frac{3 + 5n^2}{n + n^2} = \lim_{n \to \infty}  \frac{n^2 \left(\frac{3}{n^2} + 5\right)}{n^2 \left(\frac{1}{n} + 1\right)} = \lim_{n \to \infty} \frac{\left(\frac{3}{n^2} + 5\right)}{\left(\frac{1}{n} + 1\right)} = \frac{\lim_{n \to \infty} \frac{3}{n^2} + 5}{\lim_{n \to \infty} \frac{1}{n} + 1} = \frac{0 + 5}{0 + 1} = 5
+    $$
+    
+    (This is slightly curt: Make sure you know how to show that the limit of $\frac{3}{n^2}$ approaches 0.) As $n \to \infty$, $\frac{3}{n} \to 0$ and $\frac{1}{n} \to 0$. Therefore, $a_n \to 5$.
+    
+    Alternatively, you could split the fraction into two terms: one with a numerator of 3, and the other with a numerator of $5n^2$. The first fraction converges to 0. (Can you show that?) Factoring out an $n$ from both sides of the second fraction, you're left with $\frac{5n}{n+1}$; $\frac{n}{n+1}$ converges to 1, giving you $5 \times 1 = 5$. 
+    
+    -->
+    
+a. $a_n = \frac{(-1)^{n-1} n}{n^2 + 1}$
+
+    <!--
+
+    The sequence converges to 0. To see why, take the absolute value of the sequence, then factor out and cancel $n$ from both sides of the fraction.
+    
+    $$
+    \lim_{n \to \infty} \left|\frac{(-1)^{n-1} n}{n^2 + 1} \right| = \lim_{n \to \infty} \frac{1^{n-1} n}{n^2 + 1} = \lim_{n \to \infty} \frac{1}{n + \frac{1}{n}} =  \frac{\lim_{n \to \infty} 1}{\lim_{n \to \infty} (n + \frac{1}{n})} = \frac{1}{\lim_{n \to \infty} n + 0} = 0
+    $$
+    
+    -->
+
+# Find more limits
+
+Given that 
+    
+$$
+\underset{x \to a} \lim f(x) = -3, \quad \underset{x \to a} \lim g(x) = 0 , \quad \underset{x \to a} \lim h(x) = 8
+$$
+
+find the limits that exist. If the limit doesn't exist, explain why.^[Grimmer 2012 HW 2.4]
+
+a. $\underset{x \to a} \lim [f(x) + h(x)]$
+    
+    <!--
+    
+    $$\underset{x \to a} \lim [f(x) + h(x)] = -3 + 8 = 5$$
+    
+    -->
+    
+a. $\underset{x \to a} \lim \sqrt[3]{h(x)}$
+    
+    <!--
+    
+    $$\underset{x \to a} \lim \sqrt[3]{h(x)} = \sqrt[3]{8} = 2$$
+    
+    -->
+    
+a. $\underset{x \to a} \lim \frac{g(x)}{f(x)}$
+
+    <!--
+    
+    $$\underset{x \to a} \lim \frac{g(x)}{f(x)} = \frac{0}{-3} = 0$$
+    
+    -->
+    
+a. $\underset{x \to a} \lim \frac{f(x)}{g(x)}$ 
+    
+    <!--
+    
+    $$\underset{x \to a} \lim \frac{f(x)}{g(x)} = \frac{-3}{0} = \mbox{Undefined}$$
+    
+    Cannot divide by 0, no limit.
+    
+    -->
+    
+a. $\underset{x \to a} \lim \frac{2 f(x)}{h(x) - f(x)}$
+
+    <!--
+    
+    $$\underset{x \to a} \lim \frac{2 f(x)}{h(x) - f(x)} = \frac{2 \times -3}{8 - (-3)} = -\frac{6}{11}$$
+    
+    -->
+
+# Find even more limits
+
+Find the limits of the following:^[Grimmer 2012 HW 2.4(b)]
+
+a. $\underset{x \to -4}\lim \frac{x^2 + 5x + 4}{x^2 + 3x -4}$
+
+    <!--
+
+    $$
+    \lim_{n \to -4} \frac{x^2 + 5x + 4}{x^2 + 3x - 4} = \lim_{n \to -4} \frac{(x + 4)(x + 1)}{(x + 4)(x-1)} = \lim_{n \to -4} \frac{x+1}{x-1} = \frac{\lim_{n \to -4} (x+1)}{\lim_{n \to -4} (x-1)} = \frac{-3}{-5} = \frac{3}{5}
+    $$
+    
+    -->
+    
+a. $\underset{x \to 4^-}\lim \sqrt{16-x^2}$
+
+    <!--
+
+    $$
+    \begin{aligned}
+    \lim_{n \to 4^-} \sqrt{16-x^2} &= \lim_{n \to 4^-} \sqrt{(4+x)(4-x)}\\
+    &= \lim_{n \to 4^-} \sqrt{4+x} \sqrt{4-x}\\
+    &= \lim_{n \to 4^-} \sqrt{4+x} \cdot \lim_{n \to 4^-} \sqrt{4-x}\\
+    &= \sqrt{8} \cdot \sqrt{0}\\
+    &= 0
+    \end{aligned}
+    $$
+
+    -->
+    
+# Check for discontinuities
+
+Which of the following functions are continuous? If not, where are the discontinuities?^[Gill 1.9]
+
+a. $f(x) = \dfrac{9x^3 - x}{(x-1)(x+1)}$
+    
+    <!--
+
+    * Discontinuous at $x = -1, +1$ (denominator would be 0, leaving the fraction undefined)
+    
+    -->
+    
+a. $f(x) = e^{-x^2}$
+
+    <!--
+
+    * Continuous for all real numbers.
+    
+    -->
+    
+a. $f(x) = \begin{cases}x^3+1, \;\; x > 0 \\  -x^2,   \;\; x \leq 0  \end{cases}$
+
+    <!--
+
+    * Discontinuous at $x = 0$. This is a piecewise function. To be continuous $\lim_{x \to 0^+} f(x) = 0$. However in this function, $\lim_{x \to 0^+} f(x) = 1 \neq 0$.
+    
+    -->
+
+# Find finite limits
+
+Find the following finite limits:^[a-d from Gill 5.1. e-h from Grimmer HW2.2]
+
+a. $\underset{x\rightarrow 4}{\lim} x^2 - 6x + 4$
+
+    <!--
+
+    $$
+    \begin{aligned}
+     \lim_{x \to 4} x^2 - 6x + 4 &= 4^2 - 6(4) + 4 \\
+     &= 16 - 24 + 4 \\
+     &= -4
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $\underset{x\rightarrow 1}{\lim} \left[ \dfrac{x^4 - 1}{x - 1}\right]$
+
+    <!--
+
+    The key here is to factor the initial expression in the numerator, then cancel terms out with the denominator:
+    
+    $$
+    \begin{aligned}
+     \underset{x\rightarrow 1}{\lim} \left[ \dfrac{x^4 - 1}{x - 1}\right] &= \underset{x\rightarrow 1}{\lim} \left[ \dfrac{(x - 1) (x + 1) (x^2 + 1)}{x - 1}\right] \\
+     &= \underset{x\rightarrow 1}{\lim} [(x + 1) (x^2 + 1)] \\
+     &= (1 + 1) (1^2 + 1) \\
+     &= (2) (2) \\
+     &= 4
+    \end{aligned}
+    $$
+    
+    Alternatively, we can use L'Hôpital's Rule:
+    
+    $$
+    \begin{aligned}
+     \underset{x\rightarrow 1}{\lim} \left[ \dfrac{x^4 - 1}{x - 1}\right] &=  \underset{x\rightarrow 1}{\lim} \left[ \dfrac{4x^3}{1}\right] \\
+    &= \dfrac{4(1)^3}{1}\\
+    &= 4
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $\underset{x\rightarrow -4}{\lim} \left[ \dfrac{x^2 + 5x + 4}{x^2 + 3x -4}\right]$
+
+    <!--
+
+    The key here is to factor the initial expression:
+    
+    $$
+    \begin{aligned}
+     \lim_{x \to -4} \frac{(x+4)(x+1)}{(x+4)(x-1)} &= \lim_{x \to -4} \frac{x+1}{x-1}\\
+     &= \frac{\underset{x \to -4}\lim(x+1)}{\underset{{x \to -4}}\lim(x-1)} \\
+     &= \frac{-3}{-5}\\
+     &= \frac{3}{5}
+    \end{aligned}
+    $$
+    
+    -->
+
+# Find infinite limits
+
+Find the following infinite limits:^[Gill 5.3 and 5.8]
+
+> Hint: use **L'Hôpital's Rule** to switch from $\underset{x\rightarrow \infty}{\lim} \left( \dfrac{f(x)}{g(x)} \right)$ to $\underset{x\rightarrow \infty}{\lim} \left( \dfrac{f'(x)}{g'(x)} \right)$.
+
+a. $\underset{x\rightarrow \infty}{\lim}\left[ \dfrac{9x^2}{x^2 +3} \right]$
+    
+    <!--
+
+    $$
+    \begin{aligned}
+     \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{9x^2}{x^2 +3} \right] &=  \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{18x}{2x} \right] \\
+     &=  \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{18}{2} \right] \\
+    &= 9
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $\underset{x\rightarrow \infty}{\lim}\left[ \dfrac{2^x-3}{2^x+1} \right]$
+    
+    <!--
+
+    Remember that $\dfrac{d}{dx} n^x = \log(n) n^x$:
+    
+    $$
+    \begin{aligned}
+     \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{2^x-3}{2^x+1} \right] &=  \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{\log(2)2^x}{\log(2)2^x} \right] \\
+    &= 1
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $\underset{x\rightarrow \infty}{\lim} \left[ \dfrac{3^x}{x^3} \right]$
+    
+    <!--
+
+    The trick here is to repeatedly calculate the derivative of the numerator and denominators until there is no $x$ term on the denominator. You end up calculating the third derivative, but L'Hôpital's Rule still applies.
+    
+    $$
+    \begin{aligned}
+     \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{3^x}{x^3} \right] &=  \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{\log(3)3^x}{3x^2} \right] \\
+    &= \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{\log^2 (3) 3^x}{6x} \right] \\
+    &= \underset{x\rightarrow \infty}{\lim} \left[ \dfrac{\log^3 (3) 3^x}{6} \right] \\
+    &= \dfrac{\log^3(3) 3^{\infty}}{6} \\
+    &= \infty
+    \end{aligned}
+    $$
+    
+    -->
+
+# Assessing continuity and differentiability
+
+For each of the following functions, describe whether it is continuous and/or differentiable at the point of transition of its two formulas.^[Simon and Blume 2.16]
+
+a. $$f(x) = \begin{cases} 
+      + x^2, & x \geq 0 \\
+      - x^2, & x < 0
+   \end{cases}$$
+   
+    <!--
+
+   **Solution:**
+   
+    $$f'(x) = \begin{cases} 
+      2x, & x \geq 0 \\
+      -2x, & x < 0
+    \end{cases}$$
+    
+    As $x$ converges to $0$ from both above and below, $f'(0)$ converges to 0, so the function is continuous and differentiable.
+    
+    -->
+
+a. $$f(x) = \begin{cases} 
+      x^3, & x \leq 1 \\
+      x, & x > 1
+   \end{cases}$$
+   
+    <!--
+
+   **Solution:** This function is continuous, since $\lim_{x \rightarrow 1} f(x) = 1$ no matter how the limit is taken. However it is not differentiable since
+   
+   $$f'(x) = \begin{cases} 
+      3x^2, & x \leq 1 \\
+      1, & x > 1
+   \end{cases}$$
+   
+   $\lim_{x \rightarrow 1^{+}} f'(x) = 1$, whereas $\lim_{x \rightarrow 1^{-}} f'(x) = 3$. The function is not smooth and continuous at $f(1)$.
+   
+   -->
+
+# Possible derivative
+
+A friend shows you this graph of a function $f(x)$:^[Grimmer HW3.6]
+
+```{r polynomial}
+library(tidyverse)
+
+p <- ggplot(data = tibble(x = 0), mapping = aes(x = x)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  xlim(0, 5) +
+  scale_y_continuous(breaks = 0, labels = "0") +
+  labs(x = "x",
+       y = expression(f(x))) +
+  theme_classic() +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+p +
+  stat_function(fun = function(x) x^2 + 1) +
+  ggtitle("Graph of f(x)")
+```
+
+Which of the following could be a graph of $f'(x)$? For each graph, explain why or why not it might be the derivative of $f(x)$.
+
+```{r derivatives, dependson = "polynomial"}
+a <- p +
+  geom_hline(yintercept = -3) +
+  labs(y = expression({f * minute}(x)),
+       tag = "A)") +
+  scale_y_continuous(limits = c(-5, 3), breaks = 0, labels = "0")
+b <- p +
+  geom_hline(yintercept = 3) +
+  labs(y = expression({f * minute}(x)),
+       tag = "B)") +
+  scale_y_continuous(limits = c(-3, 5), breaks = 0, labels = "0")
+c <- p +
+  stat_function(fun = function(x) x) +
+  labs(y = expression({f * minute}(x)),
+       tag = "C)") +
+  scale_y_continuous(limits = c(-2, 5), breaks = 0, labels = "0")
+d <- p +
+  stat_function(fun = function(x) x - 2) +
+  labs(y = expression({f * minute}(x)),
+       tag = "D)") +
+  scale_y_continuous(limits = c(-2, 5), breaks = 0, labels = "0")
+
+library(patchwork)
+
+a +
+  b +
+  c +
+  d +
+  plot_layout(ncol = 2, nrow = 2) +
+  plot_annotation(title = "Potential derivatives")
+```
+
+What if the figure below was the graph of $f(x)$? Which of the graphs might potentially be the derivative of $f(x)$ then?
+
+```{r straight-line, dependson = "polynomial"}
+p +
+  stat_function(fun = function(x) x + 1) +
+  ggtitle("Graph of f(x)")
+```
+
+<!--
+
+**Solution:**
+
+a. A doesn't work because it is negative and the function we observe is increasing in x. B is constant so this also won't work, the function we observe gets larger at an increasing, not constant rate. C seems to be a plausible candidate because an upward sloping derivative would map to the behavior of the function we observe, that $g(x)$ gets large at an increasing rate. D does not work because it suggests the function would need to be decreasing over some interval and because, when we refer back to $g(x)$, there doesn't seem to be any local minimum, maximum or a saddle point despite the graph in D crossing 0.
+    
+a. Again, A doesn't work because it is negative and the function we observe is increasing in x. B seems to be plausible as the derivative, since $g(x)$ appears to increase at a constant rate, its derivative should be flat and greater than 0. C won't work because the slope of $g(x)$ is constant and does not increase in x. D doesn't work, again because it suggests the function would need to be decreasing at some point over the interval we observe. 
+
+-->
+
+# Calculate derivatives
+
+Differentiate the following functions:^[Grimmer HW2.3]
+
+a. $f(x) = 4x^3 + 2x^2 + 5x + 11$
+
+    <!--
+
+    **Solution:** Power rule.
+    
+    $$
+    \begin{aligned}
+    f(x) &= 4x^3 + 2x^2 + 5x + 11\\
+    f'(x) &= 12x^2 + 4x + 5\\
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $y = \sqrt{30}$
+
+    <!--
+
+    **Solution:** Derivative of a constant is 0.
+    
+    $$
+    \begin{aligned}
+     y &= \sqrt{30}\\
+     y' &= 0\\
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $h(t) = \log(9t+1)$
+
+    <!--
+
+    **Solution:** Derivative of $\log(u)$ is $\dfrac{1}{u}$. Since $u$ is a function in this problem, need to apply the chain rule to calculate the derivative of $9t + 1$ and multiply that by $\dfrac{1}{9t + 1}$
+
+    $$
+    \begin{aligned}
+    h(t) &= \log(9t+1)\\
+    h'(t)&= \frac{1}{9t+1}*9 \\
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $f(x) = \log(x^2e^x)$
+
+    <!--
+
+    **Solution:** Derivative of a logarithm plus the chain rule.
+    
+    $$
+    \begin{aligned}
+    f(x) &= \log(x^2e^x)\\
+    f'(x) &= \frac{1}{x^2 e^x} * (2x e^x + e^x x^2)\\
+    &= \frac{2x e^x + e^x x^2}{x^2 e^x}\\
+    &= \frac{2}{x} + 1 \\
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $h(y) = \left( \dfrac{1}{y^2} - \dfrac{3}{y^4} \right) (y+5y^3)$
+
+    <!--
+
+    **Solution:** Simplify the expression first, then basic application of power rule.
+    
+    $$
+    \begin{aligned}
+    h(y) &=  \left( \dfrac{1}{y^2} - \dfrac{3}{y^4} \right) \left(y+5y^3 \right)\\
+     &= \frac{y}{y^2} + \frac{5y^3}{y^2} - \frac{3y}{y^4} - \frac{15y^3}{y^4}\\
+    &= \frac{1}{y} + 5y - \frac{3}{y^3} - \frac{15}{y}\\
+    &= 5y - \frac{14}{y} - \frac{3}{y^3}\\
+    h'(y) &= 5 + \frac{14}{y^2} + \frac{9}{y^4}
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $g(t) = \dfrac{3t-1}{2t+1}$
+
+    <!--
+
+    **Solution:** Quotient rule.
+    
+    $$
+    \begin{aligned}
+    g(t) &=  \dfrac{3t-1}{2t+1}\\
+    g'(t) &= \dfrac{(3)(2t+1) - (3t-1)(2)}{(2t+1)^2}\\
+    &= \frac{5}{(2t+1)^2}
+    \end{aligned}
+    $$
+    
+    -->
+
+# Use the product and quotient rules
+
+Differentiate the following function twice -- once using the product rule, and once using the quotient rule:^[Grimmer HW2.4]
+
+$$f(x) = \dfrac{x^2-2x}{x^4 + 6}$$
+
+<!--
+
+**Solution:**
+
+a. First let's use the quotient rule:
+
+    $$
+    \begin{aligned}
+    h(x) &= \frac{f(x)}{g(x)}\\
+    f(x) &= x^2 - 2x\\
+    g(x) &= x^4 + 6\\
+    f'(x) &= 2x - 2\\
+    g'(x) &= 4x^3\\
+    h'(x) &= \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}\\
+    &= \frac{(2x-2)(x^4+6) - (x^2 - 2x)(4x^3)}{(x^4 + 6)^2}\\
+    &= \frac{2x^5 + 12x - 2x^4 - 12 - 4x^5 + 8x^4}{(x^4+6)^2}\\
+    &= \frac{-2x^5 + 6x^4 + 12x - 12}{(x^4 + 6)^2}\\
+    \end{aligned}
+    $$
+    
+a. Now we can do the same thing with the product rule:
+
+    $$
+    \begin{aligned}
+    j(x) &= k(x)m(x)\\
+    k(x) &= x^2 - 2x\\
+    m(x) &= (x^4 + 6)^{-1}\\
+    k'(x) &= 2x-2\\
+    m'(x) &= - (x^4 + 6)^{-2} (4x^3) = - \frac{4x^3}{(x^4 +6)^{2}}\\
+    j'(x) &= k(x)m'(x) + k'(x)m(x)\\
+    &= (x^2 - 2x) (  -\frac{4x^3}{(x^4 + 6)^2} ) + (2x-2)(x^4+6)^{-1}\\
+    &= - \frac{(x^2 - 2x)(4x^3)}{(x^4 + 6)^2} + \frac{2x-2}{x^4+6}\\
+    &= - \frac{4x^5 - 8x^4}{x^4 +6)^2} + \frac{2x - 2}{x^4 + 6}\\
+    &= - \frac{4x^5 - 8x^4}{x^4 +6)^2} + \frac{2x - 2}{x^4 + 6} \frac{x^4 + 6}{x^4 + 6}\\
+    &= - \frac{4x^5 - 8x^4}{(x^4 +6)^2} + \frac{2x^5 + 12x  - 2x^4 - 12}{(x^4 +6)^2}\\
+    &= \frac{2x^5 + 12x  - 2x^4 - 12 - 4x^5 - 8x^4}{(x^4 +6)^2}\\
+    &= \frac{-2x^5 + 6x^4 + 12x - 12}{(x^4 +6)^2}
+    \end{aligned}
+    $$
+
+    The quotient rule is simply a derivation of the product rule combined with the chain rule:
+    
+    $$
+    \begin{aligned}
+    h(x) &= \frac{f(x)}{g(x)} \\
+    &= f(x)g(x)^{-1} \\
+    \end{aligned}
+    $$
+    
+    Apply product and chain rules:
+    
+    $$
+    \begin{aligned}
+    h'(x) &= f'(x)g(x)^{-1} + f(x)(-1)g(x)^{-2}g'(x) \\
+    &= f'(x)g(x)g(x)^{-2} - f(x)g(x)^{-2}g'(x) \\
+    &= [f'(x)g(x) - f(x)g'(x)]g(x)^{-2} \\
+    &= \frac{f'(x)g(x) - f(x)g'(x)}{g(x)^2} \\
+    \end{aligned}
+    $$
+    
+    which is the quotient rule.
+
+-->
+
+# Logarithms and exponential functions
+
+Compute the derivative of each of the following functions:^[Simon and Blume 5.8]
+
+a. $f(x) = xe^{3x}$
+
+    <!--
+
+    **Solution:** Use the product rule to split the function into component functions.
+    
+    $$g(x) = x, \quad h(x) e^{3x}$$
+    
+    Use the chain rule to solve $h'(x)$.
+    
+    $$
+    \begin{aligned}
+    g(x) &= x &\quad h(x) &= e^{3x} \\
+    g'(x) &= 1 &\quad h'(x) &= 3e^{3x}
+    \end{aligned}
+    $$
+    
+    $$
+    \begin{aligned}
+    f(x) &= g'(x) h(x) + g(x) h'(x) \\
+    &= 1 (e^{3x}) + x (3e^{3x}) \\
+    &= e^{3x} + 3xe^{3x} \\
+    &= e^{3x} (3x + 1)
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $f(x) = \frac{x}{e^x}$
+
+    <!--
+
+    **Solution:** Use the product rule.
+    
+    $$g(x) = x, \quad h(x) = \frac{1}{e^x}$$
+    
+    Use the chain rule to solve $h'(x)$.
+    
+    $$
+    \begin{aligned}
+    g(x) &= x &\quad h(x) &= \frac{1}{e^x} \\
+    g'(x) &= 1 &\quad h'(x) &= -e^{-x}
+    \end{aligned}
+    $$
+    
+    $$
+    \begin{aligned}
+    f(x) &= g'(x) h(x) + g(x) h'(x) \\
+    &= 1 (\frac{1}{e^x}) + x (-e^{-x}) \\
+    &= \frac{1}{e^x} - xe^{-x} \\
+    &= \frac{1}{e^x} - \frac{x}{e^{x}} \\
+    &= \frac{1 - x}{e^x}
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $h(x) = \frac{x}{\log(x)}$
+
+    <!--
+
+    **Solution:** Use the quotient rule.
+    
+    $$g(x) = x, \quad h(x) = \log(x)$$
+    
+    $$
+    \begin{aligned}
+    f(x) &= x &\quad g(x) &= \log(x) \\
+    f'(x) &= 1 &\quad g'(x) &= \frac{1}{x}
+    \end{aligned}
+    $$
+    
+    $$
+    \begin{aligned}
+    \left[\frac{f(x)}{g(x)}\right]' &= \frac{f'(x) g(x) - f(x) g'(x)}{[g(x)]^2} \\
+    &= \frac{1(\log(x)) - x(\frac{1}{x})}{[\log(x)]^2} \\
+    &= \frac{\log(x) - 1}{[\log(x)]^2}
+    \end{aligned}
+    $$
+    
+    -->
+
+# Composite functions
+
+For each of the following pairs of functions $g(x)$ and $h(z)$, write out the composite function $g(h[z])$ and $h(g[x])$. In each case, describe the domain of the composite function.^[Simon and Blume 4.1]
+
+a. $g(x) = x^2 + 4, \quad h(z) = 5z - 1$
+
+    <!--
+
+    **Solution:** 
+    
+    $$
+    \begin{aligned}
+    g(h[z]) &= (5z - 1)^2 + 4 \\
+    h(g[x]) &= 5(x^2 + 4) - 1 \\
+    &= 5x^2 + 20 - 1 \\
+    &= 5x^2 + 19
+    \end{aligned}
+    $$
+    
+    * Domain of $g(h[z])$ $x \in \Re$
+    * Domain of $h(g[x])$ $x \in \Re$
+    
+    -->
+    
+a. $g(x) = x^3, \quad h(z) = (z - 1)(z + 1)$
+
+    <!--
+
+    **Solution:** 
+    
+    $$
+    \begin{aligned}
+    g(h[z]) &= [(z - 1)(z + 1)]^3 \\
+    &= (z - 1)^3 (z + 1)^3 \\
+    h(g[x]) &= (x^3 - 1)(x^3 + 1)
+    \end{aligned}
+    $$
+
+    * Domain of $g(h[z])$ $x \in \Re$
+    * Domain of $h(g[x])$ $x \in \Re$
+    
+    -->
+
+# Chain rule
+
+Use the chain rule to compute the derivative of the composite functions in the previous section from the derivatives of the two component functions. Then, compute each derivative directly using your expression for the composite function. Simplify and compare your answers.^[Simon and Blume 4.3]
+
+a. $g(x) = x^2 + 4, \quad h(z) = 5z - 1$
+
+    <!--
+
+    **Solution:**
+    
+    * Using component functions and the chain rule
+
+    $$g'(x) = 2x \quad h'(z) = 5$$
+    
+    $$
+    \begin{aligned}
+    \frac{d}{dz} \{ g(h[z]) \} &= g'(h[z])h'(z) \\
+    &= 2(5z - 1)(5) \\
+    &= 2(25z - 5) \\
+    &= 50z - 10 \\
+    \frac{d}{dx} \{ h(g[x]) \} &= h'(g[x])g'(x) \\
+    &= 5 (2x) \\
+    &= 10x
+    \end{aligned}
+    $$
+
+    * Using the composite function
+    
+    $$
+    \begin{aligned}
+    g(h[z]) &= (5z - 1)^2 + 4 \\
+    &= 25z^2 - 10z + 1 + 4 \\
+    &= 25z^2 - 10z + 5 \\
+    \frac{d}{dz} g(h[z]) &= 50z - 10 \\
+    h(g[x]) &= 5x^2 + 19 \\
+    \frac{d}{dx} h(g[x]) &= 10x
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $g(x) = x^3, \quad h(z) = (z - 1)(z + 1)$
+
+    <!--
+
+    **Solution:**
+    
+    * Using component functions and the chain rule
+    
+    $$g'(x) = 3x^2 \quad h'(z) = 2z$$
+    
+    $$
+    \begin{aligned}
+    \frac{d}{dz} \{ g(h[z]) \} &= g'(h[z])h'(z) \\
+    &= 3[(z - 1)(z + 1)]^2 (2z) \\
+    &= 3(z^2 - 1)^2 (2z) \\
+    &= 6z(z^2 - 1)^2 \\
+    \frac{d}{dx} \{ h(g[x]) \} &= h'(g[x])g'(x) \\
+    &= 2(x^3) (3x^2) \\
+    &= 6x^5
+    \end{aligned}
+    $$
+    
+    * Using the composite function
+    
+    $$
+    \begin{aligned}
+    g(h[z]) &= (z - 1)^3 (z + 1)^3 \\
+    &= (z - 1)(z - 1)(z - 1)(z + 1)(z + 1)(z + 1) \\
+    &= z^6 - 3z^4 + 3z^2 - 1 \\
+    \frac{d}{dz} g(h[z]) &= 6z^5 - 12z^3 + 6z \\
+    &= 6z(z^4 - 2z^2 + 1) \\
+    &= 6z(z^2 - 1)^2 \\
+    h(g[x]) &= (x^3 - 1)(x^3 + 1) \\
+    &= x^6 - 1 \\
+    \frac{d}{dx} h(g[x]) &= 6x^5
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $g(x) = 4x + 2, \quad h(z) = \frac{1}{4}(z - 2)$
+
+    <!--
+
+    **Solution:**
+    
+    * Using component functions and the chain rule
+    
+    $$g'(x) = 4 \quad h'(z) = \frac{1}{4}$$
+    
+    $$
+    \begin{aligned}
+    \frac{d}{dz} \{ g(h[z]) \} &= g'(h[z])h'(z) \\
+    &= 4 (\frac{1}{4}) \\
+    &= 1 \\
+    \frac{d}{dx} \{ h(g[x]) \} &= h'(g[x])g'(x) \\
+    &= \frac{1}{4} (4) \\
+    &= 1
+    \end{aligned}
+    $$
+    
+    * Using the composite function
+    
+    $$
+    \begin{aligned}
+    g(h[z]) &= z \\
+    \frac{d}{dz} g(h[z]) &= 1 \\
+    h(g[x]) &= x \\
+    \frac{d}{dx} h(g[x]) &= 1
+    \end{aligned}
+    $$
+    
+    -->

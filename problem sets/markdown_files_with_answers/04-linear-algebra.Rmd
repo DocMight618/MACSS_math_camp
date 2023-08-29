@@ -1,0 +1,1016 @@
+---
+title: "Linear algebra"
+output: pdf_document
+---
+
+```{r common-r, code = xfun::read_utf8(here::here("_common.R")), include = FALSE}
+```
+
+# Basic matrix arithmetic
+
+If
+
+$$\mathbf{a} = \begin{bmatrix}
+    2 \\
+    2
+\end{bmatrix} \quad \mbox{and} \quad \mathbf{b} = \begin{bmatrix}
+    1 \\
+    3
+\end{bmatrix}$$
+
+find:^[Pemberton and Rau 11.1.2]
+
+a. $\mathbf{a} + \mathbf{b}$
+
+    <!--
+
+    $$\mathbf{a} + \mathbf{b} = \begin{bmatrix}
+        2 \\
+        2
+    \end{bmatrix} + \begin{bmatrix}
+        1 \\
+        3
+    \end{bmatrix} = \begin{bmatrix}
+        2 + 1 \\
+        2 + 3
+    \end{bmatrix} = \begin{bmatrix}
+        3 \\
+        5
+    \end{bmatrix}$$
+    
+    -->
+
+a. $-4 \mathbf{b}$
+
+    <!--
+
+    $$-4 \mathbf{b} = -4 \times \begin{bmatrix}
+        1 \\
+        3
+    \end{bmatrix} = \begin{bmatrix}
+        -4 \\
+        -12
+    \end{bmatrix}$$
+    
+    -->
+
+a. $3 \mathbf{a} - 4 \mathbf{b}$
+
+    <!--
+
+    $$3 \mathbf{a} - 4 \mathbf{b} = 3 \times \begin{bmatrix}
+        2 \\
+        2
+    \end{bmatrix} - 4 \times \begin{bmatrix}
+        1 \\
+        3
+    \end{bmatrix} =\begin{bmatrix}
+        6 \\
+        6
+    \end{bmatrix} - \begin{bmatrix}
+        4 \\
+        12
+    \end{bmatrix} = \begin{bmatrix}
+        6 - 4 \\
+        6 - 12
+    \end{bmatrix} = \begin{bmatrix}
+        2 \\
+        -6
+    \end{bmatrix}$$
+    
+    -->
+
+# More complex matrix arithmetic
+
+Suppose
+
+$$\mathbf{x} = \begin{bmatrix}
+    3 \\
+    2q \\
+    6
+\end{bmatrix} \quad \mbox{and} \quad \mathbf{y} = \begin{bmatrix}
+    p + 2 \\
+    -5 \\
+    3r
+\end{bmatrix}$$.
+
+If $\mathbf{x} = 2 \mathbf{y}$, find $p, q, r$.^[Pemberton and Rau 11.1.3]
+
+<!--
+
+**Solution:** We can calculate each element of the vector independently, given our knowledge of the relationship between $\mathbf{x}$ and $\mathbf{y}$.
+
+$$
+\begin{aligned}
+3 &= 2(p + 2) \\
+3 &= 2p + 4 \\
+-1 &= 2p \\
+- \frac{1}{2} &= p
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+2q &= 2(-5) \\
+2q &= -10 \\
+q &= -5
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+6 &= 2(3r) \\
+6 &= 6r \\
+1 &= r
+\end{aligned}
+$$
+
+So $p = -\frac{1}{2}, q = -5, r = 1$.
+
+-->
+
+# Check for linear dependence
+
+Which of the following sets of vectors are linearly dependent?^[Pemberton and Rau 11.1.4]
+
+In each part, you can denote each vector as $\mathbf{a}, \mathbf{b}, \mathbf{c}$ respectively.
+
+a. $\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 1 \end{bmatrix}$
+
+    <!--
+
+    Yes: $\mathbf{a} + \mathbf{b} - \mathbf{c} = \mathbf{0}$
+    
+    -->
+    
+a. $\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix}, \begin{bmatrix} 7 \\ 8 \\ 9 \end{bmatrix}$
+
+    <!--
+
+    Yes: $\mathbf{a} - 2 \mathbf{b} + \mathbf{c} = \mathbf{0}$
+    
+    -->
+    
+a. $\begin{bmatrix} 13 \\ 7 \\ 9 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 3 \\ -2 \\ 5 \\ 8 \end{bmatrix}$
+
+    <!--
+
+    Yes: $0 \mathbf{a} + 1 \mathbf{b} + 0 \mathbf{c} = \mathbf{0}$
+    
+    -->
+    
+a. $\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 2 \\ -2 \\ -1 \end{bmatrix}, \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}$
+
+    <!--
+
+    Linearly independent.
+    
+    -->
+
+# Vector length
+
+Find the length of the following vectors:^[Simon and Blume 10.10]
+
+a. $(3,4)$
+
+    <!--
+
+    $$
+    \begin{aligned}
+      \sqrt{3^2 + 4^2} &= \sqrt{9 + 16} \\
+      &= \sqrt{25} \\
+      &= 5
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $(0, -3)$
+
+    <!--
+
+    $$
+    \begin{aligned}
+      \sqrt{0^2 + (-3)^2} &= \sqrt{0 + 9} \\
+      &= \sqrt{9} \\
+      &= 3
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $(1, 1, 1)$
+
+    <!--
+
+    $$
+    \begin{aligned}
+      \sqrt{1^2 + 1^2 + 1^2} &= \sqrt{1 + 1 + 1} \\
+      &= \sqrt{3}
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $(1, 2, 3)$
+
+    <!--
+
+    $$
+    \begin{aligned}
+      \sqrt{1^2 + 2^2 + 3^2} &= \sqrt{1 + 4 + 9} \\
+      &= \sqrt{14}
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $(1, 2, 3, 4)$
+
+    <!--
+
+    $$
+    \begin{aligned}
+      \sqrt{1^2 + 2^2 + 3^2 + 4^2} &= \sqrt{1 + 4 + 9 + 16} \\
+      &= \sqrt{30} \\
+      &\approx 5.47726
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $(3, 0, 0, 0, 0)$
+
+    <!--
+
+    $$
+    \begin{aligned}
+      \sqrt{3^2 + 0^2 + 0^2 + 0^2 + 0^2} &= \sqrt{9 + 0 + 0 + 0 + 0} \\
+      &= \sqrt{3} \\
+      &= 3
+    \end{aligned}
+    $$
+    
+    -->
+
+# Law of cosines
+
+The **law of cosines** states:
+
+$$\cos(\theta) = \frac{\mathbf{v} \cdot \mathbf{w}}{\|\mathbf{v}\| \: \|\mathbf{w}\|}$$
+
+where $\theta$ is the angle from $\mathbf{w}$ to $\mathbf{v}$ measured in radians. Of importance, $\arccos()$ is the inverse of $\cos()$:
+
+$$\theta = \arccos \left( \frac{\mathbf{v} \cdot \mathbf{w}}{\|\mathbf{v}\| \: \|\mathbf{w}\|} \right)$$
+
+For each of the following pairs of vectors, calculate the angle between them. Report your answers in both radians and degrees. To convert between radians and degrees:^[Simon and Blume 10.12]
+
+$$\text{Degrees} = \text{Radians} \times \dfrac{180^{o}}{\pi}$$
+
+a. $\mathbf{v} = (1, 0), \quad \mathbf{w} = (2, 2)$
+    
+    <!--
+
+    $$
+    \begin{aligned}
+      \mathbf{v} \cdot \mathbf{w} &= (1)(2) + (0)(2) \\
+      &= 2 + 0 \\
+      &= 2 \\
+      \|\mathbf{v}\| &= \sqrt{1^2 + 0^2} \\
+      &= \sqrt{1 + 0} \\
+      &= \sqrt{1} \\
+      &= 1 \\
+      \|\mathbf{w}\| &= \sqrt{2^2 + 2^2} \\
+      &= \sqrt{4 + 4} \\
+      &= \sqrt{8} \\
+      &= \sqrt{2^2 \times 2} \\
+      &= 2 \sqrt{2} \\
+      \theta &= \arccos \left( \frac{2}{1(2 \sqrt{2})} \right) \\
+      &= \frac{\pi}{4} \\
+      &= 45^{\circ}
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $\mathbf{v} = (4, 1), \quad \mathbf{w} = (2, -8)$
+    
+    <!--
+
+    $$
+    \begin{aligned}
+      \mathbf{v} \cdot \mathbf{w} &= (4)(2) + (1)(-8) \\
+      &= 8 + (-8) \\
+      &= 0 \\
+      \|\mathbf{v}\| &= \sqrt{4^2 + 1^2} \\
+      &= \sqrt{16 + 1} \\
+      &= \sqrt{17} \\
+      &= 1 \\
+      \|\mathbf{w}\| &= \sqrt{2^2 + (-8)^2} \\
+      &= \sqrt{4 + 64} \\
+      &= \sqrt{68} \\
+      &= \sqrt{2^2 \times 17} \\
+      &= 2 \sqrt{17} \\
+      \theta &= \arccos \left( \frac{0}{1(2 \sqrt{17})} \right) \\
+      &= \frac{\pi}{2} \\
+      &= 90^{\circ}
+    \end{aligned}
+    $$
+    
+    Note: you could stop after solving $\mathbf{v} \cdot \mathbf{w}$, because the denominator will be irrelevant.
+    
+    -->
+    
+a. $\mathbf{v} = (1, 1, 0), \quad \mathbf{w} = (1, 2, 1)$
+    
+    <!--
+
+    $$
+    \begin{aligned}
+      \mathbf{v} \cdot \mathbf{w} &= (1)(1) + (1)(2) + (0)(1) \\
+      &= 1 + 2 + 0 \\
+      &= 3 \\
+      \|\mathbf{v}\| &= \sqrt{1^2 + 1^2 + 0^2} \\
+      &= \sqrt{1 + 1 + 0} \\
+      &= \sqrt{2} \\
+      \|\mathbf{w}\| &= \sqrt{1^2 + 2^2 + 1^2} \\
+      &= \sqrt{1 + 4 + 1} \\
+      &= \sqrt{6} \\
+      \theta &= \arccos \left( \frac{3}{\sqrt{2}(\sqrt{6})} \right) \\
+      &= \arccos \left( \frac{3}{\sqrt{2 \times 6}} \right) \\
+      &= \arccos \left( \frac{3}{\sqrt{12}} \right) \\
+      &= \arccos \left( \frac{3}{\sqrt{2^2 \times 3}} \right) \\
+      &= \arccos \left( \frac{3}{2\sqrt{3}} \right) \\
+      &= \arccos \left( \frac{3\sqrt{3}}{2\sqrt{3} \sqrt{3}} \right) \\
+      &= \arccos \left( \frac{3\sqrt{3}}{2 \times 3} \right) \\
+      &= \arccos \left( \frac{\sqrt{3}}{2} \right) \\
+      &= \frac{\pi}{6} \\
+      &= 30^{\circ}
+    \end{aligned}
+    $$
+    
+    -->
+
+# Matrix algebra
+
+Using the matrices below, calculate the following. Some may not be defined; if that is the case, say so.^[Grimmer HW5.3]
+
+$$
+\mathbf{A} = \left[
+  \begin{array}{r}
+    3 \\
+    -2 \\
+    9
+  \end{array}
+\right]
+\quad
+\mathbf{B} = \left[
+  \begin{array}{r}
+    8 \\
+    0 \\
+    -1
+  \end{array}
+\right]
+\quad
+\mathbf{C} = \left[
+  \begin{array}{rrr}
+    7 & -1 & 5 \\
+    0 & 2 & -4
+  \end{array}
+\right]
+\quad
+\mathbf{D} = \left[
+  \begin{array}{rr}
+    3 & 1 \\
+    3 & 4 \\
+    3 & -7
+  \end{array}
+\right]
+\quad
+\mathbf{E} = \left[
+  \begin{array}{rrr}
+    5 & 2 & 3 \\
+    1 & 0 & -4 \\
+    -2 & 1 & -6
+  \end{array}
+\right]
+$$
+
+$$
+\mathbf{F} = \left[
+  \begin{array}{rrr}
+    4 & 1 & -5 \\
+    0 & 7 & 7 \\
+    2 & -3 & 0
+  \end{array}
+\right]
+\quad
+\mathbf{G} = \left[
+  \begin{array}{rrr}
+    2 & -8 & -5 \\
+    -3 & 7 & -4 \\
+    1 & 0 & 3 \\
+    1 & 2 & 6
+  \end{array}
+\right]
+\quad
+\mathbf{K} = \left[
+  \begin{array}{r}
+    9 \\
+    -2 \\
+    -1 \\
+    0
+  \end{array}
+\right]
+$$
+
+$$
+\mathbf{L} = \left[
+  \begin{array}{rrrr}
+    5 & 0 & 3 & 1
+  \end{array}
+\right]
+\quad
+\mathbf{M} = \begin{bmatrix}
+1 & -1 \\
+1 & 3
+\end{bmatrix}
+$$
+
+a. $\mathbf{A} + \mathbf{B}$
+    
+    <!--
+
+    $$
+    \mathbf{A} + \mathbf{B} = \left[\begin{array}{rrr}3 + 8 \\ -2 + 0 \\ 9 + (-1)\end{array}\right] = \left[\begin{array}{rrr} 11 \\ -2 \\ 8\end{array}\right]
+    $$
+    
+    -->
+
+a. $-\mathbf{G}$
+
+    <!--
+
+    $$-\mathbf{G} = (-1) \left[\begin{array}{rrr} 
+    2 & -8 & -5\\
+    -3 & 7 & -4\\
+    1 & 0 & 3\\
+    1 & 2 & 6
+    \end{array}\right] =
+    \left[\begin{array}{rrr} 
+    -2 & 8 & 5\\
+    3 & -7 & 4\\
+    -1 & 0 & -3\\
+    -1 & -2 & -6
+    \end{array}\right]
+    $$
+    
+    -->
+
+a. $\mathbf{D}'$
+
+    <!--
+
+    $$\mathbf{D}' = \left[\begin{array}{rrr}
+    3 & 3 & 3\\
+    1 & 4 & -7\end{array}\right]
+    $$
+    
+    -->
+
+a. $\mathbf{C} + \mathbf{D}$
+
+    <!--
+
+    $\mathbf{C} + \mathbf{D}$ does not exist. The matricies are not the same dimensions.
+    
+    -->
+    
+a. $\mathbf{A}' \mathbf{B}$
+
+    <!--
+
+    This is a $1 \times 3$ matrix multiplied by a $3 \times 1$ matrix, resulting in a $1 \times 1$ matrix (aka a **dot product**).
+    
+    $$\mathbf{A}' \mathbf{B} = 3(8) + (-2)(0) + 9(-1) = 24 + 0 - 9 = 15$$
+    
+    -->
+    
+a. $\mathbf{BC}$
+
+    <!--
+
+    $\mathbf{BC}$ does not exist. The matricies are non-conformable.
+    
+    -->
+    
+a. $\mathbf{FB}$
+
+    <!--
+
+    $$\begin{aligned}
+    \mathbf{FB} &= \left[\begin{array}{rrr} 4 & 1 & -5\\0 & 7 & 7\\2 & -3 & 0\end{array}\right] \left[\begin{array}{r} 8\\0\\-1\end{array}\right]\\
+    &= \left[\begin{array}{rrrrr} 4(8) & + & 1(0) & + & (-5)(-1)\\ 0(8) & + & 7(0) & + & 7(-1) \\ 2(8) & + & (-3)(0) & + & 0(-1)\end{array}\right]\\
+    &= \left[\begin{array}{r} 32 + 0 + 5\\0+0-7\\16+0+0\end{array}\right]\\
+    &= \left[\begin{array}{r} 37 \\ -7 \\ 16 \end{array}\right]
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $\mathbf{E} - 5\mathbf{I_3}$
+
+    <!--
+
+    $$
+    \begin{aligned}
+    \mathbf{E} - 5\mathbf{I}_3 &= \left[\begin{array}{rrr}
+    5 & 2 & 3\\ 1 & 0 & -4 \\ -2 & 1 & -6\end{array}\right] - (5)\left[\begin{array}{rrr}
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1\end{array}\right]\\
+    &= \left[\begin{array}{rrr}
+    5 & 2 & 3\\ 1 & 0 & -4 \\ -2 & 1 & -6\end{array}\right] - \left[\begin{array}{rrr}
+    5 & 0 & 0\\
+    0 & 5 & 0\\
+    0 & 0 & 5\end{array}\right]\\
+    &= \left[\begin{array}{rrr}
+    0 & 2 & 3\\
+    1 & -5 & -4\\
+    -2 & 1 & -11\end{array}\right]
+    \end{aligned}
+    $$
+    
+    -->
+
+a. $\mathbf{M}^2$
+
+    <!--
+
+    Recall that $\mathbf{M}^2 = \mathbf{M}\mathbf{M}$, so we must pre-multiply the matrix by itself.
+    
+    $$
+    \begin{aligned}
+    \mathbf{M}^2 &=
+    \begin{bmatrix}
+    1 & -1 \\
+    1 & 3
+    \end{bmatrix} \begin{bmatrix}
+    1 & -1 \\
+    1 & 3
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+    1 \times 1 + -1 \times 1 & 1 \times -1 + -1 \times 3 \\
+    1 \times 1 + 3 \times 1 & 1 \times -1 + 3 \times 3
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+    1 + (-1) & -1 + (-3) \\
+    1 + 3 & -1 + 9 \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+    0 & -4 \\
+    4 & 8 \\
+    \end{bmatrix}
+    \end{aligned}
+    $$
+    
+    -->
+
+# Matrix inversion
+
+Invert each of the following matricies by hand (you can use a calculator or computer to check your solution, but be sure to show your work). Verify you have the correct inverse by calculating $\mathbf{XX}^{-1} = \mathbf{I}$. Not all of the matricies may be invertible - if not, show why.^[Simon and Blume 8.19]
+
+a. $\left[ \begin{array}{rr} 2 & 1 \\ 1 & 1 \end{array}\right]$
+
+    <!--
+
+    **Solution:** Recall the rule for inverting $2 \times 2$ matricies:
+    
+    $$\mathbf{X} = \left[ \begin{array}{rr} x_{11} & x_{12} \\ x_{21} & x_{22} \end{array} \right]$$
+    
+    $$
+    \begin{aligned}
+    \mathbf{X}^{-1} &= |\mathbf{X}|^{-1} \left[
+      \begin{array}{rr}
+      x_{22} & -x_{12} \\
+      -x_{21} & x_{11}
+      \end{array} \right] \\
+    &=  \frac{1}{|\mathbf{X}|} \left[
+      \begin{array}{rr}
+      x_{22} & -x_{12} \\
+      -x_{21} & x_{11}
+      \end{array} \right]
+    \end{aligned}
+    $$
+    
+    Given this rule, first calculate the determinant of the matrix.
+    
+    $$
+    \begin{aligned}
+    |\mathbf{X}| &= (2 \times 1) - (1 \times 1) \\
+    &= 2 - 1 \\
+    &= 1
+    \end{aligned}
+    $$
+    
+    Now we can easily solve for the inverse:
+    
+    $$
+    \begin{aligned}
+    \mathbf{X}^{-1} &= \frac{1}{1} \left[
+      \begin{array}{rr}
+      1 & -1 \\
+      -1 & 2
+      \end{array} \right] \\
+      &= \left[
+      \begin{array}{rr}
+      1 & -1 \\
+      -1 & 2
+      \end{array} \right]
+    \end{aligned}
+    $$
+    
+    -->
+    
+a. $\left[ \begin{array}{rr} 2 & 1 \\ -4 & -2 \end{array}\right]$
+
+    <!--
+
+    **Solution:** Solve for the determinant
+
+    $$
+    \begin{aligned}
+    |\mathbf{X}| &= (2 \times -2) - (1 \times -4) \\
+    &= -4 - (-4) \\
+    &= 0
+    \end{aligned}
+    $$
+    
+    At this point we are done. The matrix has a determinant of zero, making it singular. Singular matricies cannot be inverted.
+    
+    -->
+
+a. $\left[ \begin{array}{rrr} 2 & 4 & 0 \\ 4 & 6 & 3 \\ -6 & -10 & 0 \end{array}\right]$
+
+    <!--
+
+    **Solution:** With a $3\times3$ matrix, we need to apply Gauss-Jordan elimination to obtain the inverse.
+    
+    1. Setup the augmented matrix with the identity matrix
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            2 & 4 & 0 & 1 & 0 & 0 \\
+            4 & 6 & 3 & 0 & 1 & 0 \\
+            -6 & -10 & 0 & 0 & 0 & 1
+          \end{array}
+        \right]$$
+    
+    1. Swap row 1 with row 3
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            -6 & -10 & 0 & 0 & 0 & 1 \\
+            4 & 6 & 3 & 0 & 1 & 0 \\
+            2 & 4 & 0 & 1 & 0 & 0
+          \end{array}
+        \right]$$
+    
+    1. Add $\frac{2}{3} \times$ row 1 to row 2
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            -6 & -10 & 0 & 0 & 0 & 1 \\
+            0 & -2/3 & 3 & 0 & 1 & 2/3 \\
+            2 & 4 & 0 & 1 & 0 & 0
+          \end{array}
+        \right]$$
+    
+    1. Add $\frac{1}{3} \times$ row 1 to row 3
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            -6 & -10 & 0 & 0 & 0 & 1 \\
+            0 & -2/3 & 3 & 0 & 1 & 2/3 \\
+            0 & 2/3 & 0 & 1 & 0 & 1/3
+          \end{array}
+        \right]$$
+    
+    1. Add row 2 to row 3
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            -6 & -10 & 0 & 0 & 0 & 1 \\
+            0 & -2/3 & 3 & 0 & 1 & 2/3 \\
+            0 & 0 & 3 & 1 & 1 & 1
+          \end{array}
+        \right]$$
+    
+    1. Divide row 3 by 3
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            -6 & -10 & 0 & 0 & 0 & 1 \\
+            0 & -2/3 & 3 & 0 & 1 & 2/3 \\
+            0 & 0 & 1 & 1/3 & 1/3 & 1/3
+          \end{array}
+        \right]$$
+    
+    1. Subtract $3 \times$ row 3 from row 2
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            -6 & -10 & 0 & 0 & 0 & 1 \\
+            0 & -2/3 & 0 & -1 & 0 & -1/3 \\
+            0 & 0 & 1 & 1/3 & 1/3 & 1/3
+          \end{array}
+        \right]$$
+    
+    1. Multiply row 2 by $-\frac{3}{2}$
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            -6 & -10 & 0 & 0 & 0 & 1 \\
+            0 & 1 & 0 & 3/2 & 0 & 1/2 \\
+            0 & 0 & 1 & 1/3 & 1/3 & 1/3
+          \end{array}
+        \right]$$
+    
+    1. Add $10 \times$ row 2 to row 1
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            -6 & 0 & 0 & 15 & 0 & 6 \\
+            0 & 1 & 0 & 3/2 & 0 & 1/2 \\
+            0 & 0 & 1 & 1/3 & 1/3 & 1/3
+          \end{array}
+        \right]$$
+    
+    1. Divide row 1 by $-6$
+    
+        $$
+        \left[ 
+          \begin{array}{rrr|rrr} 
+            1 & 0 & 0 & -5/2 & 0 & -1 \\
+            0 & 1 & 0 & 3/2 & 0 & 1/2 \\
+            0 & 0 & 1 & 1/3 & 1/3 & 1/3
+          \end{array}
+        \right]$$
+    
+    1. The inverse of the original matrix is the right part of the augmented matrix.
+    
+        $$
+        \left[ \begin{array}{rrr} 2 & 4 & 0 \\ 4 & 6 & 3 \\ -6 & -10 & 0 \end{array}\right]^{-1} = \left[ 
+          \begin{array}{rrr} 
+            -5/2 & 0 & -1 \\
+            3/2 & 0 & 1/2 \\
+            1/3 & 1/3 & 1/3
+          \end{array}
+        \right]$$
+    
+    1. Factor out common terms
+    
+        $$
+        \left[ \begin{array}{rrr} 2 & 4 & 0 \\ 4 & 6 & 3 \\ -6 & -10 & 0 \end{array}\right]^{-1} = \dfrac{1}{6}\left[ 
+          \begin{array}{rrr} 
+            -15 & 0 & -6 \\
+            9 & 0 & 3 \\
+            2 & 2 & 2
+          \end{array}
+        \right]$$
+        
+    -->
+
+# Dummy encoding for categorical variables
+
+Ordinary least squares regression is a common method for obtaining regression parameters relating a set of explanatory variables with a continuous outcome of interest. The vector $\hat{\mathbf{b}}$ that contains the intercept and the regression slope is calculated by the equation:
+
+$$\hat{\mathbf{b}} = (\mathbf{X'X})^{-1}\mathbf{X'y}$$
+
+If an explanatory variable is nominal (i.e. ordering does not matter) with more than two classes (e.g. $\{\text{White}, \text{Black}, \text{Asian}, \text{Mixed}, \text{Other}\}$), the variable must be modified to include in the regression model. A common technique known as **dummy encoding** converts the column into a series of $n-1$ binary ($0/1$) columns where each column represents a single class and $n$ is the total number of unique classes in the original column. Explain why this method converts the column into $n-1$ columns, rather than $n$ columns, in terms of linear algebra. **Reminder: $\mathbf{X}$ contains both the dummy encoded columns as well as a column of $1$s representing the intercept.**^[My own creation] 
+
+<!--
+
+**Solution:** In order to calculate $\hat{\mathbf{b}}$, we must be able to calculate $(\mathbf{X'X})^{-1}$. And we can only invert $\mathbf{X'X}$ if the matrix is **nonsingular**. What could make a matrix singular? If at least one column is **linearly dependent** (i.e. its value can be produced by linear combinations of other columns in the matrix), then the matrix will not be **full rank**. A square matrix that is not full rank will produce a determinant of 0, which as you'll recall in the case of a $2 \times 2$ matrix would require division by zero.
+
+$$
+\mathbf{X}^{-1} = \frac{1}{0} \left[
+  \begin{array}{rr}
+  x_{22} & -x_{12} \\
+  -x_{21} & x_{11}
+  \end{array} \right]
+$$
+
+So $\mathbf{X'X}$ must be full rank in order to invert it. How does this effect our one-hot encoding scheme? If we were to convert the explanatory variable into $n$ binary variables, the matrix $X$ is nonsingular. That is, any of the columns in $\mathbf{X}$ can be represented as a linear combination of the other columns.
+
+This leads to the problem of what happens when we calculate $\mathbf{X}'\mathbf{X}$. Suppose
+
+$$\mathbf{X} = \begin{bmatrix}
+1 & 1 & 0 \\
+1 & 0 & 1
+\end{bmatrix}$$
+
+It's transpose is
+
+$$\mathbf{X}' = \begin{bmatrix}
+1 & 1 \\
+1 & 0 \\
+0 & 1
+\end{bmatrix}$$
+
+So
+
+$$
+\mathbf{X}'\mathbf{X} = \begin{bmatrix}
+2 & 1 & 1 \\
+1 & 1 & 0 \\
+1 & 0 & 1
+\end{bmatrix}
+$$
+
+The problem is that $\mathbf{X}'\mathbf{X}$ is still non-invertible. The determinant of $\mathbf{X}'\mathbf{X}$ is 0. Notice that the first column $\mathbf{x_1}$ is a linear combination of $\mathbf{x_2} + \mathbf{x_3}$. In fact, $\mathbf{X}$ being invertible is a necessary condition for $\mathbf{X}'\mathbf{X}$ being invertible.
+
+
+-->
+
+# Solve the system of equations
+
+Solve the following systems of equations for $x, y, z$, either via matrix inversion or substitution:^[Gill 4.19]
+
+a. System #1
+
+    $$
+    \begin{aligned}
+        x +   y + 2z &=  2 \\
+        3x -  2y +  z &= 1 \\
+        y -  z &= 3
+    \end{aligned}
+    $$
+    
+    <!--
+
+    * Using matrix inversion:
+    
+        $$
+        \mathbf{A} = \left[ \begin{array}{rrr}
+        1 & 1 & 2 \\
+        3 & -2 & 2 \\
+        0 & 1 & -1 \\
+        \end{array} \right] \quad
+        \mathbf{y} = [2, 1, 3]' \quad
+        \mathbf{x} = [x, y, z]
+        $$
+        
+        $$
+        \begin{aligned}
+        \mathbf{Ax} &= \mathbf{y} \\
+        \mathbf{A^{-1}y} &= \mathbf{x}
+        \end{aligned}
+        $$
+        
+        You can use (a lot) of Gauss-Jordan elimination to invert the matrix. Or I can just use R.
+        
+        ```{r}
+        A <- matrix(c(1, 1, 2, 3, -2, 1, 0, 1, -1),
+                    nrow = 3,
+                    ncol = 3, byrow = TRUE)
+
+        y <- c(2, 1, 3)
+
+        solve(A)      # inverse of A
+        solve(A, y)   # inverse of A times y = x
+        ```
+        
+    * Using substitution
+    
+        1. 1 x third row added to second row and 2 x third row added to first row.
+        
+            $$
+            \begin{aligned}
+                x + 3y &=  8 \\
+                3x -  y&= 4 \\
+                y -  z &= 3
+            \end{aligned}
+            $$
+            
+        1. -3 x first row added to second row
+        
+            $$
+            \begin{aligned}
+                x + 3y &=  8 \\
+                -10y &= -20 \\
+                y -  z &= 3
+            \end{aligned}
+            $$
+            
+        1. Solve for $y$ and $z$
+        
+            $$
+            \begin{aligned}
+            -10y &= -20 \rightarrow y = 2 \\
+            y - z &= 3 \rightarrow z = -1
+            \end{aligned}
+            $$
+            
+        1. Substitute $y$ into the first equation
+        
+            $$x + 3(2) = 8 \rightarrow x = 2$$
+            
+        $$x = 2, y = 2, z = -1$$
+    
+    -->
+    
+a. System #2
+
+    $$
+    \begin{aligned}
+    x - y + 2z &= 2 \\
+    4x + y -2z &= 10 \\
+    x + 3y +z &= 0
+    \end{aligned}
+    $$
+    
+    <!--
+
+    * Using matrix inversion
+    
+        ```{r}
+        A <- matrix(c(1, -1, 2, 4, 1, -2, 1, 3, 1),
+                    nrow = 3,
+                    ncol = 3, byrow = TRUE)
+
+        y <- c(2, 10, 0)
+
+        solve(A)      # inverse of A
+        solve(A, y)   # inverse of A times y = x
+        ```
+    
+    * Using substitution
+    
+        1. Add row 1 to row 2
+        
+            $$\begin{aligned}
+            x - y + 2z &= 2 \\
+            5x  &= 12 \\
+            x + 3y +z &= 0
+    	      \end{aligned}$$
+    	      
+        1. Solve for $x$
+        
+            $$5x = 12 \rightarrow x = \frac{12}{5}$$
+            
+        1. Plug in $x = 2$ and add row 1 x 3 to row 3
+        
+            $$
+            \begin{aligned}
+    			      \frac{12}{5} - y + 2z &= 2 \\
+    			      4 \left( \frac{12}{5} \right) + 7z &= 6
+    	      \end{aligned}
+    	      $$
+    	      
+        1. Solve for $z$
+        
+            $$4 \left( \frac{12}{5} \right) + 7z = 6 \rightarrow z = -\frac{18}{35}$$
+        
+        1. Solve for $y$
+        
+            $$\frac{12}{5} - y + 2 \left( - \frac{18}{35} \right) = 2 \rightarrow y = -\frac{22}{35}$$
+    	  
+        $$x = \frac{12}{5}, y = -\frac{22}{35}, z = -\frac{18}{35}$$
+
+    -->
+    
+# Multiplying by $\mathbf{0}$
+
+When it comes to real numbers, we know that if $xy = 0$, then either $x=0$ or $y=0$ or both. One might believe that a similar idea applies to matricies, but one would be wrong. Prove that if the matrix product $\mathbf{AB=0}$ (by which we mean a matrix of appropriate dimensionality made up entirely of zeroes), then it is not necessarily true that either $\mathbf{A=0}$ or $\mathbf{B=0}$. Hint: in order to prove that something is not always true, simply identify one example where $\mathbf{AB=0}, \: \mathbf{A, B \neq 0}$.^[Grimmer HW5.5]
+
+<!--
+
+**Solution:** Generally speaking, it is easy to show that something is *not* necessarily true. All that is needed is a single counterexample! And in this case, there are infinitely many counterexamples. Here's one:
+
+$$
+\mathbf{A} = \left[\begin{array}{rr}
+1 & -1\\
+-1 & 1\end{array}\right] \qquad \mathbf{B} = \left[\begin{array}{rr}
+1 & 1\\
+1 & 1\end{array}\right]
+$$
+
+$$
+\mathbf{AB} = \left[\begin{array}{rr}
+1(1)+1(-1) & 1(1)+1(-1)\\
+1(-1)+1(1) & 1(-1)+1(1)\end{array}\right] =  \left[\begin{array}{rr}
+0 & 0\\
+0 & 0\end{array}\right]
+$$
+
+-->
