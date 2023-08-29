@@ -12,9 +12,9 @@
 
 
 ## TA TEAM!
-Loizos Bitsikokos
-Bhavya Pandey
-Adam Wu
+* Loizos Bitsikokos: bitsikokos@uchicago.edu
+* Bhavya Pandey: bhavyapandey@uchicago.edu
+* Adam Wu: adamwu@uchicago.edu
 
 ## Course description
 
