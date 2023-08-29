@@ -10,6 +10,12 @@
 * Time: 9:00am-1:00pm
 * Location: Room 142, 1155 E 60th St
 
+
+## TA TEAM!
+Loizos Bitsikokos
+Bhavya Pandey
+Adam Wu
+
 ## Course description
 
 This course surveys mathematical and statistical tools that are foundational to computational social science. Topics to be reviewed include mathematical notation and linear equations, calculus, linear algebra, probability theory, and statistical inference. Students are assumed to have encountered most of these topics previously, so that the camp serves as a refresher rather than teaching entirely new topics. Class sessions will emphasize problem solving and in-class exercises applying these techniques. Students who successfully complete the camp are situated to pass the MACSS math and statistics placement exam and enroll in computationally-enhanced course offerings at the University of Chicago without prior introductory coursework.
@@ -19,6 +25,9 @@ This course surveys mathematical and statistical tools that are foundational to 
 * Students in the [Masters in Computational Social Science](https://macss.uchicago.edu/)
 * MA and PhD students in the social sciences who have significant prior training and experience in mathematics and statistics and seek to complete the [Certificate in Computational Social Science](https://macss.uchicago.edu/content/certificate-current-students)
 * Students looking for a slower-paced camp focused specifically on algebra, calculus, and probability should enroll in SOSC 30100 - Mathematics for Social Sciences. This two-week course makes no assumption of prior math/stats training. Those of you who struggle with the material of this course may switch after the first week to SOSC 30100.
+
+### Assignments: Gradescope
+Join our gradescope classroom: WB3W6G This code should enable anyone to join. Please be sure to upload a CLEAR AND READABLE DOCUMENT that is labeled. 
 
 ## Grades
 
@@ -42,7 +51,7 @@ This course is open to all students who meet the academic requirements for parti
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
 | 28-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/01-functions-sets.pdf)
-| 29-Sep | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) | [Pset 2](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/02-sequences-limits-derivatives.pdf)
+| 29-Sep | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) | [Pset 2](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/02-seq-limits-critical-points.pdf)
 | 30-Aug | Calculus | [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html) | [Pset 3](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/03-critical-points.pdf)
 | 31-Aug | Calculus | [Critical points and approximation](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 4](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/04-linear-algebra.pdf)
 | 1-Sep | Linear algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [Pset 5](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/05-multivariable-differentiation.pdf)
