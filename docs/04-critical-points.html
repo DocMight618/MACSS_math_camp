@@ -512,7 +512,7 @@ $$
 
 ---
 
-# Implementing Newton-Raphson
+# Implementing Newton-Raphson: Max/Min
 
 `$$x_1 = x_0 - \frac{f'(x_0)}{f''(x_0)}$$`
 
@@ -614,7 +614,30 @@ $$
 --
 
 &lt;img src="04-critical-points_files/figure-html/grid-search-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;!--
 
+# Analytically optimize
+
+$$
+`\begin{aligned}
+f'(x) &amp;= 2.4x - 4.8 \\
+0 &amp;= 2.4x - 4.8 \\
+4.8 &amp;= 2.4x \\
+x &amp;= 2
+\end{aligned}`
+$$
+
+--
+
+$$
+`\begin{aligned}
+f''(x) &amp;= 2.4 \\
+f''(2) &amp;= 2.4
+\end{aligned}`
+$$
+
+
+--&gt;
 ---
 
 # Gradient descent
