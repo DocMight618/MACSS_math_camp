@@ -54,7 +54,7 @@ class: center, middle, inverse, title-slide
 
 .pull-right[
 
-* Rolle's theorem guarantee's that, at some point, `\(f^{'}(x) = 0\)`
+* Rolle's theorem guarantees that, at some point, `\(f^{'}(x) = 0\)`
 * Intuition from proof - what happens as we approach from the left? 
 * Intuition from proof - what happens as we approach from the right? 
 
@@ -63,7 +63,16 @@ class: center, middle, inverse, title-slide
 ---
 
 # Higher order derivatives
+Conceptually, we are thinking about changes (get excited for all the *moments* you're going to have in stats later!). The first derivative tells us about the rate of change of our function.  
 
+
+--
+**BUT!** we can also explore how fast the function is changing...that is, the rate of change for our rate of change. Here, we can understand the acceleration of change. We can keep going (provided our function is differentiable).
+
+---
+
+# Higher order derivatives
+(in other words:)
 * Derivatives of derivatives
 * First derivative
 
@@ -79,8 +88,10 @@ class: center, middle, inverse, title-slide
 
 ---
 
-# Higher order derivatives
+# Higher order derivatives: example
+Suppose we start with a function. `\(x^3\)` -- let's explore the different derivatives we might take. Try it out!    
 
+--
 $$
 `\begin{aligned}
 f(x) &amp;=x^3\\
@@ -95,6 +106,14 @@ $$
 * If `\(f'(x)\)` is differentiable, then **continuously differentiable**
 * Optimization requires differentiation
 
+
+---
+
+# Inflection point
+Inflection points are where we move from being concave up to concave down (or vice versa). 
+
+&lt;img src="04-critical-points_files/figure-html/concave-inf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
 ---
 
 # Inflection point
@@ -105,14 +124,56 @@ $$
 
 ---
 
+# Inflection point
+
+&gt; For a given function `\(y = f(x)\)`, a point `\((x^∗, y^∗)\)` where the second derivative immediately on one side of the point is signed oppositely to the second derivative immediately on the other side
+
+Let's start with a basic plot: here, we have a function: `\(\frac{x^3}{15} - x^2 + 4x +2\)`. We can see where we might guess there are the concave up / down points and where the inflection point might be. 
+
+&lt;img src="04-critical-points_files/figure-html/inflect-1-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Inflection point
+
+Let's now consider the same function, but the derivative. We are expecting THE VALUE OF CHANGE (AKA RATE OF CHANGE TO BE ZERO). GREEN: where the derivative (change) is positive or negative. GRAY: point where we don't see any more change (rate of change = 0).
+
+&lt;img src="04-critical-points_files/figure-html/inflect-deriv0-1.png" width="864" style="display: block; margin: auto;" /&gt;
+--
+&lt;img src="04-critical-points_files/figure-html/inflect-deriv1-1.png" width="864" style="display: block; margin: auto;" /&gt;
+---
+
+# Inflection point
+
+&gt; For a given function `\(y = f(x)\)`, a point `\((x^∗, y^∗)\)` where the second derivative immediately on one side of the point is signed oppositely to the second derivative immediately on the other side
+
+&lt;img src="04-critical-points_files/figure-html/inflect-all-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
 # Concavity
 
-* Chord
 * Concave up (convex)
 * Concave down (concave)
 * Verification
     * Graphically
     * Analytically
+
+---
+
+# Concavity
+
+* Where a function is twice differentiable and concave over some area, then the function is concave down where `\(f''(x) &lt; 0\)` and concave up where `\(f''(x) &gt; 0\)`  
+
+
+What does this mean? 
+--  
+
+* We're starting at a critical point `\((f'(x)=0)\)`, so we know we're starting from either a max or min. 
+
+* We are then moving away from that point and we're either *increasing* (min - concave up) or *decreasing* (max - concave down). 
+  * If we're increasing, the second derivative is positive, `\(f''(x) &gt; 0\)`. 
+  * If we're decreasing, the second derivative is negative, `\(f''(x) &lt; 0\)`.
 
 ---
 
@@ -134,13 +195,15 @@ $$
 
 .pull-right[
 
+&lt;font size="2"&gt; Exploring change:
 $$
 `\begin{aligned}
-f(x) &amp; =  e^{x} \\
-f^{'}(x) &amp; =  e^{x} \\
-f^{''}(x) &amp; =  e^{x} 
+f(x) &amp; =  e^{x} \text{ (what the function is doing?)}\\ 
+f^{'}(x) &amp; =  e^{x} \text{ rate of change (never zero!)} \\
+f^{''}(x) &amp; =  e^{x} \text{ rate of change of rate of change (never zero!) }
 \end{aligned}`
 $$
+&lt;/font&gt;
 
 ]
 
@@ -156,15 +219,18 @@ $$
 ]
 
 .pull-right[
+&lt;font size="2"&gt; Exploring change:
 
 $$
 `\begin{aligned}
-f(x) &amp; =  \log(x) \\
-f^{'}(x) &amp; =  \frac{1}{x} \\
-f^{''}(x) &amp; =  -\frac{1}{x^2}
+f(x) &amp; =  \ln(x) \\
+f^{'}(x) &amp; =  \frac{1}{x} \text{ rate of change (always positive (above 0)*}\\
+f^{''}(x) &amp; =  -\frac{1}{x^2} \text{ rate of change of rate of change}
 \end{aligned}`
 $$
+&lt;/font&gt;
 
+\* note that `\(ln(x)\)` only defined for `\(x &gt; 0\)`
 ]
 
 ---
@@ -172,19 +238,57 @@ $$
 # Types of extreme values
 
 * Maximum or minimum
-* Local or global
+* Local or global    
 
+--
+*You can find these graphically or analytically*
 ---
 
-# Types of extreme values
+# Types of extreme values: Examples
 
+How would we evaluate the extreme values here? 
 &lt;img src="04-critical-points_files/figure-html/endpoints-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
+
+--
+
+* Derivative of the function. `\(f'(x) = 1\)`
+* Set to zero and solve. (n/a)
+* Options: 
+  * Plug in values to original function to find corresponding f(x). (only evaluate at end points (0 and 5))
+  * Find second derivative to see if positive (min) or negative (max)
+
 ---
 
-# Types of extreme values
+# Types of extreme values: Example           
+   
 
+Try with a neighbor:    
 &lt;img src="04-critical-points_files/figure-html/max-middle-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+
+--
+
+
+#### `\(f'(x) = -2x\)`, zero at `\(x=0\)`, `\(f(x) = 0^2+5=5\)`. 
+
+ 
+But is it a max or min?   
+  
+
+
+--
+
+
+   
+   
+Try adjacent point (e.g. -1 or 1). `\((-1^2+5)=4\)` OR take second derivative: `\(-2\)`. 
+
+
+
+--
+
+Since 4 is less than 5, we know this is a max at x = 0, since `\(f(x = 0) &gt; f(x=1)\)`. Similarly, the second derivative is negative, so this also indicates that it is a max. 
 
 ---
 
@@ -218,13 +322,15 @@ $$
 
 ---
 
-# `\(f(x) = -x^2\)`,  `\(x \in [-3, 3]\)`
+# Ex: 
+`\(f(x) = -x^2\)`,  `\(x \in [-3, 3]\)`
 
 &lt;img src="04-critical-points_files/figure-html/ex-1-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# `\(f(x) = x^3\)`, `\(x \in [-3, 3]\)`
+# Ex:  
+`\(f(x) = x^3\)`, `\(x \in [-3, 3]\)`
 
 &lt;img src="04-critical-points_files/figure-html/ex-2-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
@@ -304,6 +410,15 @@ $$
 --
 
 * `\(-N&lt;0 \leadsto \text{concave down}\)`
+
+
+---
+
+# Maximum likelihood estimation: MLE in life
+Logit and other limited-dependent variable models: what function creates a curve that best predicts our outcome variable? 
+
+* Simplest example: 0s and 1s as outcome
+* Trying to determine which function best predicts the outcome for parameter estimates
 
 ---
 
@@ -547,6 +662,36 @@ $$
 # `\(\alpha = 0.1\)`
 
 &lt;img src="04-critical-points_files/figure-html/grad-descent-learn-rate-2-1.gif" style="display: block; margin: auto;" /&gt;
+---
+
+# STARTING THE PARTY: Matrices
+## Example matricies
+We have two matrices: X and Y. 
+
+`$$\begin{aligned}\mathbf{X} &amp;= 
+\left[ 
+\begin{array}{rrr}1 &amp; 2 &amp; 3 \\
+2 &amp; 1 &amp; 4 \\
+\end{array} \right] \\
+\mathbf{Y} &amp;= \left[ \begin{array}{rr}
+1 &amp; 2 \\
+3 &amp; 2 \\
+1 &amp; 4 \\
+\end{array} \right]
+\end{aligned}$$`
+
+X has two rows and three columms, so is `\(2 \times 3\)`. Y has three rows and two columns, so is `\(3 \times 2\)`. 
+
+--
+
+Matrices are incredibly helpful, despite also being a bit challenging to get the hang of. We'll talk more about them tomorrow but you will want to note the dimensions of a matrix. You can do some operations with them (addition / subtraction) and they work the way you are probably guessing (need to be the same size). **MULTIPLICATION DOES NOT WORK THAT WAY! WARNING!!!**
+---
+
+
+
+# INTROS
+
+* Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
