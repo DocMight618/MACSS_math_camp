@@ -50,7 +50,7 @@ This course is open to all students who meet the academic requirements for parti
 
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
-| 28-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/01-functions-sets.pdf)
+| 28-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/01-functions-sets.pdf) & [answer key](solutions/01-functions-sets-solution-key.pdf)
 | 29-Sep | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/02-seq-limits-critical-points.pdf)
 | 30-Aug | Calculus | [Critical points and approximation + Intro Linear Algebra](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 3](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/03-critical-points.pdf)
 | 31-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [Pset 4](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/04-linear-algebra.pdf)
