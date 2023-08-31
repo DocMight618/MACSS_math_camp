@@ -58,7 +58,7 @@ Transposing a matrix means *flipping* it in a sense -- swapping across the diago
 # Determinant
 
 * Single number summary of a square matrix
-* Summary of structure
+* Summary of structure: helps us understand (loosely speaking) how much space our vectors are taking up (more on this soon!)
 * Complicated to calculate: generally, multiply down the diagonal and subtract products along opposite diagonal (examples coming!)
 * Referred to using single bars `\(|\mathbf{X}|\)` or det($\mathbf{X}$)
 
@@ -130,25 +130,25 @@ x_{41} &amp; x_{42} &amp; x_{43}  \\
 
 # `\(3 \times 3\)` matrix
 
-$$
-\begin{aligned}
+`$$\begin{aligned}
 \mathbf{X} &amp;= \begin{bmatrix}
 x_{11} &amp; x_{12} &amp; x_{13} \\
 x_{21} &amp; x_{22} &amp; x_{23} \\
 x_{31} &amp; x_{32} &amp; x_{33} \\
 \end{bmatrix} \\
-\det(\mathbf{X}) &amp;= (+1)x_{11} \left| \begin{matrix}
+\det(\mathbf{X}) &amp;= (-1^{1+1})x_{11} \left| \begin{matrix}
 x_{22} &amp; x_{23} \\
 x_{32} &amp; x_{33} \\
-\end{matrix} \right| +(-1)x_{12} \left| \begin{matrix}
+\end{matrix} \right| +(-1^{1+2})x_{12} \left| \begin{matrix}
 x_{21} &amp; x_{23} \\
 x_{31} &amp; x_{33} \\
-\end{matrix} \right| + (+1)x_{13} \left| \begin{matrix}
+\end{matrix} \right| + (-1^{1+3})x_{13} \left| \begin{matrix}
 x_{21} &amp; x_{22} \\
 x_{31} &amp; x_{32} \\
 \end{matrix} \right|
-\end{aligned}
-$$
+\end{aligned}$$`
+--
+NO YOU DO NOT NEED TO BE ABLE TO DO THIS!
 
 ---
 
@@ -287,6 +287,18 @@ x_{1} + x_{2} + x_{3} &amp;= 0 \\
 * Linear independence
 
 --
+
+Remember when our determinant was zero? 
+`$$\left| \begin{matrix}
+2 &amp; 3 \\
+6 &amp; 9
+\end{matrix} \right| = (2)(9) - (3)(6) = 18 - 18 = 0$$`
+
+Here, we can see that our two vectors are not linearly independent. Thus, our determinant is zero. If we don't have linear independence, we can't take an inverse (singular matrix). [THIS IS WHY WE CARE ABOUT COLLINEARITY!]
+
+---
+
+# Inverse matrices examples: 
 
 ### Example 1
 
@@ -605,6 +617,12 @@ The **eigenvalue** is the length the vector changes in its transformation.
 
 More formally, suppose we have a matrix `\(\mathbf{X}\)`. If we multiply that by our eigenvector `\(\mathbf{v}\)`, what we'll get out is simply a rescaled vector `\(mathbf{v}\)`. How much will it be rescaled by? By some scalar amount of our eigenvalue, represented by `\(\lambda\)`. 
 
+---
+# Cool. So what?!
+
+--
+
+So glad you asked!!! We sometimes want to get an idea of what happens if we are reducing the thing we care about from a whole bunch of stuff to a few core directions / topics (cue PCA / topic analysis. )
 
 ---
 class: middle
