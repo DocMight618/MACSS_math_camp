@@ -16,6 +16,13 @@ library(here)
 library(gganimate)
 ```
 
+# Misc
+
+* Gradescope: show work!
+* Library presentation 8/31 @ 11:30 (in here!)
+* No homework tomorrow (!!)
+
+---
 # Learning objectives
 
 * Define critical points
@@ -55,7 +62,7 @@ function_plot +
 
 .pull-right[
 
-* Rolle's theorem guarantee's that, at some point, $f^{'}(x) = 0$
+* Rolle's theorem guarantees that, at some point, $f^{'}(x) = 0$
 * Intuition from proof - what happens as we approach from the left? 
 * Intuition from proof - what happens as we approach from the right? 
 
@@ -64,7 +71,16 @@ function_plot +
 ---
 
 # Higher order derivatives
+Conceptually, we are thinking about changes (get excited for all the *moments* you're going to have in stats later!). The first derivative tells us about the rate of change of our function.  
 
+
+--
+**BUT!** we can also explore how fast the function is changing...that is, the rate of change for our rate of change. Here, we can understand the acceleration of change. We can keep going (provided our function is differentiable).
+
+---
+
+# Higher order derivatives
+(in other words:)
 * Derivatives of derivatives
 * First derivative
 
@@ -80,8 +96,10 @@ function_plot +
 
 ---
 
-# Higher order derivatives
+# Higher order derivatives: example
+Suppose we start with a function. $x^3$ -- let's explore the different derivatives we might take. Try it out!    
 
+--
 $$
 \begin{aligned}
 f(x) &=x^3\\
@@ -96,6 +114,40 @@ $$
 * If $f'(x)$ is differentiable, then **continuously differentiable**
 * Optimization requires differentiation
 
+
+---
+
+# Inflection point
+Inflection points are where we move from being concave up to concave down (or vice versa). 
+
+```{r concave-inf}
+concave_func <- function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15
+
+tibble(
+  x = seq(0, 10, by = .001),
+  y = concave_func(x),
+  concave_up = x > 5,
+  min = ifelse(concave_up, y, 2),
+  max = ifelse(concave_up, 10, y)
+) %>%
+  mutate(concave_up = factor(concave_up,
+    levels = c(TRUE, FALSE),
+    labels = c("Concave up", "Concave down")
+  )) %>%
+  ggplot(aes(x = x)) +
+  stat_function(fun = concave_func, size = 0.5) +
+  geom_ribbon(aes(y = y, ymin = min, ymax = max, fill = concave_up),
+    alpha = .5
+  ) +
+  scale_fill_brewer(type = "qual", palette = 2) +
+  labs(
+    x = expression(x),
+    y = expression(f(x)),
+    fill = NULL
+  ) +
+  theme(legend.position = "bottom")
+```
+
 ---
 
 # Inflection point
@@ -105,14 +157,14 @@ $$
 ```{r inflect, fig.height = 6}
 fx <- function_plot +
   stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
-  geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 2) +
+  geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 4, color = "blue", linewidth = 0.8) +
   labs(y = expression(f(x))) +
   xlim(0, 10) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 
 fx1 <- function_plot +
   stat_function(fun = function(x) (x^2 / 5) - 2 * x + 4, size = 0.5) +
-  geom_abline(slope = 0, intercept = -1, linetype = 2) +
+  geom_abline(slope = 0, intercept = -1, linetype = 4,  color = "blue", linewidth = 0.8) +
   labs(y = expression({
     f * minute
   }(x))) +
@@ -121,7 +173,99 @@ fx1 <- function_plot +
 
 fx2 <- function_plot +
   stat_function(fun = function(x) (2 * (x - 5)) / 5, size = 0.5) +
-  geom_abline(slope = 0, intercept = 0, linetype = 2) +
+  geom_abline(slope = 0, intercept = 0, linetype = 4, color = "blue", linewidth = 0.8) +
+  labs(y = expression({
+    f * second
+  }(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+
+fx + fx1 + fx2 +
+  plot_layout(ncol = 1)
+```
+
+---
+
+# Inflection point
+
+> For a given function $y = f(x)$, a point $(x^∗, y^∗)$ where the second derivative immediately on one side of the point is signed oppositely to the second derivative immediately on the other side
+
+Let's start with a basic plot: here, we have a function: $\frac{x^3}{15} - x^2 + 4x +2$. We can see where we might guess there are the concave up / down points and where the inflection point might be. 
+
+```{r inflect-1, fig.height = 5}
+fx <- function_plot +
+  stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
+  geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 4, color = "blue", linewidth = 0.8) +
+  labs(y = expression(f(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+
+
+
+fx
+```
+
+---
+
+# Inflection point
+
+Let's now consider the same function, but the derivative. We are expecting THE VALUE OF CHANGE (AKA RATE OF CHANGE TO BE ZERO). GREEN: where the derivative (change) is positive or negative. GRAY: point where we don't see any more change (rate of change = 0).
+
+```{r inflect-deriv0, fig.height = 2.5}
+fx <- function_plot +
+  stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
+  geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 4, color = "blue", linewidth = 0.8) +
+  geom_vline(xintercept = 5+5^0.5, color = "black", linetype = 3) +
+  geom_vline(xintercept = 5-5^0.5, color = "black", linetype = 3) +
+  geom_vline(xintercept = 5, color = "black", linetype = 3) +
+  labs(y = expression(f(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+fx
+```
+--
+```{r inflect-deriv1, fig.height = 3.5}
+fx1 <- function_plot +
+  stat_function(fun = function(x) (x^2 / 5) - 2 * x + 4, size = 0.5) +
+  geom_abline(slope = 0, intercept = -1, linetype = 4,  color = "blue", linewidth = 0.8) +
+  geom_abline(slope = 0, intercept = 0, linetype = 2,  color = "green", linewidth = 0.8) +
+  geom_vline(xintercept = 5+5^0.5, color = "black", linetype = 3) +
+  geom_vline(xintercept = 5-5^0.5, color = "black", linetype = 3) +
+  geom_vline(xintercept = 5, color = "black", linetype = 3) +
+  labs(y = expression({
+    f * minute
+  }(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+fx1
+```
+---
+
+# Inflection point
+
+> For a given function $y = f(x)$, a point $(x^∗, y^∗)$ where the second derivative immediately on one side of the point is signed oppositely to the second derivative immediately on the other side
+
+```{r inflect-all, fig.height = 5}
+fx <- function_plot +
+  stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
+  geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 4, color = "blue", linewidth = 0.8) +
+  labs(y = expression(f(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+
+fx1 <- function_plot +
+  stat_function(fun = function(x) (x^2 / 5) - 2 * x + 4, size = 0.5) +
+  geom_abline(slope = 0, intercept = -1, linetype = 4,  color = "blue", linewidth = 0.8) +
+  geom_abline(slope = 0, intercept = 0, linetype = 2,  color = "green", linewidth = 0.8) +
+  labs(y = expression({
+    f * minute
+  }(x))) +
+  xlim(0, 10) +
+  theme_minimal()#base_size = rcfss::base_size * .7)
+
+fx2 <- function_plot +
+  stat_function(fun = function(x) (2 * (x - 5)) / 5, size = 0.5) +
+  geom_abline(slope = 0, intercept = 0, linetype = 4, color = "black", linewidth = 0.8) +
   labs(y = expression({
     f * second
   }(x))) +
@@ -136,12 +280,27 @@ fx + fx1 + fx2 +
 
 # Concavity
 
-* Chord
 * Concave up (convex)
 * Concave down (concave)
 * Verification
     * Graphically
     * Analytically
+
+---
+
+# Concavity
+
+* Where a function is twice differentiable and concave over some area, then the function is concave down where $f''(x) < 0$ and concave up where $f''(x) > 0$  
+
+
+What does this mean? 
+--  
+
+* We're starting at a critical point $(f'(x)=0)$, so we know we're starting from either a max or min. 
+
+* We are then moving away from that point and we're either *increasing* (min - concave up) or *decreasing* (max - concave down). 
+  * If we're increasing, the second derivative is positive, $f''(x) > 0$. 
+  * If we're decreasing, the second derivative is negative, $f''(x) < 0$.
 
 ---
 
@@ -168,7 +327,7 @@ tibble(
   geom_ribbon(aes(y = y, ymin = min, ymax = max, fill = concave_up),
     alpha = .5
   ) +
-  scale_fill_brewer(type = "qual") +
+  scale_fill_brewer(type = "qual", palette = 2) +
   labs(
     x = expression(x),
     y = expression(f(x)),
@@ -194,13 +353,15 @@ function_plot +
 
 .pull-right[
 
+<font size="2"> Exploring change:
 $$
 \begin{aligned}
-f(x) & =  e^{x} \\
-f^{'}(x) & =  e^{x} \\
-f^{''}(x) & =  e^{x} 
+f(x) & =  e^{x} \text{ (what the function is doing?)}\\ 
+f^{'}(x) & =  e^{x} \text{ rate of change (never zero!)} \\
+f^{''}(x) & =  e^{x} \text{ rate of change of rate of change (never zero!) }
 \end{aligned}
 $$
+</font>
 
 ]
 
@@ -214,22 +375,25 @@ $$
 ```{r strict-log, fig.width = 6}
 function_plot +
   stat_function(fun = function(x) log(x), size = 0.5, n = 1000) +
-  labs(y = expression(log[x])) +
+  labs(y = expression(ln[x])) +
   xlim(0, 5)
 ```
 
 ]
 
 .pull-right[
+<font size="2"> Exploring change:
 
 $$
 \begin{aligned}
-f(x) & =  \log(x) \\
-f^{'}(x) & =  \frac{1}{x} \\
-f^{''}(x) & =  -\frac{1}{x^2}
+f(x) & =  \ln(x) \\
+f^{'}(x) & =  \frac{1}{x} \text{ rate of change (always positive (above 0)*}\\
+f^{''}(x) & =  -\frac{1}{x^2} \text{ rate of change of rate of change}
 \end{aligned}
 $$
+</font>
 
+\* note that $ln(x)$ only defined for $x > 0$
 ]
 
 ---
@@ -237,13 +401,16 @@ $$
 # Types of extreme values
 
 * Maximum or minimum
-* Local or global
+* Local or global    
 
+--
+*You can find these graphically or analytically*
 ---
 
-# Types of extreme values
+# Types of extreme values: Examples
 
-```{r endpoints}
+How would we evaluate the extreme values here? 
+```{r endpoints, fig.height = 4}
 function_plot +
   stat_function(fun = function(x) x, size = .5) +
   geom_point(
@@ -261,11 +428,22 @@ function_plot +
   xlim(0, 5)
 ```
 
+
+--
+
+* Derivative of the function. $f'(x) = 1$
+* Set to zero and solve. (n/a)
+* Options: 
+  * Plug in values to original function to find corresponding f(x). (only evaluate at end points (0 and 5))
+  * Find second derivative to see if positive (min) or negative (max)
+
 ---
 
-# Types of extreme values
+# Types of extreme values: Example           
+   
 
-```{r max-middle}
+Try with a neighbor:    
+```{r max-middle, fig.height=3.85}
 function_plot +
   stat_function(fun = function(x) -(x^2) + 5, size = .5) +
   geom_hline(yintercept = 5, linetype = 2) +
@@ -274,6 +452,30 @@ function_plot +
     y = expression(f(x))
   )
 ```
+
+
+--
+
+
+#### $f'(x) = -2x$, zero at $x=0$, $f(x) = 0^2+5=5$. 
+
+ 
+But is it a max or min?   
+  
+
+
+--
+
+
+   
+   
+Try adjacent point (e.g. -1 or 1). $(-1^2+5)=4$ OR take second derivative: $-2$. 
+
+
+
+--
+
+Since 4 is less than 5, we know this is a max at x = 0, since $f(x = 0) > f(x=1)$. Similarly, the second derivative is negative, so this also indicates that it is a max. 
 
 ---
 
@@ -340,7 +542,8 @@ function_plot +
 
 ---
 
-# $f(x) = -x^2$,  $x \in [-3, 3]$
+# Ex: 
+$f(x) = -x^2$,  $x \in [-3, 3]$
 
 ```{r ex-1}
 function_plot +
@@ -354,7 +557,8 @@ function_plot +
 
 ---
 
-# $f(x) = x^3$, $x \in [-3, 3]$
+# Ex:  
+$f(x) = x^3$, $x \in [-3, 3]$
 
 ```{r ex-2}
 function_plot +
@@ -442,6 +646,15 @@ $$
 --
 
 * $-N<0 \leadsto \text{concave down}$
+
+
+---
+
+# Maximum likelihood estimation: MLE in life
+Logit and other limited-dependent variable models: what function creates a curve that best predicts our outcome variable? 
+
+* Simplest example: 0s and 1s as outcome
+* Trying to determine which function best predicts the outcome for parameter estimates
 
 ---
 
@@ -567,7 +780,7 @@ f0 +
         intercept = 0,
         color = "maximum"
       ),
-    aes(yintercept = intercept, color = color), linetype = 2
+    aes(yintercept = intercept, color = color), linetype = 2, linewidth = 1.2
   ) +
   geom_vline(
     data =
@@ -575,7 +788,7 @@ f0 +
         intercept = 0,
         color = "maximum"
       ),
-    aes(xintercept = intercept, color = color), linetype = 2
+    aes(xintercept = intercept, color = color), linetype = 2,  linewidth = 1.2
   ) +
   scale_color_brewer(type = "qual", guide = FALSE)
 ```
@@ -597,7 +810,7 @@ $$
 
 ---
 
-# Implementing Newton-Raphson
+# Implementing Newton-Raphson: Max/Min
 
 $$x_1 = x_0 - \frac{f'(x_0)}{f''(x_0)}$$
 
@@ -852,22 +1065,7 @@ function_plot +
   xlim(-2, 2) +
   labs(title = expression(f(x) == -x^2))
 ```
-
----
-
-# Gradient descent
-
-```{r grad-ex}
-function_plot +
-  stat_function(fun = function(x) 1.2 * x^2 - 4.8 * x + 8) +
-  xlim(0, 4) +
-  labs(
-    title = expression(f(x) == 1.2 * x^2 - 4.8 * x + 8),
-    y = expression(f(x))
-  )
-```
-
----
+<!--
 
 # Analytically optimize
 
@@ -889,7 +1087,25 @@ f''(2) &= 2.4
 \end{aligned}
 $$
 
+
+-->
 ---
+
+# Gradient descent
+
+```{r grad-ex}
+function_plot +
+  stat_function(fun = function(x) 1.2 * x^2 - 4.8 * x + 8) +
+  xlim(0, 4) +
+  labs(
+    title = expression(f(x) == 1.2 * x^2 - 4.8 * x + 8),
+    y = expression(f(x))
+  )
+```
+
+---
+
+
 
 # Gradient descent
 
@@ -979,3 +1195,33 @@ function_plot +
   ) +
   transition_reveal(label)
 ```
+---
+
+# STARTING THE PARTY: Matrices
+## Example matricies
+We have two matrices: X and Y. 
+
+$$\begin{aligned}\mathbf{X} &= 
+\left[ 
+\begin{array}{rrr}1 & 2 & 3 \\
+2 & 1 & 4 \\
+\end{array} \right] \\
+\mathbf{Y} &= \left[ \begin{array}{rr}
+1 & 2 \\
+3 & 2 \\
+1 & 4 \\
+\end{array} \right]
+\end{aligned}$$
+
+X has two rows and three columms, so is $2 \times 3$. Y has three rows and two columns, so is $3 \times 2$. 
+
+--
+
+Matrices are incredibly helpful, despite also being a bit challenging to get the hang of. We'll talk more about them tomorrow but you will want to note the dimensions of a matrix. You can do some operations with them (addition / subtraction) and they work the way you are probably guessing (need to be the same size). **MULTIPLICATION DOES NOT WORK THAT WAY! WARNING!!!**
+---
+
+
+
+# INTROS
+
+* Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
