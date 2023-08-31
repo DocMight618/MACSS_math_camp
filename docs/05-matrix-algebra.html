@@ -585,17 +585,9 @@ Consider the following:
 2 &amp; 1 &amp; 4 &amp; 3\\
 \end{bmatrix}$$`
 
-`$$\mathbf{Y} = \left[ \begin{array}{rr}
-1 &amp; 2 \\
-3 &amp; 2 \\
-1 &amp; 4 \\
-\end{array} \right]\\$$`
+`$$\mathbf{Y} = \left[ \begin{array}{rr} 1 &amp; 2 \\3 &amp; 2 \\1 &amp; 4\end{array} \right]\\$$`
 
-`$$\mathbf{Z} = \left[
- \begin{array}{rrr}1 &amp; 2 &amp; 3 \\
-5 &amp; 1 &amp; 4 \\
-6 &amp; 1 &amp; 7 \\
-\end{array} \right]$$   
+`$$\mathbf{Z} = \left[ \begin{array}{rrr}1 &amp; 2 &amp; 3 \\5 &amp; 1 &amp; 4 \\6 &amp; 1 &amp; 7\end{array} \right]$$`   
 
 ---    
 
@@ -603,26 +595,7 @@ Consider the following:
 
 * `\(\mathbf{X}\)` and `\(\mathbf{Y}\)` are `\(m \times n\)` matrices
 
-`$$\begin{aligned} 
-\mathbf{X} + \mathbf{Y} &amp; =  \begin{pmatrix} 
-x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1n} \\
-x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2n} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-x_{m1} &amp; x_{m2} &amp; \ldots &amp; x_{mn} \\
-\end{pmatrix} + 
-\begin{pmatrix} 
-y_{11} &amp; y_{12} &amp; \ldots &amp; y_{1n} \\
-y_{21} &amp; y_{22} &amp; \ldots &amp; y_{2n} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-y_{m1} &amp; y_{m2} &amp; \ldots &amp; y_{mn} \\
-\end{pmatrix} \\
-&amp; = \begin{pmatrix} 
-x_{11} + y_{11} &amp; x_{12} + y_{12} &amp; \ldots &amp; x_{1n} + y_{1n} \\
-x_{21} + y_{21} &amp; x_{22} + y_{22} &amp; \ldots &amp; x_{2n} + y_{2n} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
-x_{m1} + y_{m1} &amp; x_{m2} + y_{m2} &amp; \ldots &amp; x_{mn} + y_{mn} \\
-\end{pmatrix} 
-\end{aligned}$$`
+`$$\begin{aligned} \mathbf{X} + \mathbf{Y} &amp; =  \begin{pmatrix} x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1n} \\ x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2n} \\\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_{m1} &amp; x_{m2} &amp; \ldots &amp; x_{mn} \\ \end{pmatrix} + \begin{pmatrix}  y_{11} &amp; y_{12} &amp; \ldots &amp; y_{1n} \\ y_{21} &amp; y_{22} &amp; \ldots &amp; y_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ y_{m1} &amp; y_{m2} &amp; \ldots &amp; y_{mn} \\ \end{pmatrix} \\ &amp; = \begin{pmatrix}  x_{11} + y_{11} &amp; x_{12} + y_{12} &amp; \ldots &amp; x_{1n} + y_{1n} \\ x_{21} + y_{21} &amp; x_{22} + y_{22} &amp; \ldots &amp; x_{2n} + y_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ x_{m1} + y_{m1} &amp; x_{m2} + y_{m2} &amp; \ldots &amp; x_{mn} + y_{mn} \\ \end{pmatrix} \end{aligned}$$`
 
 ---
 
@@ -642,27 +615,15 @@ k x_{m1} &amp; k x_{m2} &amp; \ldots &amp; k x_{mn} \\
 
 # Matrix transposition
 
-Transposing a matrix means `flipping' it in a sense -- swapping across the diagonal. 
+Transposing a matrix means *flipping* it in a sense -- swapping across the diagonal. 
 
---  
+`$$\mathbf{X} = \begin{pmatrix} x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1n} \\ x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_{m1} &amp; x_{m2} &amp; \ldots &amp; x_{mn} \\ \end{pmatrix}$$` 
 
-
-`$$\mathbf{X} = \begin{pmatrix}
-x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1n} \\
-x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2n} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-x_{m1} &amp; x_{m2} &amp; \ldots &amp; x_{mn} \\
-\end{pmatrix} \\
-\mathbf{X}' = \begin{pmatrix} 
-x_{11} &amp; x_{21} &amp; \ldots &amp; x_{m1} \\
-x_{12} &amp; x_{22} &amp; \ldots &amp; x_{m2} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}
-\end{pmatrix}$$`
+`$$\mathbf{X}' = \begin{pmatrix}  x_{11} &amp; x_{21} &amp; \ldots &amp; x_{m1} \\ x_{12} &amp; x_{22} &amp; \ldots &amp; x_{m2} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}\end{pmatrix}\\$$`
 
 
 
----
+---  
 
 # Matrix multiplication
 This is conceptually a bit hard as I find it really unintuitive (maybe it's not for you!). 
@@ -674,7 +635,7 @@ This is conceptually a bit hard as I find it really unintuitive (maybe it's not 
 (steps continued on next slide -- just setting up logic here!) \\
 
 &lt;span style = "color: blue;"&gt;
-$$\mathbf{X} = \begin{pmatrix} 1 \\ 10 \\ \end{pmatrix} $$
+`$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
 &lt;/span&gt;
 
 &lt;span style = "color: red;"&gt;
@@ -695,7 +656,7 @@ To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOW
 --
 
 &lt;span style = "color: blue;"&gt;
-$$\mathbf{X} = \begin{pmatrix} 1 \\ 10 \\ \end{pmatrix} $$
+`$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
 &lt;/span&gt;
 
 &lt;span style = "color: red;"&gt;
@@ -703,13 +664,30 @@ $$\mathbf{X} = \begin{pmatrix} 1 \\ 10 \\ \end{pmatrix} $$
 &lt;/span&gt;
 
 --
-Here, we have a very simple example -- so, we'll take the row (in this case, the entirety) of X and multiply the pairs (each element with its corresponding partner) of X and Y. So, &lt;span style = "color: red;"&gt; `\(5*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(2*\)` &lt;/span&gt; `\(+\)` &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(5+ 20 = 25\)` &lt;/span&gt; as the first cell in our resulting matrix.  
+
+Here, we have a very simple example -- so, we'll take the row (in this case, the entirety) of X and multiply the pairs (each element with its corresponding partner) of X and Y. So, &lt;span style = "color: red;"&gt; `\(5*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(2*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(5+ 20 = 25\)` &lt;/span&gt; as the first cell in our resulting matrix.  
+
 --
+
 Similarly, we'll multiply the remaining row of our matrix Y by the column in X to produce the following:  &lt;span style = "color: red;"&gt; `\(3*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(4*\)` &lt;/span&gt; `\(+\)` &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(3+ 40 = 43\)` &lt;/span&gt; as the first cell in our resulting matrix. 
 
---  
+---
 
-This produces
+# Matrix multiplication: Color-coded example
+To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOWN THE COLUMN of the second matrix. You then add these together. For example, if you have matrix A times matrix B, it would be element `\(a_{1,1}*b_{1,1} + ... + a_{1,n}*b_{n,1}\)`. This sum goes into the first cell in the resulting matrix. This sounds confusing (because it is), so let's see an example. 
+
+--
+
+&lt;span style = "color: blue;"&gt;
+`$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
+&lt;/span&gt;
+
+&lt;span style = "color: red;"&gt;
+`$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+&lt;/span&gt;
+
+
+**This produces**
 
 &lt;span style = "color: purple;"&gt;
 $$\mathbf{X} = \begin{pmatrix} 25 \\ 43 \\ \end{pmatrix} $$
