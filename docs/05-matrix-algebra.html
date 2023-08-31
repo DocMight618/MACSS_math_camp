@@ -32,6 +32,7 @@ class: center, middle, inverse, title-slide
 * Grading up
 * Check github for updates
 * Library presentation @ 11:30
+* TYPOS FIXED IN HERE! SORRY!
 
 ---
 
@@ -42,7 +43,6 @@ class: center, middle, inverse, title-slide
 * Visualize vectors in multiple dimensions
 * Demonstrate applicability of linear algebra to text analysis and cosine similarity
 * Perform basic algebraic operations on vectors and matricies
-* Generalize linear algebra to tensors and neural networks
 
 ---
 
@@ -192,7 +192,7 @@ $$
 Are any of these linearly dependent? 
 --
 
-These are linearly dependent, despite each being pairwise independent. 
+These are (together) linearly dependent.
 
 ---
 
@@ -589,7 +589,7 @@ Consider the following:
 
 `$$\mathbf{Z} = \left[ \begin{array}{rrr}1 &amp; 2 &amp; 3 \\5 &amp; 1 &amp; 4 \\6 &amp; 1 &amp; 7\end{array} \right]$$`   
 
----    
+---
 
 # Matrix oparations: addition
 
@@ -623,9 +623,10 @@ Transposing a matrix means *flipping* it in a sense -- swapping across the diago
 
 
 
----  
-
+---
+ 
 # Matrix multiplication
+ 
 This is conceptually a bit hard as I find it really unintuitive (maybe it's not for you!). 
 
 * Step 1: have two (or more matrices to multiply)
@@ -690,7 +691,7 @@ To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOW
 **This produces**
 
 &lt;span style = "color: purple;"&gt;
-$$\mathbf{X} = \begin{pmatrix} 25 \\ 43 \\ \end{pmatrix} $$
+`$$\mathbf{Z} = \begin{pmatrix} 25 \\ 43 \\ \end{pmatrix}$$`
 &lt;/span&gt;
 
 ---
@@ -712,7 +713,7 @@ Try this example and check with a neighbor: `\(\mathbf{IY}\)` (let's see why `\(
 
 `$$\mathbf{I} = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ \end{pmatrix} , \quad \mathbf{Y} = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
 
--- 
+--
 
 `$$\begin{aligned} \mathbf{A} &amp; = \mathbf{I} \mathbf{Y} \\&amp; = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; 1 \\\end{pmatrix} \begin{pmatrix}1 &amp; 2 \\3 &amp; 4 \\\end{pmatrix} 
 \\&amp;= \begin{pmatrix}1 \times 1 + 0 \times 3 &amp; 1 \times 2 + 0 \times 4 \\
