@@ -29,6 +29,8 @@ class: center, middle, inverse, title-slide
 
 # Learning objectives
 
+* Matrix transposition 
+* Our pal, the diagonal: trace and determinant 
 * Define matrix inversion
 * Demonstrate how to solve systems of linear equations using matrix inversion
 * Define the determinant of a matrix
@@ -37,7 +39,139 @@ class: center, middle, inverse, title-slide
 
 ---
 
+# Matrix transposition
+
+Transposing a matrix means *flipping* it in a sense -- swapping across the diagonal. 
+
+`$$\mathbf{X} = \begin{pmatrix} x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1n} \\ x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_{m1} &amp; x_{m2} &amp; \ldots &amp; x_{mn} \\ \end{pmatrix}$$` 
+
+`$$\mathbf{X}' = \begin{pmatrix}  x_{11} &amp; x_{21} &amp; \ldots &amp; x_{m1} \\ x_{12} &amp; x_{22} &amp; \ldots &amp; x_{m2} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}\end{pmatrix}\\$$`
+
+---
+# Diagonal measures: trace and determinant
+
+* Trace gives us information about the magnitude of the diagonal of a matrix: you simply add the values along the diagonal. For example, the trace of an identity matrix is equal to the number of rows (e.g.: `\(tr(\mathbf{I}_2)=2\)` )
+
+* Determinant: summmarizes structure of entire matrix. Easy for `\(2\times 2\)` matrix but a pain for larger ones. 
+---
+
+# Determinant
+
+* Single number summary of a square matrix
+* Summary of structure
+* Complicated to calculate: generally, multiply down the diagonal and subtract products along opposite diagonal (examples coming!)
+* Referred to using single bars `\(|\mathbf{X}|\)` or det($\mathbf{X}$)
+
+
+---
+
+# `\(2 \times 2\)` matrix
+
+`$$\det(\mathbf{X}) = \mid \mathbf{X} \mid = \left| \begin{matrix}
+x_{11} &amp; x_{12} \\
+x_{21} &amp; x_{22}
+\end{matrix} \right| = x_{11}x_{22} - x_{12}x_{21}$$`
+
+--
+
+`$$\left| \begin{matrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{matrix} \right| = (1)(4) - (2)(3) = 4 - 6 = -2$$`
+
+`$$\left| \begin{matrix}
+10 &amp; \frac{1}{2} \\
+4 &amp; 1
+\end{matrix} \right| = (10)(1) - \left( \frac{1}{2} \right)(4) = 10 - 2 = 8$$`
+
+`$$\left| \begin{matrix}
+2 &amp; 3 \\
+6 &amp; 9
+\end{matrix} \right| = (2)(9) - (3)(6) = 18 - 18 = 0$$`
+
+* Pay attention to if/when the determinant is zero!
+
+---
+
+# `\(n \times n\)` matrix: the submatrix
+Unfortunately calculating determinants gets much more involved with square matrices larger than `\(2 \times 2\)`. First we need to define a **submatrix**. The submatrix is simply a form achieved by deleting rows and/or columns of a matrix, leaving the remaining elements in their respective places. So for the matrix `\(\mathbf{X}\)`, notice the following submatrices:
+
+
+`$$\mathbf{X} = \begin{bmatrix} x_{11} &amp; x_{12} &amp; x_{13} &amp; x_{14} \\
+x_{21} &amp; x_{22} &amp; x_{23} &amp; x_{24} \\
+x_{31} &amp; x_{32} &amp; x_{33} &amp; x_{34} \\
+x_{41} &amp; x_{42} &amp; x_{43} &amp; x_{44} \\
+\end{bmatrix}$$`
+
+`$$\mathbf{X}_{[11]} = \begin{bmatrix}
+x_{22} &amp; x_{23} &amp; x_{24} \\
+x_{32} &amp; x_{33} &amp; x_{34} \\
+x_{42} &amp; x_{43} &amp; x_{44} \\
+\end{bmatrix},
+\mathbf{X}_{[24]} = \begin{bmatrix}
+x_{11} &amp; x_{12} &amp; x_{13}  \\
+x_{31} &amp; x_{32} &amp; x_{33}  \\
+x_{41} &amp; x_{42} &amp; x_{43}  \\
+\end{bmatrix}$$`
+
+---
+
+# `\(n \times n\)` matrix
+
+`$$\mid \mathbf{X} \mid = \sum_{j=1}^n (-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid$$`
+
+* `\(ij\)`th **minor** of `\(\mathbf{X}\)` for `\(x_{ij}\)`, `\(\mid\mathbf{X}_{[ij]}\mid\)`
+    * Determinant of the `\((n - 1) \times (n - 1)\)` submatrix that results from taking the `\(i\)`th row and `\(j\)`th column out
+* **Cofactor** of `\(\mathbf{X}\)`
+    * Minor signed as `\((-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid\)`
+* Cycle recursively through columns
+
+---
+
+# `\(3 \times 3\)` matrix
+
+$$
+\begin{aligned}
+\mathbf{X} &amp;= \begin{bmatrix}
+x_{11} &amp; x_{12} &amp; x_{13} \\
+x_{21} &amp; x_{22} &amp; x_{23} \\
+x_{31} &amp; x_{32} &amp; x_{33} \\
+\end{bmatrix} \\
+\det(\mathbf{X}) &amp;= (+1)x_{11} \left| \begin{matrix}
+x_{22} &amp; x_{23} \\
+x_{32} &amp; x_{33} \\
+\end{matrix} \right| +(-1)x_{12} \left| \begin{matrix}
+x_{21} &amp; x_{23} \\
+x_{31} &amp; x_{33} \\
+\end{matrix} \right| + (+1)x_{13} \left| \begin{matrix}
+x_{21} &amp; x_{22} \\
+x_{31} &amp; x_{32} \\
+\end{matrix} \right|
+\end{aligned}
+$$
+
+---
+
+class: middle
+
+# Inverting matrices
+
+---
+
+#Why is this useful? Matrix inversion is necessary to:
+
+* Solve systems of equations
+* Perform linear regression
+* Provide intuition about **colinearity**, **fixed effects**, and other relevant design matrices for social scientists.
+
+
+---
+
+
 # Matrix inversion
+The inverse of a matrix is akin to dividing by itself (although since these are matrices, it's obviously more complicated than just dividing!)
+
+--
 
 * `\(\mathbf{X}\)` is an `\(n \times n\)` matrix
 * Find the matrix `\(\mathbf{X}^{-1}\)` such that 
@@ -48,32 +182,62 @@ class: center, middle, inverse, title-slide
 
 --
 
-* Why?
-    * Solve systems of equations
-    * Perform linear regression
-    * Provide intuition about colinearity, fixed effects, and other relevant design matricies
+If `\(\mathbf{A} = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)` and `\(ad \neq bc\)`, then `\(\mathbf{A}\)` is invertible and
+
+`$$\mathbf{A}^{-1} = \frac{1}{ad - bc} \begin{bmatrix}
+d &amp; -b \\
+-c &amp; a
+\end{bmatrix}$$`
+
+---
+# Simple matrix inversion example:
+For example
+
+`$$\begin{aligned}
+\mathbf{A} &amp;= \begin{bmatrix}
+9 &amp; 7 \\
+2 &amp; 1
+\end{bmatrix} \\
+\mathbf{A}^{-1} &amp;= \frac{1}{(-5)} \begin{bmatrix}
+1 &amp; -7 \\
+-2 &amp; 9
+\end{bmatrix} = \begin{bmatrix}
+-0.2 &amp; 1.4 \\
+0.4 &amp; -1.8
+\end{bmatrix}
+\end{aligned}$$`
+
+We can verify by
+
+`$$\mathbf{A}^{-1} \mathbf{A} = \begin{bmatrix}
+9 &amp; 7 \\
+2 &amp; 1
+\end{bmatrix} \begin{bmatrix}
+-0.2 &amp; 1.4 \\
+0.4 &amp; -1.8
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix} = \mathbf{I}$$`
+
 
 ---
 
 # Calculating matrix inversions
 
-$$
-`\begin{aligned}
+`$$\begin{aligned}
 x_{1} + x_{2} + x_{3} &amp;= 0 \\
 0x_{1} 	+ 	5x_{2} + 0x_{3}  &amp; = 5 \\
 0 x_{1} + 0 x_{2} + 3 x_{3} &amp; =  6 \\
-\end{aligned}`
-$$
+\end{aligned}$$`
 
 --
 
-$$
-`\begin{aligned}
+`$$\begin{aligned}
 \mathbf{A}  &amp;= \begin{bmatrix} 1 &amp; 1 &amp; 1 \\ 0 &amp; 5 &amp; 0 \\ 0 &amp; 0 &amp; 3 \end{bmatrix} \\
 \mathbf{x} &amp;= (x_{1} , x_{2}, x_{3} ) \\
 \mathbf{b} &amp;= (0, 5, 6)
-\end{aligned}`
-$$
+\end{aligned}$$`
 
 * System of equations
 
@@ -83,7 +247,7 @@ $$
 
 ---
 
-# Definition
+# Invertible matrices
 
 * Suppose `\(\mathbf{X}\)` is an `\(n \times n\)` matrix
 * Call `\(\mathbf{X}^{-1}\)` the **inverse** of `\(\mathbf{X}\)` if
@@ -331,18 +495,17 @@ $$
 
 ---
 
-# Regression analysis
+# Regression analysis: Application
+In methods classes you learn about linear regression. For each `\(i\)` (individual) we observe covariates `\(x_{i1}, x_{i2}, \ldots, x_{ik}\)` and dependent variable `\(Y_{i}\)`. Then,
 
-$$
-`\begin{aligned}
+`$$\begin{aligned}
 Y_{1} &amp; = \beta_{0} + \beta_{1} x_{11} + \beta_{2} x_{12} + \ldots + \beta_{k} x_{1k} \\
 Y_{2} &amp; = \beta_{0} + \beta_{1} x_{21} + \beta_{2} x_{22} + \ldots + \beta_{k} x_{2k} \\
 \vdots &amp; \vdots &amp; \vdots \\
 Y_{i} &amp; = \beta_{0} + \beta_{1} x_{i1} + \beta_{2} x_{i2} + \ldots + \beta_{k} x_{ik} \\
 \vdots &amp; \vdots &amp; \vdots \\
 Y_{n} &amp; = \beta_{0} + \beta_{1} x_{n1} + \beta_{2} x_{n2} + \ldots + \beta_{k} x_{nk}
-\end{aligned}`
-$$
+\end{aligned}$$`
 
 * `\(\mathbf{x}_{i} = (1, x_{i1}, x_{i2}, \ldots, x_{ik})\)`
 * `\(\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}\\\mathbf{x}_{2}\\ \vdots \\ \mathbf{x}_{n} \end{bmatrix}\)`
@@ -353,14 +516,12 @@ $$
 
 # Solve the system of equations
 
-$$
-`\begin{aligned}
+`$$\begin{aligned}
 \mathbf{Y} &amp;= \mathbf{X}\mathbf{\beta} \\
 \mathbf{X}^{'} \mathbf{Y} &amp;= \mathbf{X}^{'} \mathbf{X} \mathbf{\beta} \\
 (\mathbf{X}^{'}\mathbf{X})^{-1} \mathbf{X}^{'} \mathbf{Y} &amp;= (\mathbf{X}^{'}\mathbf{X})^{-1}\mathbf{X}^{'} \mathbf{X} \mathbf{\beta} \\
 (\mathbf{X}^{'}\mathbf{X})^{-1} \mathbf{X}^{'} \mathbf{Y} &amp;=\mathbf{\beta} 
-\end{aligned}`
-$$
+\end{aligned}$$`
 
 ---
 
@@ -376,13 +537,11 @@ $$
 
 # Tax benefits of charitable contributions
 
-$$
-`\begin{aligned}
+`$$\begin{aligned}
 C &amp;+ 0.1S &amp;+ 0.1F &amp;= 10{,}000 \\
 0.05C &amp;+ S &amp; &amp;= 5{,}000 \\
 0.4C &amp;+ 0.4S &amp;+ F &amp;= 40{,}000
-\end{aligned}`
-$$
+\end{aligned}$$`
 
 ---
 
@@ -415,116 +574,49 @@ $$
 ```
 ## [1]  5956  4702 35737
 ```
-    
----
-
-# Determinant
-
-* Single number summary of a square matrix
-* Summary of structure
-* Complicated to calculate
 
 ---
 
-# `\(2 \times 2\)` matrix
+# Relevance of the determinant
 
-`$$\det(\mathbf{X}) = \mid \mathbf{X} \mid = \left| \begin{matrix}
-x_{11} &amp; x_{12} \\
-x_{21} &amp; x_{22}
-\end{matrix} \right| = x_{11}x_{22} - x_{12}x_{21}$$`
-
---
-
-`$$\left| \begin{matrix}
-1 &amp; 2 \\
-3 &amp; 4
-\end{matrix} \right| = (1)(4) - (2)(3) = 4 - 6 = -2$$`
-
-`$$\left| \begin{matrix}
-10 &amp; \frac{1}{2} \\
-4 &amp; 1
-\end{matrix} \right| = (10)(1) - \left( \frac{1}{2} \right)(4) = 10 - 2 = 8$$`
-
-`$$\left| \begin{matrix}
-2 &amp; 3 \\
-6 &amp; 9
-\end{matrix} \right| = (2)(9) - (3)(6) = 18 - 18 = 0$$`
-
----
-
-# `\(n \times n\)` matrix
-
-### Submatrix
-
-`$$\mathbf{X} = \begin{bmatrix}
-x_{11} &amp; x_{12} &amp; x_{13} &amp; x_{14} \\
-x_{21} &amp; x_{22} &amp; x_{23} &amp; x_{24} \\
-x_{31} &amp; x_{32} &amp; x_{33} &amp; x_{34} \\
-x_{41} &amp; x_{42} &amp; x_{43} &amp; x_{44} \\
-\end{bmatrix}$$`
-
-`$$\mathbf{X}_{[11]} = \begin{bmatrix}
-x_{22} &amp; x_{23} &amp; x_{24} \\
-x_{32} &amp; x_{33} &amp; x_{34} \\
-x_{42} &amp; x_{43} &amp; x_{44} \\
-\end{bmatrix},
-\mathbf{X}_{[24]} = \begin{bmatrix}
-x_{11} &amp; x_{12} &amp; x_{13}  \\
-x_{31} &amp; x_{32} &amp; x_{33}  \\
-x_{41} &amp; x_{42} &amp; x_{43}  \\
-\end{bmatrix}$$`
-
----
-
-# `\(n \times n\)` matrix
-
-`$$\mid \mathbf{X} \mid = \sum_{j=1}^n (-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid$$`
-
-* `\(ij\)`th **minor** of `\(\mathbf{X}\)` for `\(x_{ij}\)`, `\(\mid\mathbf{X}_{[ij]}\mid\)`
-    * Determinant of the `\((n - 1) \times (n - 1)\)` submatrix that results from taking the `\(i\)`th row and `\(j\)`th column out
-* **Cofactor** of `\(\mathbf{X}\)`
-    * Minor signed as `\((-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid\)`
-* Cycle recursively through columns
-
----
-
-# `\(3 \times 3\)` matrix
-
-$$
-`\begin{aligned}
-\mathbf{X} &amp;= \begin{bmatrix}
-x_{11} &amp; x_{12} &amp; x_{13} \\
-x_{21} &amp; x_{22} &amp; x_{23} \\
-x_{31} &amp; x_{32} &amp; x_{33} \\
-\end{bmatrix} \\
-\det(\mathbf{X}) &amp;= (+1)x_{11} \left| \begin{matrix}
-x_{22} &amp; x_{23} \\
-x_{32} &amp; x_{33} \\
-\end{matrix} \right| +(-1)x_{12} \left| \begin{matrix}
-x_{21} &amp; x_{23} \\
-x_{31} &amp; x_{33} \\
-\end{matrix} \right| + (+1)x_{13} \left| \begin{matrix}
-x_{21} &amp; x_{22} \\
-x_{31} &amp; x_{32} \\
-\end{matrix} \right|
-\end{aligned}`
-$$
-
----
-
-# Why do we care?
+Remember how we wanted to invert a `\(2 \times 2\)` matrix previously?
 
 `$$\mathbf{A}^{-1} = \frac{1}{ad - bc} \begin{bmatrix}
 d &amp; -b \\
 -c &amp; a
 \end{bmatrix}$$`
 
----
+`\(ad - bc\)` is the formula for the determinant of a `\(2 \times 2\)` matrix! Recall that non-invertible (singular) matrices are square matrices which have columns or rows that are linearly dependent. 
 
+Note that singular matrices also have the unique property whereby their determinant is `\(0\)`. This is also important as we move into eigenvectors and diagonalization.
+
+---
+class: middle
+
+# matrices: eigenvalues and vectors!!!!
+
+---
+# Eigen-wha?: WHAT ARE THEY?!!
+
+I think about **eigenvectors** as the 'essence' of a vector -- meaning that transformations to an eigenvector don't 'move' it around / shift its direction. All it does is change length.
+
+
+The **eigenvalue** is the length the vector changes in its transformation.
+
+More formally, suppose we have a matrix `\(\mathbf{X}\)`. If we multiply that by our eigenvector `\(\mathbf{v}\)`, what we'll get out is simply a rescaled vector `\(mathbf{v}\)`. How much will it be rescaled by? By some scalar amount of our eigenvalue, represented by `\(\lambda\)`. 
+
+
+---
+class: middle
+
+#decomposition and dimension reduction
+
+
+---
 # Matrix decomposition
 
-* Factorization of a matrix into a product of matricies
-* Decomposed into more efficient matricies depending on the calculations needing to be performed.
+* Factorization of a matrix into a product of matrices
+* Decomposed into more efficient matrices depending on the calculations needing to be performed.
 
 --
 
@@ -532,17 +624,17 @@ d &amp; -b \\
 
 `$$\mathbf{A} = \mathbf{L}\mathbf{U}$$`
 
-* Only for square matricies
+* Only for square matrices
 
 ---
 
 # Dimension reduction
+*Dimension reduction* refers to decreasing the number of dimensions in your dataset. There are a couple reasons you might do this:
 
-* Decreasing the number of dimensions in your dataset
-* Rational
-    1. Visualization
-    1. Improving a statistical learning model
-* Identify a smaller set of representative variables/vectors/columns that collectively explain most of the variability in the original dataset
+1. You want to visualize the data but you have a lot of variables. You could generate something like a scatterplot matrix, but once you have more than a handful of variables even these become difficult to interpret.
+1. You want to use the variables in a supervised learning framework, but reduce the total number of predictors to make the estimation more efficient.
+
+In either case, the goal is to reduce the dimensionality of the data by identifying a smaller number of representative variables/vectors/columns that collectively explain most of the variability in the original dataset. There are several methods available for performing such a task. First we will examine an example of applying dimension reduction techniques to summarize roll-call voting in the United States.
 
 ---
 
