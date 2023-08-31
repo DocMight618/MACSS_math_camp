@@ -27,8 +27,17 @@ class: center, middle, inverse, title-slide
 
 
 
+# Misc updates
+
+* Grading up
+* Check github for updates
+* Library presentation @ 11:30
+
+---
+
 # Learning objectives
 
+* Linear vs matrix algebra!!
 * Define vector and matrix
 * Visualize vectors in multiple dimensions
 * Demonstrate applicability of linear algebra to text analysis and cosine similarity
@@ -40,6 +49,7 @@ class: center, middle, inverse, title-slide
 # Linear algebra
 
 * Data stored in **matricies**
+  * Matrix algebra study of matrices and finite dimensions
 * Higher dimensional spaces
     * Flood of big data, stored in many dimensions
 * Linear algebra
@@ -116,12 +126,22 @@ class: center, middle, inverse, title-slide
 
 ---
 
+# Vectors
+(*source: Gill*)
+* Serial listing of numbers where the order matters
+* Can add and subtract at will (either by adding / subtracting a constant (*scalar*) or adding / subtracting a second vector )
+* If adding / subtracting vectors, they need to be *conformable* -- otherwise, *nonconformable*
+* Multiplying vectors (not fun): Either dot `\(\cdot\)` or cross product `\(\times\)` (note: difference in these!)
+  * dot product AKA inner product, produces a scalar. (we'll get to this later)
+  * cross product, produces vector
+---
+
 # Vector/scalar addition/multiplication
 
 $$
 `\begin{aligned}
-\mathbf{u} &amp; =  (1, 2, 3, 4, 5)  \\
-\mathbf{v} &amp; =  (1, 1, 1, 1, 1)  \\
+\mathbf{u} &amp; =  [1, 2, 3, 4, 5]  \\
+\mathbf{v} &amp; =  [1, 1, 1, 1, 1]  \\
 k &amp; =  2
 \end{aligned}`
 $$
@@ -130,15 +150,15 @@ $$
 
 $$
 `\begin{aligned}
-\mathbf{u}  + \mathbf{v} &amp; = (1 + 1, 2 + 1, 3+ 1, 4 + 1, 5+ 1)  = (2, 3, 4, 5, 6) \\
-k \mathbf{u} &amp; = (2 \times 1, 2 \times 2, 2 \times 3, 2 \times 4, 2 \times 5) = (2, 4, 6, 8, 10)  \\
-k \mathbf{v} &amp; = (2 \times 1,2 \times 1,2 \times 1,2 \times 1,2 \times 1) = (2, 2, 2, 2, 2)
+\mathbf{u}  + \mathbf{v} &amp; = [1 + 1, 2 + 1, 3+ 1, 4 + 1, 5+ 1]  = [2, 3, 4, 5, 6] \\
+k \mathbf{u} &amp; = [2 \times 1, 2 \times 2, 2 \times 3, 2 \times 4, 2 \times 5] = [2, 4, 6, 8, 10]  \\
+k \mathbf{v} &amp; = [2 \times 1,2 \times 1,2 \times 1,2 \times 1,2 \times 1] = [2, 2, 2, 2, 2]
 \end{aligned}`
 $$
 
 ---
 
-# Linear dependence
+# Linear combinations: (in)dependence
 
 * Linear combinations of vectors `\(\mathbf{a}\)` and `\(\mathbf{b}\)`
 
@@ -150,7 +170,9 @@ $$
 
     `$$\alpha \mathbf{a} + \beta\mathbf{b} + \gamma\mathbf{c} + \delta\mathbf{d} + \ldots$$`
 
-* Linear independence
+* Linear independence: cannot get from one vector to another through transformation.
+  * Can think of as multiplication by a scalar, but technically, combining each vector, multiplied by a scalar, gives us zero. (e.g. `\(\alpha_1*v_1 + \alpha_2*v_2 + ... + \alpha_n*v_n=0\)` where at least one scalar is non-zero)
+
 
 ---
 
@@ -167,13 +189,18 @@ $$
 3
 \end{bmatrix}$$`
 
+Are any of these linearly dependent? 
+--
+
+`\(a + b-2c=0\)` -- these are linearly dependent, despite each being pairwise independent. 
+
 ---
 
 # Detecting linear dependence
 
-* `\(\mathbf{b}^1, \mathbf{b}^2, \ldots \mathbf{b}^k\)` are linearly dependent if and only if there exist scalars `\(\alpha_1, \alpha_2, \ldots, \alpha_k\)` *not all zero* such that
+* `\(\mathbf{v}^1, \mathbf{v}^2, \ldots \mathbf{v}^k\)` are linearly dependent if and only if there exist scalars `\(\alpha_1, \alpha_2, \ldots, \alpha_k\)` *not all zero* such that
 
-    `$$\alpha_1 \mathbf{b}^1 + \alpha_2 \mathbf{b}^2 + \ldots + \alpha_k \mathbf{b}^k = \mathbf{0}$$`
+    `$$\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \ldots + \alpha_k \mathbf{v}_k = \mathbf{0}$$`
 
 ---
 
@@ -193,39 +220,85 @@ $$
 2
 \end{bmatrix}$$`
 
-* Express as a **system of equations**
+* Express as a **system of equations** (note: renaming each line so you can see the transformations more easily on the next slide)
 
-    `$$\begin{aligned}2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\\alpha &amp;+ \beta &amp;+ \gamma &amp;= 0 \\2\alpha &amp;+ 3\beta &amp;+ 2\gamma &amp;= 0\end{aligned}$$`
+    `$$\begin{aligned}2\alpha &amp;+ 4\beta &amp;+ \gamma  &amp;= 0 \text{ (}\mathbf{h}\text{) }\\
+    \alpha &amp;+ \beta &amp;+ \gamma  &amp;= 0 \text{ (}\mathbf{j}\text{) }\\
+    2\alpha &amp;+ 3\beta &amp;+ 2\gamma &amp;= 0\text{ (}\mathbf{k}\text{) }
+    \end{aligned}$$`
 
 ---
 
 # Solve the system of equations
+Let's work through an example to evaluate whether our matrices are linearly independent or dependent. 
 
-`$$\begin{aligned}2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\\alpha &amp;+ \beta &amp;+ \gamma &amp;= 0 \\2\alpha &amp;+ 3\beta &amp;+ 2\gamma &amp;= 0\end{aligned}$$`
+.pull-left[
+* **Step 1: write out equations**
 
---
+    `$$\begin{aligned}2\alpha &amp;+ 4\beta &amp;+ \gamma  &amp;= 0 \text{ (}\mathbf{h}\text{) }\\
+    \alpha &amp;+ \beta &amp;+ \gamma  &amp;= 0 \text{ (}\mathbf{j}\text{) }\\
+    2\alpha &amp;+ 3\beta &amp;+ 2\gamma &amp;= 0\text{ (}\mathbf{k}\text{) }
+    \end{aligned}$$`
+
+* **Step 2: Add/subtract**
 
 $$
 `\begin{aligned}
-2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\
+ 2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\
  &amp;- \beta &amp;+ \frac{1}{2}\gamma &amp;= 0 \\
  &amp;- \beta &amp;+ \gamma &amp;= 0
 \end{aligned}`
 $$
 
---
+]
+
+.pull-right[
+
+* **Step 1:** We re-write our matrices from the previous slide, setting each equal to zero. Note that we've named them to make following along a little easier. 
+
+* **Step 2:** We leave our first equation `\(\mathbf{h}\)` as-is. We then take our second equation and calculate: `\(j-h/2\)` and replace that result in the middle row. for the third row, we take `\(k-h\)`.
+
+
+]
+---
+
+# Solve the system of equations
+Let's work through an example to evaluate whether our matrices are linearly independent or dependent. 
+
+.pull-left[
+
+* **Step 2: Add/subtract**
 
 $$
+`\begin{aligned}
+ 2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\
+ &amp;- \beta &amp;+ \frac{1}{2}\gamma &amp;= 0 \\
+ &amp;- \beta &amp;+ \gamma &amp;= 0
+\end{aligned}`
+$$
+
+* **Step 3: ... Solve ...**
+
+$$ 
 `\begin{aligned}
 2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\
  &amp;- \beta &amp;+ \frac{1}{2}\gamma &amp;= 0 \\
  &amp; &amp;+ \frac{1}{2} \gamma &amp;= 0
 \end{aligned}`
 $$
+]
 
+.pull-right[
+
+
+* **Step 3**: Now, we continue to work, trying to solve for any of our three variables (three variables, three functions). We see that if we add `\(j+k\)`, we can get to `\(\frac{1}{2} \gamma = 0\)`. This means that `\(\gamma = 0\)`. Subbing this into the middle row, `\(\beta\)` must also be 0. Which means that ... `\(\alpha = 0\)` as well. Therefore, these equations (and matrices) are linearly independent as the only possible solution that satisfies our requirements is for all variables to be zero (trivial). 
+
+
+]
 ---
 
 # Example
+Now, let's try this together -- work with a partner. Are these matrices linearly dependent or independent? 
 
 `$$\mathbf{a} = \begin{bmatrix}
 2 \\
@@ -244,7 +317,7 @@ $$
 ---
 
 # Example
-
+* **Step 1: write out**
 $$
 `\begin{aligned}
 2\alpha &amp;+ 4\beta &amp;+ 2\gamma &amp;= 0 \\
@@ -255,6 +328,7 @@ $$
 
 --
 
+* **Step 2: manipulate**
 $$
 `\begin{aligned}
 2\alpha &amp;+ 4\beta &amp;+ 2\gamma &amp;= 0 \\
@@ -265,6 +339,7 @@ $$
 
 --
 
+* **Step 3: Solve!!**
 $$
 `\begin{aligned}
 2\alpha &amp;+ 4\beta &amp;+ 2\gamma &amp;= 0 \\
@@ -274,11 +349,14 @@ $$
 
 --
 
+
 `$$\gamma = 1, \quad \beta = 1, \quad \alpha = -3$$`
+*Is this our only solution?*
 
 ---
 
-# Inner product
+# Inner product: vector operations
+Multiplying two vectors produces a scalar (single number) output. 
 
 $$
 `\begin{aligned}
@@ -457,10 +535,14 @@ $$
 $$
 
 ---
+class: center
+# The Matrix, Part I
+&lt;img src="https://media.tenor.com/ang0VzOwbdAAAAAC/the-matrix-reloaded-matrix.gif" style="display: block; margin: auto;" /&gt;
+---
 
 # Matricies
 
-* Rectangular arrangement (array) of numbers defined by two **axes**
+* **Rectangular** arrangement (array) of numbers defined by two **axes**
     1. Rows
     1. Columns
 
@@ -475,19 +557,51 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn} \\
 
 # Example matricies
 
-`$$\begin{aligned}\mathbf{X} &amp;= \left[ \begin{array}{rrr}1 &amp; 2 &amp; 3 \\
-2 &amp; 1 &amp; 4 \\
+Consider the following: 
+
+`$$\begin{aligned}
+\mathbf{X} &amp;= \left[ \begin{array}{rrrr}1 &amp; 2 &amp; 3 &amp; 4 \\
+2 &amp; 1 &amp; 4 $ 3\\
 \end{array} \right] \\
 \mathbf{Y} &amp;= \left[ \begin{array}{rr}
 1 &amp; 2 \\
 3 &amp; 2 \\
 1 &amp; 4 \\
+\end{array} \right]\\
+\mathbf{Z} &amp;= \left[
+ \begin{array}{rrr}1 &amp; 2 &amp; 3 \\
+5 &amp; 1 &amp; 4 \\
+6 &amp; 1 &amp; 7
 \end{array} \right]
+
 \end{aligned}$$`
+
+Above, what are the dimensions of our matrices? 
 
 ---
 
-# Matrix addition
+# Example matricies: Fun facts
+
+* Dimensionality matters
+* Diagonal from upper left to lower right matters 
+  * Sometimes the opposite diagonal is referred to by a name, but this varies
+* Matrices referred to by their overall properties (elements) and/or behavior of the diagonal 
+* Special names for *special* matrices:
+  * Diagonal matrix (only numbers on diagonal; zero elsewhere)
+    * Identity (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called `\(I\)`)
+  * Square (n rows = n columns)
+  * Triangular matrix (half of matrix has zeros -- see below for lower/upper distinction)
+    * lower triangular (numbers in lower half (diagonal down) and zeros above diagonal)
+    * upper triangular (numbers in upper half (diagonal up) and zeros below diagonal)
+  * Zero matrix (all zeros!)
+  * Matrix of only ones (sometimes given letter J)
+  * Transpose / transposition (mathematical operation on a matrix) (superscript with T)
+  * Inverse (this is a mathematical operation) (superscipt with `\(-1\)`)
+
+
+---
+
+# Matrix oparations: addition
 
 * `\(\mathbf{X}\)` and `\(\mathbf{Y}\)` are `\(m \times n\)` matrices
 
@@ -514,7 +628,8 @@ x_{m1} + y_{m1} &amp; x_{m2} + y_{m2} &amp; \ldots &amp; x_{mn} + y_{mn} \\
 
 ---
 
-# Scalar addition
+# Scalar Multiplication
+You can just multiply the constant (scalar) through the matrix. 
 
 * `\(\mathbf{X}\)` is an `\(m \times n\)` matrix and `\(k \in \Re\)`
 
@@ -529,6 +644,10 @@ k x_{m1} &amp; k x_{m2} &amp; \ldots &amp; k x_{mn} \\
 
 # Matrix transposition
 
+Transposing a matrix means `flipping' it in a sense -- swapping across the diagonal. 
+
+--
+
 `$$\mathbf{X} = \begin{pmatrix}
 x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1n} \\
 x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2n} \\
@@ -540,26 +659,96 @@ x_{11} &amp; x_{21} &amp; \ldots &amp; x_{m1} \\
 x_{12} &amp; x_{22} &amp; \ldots &amp; x_{m2} \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
 x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}
-\end{pmatrix}$$`
+\end{pmatrix}$$ 
+
+
+---
+
+# Matrix multiplication
+This is conceptually a bit hard as I find it really unintuitive (maybe it's not for you!). 
+
+* Step 1: have two (or more matrices to multiply)
+* Step 2: check dimensions (rows vs columns)
+* Step 3: **ORDER MATTERS** the number of COLUMNS of the FIRST matrix MUST MATCH the number of ROWS of the second matrix (YES, I KNOW!! )
+* Step n: final output will have the number of ROWS of the FIRST and the number of COLUMNS of the second matrix. 
+(steps continued on next slide -- just setting up logic here!) \\
+
+&lt;span style = "color: blue;"&gt;
+$$\mathbf{X} = \begin{pmatrix} 1 \\ 10 \\ \end{pmatrix} $$
+&lt;/span&gt;
+
+&lt;span style = "color: red;"&gt;
+`$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+&lt;/span&gt;
+
+Note our two matrices above. In what order do we multiply them? What dimensions will our final matrix have? 
+
+--
+Well, `\(X\)` is `\(2\times 1\)`, `\(Y \text{ is } 2 \times 2\)`. Since the number of cols of X do not match the number of rows of Y, we can't multiply them. BUT! We **CAN** multiply `\(Y\)` and `\(X\)`! This is because we will have `\(2 \times 2 \text{ and } 2 \times 1\)`, producing a final matrix of `\(2 \times 1\)`.
+
+
+---
+
+# Matrix multiplication: Color-coded example
+To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOWN THE COLUMN of the second matrix. You then add these together. For example, if you have matrix A times matrix B, it would be element `\(a_{1,1}*b_{1,1} + ... + a_{1,n}*b_{n,1}\)`. This sum goes into the first cell in the resulting matrix. This sounds confusing (because it is), so let's see an example. 
+
+--
+
+&lt;span style = "color: blue;"&gt;
+$$\mathbf{X} = \begin{pmatrix} 1 \\ 10 \\ \end{pmatrix} $$
+&lt;/span&gt;
+
+&lt;span style = "color: red;"&gt;
+`$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+&lt;/span&gt;
+
+--
+Here, we have a very simple example -- so, we'll take the row (in this case, the entirety) of X and multiply the pairs (each element with its corresponding partner) of X and Y. So, &lt;span style = "color: red;"&gt; `\(5*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(2*\)` &lt;/span&gt; `\(+\)` &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(5+ 20 = 25\)` &lt;/span&gt; as the first cell in our resulting matrix.  \\
+--
+Similarly, we'll multiply the remaining row of our matrix Y by the column in X to produce the following:  &lt;span style = "color: red;"&gt; `\(3*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(4*\)` &lt;/span&gt; `\(+\)` &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(3+ 40 = 43\)` &lt;/span&gt; as the first cell in our resulting matrix. 
+
+--  
+
+This produces
+
+&lt;span style = "color: purple;"&gt;
+$$\mathbf{X} = \begin{pmatrix} 25 \\ 43 \\ \end{pmatrix} $$
+&lt;/span&gt;
 
 ---
 
 # Matrix multiplication
 
+Try this example and check with a neighbor: `\(\mathbf{XY}\)`
+
 `$$\mathbf{X} = \begin{pmatrix} 1 &amp; 1 \\ 1&amp; 1 \\ \end{pmatrix} , \quad \mathbf{Y} = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+-- 
 
 `$$\begin{aligned} \mathbf{A} &amp; = \mathbf{X} \mathbf{Y} \\&amp; = \begin{pmatrix}1 &amp; 1 \\ 1 &amp; 1 \\\end{pmatrix} \begin{pmatrix}1 &amp; 2 \\3 &amp; 4 \\\end{pmatrix} \\&amp;= \begin{pmatrix}1 \times 1 + 1 \times 3 &amp; 1 \times 2 + 1 \times 4 \\1 \times 1 + 1 \times 3 &amp; 1 \times 2 + 1 \times 4\\\end{pmatrix} \\&amp;= \begin{pmatrix}4 &amp; 6 \\4 &amp; 6\end{pmatrix}\end{aligned}$$`
 
 ---
 
-# Algebraic properties
+# Matrix multiplication: Identity Matrix
 
-* Matricies must be **conformable**
-* Associative property: `\((\mathbf{XY})\mathbf{Z} = \mathbf{X}(\mathbf{YZ})\)`
-* Additive distributive property: `\((\mathbf{X} + \mathbf{Y})\mathbf{Z} = \mathbf{XZ} + \mathbf{YZ}\)`
-* Zero property: `\(\mathbf{X0} = 0\)`
-* Order matters: `\(\mathbf{XY} \neq \mathbf{YX}\)`
-    * Different from scalar multiplication: `\(xy = yx\)`
+Try this example and check with a neighbor: `\(\mathbf{IY}\)` (let's see why `\(I\)` is called the **identity matrix**)
+
+`$$\mathbf{I} = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ \end{pmatrix} , \quad \mathbf{Y} = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+
+-- 
+
+`$$\begin{aligned} \mathbf{A} &amp; = \mathbf{I} \mathbf{Y} \\&amp; = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; 1 \\\end{pmatrix} \begin{pmatrix}1 &amp; 2 \\3 &amp; 4 \\\end{pmatrix} 
+\\&amp;= \begin{pmatrix}1 \times 1 + 0 \times 3 &amp; 1 \times 2 + 0 \times 4 \\
+0 \times 1 + 1 \times 3 &amp; 0 \times 2 + 1 \times 4\\\end{pmatrix} 
+\\&amp;= \begin{pmatrix}1 &amp; 2 \\3 &amp; 4\end{pmatrix}\end{aligned}$$`
+
+IT'S LIKE MAGIC! (*actually it's just the matrix version of multiplying by 1*)
+
+
+---
+
+class: center 
+
+# Uses of matrices: how you might see them in your life
 
 ---
 
@@ -577,7 +766,28 @@ x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}
 * Image recognition
 * Detection of diseases
 
+
 ---
+
+# Algebraic properties: Recap!
+
+* Matricies must be **conformable** (right dimensions)
+* Matricies have weird rules: 
+  * Associative property: `\((\mathbf{XY})\mathbf{Z} = \mathbf{X}(\mathbf{YZ})\)`
+  * Additive distributive property: `\((\mathbf{X} + \mathbf{Y})\mathbf{Z} = \mathbf{XZ} + \mathbf{YZ}\)`
+  * Zero property: `\(\mathbf{X0} = 0\)`
+  * Identity matrix: `\(\mathbf{IX} = \mathbf{X}\)`
+  * Order matters: `\(\mathbf{XY} \neq \mathbf{YX}\)`
+    * Different from scalar multiplication: `\(xy = yx\)`
+* Order of matrix: sometimes you'll see subscripts referring to a matrix's order -- this is particularly true for square matrices. E.g:
+  * `\(I_2\)` is an identity matrix (and therefore a square matrix) with two rows and two columns
+  * `\(\mathbf{J}_{2\times3}\)` is a matrix (likely full of ones) with two rows and three columns
+* Operations on matrix: transposing means flipping / reflecting across the diagonal
+
+
+&lt;!--
+
+
 
 # Linear algebra roots
 
@@ -587,7 +797,7 @@ x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}
 * Matricies (2D tensors)
 * 3D tensors and higher-dimensional tensors
 
----
+
 
 # Tensor operations
 
@@ -596,7 +806,7 @@ x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}
 * Tensor multiplication
 * **If you can do it with a matrix, you can do it with a tensor**
 
----
+
 
 # Linear algebra notation
 
@@ -613,6 +823,8 @@ x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}
     * Sigmoid function (aka logistic regression)
         
         `$$S(z) = \frac{1}{1 + e^{-z}}$$`
+        
+  --&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
