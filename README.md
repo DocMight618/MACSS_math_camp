@@ -56,8 +56,8 @@ This course is open to all students who meet the academic requirements for parti
 | 31-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [NO HOMEWORK!]
 | 1-Sep | Linear algebra  |  [Systems of linear equations and determinants](https://jmclip.github.io/MACSS_math_camp/06-matrix-inversion-decomposition.html) | [Pset 4](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/04-linear-algebra.pdf) 
 | 4-Sep | No class (Labor Day) |  | 
-| 5-Sep | Calculus |[Functions of several variables and optimization with several variables](https://jmclip.github.io/MACSS_math_camp/07-multivariable-differentiation.html)| [Pset 5](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/05-multivariable-differentiation.pdf)
-| 6-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | [Pset 6](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/06-integration.pdf)
+| 5-Sep | Calculus |[Functions of several variables and optimization with several variables](https://jmclip.github.io/MACSS_math_camp/07-multivariable-differentiation.html)| [NO HMWK]
+| 6-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | [Pset 5/6](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/05-06-diff-integration.pdf)
 | 7-Sep | Calculus |  [Sample space and probability](https://jmclip.github.io/MACSS_math_camp/09-sample-space-probability.html)| [Pset 7](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/07-sample-space-probability.pdf)
 | 8-Sep | Probability | [Discrete random variables](https://jmclip.github.io/MACSS_math_camp/10-discrete-random-vars.html)  | [Pset 8](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/08-discrete-random-variables.pdf)
 | 11-Sep | Probability | [General random variables](https://jmclip.github.io/MACSS_math_camp/11-general-random-vars.html)| [Pset 9](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/09-general-random-variables.pdf)
