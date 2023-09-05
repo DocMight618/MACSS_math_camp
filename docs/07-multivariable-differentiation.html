@@ -349,7 +349,7 @@ Think about how things are changing with respect to y, respect to x, x and then 
 `$$\frac{\partial f}{\partial y}(x,y) =4x^3y^3 - \frac{1}{y}$$`
 --
 `$$\frac{\partial^2 f}{\partial x^2}(x,y) = 6xy^4 + e^x$$`
-`$$\frac{\partial^2 f}{\partial x \partial y}(x,y) &amp;= 12x^2y^3$$`
+`$$\frac{\partial^2 f}{\partial x \partial y}(x,y) = 12x^2y^3$$`
 
 ---
 
@@ -401,10 +401,12 @@ class: middle
 # Neighborhood
 
 * Let `\(\mathbf{x} \in \Re^{n}\)` and let `\(\delta &gt;0\)`
+--
+
 * Define a **neighborhood** of `\(\mathbf{x}\)`, `\(B(\mathbf{x}, \delta)\)`, as the set of points such that,
 
     `$$B(\mathbf{x}, \delta) = \{ \mathbf{y} \in \Re^{n} : ||\mathbf{x} - \mathbf{y}||&lt; \delta \}$$`
-
+--
 * `\(B(\mathbf{x}, \delta)\)` is the set of points where the vector `\(\mathbf{y}\)` is a vector in n-dimensional space such that vector norm of `\(\mathbf{x} - \mathbf{y}\)`  is less than `\(\delta\)`
 
 ---
@@ -412,19 +414,13 @@ class: middle
 # Maxima/minima
 
 * `\(f:X \rightarrow \Re\)` with `\(X \subset \Re^{n}\)`
-* **Global maximum** - a vector `\(\mathbf{x}^{*} \in X\)` if, for all other `\(\mathbf{x} \in X\)`
+* **Global maximum** - a vector `\(\mathbf{x}^{*} \in X\)` if, for all other `\(\mathbf{x} \in X\)`, `\(f(\mathbf{x}^{*}) &gt; f(\mathbf{x} )\)`
 
-    `$$f(\mathbf{x}^{*}) &gt; f(\mathbf{x} )$$`
-
-* **Local maximum** - a vector `\(\mathbf{x}^{\text{local}}\)` if there is a neighborhood around `\(\mathbf{x}^{\text{local}}\)`, `\(Q \subset X\)` such that, for all `\(x \in Q\)`,
-
-    `$$f(\mathbf{x}^{\text{local} }) &gt; f(\mathbf{x} )$$`
+* **Local maximum** - a vector `\(\mathbf{x}^{\text{local}}\)` if there is a neighborhood around `\(\mathbf{x}^{\text{local}}\)`, `\(Q \subset X\)` such that, for all `\(x \in Q\)`, `\(f(\mathbf{x}^{\text{local} }) &gt; f(\mathbf{x} )\)`
 
 * Reverse for minima:
-  * **Global min**: a vector `\(\mathbf{x}^{*} \in X\)` if, for all other `\(\mathbf{x} \in X\)`, `$$f(\mathbf{x}^{*}) &lt; f(\mathbf{x} )$$`
-  * **Local min**: a vector `\(\mathbf{x}^{\text{local}}\)` if there is a neighborhood around `\(\mathbf{x}^{\text{local}}\)`, `\(Q \subset X\)` such that, for all `\(x \in Q\)`,
-
-    `$$f(\mathbf{x}^{\text{local} }) &lt; f(\mathbf{x} )$$`
+  * **Global min**: a vector `\(\mathbf{x}^{*} \in X\)` if, for all other `\(\mathbf{x} \in X\)`, `\(f(\mathbf{x}^{*}) &lt; f(\mathbf{x} )\)`
+  * **Local min**: a vector `\(\mathbf{x}^{\text{local}}\)` if there is a neighborhood around `\(\mathbf{x}^{\text{local}}\)`, `\(Q \subset X\)` such that, for all `\(x \in Q\)`, `\(f(\mathbf{x}^{\text{local} }) &lt; f(\mathbf{x} )\)`
 * Values for `\(f:X \rightarrow \Re\)` on the real number line (in n-dimensional space)
 * Fall somewhere along `\(\mathbf{X}\)`
 
@@ -433,7 +429,8 @@ class: middle
 
 We want to think about how these pieces come together and what they're telling us about the overall picture. We had been working with derivatives already, but now that our functions are more complicated, we're going to have to explore and track things a little differently. 
 
--- 
+--
+
 * **Gradient** `\(\nabla f\)`: vector, contains the first derivatives with respect to each of our variables in our function.This is a vector of derivatives, typically of a function.  
   * *Jacobian* matrix of derivatives (sometimes you'll see reference to this). It is a matrix of derivatives of a vector. 
 * **Hessian** matrix of second derivatives, *including partials*. This is a matrix of derivatives, typically of a vector. 
@@ -549,12 +546,14 @@ Start with the below function and identify the gradient and Hessian.
 
 # Hessian: practice and example
 Try this equation, finding the gradient and Hessian: `$$f(x,y)= x^3 y^4 +e^x -\log y$$`
+--
+
 `$$\begin{aligned}f(x,y) &amp;= x^3 y^4 +e^x -\log y \\\nabla f(x,y) &amp;= (3x^2 y^4 + e^x, \, 4x^3y^3 - \frac{1}{y}) \\\mathbf{H}(f)(x,y) &amp;= \begin{bmatrix}6xy^4 + e^x &amp; 12x^2y^3 \\12x^2y^3 &amp; 12x^3y^2 + \frac{1}{y^2}\end{bmatrix}\end{aligned}$$`
 
 ---
 
 # Definiteness of a matrix
-This is important and tells us about the matrix and can give indications regarding how the underlying function is changing. A positive definite matrix has positive eigenvalues (but those are a pain to calculate!). A positive definite matrix also has 
+This is important and tells us about the matrix and can give indications regarding how the underlying function is changing. A positive definite matrix has positive eigenvalues (but those are a pain to calculate!). We can also approach it y looking at our matrix through multiplication. 
 
 --
 
@@ -752,6 +751,13 @@ $$
 
 * Multivariate functions + Second derivatives: work the way we'd guess
 * Bringing matrices to the party
+* Gradient vs Hessian
+* Finding critical values:
+  1. Calculate gradient
+  1. Set equal to zero, solve system of equations
+  1. Calculate Hessian
+  1. Assess Hessian at critical values
+  1. Boundary values? (if relevant)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
