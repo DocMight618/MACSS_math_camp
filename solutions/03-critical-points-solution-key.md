@@ -238,33 +238,32 @@ has a root between $0$ and $1$.[^6]
 
     **Solution:** If we ignore $x^7$, we can solve for the root as
 
-    $$
-     \begin{aligned}
-     -6x + 4 &= 0 \\
-     -6x &= -4 \\
-     x &= \frac{4}{6} = \frac{2}{3}
-     \end{aligned}
-     $$
+    $-6x + 4 = 0 \rightarrow -6x = -4 \rightarrow x = \frac{4}{6} = \frac{2}{3}$
 
-2.  Use Newton’s method to find the root correct to 3 decimal places.
+3.  Use Newton’s method to find the root correct to 3 decimal places.
 
     **Solution:** Recall that the first derivative of the function is
     $f'(x) = x^6 - 6$. Assume a starting value of $x_0 = 0.7$.
 
-    $$
-     \begin{aligned}
-     x_0 &= 0.7 \\
-     x_1 &= x_0 - \frac{x_0^7 - 6 x_0 + 4}{7 x_0^6 - 6} \\
-     x_1 &= 0.7 - (0.0227271) \\
-     x_1 &= 0.677273 \\ \\
-     x_2 &= x_1 - \frac{x_1^7 - 6 x_1 + 4}{7 x_1^6 - 6} \\
-     x_2 &= 0.677273 - (-0.000324455) \\
-     x_2 &= 0.677597 \\ \\
-     x_3 &= x_2 - \frac{x_2^7 - 6 x_2 + 4}{7 x_2^6 - 6} \\
-     x_3 &= 0.677597 - (-5.92353 \times 10^-8) \\
-     x_3 &= 0.677597 \\
-     \end{aligned}
-     $$
+    $x_0 = 0.7$
+
+    $x_1 = x_0 - \frac{x_0^7 - 6 x_0 + 4}{7 x_0^6 - 6}$
+
+    $x_1 = 0.7 - (0.0227271)$
+
+    $x_1 = 0.677273$
+
+    $x_2 = x_1 - \frac{x_1^7 - 6 x_1 + 4}{7 x_1^6 - 6}$
+
+    $x_2 = 0.677273 - (-0.000324455)$
+    
+    $x_2 = 0.677597$
+
+    $x_3 = x_2 - \frac{x_2^7 - 6 x_2 + 4}{7 x_2^6 - 6}$
+
+    $x_3 = 0.677597 - (-5.92353 \times 10^-8)$
+
+    $x_3 = 0.677597$ 
 
 # Apply the mean value theorem
 
