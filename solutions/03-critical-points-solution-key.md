@@ -40,19 +40,21 @@ Find the critical values of these functions:[^3]
     If we set this derivative equal to 0 and solve, we get the following
     critical point:
 
-    $$
-     \begin{aligned}
-     \frac{15\sqrt{x}}{2} - 4 &= 0\\
-     \frac{15\sqrt{x}}{2} &= 4\\
-     15\sqrt{x} &= 8\\
-     \sqrt{x} &= \frac{8}{15}\\
-     x &= \left(\frac{8}{15}\right)^2\\
-     x &= \frac{8^2}{15^2}\\
-     x &= \frac{64}{225}
-     \end{aligned}
-     $$
+    $\frac{15\sqrt{x}}{2} - 4 = 0$
 
-2.  $s(t) = 3t^4 + 4t^3 - 6t^2$
+    $\frac{15\sqrt{x}}{2} = 4$
+
+    $15\sqrt{x} = 8$
+
+    $\sqrt{x} = \frac{8}{15}$
+
+    $x = \left(\frac{8}{15}\right)^2$
+
+    $x = \frac{8^2}{15^2}$
+
+    $x = \frac{64}{225}$
+
+3.  $s(t) = 3t^4 + 4t^3 - 6t^2$
 
     **Solution:** The derivative of $s(t)$ requires simple power rule:
 
@@ -72,19 +74,18 @@ Find the critical values of these functions:[^3]
     In our case with $t^2 + t - 1$, $a=1, b=1, c=-1$. Let’s plug these
     into the formula.
 
-    $$
-     \begin{aligned}
-     t &= \frac{-1 \pm \sqrt{1^2 - 4(1)(-1}}{2(1)}\\
-     &= \frac{-1 \pm \sqrt{1 + 4}}{2}\\
-     &= \frac{-1 \pm \sqrt{5}}{2}\\
-     &= \frac{-1 - \sqrt{5}}{2}, \frac{-1 + \sqrt{5}}{2}
-     \end{aligned}
-     $$
+    $t = \frac{-1 \pm \sqrt{1^2 - 4(1)(-1}}{2(1)}$
+    
+    $t = \frac{-1 \pm \sqrt{1 + 4}}{2}$
+    
+    $t = \frac{-1 \pm \sqrt{5}}{2}$
+
+    $t = \frac{-1 - \sqrt{5}}{2}, \frac{-1 + \sqrt{5}}{2}$
 
     Great. We have three critical points:
     $t = \frac{-1 - \sqrt{5}}{2}, 0, \frac{-1 + \sqrt{5}}{2}$.
 
-3.  $f(r) = \dfrac{r}{r^2 + 1}$
+4.  $f(r) = \dfrac{r}{r^2 + 1}$
 
     **Solution:** We can use the quotient rule to find the derivative.
 
@@ -98,7 +99,7 @@ Find the critical values of these functions:[^3]
 
     $$1-r^2 = 0 \Longrightarrow r^2 = 1 \Longrightarrow r = \pm 1$$
 
-4.  $h(x) = x \ln(x)$
+5.  $h(x) = x \ln(x)$
 
     **Solution:** The function requires product rule to differentiate.
 
@@ -106,14 +107,13 @@ Find the critical values of these functions:[^3]
 
     Now set this derivative equal to zero and solve.
 
-    $$
-     \begin{aligned}
-     1 + \log x &= 0\\
-     \log x &= -1\\
-     x = e^{-1}\\
-     x = \frac{1}{e}
-     \end{aligned} 
-     $$
+    $1 + \log x = 0$
+
+    $\log x = -1$
+
+    $x = e^{-1}$
+
+    $x = \frac{1}{e}$
 
 # Find absolute minimum/maximum values
 
