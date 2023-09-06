@@ -829,7 +829,8 @@ class: Middle
 
 ---
 
-# Switch the bounds
+# Switch the bounds: start with `\(dx_2\)`
+--
 
 `$$\begin{aligned}\iint_{x_{1}&lt;x_{2}} f(\boldsymbol{x}) &amp;= \int_{0}^{1} \int_{x_{1}}^{1} x_{1} + x_{2} \,dx_{2} \,dx_{1} \\													&amp;= \int_{0}^{1} x_{1}x_{2}|_{x_{1}}^{1}  +  \int_{0}^{1} \frac{x_{2}^{2}}{2} |_{x_{1}}^{1}\,dx_{1}  \\													&amp;= \int_{0}^{1} x_{1} - x_{1}^2 + \int_{0}^{1} \frac{1}{2} - \frac{x_{1}^2}{2} \,dx_{1}  \\													&amp;=  \frac{x_{1}^2}{2}|_{0}^{1}  - \frac{x_{1}^{3}}{3}|_{0}^{1}  + \frac{x_{1}}{2}|_{0}^{1}  - \frac{x_{1}^{3}}{6}|_{0}^{1}  \\													&amp;= \frac{1}{2}  - \frac{1}{3}  + \frac{1}{2} - \frac{1}{6}  \\													&amp;= 1 - \frac{3}{6}  \\													&amp;= \frac{1}{2}  \end{aligned}$$`
 
