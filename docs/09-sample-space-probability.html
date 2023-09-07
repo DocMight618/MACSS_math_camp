@@ -927,7 +927,7 @@ $$
 * Sequence of independent trials
 
     
-&lt;img src="../images/bernoulli.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="../images/bernoulli.png" width="35%" style="display: block; margin: auto;" /&gt;
 * Bernoulli trials - sequence of independent binary trials
     * Heads or tails
     * Success or fail
@@ -968,31 +968,7 @@ The probability of any given sequence that contains `\(k\)` heads is `\(p^k (1-p
 
 ---
 
-# Reliability of an `\(k \text{-out-of-} n\)` system
-
-* System consists of `\(n\)` identical components
-* Components operational with probability `\(p\)`, independent of other components
-* System is operational if at least `\(k\)` out of the `\(n\)` components are operational
-* What is the probability that the system is operational?
-
---
-
-* `\(A_i\)` the event that exactly `\(i\)` components are operational
-* Probability that the system is operational is the probability of the union `\(\bigcup_{i=k}^n A_i\)`
-
-    `$$\sum_{i=k}^n \Pr (A_i) = \sum_{i=k}^n p(i)$$`
-
-    where `\(p(i)\)` are the binomial probabilities
-
---
-
-* Probability of an operational system is
-
-    `$$\sum_{i=k}^n \binom{n}{i} p^i (1-p)^{n-i}$$`
-
----
-
-# Counting
+# Counting (AKA EXPECTED VALUE!!!!!!)
 
 * Calculate the total number of possible outcomes in a sample space
 * Probability of an event `\(A\)` with a finite number of equally likely outcomes, each of which has an already known probability `\(p\)`
@@ -1076,7 +1052,19 @@ Then, the total number of possible results of the `\(r\)`-stage process is
 
 The number of combinations of two out of the four letters `\(A, B, C, D\)` is found by letting `\(n=4\)` and `\(k=2\)`
 
+--
+
 `$$\binom{n}{k} = \binom{4}{2} = \frac{4!}{2!2!} = 6$$`
+
+---
+# RECAP!
+
+* Sample spaces
+* Sets: union, intersect
+* Thinking about how to count elements
+  * Permutations vs Combinations `\(n \choose k\)`: `\(\frac{n!}{k!(n-k)!}\)` (denominator depends on p vs c)
+* Conditional probability and independence
+* Bayes' Rule: `\(\Pr(A|B) = \frac{\Pr(A)\times \Pr(B|A)}{\Pr(B)}\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
