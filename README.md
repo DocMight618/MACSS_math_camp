@@ -58,7 +58,7 @@ This course is open to all students who meet the academic requirements for parti
 | 4-Sep | No class (Labor Day) |  | 
 | 5-Sep | Calculus |[Functions of several variables and optimization with several variables](https://jmclip.github.io/MACSS_math_camp/07-multivariable-differentiation.html)| [NO HMWK]
 | 6-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | [Pset 5/6](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/05-06-diff-integration.pdf)
-| 7-Sep | Calculus |  [Sample space and probability](https://jmclip.github.io/MACSS_math_camp/09-sample-space-probability.html)| [Pset 7](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/07-sample-space-probability.pdf)
+| 7-Sep | Calculus |  [Sample space and probability](https://jmclip.github.io/MACSS_math_camp/09-sample-space-probability.html)| [Pset 7](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/07-sample-space-probability2.pdf)
 | 8-Sep | Probability | [Discrete random variables](https://jmclip.github.io/MACSS_math_camp/10-discrete-random-vars.html)  | [Pset 8](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/08-discrete-random-variables.pdf)
 | 11-Sep | Probability | [General random variables](https://jmclip.github.io/MACSS_math_camp/11-general-random-vars.html)| [Pset 9](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/09-general-random-variables.pdf)
 | 12-Sep | Probability | [Multivariate distributions](https://jmclip.github.io/MACSS_math_camp/12-multivariate-pdf.html)  | [Pset 10](https://github.com/jmclip/MACSS_math_camp/blob/master/problem%20sets/10-multivariate-pdf.pdf)
