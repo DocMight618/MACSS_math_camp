@@ -216,22 +216,23 @@ PMF is to our original function as CMF is to an integral
 
 ---
 class: middle, center
-# FUNCTIONS
+# Distributions and the functions we love
 
 &lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbEyaYCtKvH69f_7DIShQ_Kc67Me-j5knH0A&amp;usqp=CAU" style="display: block; margin: auto;" /&gt;
 
 ---
-# Function overview
+# Function &amp; Distribution overview
 
-So far, we've looked at how to add up values. However, the values we get depend upon the underlying function. There are a few well-known functions that we'll cover as these will be increasingly useful as you move through your coursework. 
+So far, we've looked at how to add up values. However, the values we get depend upon the underlying function. There are a few well-known distributions that we'll cover as these will be increasingly useful as you move through your coursework. 
 
 * Bernoulli
 * Binomial
 * Geometric
-* Poisson
+* Poisson 
 
 --
-This is a selection of functions -- each has certain properties that can be useful for predicting outcomes and events but there are many, many more that may be useful to you as well. 
+
+This is a selection of distributions -- each has certain properties that can be useful for predicting outcomes and events but there are many, many more that may be useful to you as well. 
 
 
 ---
@@ -312,10 +313,10 @@ Recall our experiment example
 $$
 `\begin{aligned}
 Z &amp; \sim  \text{Binomial}(1/2)\\
-p_Z(0) &amp; = {3\choose0} (1/2)^0 (1- 1/2)^{3-0} = 1 \times \frac{1}{8}\\
-p_Z(1) &amp; = {3\choose1} (1/2)^2 (1 - 1/2)^{2} = 3 \times \frac{1}{8} \\
-p_Z(2) &amp; = {3\choose2} (1/2)^3 (1- 1/2)^1 = 3 \times \frac{1}{8} \\
-p_Z(3) &amp; = {3\choose3} (1/2)^3 (1 - 1/2)^{0} = 1 \times \frac{1}{8}
+p_Z(0) &amp; = {3\choose0} (1/2)^0 (1- 1/2)^{3-0} = 1 * \frac{1}{8}\\
+p_Z(1) &amp; = {3\choose1} (1/2)^2 (1 - 1/2)^{2} = 3 * \frac{1}{8} \\
+p_Z(2) &amp; = {3\choose2} (1/2)^3 (1- 1/2)^1 = 3 * \frac{1}{8} \\
+p_Z(3) &amp; = {3\choose3} (1/2)^3 (1 - 1/2)^{0} = 1 * \frac{1}{8}
 \end{aligned}`
 $$
 
@@ -336,7 +337,7 @@ $$
 `\begin{aligned}
 \sum_{k=1}^{\infty} p_X(k) &amp;= \sum_{k=1}^{\infty} (1 - p)^{k-1}p \\
 &amp;= p \sum_{k=1}^{\infty} (1 - p)^{k-1} \\&amp;
-= p \times \frac{1}{1 - (1-p)} \\
+= p * \frac{1}{1 - (1-p)} \\
 &amp;= 1
 \end{aligned}`
 $$
@@ -346,12 +347,6 @@ $$
 # Geometric PMF
 
 &lt;img src="10-discrete-random-vars_files/figure-html/geometric-1.png" width="864" style="display: block; margin: auto;" /&gt;
-
----
-
-# Poisson
-
-&lt;div style='position:relative; padding-bottom:calc(75.00%)'&gt;&lt;iframe src='https://gfycat.com/ifr/AcceptableRegalAfricanharrierhawk' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;
 
 ---
 
@@ -393,9 +388,28 @@ for `\(k \in \{0, 1, \ldots, \}\)` and `\(0\)` otherwise. (Here, `\(\lambda\)` i
 
 --
 
-`$$p_X(10) = e^{-\lambda} \frac{5^{10}}{10!}$$`
+`$$p_X(10) = e^{-5} \frac{5^{10}}{10!}$$`
 
 &lt;img src="10-discrete-random-vars_files/figure-html/poisson-president-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+# Example: working backwards
+
+* Suppose we have an event which we believe follows a Poisson distribution. Perhaps this is the number of students who forget their calculator for the exam. If we observed that last year, about `\(4.979\%\)` of the time all students remembered their calculator. How could we figure out the likelihood that exactly one student forgets theirs in the upcoming exam?
+
+--
+
+`$$p_X(0) = e^{-\lambda} \frac{\lambda^{x}}{x!}$$`
+--
+`$$p_X(0) = e^{-\lambda} \frac{\lambda^{0}}{0!}=0.04979$$`
+--
+`$$0.04979 = e^{-\lambda}$$`
+--
+`$$ln(0.0479) = - \lambda \, \text{ therefore } \lambda \approx 3.0$$`
+---
+# Poisson plot
+
+&lt;img src="10-discrete-random-vars_files/figure-html/poisson-student-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -420,13 +434,13 @@ The Poisson PMF with parameter `\(\lambda\)` is a good approximation for a binom
 
 #### Using the binomial PMF
 
-`$$\frac{100!}{95! 5!} \times 0.01^5 (1 - 0.01)^{95} = 0.00290$$`
+`$$\frac{100!}{95! 5!} * 0.01^5 (1 - 0.01)^{95} = 0.00290$$`
 
 --
 
 #### Using the Poisson PMF
 
-* `\(\lambda = np = 100 \times 0.01 = 1\)`
+* `\(\lambda = np = 100 * 0.01 = 1\)`
 
 `$$e^{-1} \frac{1}{5!} = 0.00306$$`
 
@@ -493,7 +507,7 @@ What is `\(\E[X]\)`?
 
 --
 
-`$$\begin{aligned}\E[X]  &amp; = 0\times \frac{1}{8} + 1 \times \frac{3}{8} + 2 \times \frac{3}{8} + 3 \times \frac{1}{8} \\&amp; = 1.5 \end{aligned}$$`
+`$$\begin{aligned}\E[X]  &amp; = 0* \frac{1}{8} + 1 * \frac{3}{8} + 2 * \frac{3}{8} + 3 * \frac{1}{8} \\&amp; = 1.5 \end{aligned}$$`
 
 --
 
@@ -521,7 +535,7 @@ What is `\(\E[X]\)`?
 
 --
 
-`$$\begin{aligned}\E[X] &amp; = 1 \times \Pr(\text{Approve})  + 0 \times \Pr(\text{Disapprove}) \\ &amp; = 1 \times \frac{M}{N} \\ &amp; = \frac{M}{N}  \end{aligned}$$`
+`$$\begin{aligned}\E[X] &amp; = 1 * \Pr(\text{Approve})  + 0 * \Pr(\text{Disapprove}) \\ &amp; = 1 * \frac{M}{N} \\ &amp; = \frac{M}{N}  \end{aligned}$$`
 
 ---
 
@@ -536,7 +550,7 @@ Then,
 --
 
 
-`$$\begin{aligned}\E[I]  &amp; =  1 \times \Pr(A) + 0 \times \Pr(A^{c}) \\ &amp; = \Pr(A) \end{aligned}$$`
+`$$\begin{aligned}\E[I]  &amp; =  1 * \Pr(A) + 0 * \Pr(A^{c}) \\ &amp; = \Pr(A) \end{aligned}$$`
 
 ---
 
@@ -563,7 +577,10 @@ For each value, measure distance from the center
 
 Weighted average of these distances
     
-`$$\begin{aligned} \E[(X - \E[X])^2] &amp; = \sum_{x:p_X(x)&gt;0} (x  - \E[X])^2p_X(x) \\&amp; = \sum_{x:p_X(x)&gt;0} \left(x^2 p_X(x)\right)  - 2 \E[X]\sum_{x:p_X(x)&gt;0} \left(x p_X(x)\right) + \E[X]^2\sum_{x:p_X(x)&gt;0} p_X(x)  \\&amp; =  \E[X^2] - 2\E[X]^2 + \E[X]^2 \\&amp; = \E[X^2] - \E[X]^2 \\&amp; = \text{Var}(X)\end{aligned}$$`
+`$$\begin{aligned} \E[(X - \E[X])^2] &amp; = \sum_{x:p_X(x)&gt;0} (x  - \E[X])^2p_X(x)\end{aligned}$$`
+
+`$$\sum_{x:p_X(x)&gt;0} \left(x^2 p_X(x)\right)- 2 \E[X]\sum_{x:p_X(x)&gt;0} \left(x p_X(x)\right) + \E[X]^2\sum_{x:p_X(x)&gt;0} p_X(x)$$`
+`$$=  \E[X^2] - 2\E[X]^2 + \E[X]^2 \\ = \E[X^2] - \E[X]^2 \\= \text{Var}(X)$$`
 
 ---
 
@@ -601,7 +618,7 @@ Let `\(X\)` be a random variable with PMF `\(p_X\)`, and let `\(g(X)\)` be a fun
 
 * Suppose `\(Y \sim \text{Bernoulli}(\pi)\)`
 
-    `$$\begin{aligned} \E[Y] &amp; = 1 \times \Pr(Y = 1) + 0 \times \Pr(Y = 0) \nonumber \\&amp; = \pi + 0 (1 - \pi) \nonumber  = \pi \\\Var(Y) &amp; = \E[Y^2] - \E[Y]^2 \nonumber  \\\E[Y^2] &amp; = 1^{2} \Pr(Y = 1) + 0^{2} \Pr(Y = 0) \nonumber \\&amp; = \pi \nonumber \\ \Var(Y) &amp; = \pi - \pi^{2} \nonumber \\&amp; = \pi(1 - \pi ) \nonumber\end{aligned}$$`
+    `$$\begin{aligned} \E[Y] &amp; = 1 * \Pr(Y = 1) + 0 * \Pr(Y = 0) \nonumber \\&amp; = \pi + 0 (1 - \pi) \nonumber  = \pi \\\Var(Y) &amp; = \E[Y^2] - \E[Y]^2 \nonumber  \\\E[Y^2] &amp; = 1^{2} \Pr(Y = 1) + 0^{2} \Pr(Y = 0) \nonumber \\&amp; = \pi \nonumber \\ \Var(Y) &amp; = \pi - \pi^{2} \nonumber \\&amp; = \pi(1 - \pi ) \nonumber\end{aligned}$$`
 
 --
 
@@ -649,7 +666,7 @@ Let `\(X\)` be a random variable with PMF `\(p_X\)`, and let `\(g(X)\)` be a fun
 
 --
 
-`$$\begin{aligned}\E[U(\text{war})] &amp; = U(\text{war} | \text{win}) \times \Pr(\text{win}) + U(\text{war} | \text{lose}) \times \Pr(\text{lose}) \\&amp; = (B - c) \Pr(Y = 1) + (- c) \Pr(Y = 0 ) \\&amp; = B \times \Pr(Y = 1)  - c(\Pr(Y = 1)  + \Pr(Y = 0)) \\&amp; = B \times \pi - c \end{aligned}$$`
+`$$\begin{aligned}\E[U(\text{war})] &amp; = U(\text{war} | \text{win}) * \Pr(\text{win}) + U(\text{war} | \text{lose}) * \Pr(\text{lose}) \\&amp; = (B - c) \Pr(Y = 1) + (- c) \Pr(Y = 0 ) \\&amp; = B * \Pr(Y = 1)  - c(\Pr(Y = 1)  + \Pr(Y = 0)) \\&amp; = B * \pi - c \end{aligned}$$`
 
 ---
 
