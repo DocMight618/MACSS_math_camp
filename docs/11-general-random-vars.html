@@ -28,6 +28,8 @@ class: center, middle, inverse, title-slide
 
 
 `$$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$`
+# Misc
+
 
 ---
 
@@ -83,6 +85,9 @@ The probability that the value of `\(X\)` falls within an interval is
 `$$\Pr (a \leq X \leq b) = \int_a^b f_X(x) \,dx$$`
 
 --
+Compare discrete and continuous variables. Suppose we have a probability function `\(f(x)= 1/3\)` where `\(0 &lt; x \leq 3\)`. What is `\(p(X=x)\)`?
+
+--
 
 * For any single value `\(a\)`, `\(\Pr (X = a) = \int_a^a f_X(x) \,dx = 0\)`
 
@@ -118,34 +123,34 @@ The probability that the value of `\(X\)` falls within an interval is
 # Uniform random variable
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \Pr(X \in [0.2, 0.5]) &amp; = \int_{0.2}^{0.5} 1 \,dx \\
 &amp; = X |^{0.5}_{0.2} \\
 &amp; = 0.5  - 0.2  \\
 &amp; = 0.3 
-\end{aligned}`
+\end{aligned}
 $$
 
 --
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \Pr(X \in [0.5, 0.5]) &amp; = \int_{0.5}^{0.5} 1\,dx \\
 &amp; = X|^{0.5}_{0.5} \\
 &amp; = 0.5 - 0.5 \\
 &amp; = 0 
-\end{aligned}`
+\end{aligned}
 $$
 
 --
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \Pr(X \in \{[0, 0.2]\cup[0.5, 1]\}) &amp; = \int_{0}^{0.2} 1\,dx + \int_{0.5}^{1} 1\,dx \\
  &amp; = X_{0}^{0.2} + X_{0.5}^{1} \\
  &amp; = 0.2 - 0 + 1 - 0.5 \\
  &amp; = 0.7 
-\end{aligned}`
+\end{aligned}
 $$
 
 ---
@@ -161,6 +166,29 @@ $$
 * `\(\Pr(X = a) = 0\)`
 * `\(\Pr(X \in (-\infty, \infty) ) = 1\)` 
 * If `\(F\)` is antiderivative of `\(f\)`, then `\(\Pr(X \in [c,d]) = F(d) - F(c)\)`
+
+---
+class: middle
+
+# Having a moment
+
+---
+# Moments: what they are and what they tell us
+Moments help us understand the shape of the distribution
+
+1. Shape around the center (mean): `\(E(X)\)`
+1. Width (variance): `\(E(X^2)\)`
+1. Balance of width (skew): `\(E(X^3)\)`
+1. Tail-y-ness (kurtosis): `\(E(X^4)\)`
+
+---
+class: middle
+
+# Great expectations: first moment
+--
+* Summarizing a distribution
+* What we can expect FROM THE DISTRIBUTION re: center, ON AVERAGE
+* This will give us our baseline expectation for what we *should* be observing *if* our assumptions are true
 
 ---
 
@@ -179,30 +207,66 @@ $$
 --
 
 * `\(n\)`th moment = `\(\E[X^n]\)`
-* `\(\Var(X) = (X - \E[X])^2 = \E[X^2] - (\E[X])^2\)`
+--
+* `\(\Var(X) = E[(X-\mu)^2]=E[(X - \E[X])^2] = \E[X^2] - (\E[X])^2\)`
+
+---
+
+# Uniform random variable: Mean
+
+$$\E[X] = $$
+`$$\ \ \ \ \int_{-\infty}^{\infty} x f_X(x) \,dx$$`
+`$$= \int_a^b x \times \frac{1}{b-a} \,dx$$`
+`$$= \frac{1}{b-a} \times \frac{1}{2}x^2 \Big|_a^b$$`
+`$$= \frac{1}{b-a} \times \frac{b^2 - a^2}{2}$$`
+`$$= \frac{a+b}{2}$$`
+
+---
+
+# Uniform random variable: Variance
+
+`$$\E[X^2] = \int_a^b x^2 \times \frac{1}{b-a} \,dx$$`
+--
+`$$= \frac{1}{b-a} \int_a^b x^2 \,dx \\
+= \frac{1}{b-a} * \frac{1}{3}x^3 \Big|_a^b$$`
+--
+
+`$$\begin{align}
+&amp;= \frac{b^3 - a^3}{3(b-a)} \\
+&amp;= \frac{a^2 + ab + b^2}{3}
+\end{align}
+$$
+
+--
+
+`$$\Var(X) = \E[X^2] - (\E[X])^2 = \frac{a^2 + ab + b^2}{3} - \left( \frac{a+b}{2} \right)^2 = \frac{(b-a)^2}{12}$$`
+
 
 ---
 
 # Uniform random variable
 
 $$
-`\begin{align}
+\begin{align}
 \E[X] = \int_{-\infty}^{\infty} x f_X(x) \,dx &amp;= \int_a^b x \times \frac{1}{b-a} \,dx \\
 &amp;= \frac{1}{b-a} \times \frac{1}{2}x^2 \Big|_a^b \\
 &amp;= \frac{1}{b-a} \times \frac{b^2 - a^2}{2} \\
 &amp;= \frac{a+b}{2}
-\end{align}`
+\end{align}
 $$
 
 --
 
-$$
-`\begin{align}
-\E[X^2] = \int_a^b x^2 \times \frac{1}{b-a} \,dx &amp;= \frac{1}{b-a} \int_a^b x^2 \,dx \\
-&amp;= \frac{1}{b-a} \times \frac{1}{3}x^3 \Big|_a^b \\
+`$$\E[X^2] = \int_a^b x^2 \times \frac{1}{b-a} \,dx$$`
+--
+`$$= \frac{1}{b-a} \int_a^b x^2 \,dx \\
+= \frac{1}{b-a} * \frac{1}{3}x^3 \Big|_a^b$$`
+--
+
+`$$\begin{align}
 &amp;= \frac{b^3 - a^3}{3(b-a)} \\
 &amp;= \frac{a^2 + ab + b^2}{3}
-\end{align}`
+\end{align}
 $$
 
 --
@@ -312,10 +376,10 @@ If `\(Z \sim N(0,1)\)`, then `\(Y = aZ + b\)` is
 Assume we know
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \E[Z]  &amp; = 0 \\
 \Var(Z) &amp; = 1 
-\end{aligned}`
+\end{aligned}
 $$
 
 --
@@ -357,10 +421,10 @@ Suppose we are interested in modeling presidential approval
 * By Central Limit Theorm, `\(Y\)` is normally distributed
 
 $$
-`\begin{aligned}
+\begin{aligned}
 Y &amp; \sim \text{Normal}(\mu, \sigma^2) \\
 f_Y(y) &amp; = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left(-\frac{(y-\mu)^2}{2\sigma^2} \right)
-\end{aligned}`
+\end{aligned}
 $$
 
 ---
@@ -387,10 +451,10 @@ $$
 Suppose `\(\alpha&gt;0\)`. Define `\(\Gamma(\alpha)\)` as
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \Gamma(\alpha) &amp;= \int_{0}^{\infty} y^{\alpha- 1} e^{-y} \,dy \\
 &amp;= (\alpha- 1)! \, \forall \alpha \in \{1, 2, 3, \ldots\}
-\end{aligned}`
+\end{aligned}
 $$
 
 --
@@ -404,10 +468,10 @@ $$
 Suppose we have `\(\Gamma(\alpha)\)`
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \frac{\Gamma(\alpha)}{\Gamma(\alpha)} &amp; = \frac{\int_{0}^{\infty} y^{\alpha-1} e^{-y} dy}{\Gamma(\alpha)} \\
 1 &amp; = \int_{0}^{\infty} \frac{1}{\Gamma(\alpha)} y^{\alpha-1} e^{-y} \,dy 
-\end{aligned}`
+\end{aligned}
 $$
 
 --
@@ -417,12 +481,12 @@ Set `\(X = Y/\beta\)`
 --
 
 $$
-`\begin{aligned}
+\begin{aligned}
 F(x) = \Pr(X \leq x) &amp; = \Pr(Y/\beta \leq x ) \\
 &amp; = \Pr(Y \leq x \beta ) \\
 &amp; = F_{Y} (x \beta) \\
 \frac{\partial F_{Y} (x \beta) }{\partial x} &amp; = f_{Y} (x \beta) \beta
-\end{aligned}`
+\end{aligned}
 $$
 
 --
@@ -450,10 +514,10 @@ if `\(x\geq 0\)` and `\(0\)` otherwise
 Suppose `\(X \sim \text{Gamma}(\alpha, \beta)\)`
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \E[X] &amp; = \frac{\alpha}{\beta} \\
 \Var(X) &amp; = \frac{\alpha}{\beta^2}
-\end{aligned}`
+\end{aligned}
 $$
 
 --
@@ -461,10 +525,10 @@ $$
 Suppose `\(\alpha = 1\)` and `\(\beta = \lambda\)`. If
 
 $$
-`\begin{aligned}
+\begin{aligned}
 X &amp; \sim \text{Gamma}(1, \lambda) \\
 f(x|1, \lambda ) &amp; = \lambda e^{- x \lambda}
-\end{aligned}`
+\end{aligned}
 $$
 
 `$$X \sim \text{Exponential}(\lambda)$$`
@@ -511,24 +575,24 @@ Then
 Suppose `\(Z \sim \text{Normal}(0,1)\)`. Consider `\(X = Z^2\)`
 
 $$
-`\begin{aligned}
+\begin{aligned}
 F_{X}(x)   &amp; =  \Pr(X \leq x) \\
 &amp; = \Pr(Z^2 \leq x ) \\
 &amp; = \Pr(-\sqrt{x} \leq Z \leq \sqrt{x}) \\
 &amp; = \frac{1}{\sqrt{2\pi}} \int_{-\sqrt{x}}^{\sqrt{x} } e^{-\frac{z^2}{2}} \,dz\\
 &amp; = F_{Z} (\sqrt{x}) - F_{Z} (-\sqrt{x})
-\end{aligned}`
+\end{aligned}
 $$
 
 --
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \frac{\partial F_{X}(x) }{\partial x }  &amp; = f_{Z} (\sqrt{x}) \frac{1}{2\sqrt{x}} + f_{Z}(-\sqrt{x}) \frac{1}{2\sqrt{x}} \\
 &amp; = \frac{1}{\sqrt{x}}\frac{1}{2 \sqrt{2\pi}} ( 2e^{-\frac{x}{2}}) \\
 &amp; = \frac{1}{\sqrt{x}}\frac{1}{\sqrt{2\pi}} ( e^{-\frac{x}{2}}) \\
 &amp; = \frac{(\frac{1}{2})^{1/2}}{\Gamma(\frac{1}{2})}\left(x^{1/2 - 1} e^{-\frac{x}{2}}\right)
-\end{aligned}`
+\end{aligned}
 $$
 
 ---
@@ -572,23 +636,23 @@ Suppose `\(X\)` is a continuous random variable with `\(X\geq 0\)`, with PDF
 Suppose `\(X \sim \chi^2(n)\)`
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \E[X] &amp; = \E\left[\sum_{i=1}^{N} Z_{i}^2\right] \\
  &amp; = \sum_{i=1}^{N} \E[Z_{i}^{2} ] \\
 \Var(Z_{i} ) &amp; = \E[Z_{i}^2] - \E[Z_{i}]^2\\
 1 &amp; = \E[Z_{i}^2]- 0 \\
 \E[X] &amp; = n 
-\end{aligned}`
+\end{aligned}
 $$
 
 --
 
 $$
-`\begin{aligned}
+\begin{aligned}
 \Var(X) &amp; = \sum_{i=1}^{N} \Var(Z_{i}^2) \\
 &amp; = \sum_{i=1}^{N} \left(\E[Z_{i}^{4} ] - \E[Z_{i}]^{2}  \right) \\
 &amp; = \sum_{i=1}^{N} \left(3 - 1\right ) = 2n 
-\end{aligned}`
+\end{aligned}
 $$
 
 ---

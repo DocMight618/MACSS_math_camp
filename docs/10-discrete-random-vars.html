@@ -28,6 +28,7 @@ class: center, middle, inverse, title-slide
 
 
 `$$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$`
+# Misc
 
 ---
 
@@ -83,14 +84,22 @@ class: center, middle, inverse, title-slide
 
 # Discrete random variables
 
-* A random variable with a finite or countably infinite range
+* A random variable with a finite or countably infinite range is **discrete**
 * A random variable with an uncountably infinite number of values is **continuous**
 
 ---
 
 # Probability mass functions
 
-* Probability of the values that it can take
+* Probability of the values that our value can take. 
+* FOR DISCRETE VALUES ONLY!!
+* Operator is the `\(\sum\)` (sum) because we are ADDING PIECES
+* Need a corresponding probability for each value (remember what we said re: probability ($0 \leq p \leq 1$))
+
+
+---
+# Probability mass function (PMF)
+Define these for our domain (x). 
 
 ### Intuition
 
@@ -118,13 +127,18 @@ class: center, middle, inverse, title-slide
 * Note that
 
     `$$\sum_x p_{X}(x) = 1$$`
+  
+  --
     
 * Can also add probabilities for smaller sets `\(S\)` of possible values of `\(X \in S\)`
 
     `$$\Pr(X \in S) = \sum_{x \in S} p_X (x)$$`
     `$$\Pr (X &gt; 0) = \sum_{x=1}^2 p_X (x) = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}$$`
 
---
+
+---
+
+# Calculating our PMF!
 
 To calculate the PMF of a random variable `\(X\)`
 
@@ -162,8 +176,8 @@ To calculate the PMF of a random variable `\(X\)`
 * For a random variable `\(X\)`
 
     `$$F(x) = \Pr(X \leq x)$$`
-    
-* Characterizes how probability cumulates as `\(X\)` gets larger
+  --
+* Characterizes how probability **CUMULATES** as `\(X\)` gets larger
 * `\(F(x) \in [0,1]\)`
 * `\(F(x)\)` is non-decreasing
 
@@ -185,6 +199,13 @@ What is `\(F(2) - F(1)\)`?
 
 `$$\begin{aligned} F(2)  - F(1) &amp; = [\Pr(X = 0) + \Pr(X = 1) + \Pr(X = 2)]  \nonumber \\&amp; \quad -[\Pr(X = 0) + \Pr(X = 1)] \\F(2) - F(1) &amp; = \Pr(X = 2)\end{aligned}$$`
 
+
+---
+class: middle, center
+
+# PMFs and CMFs
+
+PMF is to our original function as CMF is to an integral
 ---
 
 # PMFs and CMFs
@@ -194,7 +215,26 @@ What is `\(F(2) - F(1)\)`?
 * Similar to integration, but over a discrete set of values
 
 ---
+class: middle, center
+# FUNCTIONS
 
+&lt;img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbEyaYCtKvH69f_7DIShQ_Kc67Me-j5knH0A&amp;usqp=CAU" style="display: block; margin: auto;" /&gt;
+
+---
+# Function overview
+
+So far, we've looked at how to add up values. However, the values we get depend upon the underlying function. There are a few well-known functions that we'll cover as these will be increasingly useful as you move through your coursework. 
+
+* Bernoulli
+* Binomial
+* Geometric
+* Poisson
+
+--
+This is a selection of functions -- each has certain properties that can be useful for predicting outcomes and events but there are many, many more that may be useful to you as well. 
+
+
+---
 # Bernoulli
 
 Suppose `\(X\)` is a random variable, with `\(X \in \{0, 1\}\)` and `\(\Pr(X = 1) = \pi\)`. Then we will say that `\(X\)` is **Bernoulli** random variable,
@@ -234,26 +274,28 @@ $$
 
 # Binomial
 
-A model to count the number of successes across `\(N\)` trials
+A model to count the number of successes across `\(N\)` trials. 
 
 --
 
 Suppose `\(X\)` is a random variable that counts the number of successes in `\(N\)` independent and identically distributed Bernoulli trials.  Then `\(X\)` is a **Binomial** random variable, 
 
+--
+
 `$$p_X(k) = {N\choose{k}}\pi^{k} (1- \pi)^{n-k}$$`
     
-for `\(k \in \{0, 1, 2, \ldots, N\}\)` and `\(p_X(k) = 0\)` otherwise
+for `\(k \in \{0, 1, 2, \ldots, N\}\)` and 0 otherwise
 
 `$$\binom N{k} = \frac{N!}{(N-k)! k!}$$`
 
 --
-
+To say that a variable, `\(Y\)`, has or follows a binomial distribution we write: 
 `$$Y \sim \text{Binomial}(N, \pi)$$`
 
 ---
 
-# Binomial PMF
-
+# Binomial PMF: trials
+--
 &lt;img src="10-discrete-random-vars_files/figure-html/binomial-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -281,13 +323,15 @@ $$
 
 # Geometric
 
-* A model to count the number of trials of a Bernoulli outcome before success occurs the first time
+* A model to **count the number of trials** of a Bernoulli outcome **before success occurs the FIRST time**
+--
+
 * Suppose `\(X\)` is a random variable that counts the number of tosses needed for a head to come up the first time. Its PMF is 
 
     `$$p_X(k) = (1 - p)^{k-1}p, \quad k = 1, 2, \ldots$$`
     
 --
-
+We can then add up all these possibilities to ensure it satisfies our criteria for probability: 
 $$
 `\begin{aligned}
 \sum_{k=1}^{\infty} p_X(k) &amp;= \sum_{k=1}^{\infty} (1 - p)^{k-1}p \\
@@ -328,7 +372,7 @@ Suppose `\(X\)` is a random variable that takes on values `\(X \in \{0, 1, 2, \l
 
 `$$p_X(k) = e^{-\lambda} \frac{\lambda^{k}}{k!}, \quad k = 0,1,2,\ldots$$`
     
-for `\(k \in \{0, 1, \ldots, \}\)` and `\(0\)` otherwise
+for `\(k \in \{0, 1, \ldots, \}\)` and `\(0\)` otherwise. (Here, `\(\lambda\)` is the mean number of events per year that we're interested in.)
 
 --
 
@@ -462,8 +506,8 @@ What is `\(\E[X]\)`?
 
 Suppose that there is a group of `\(N\)` people
 
-* Suppose `\(M&lt; N\)` people approve of Donald Trump's performance as president
-* `\(N - M\)` disapprove of his performance
+* Suppose `\(M&lt; N\)` people approve of the president's performance
+* `\(N - M\)` disapprove of their performance
 
 --
 
@@ -673,6 +717,22 @@ Let `\(X\)` be a random variable with PMF `\(p_X\)`, and let `\(g(X)\)` be a fun
 # Poisson CMF
 
 &lt;img src="10-discrete-random-vars_files/figure-html/poisson-cmf-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# RECAP:
+
+* Random variables: `\(P(X=x)\)`
+* DISCRETE VARIABLES: **different from continuous**
+* PMF: probability mass function
+  * Probability for a particular value
+* CDF: cumulative distribution function
+  * ADD UP VALUES (akin to a sum)
+* Distributions:
+  * Bernoulli
+  * Binomial
+  * Geometric
+  * Poisson
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
