@@ -26,6 +26,9 @@ This course surveys mathematical and statistical tools that are foundational to 
 * MA and PhD students in the social sciences who have significant prior training and experience in mathematics and statistics and seek to complete the [Certificate in Computational Social Science](https://macss.uchicago.edu/content/certificate-current-students)
 * Students looking for a slower-paced camp focused specifically on algebra, calculus, and probability should enroll in SOSC 30100 - Mathematics for Social Sciences. This two-week course makes no assumption of prior math/stats training. Those of you who struggle with the material of this course may switch after the first week to SOSC 30100.
 
+  ### Attendance
+  Attendance is expected but not required. Students are responsible for the content covered in class. 
+
 ### Assignments: Gradescope
 Join our gradescope classroom: WB3W6G This code should enable anyone to join. Please be sure to upload a CLEAR AND READABLE DOCUMENT that is labeled. 
 
@@ -34,7 +37,10 @@ Join our gradescope classroom: WB3W6G This code should enable anyone to join. Pl
 This course may only be taken for pass/fail (non-credit), not for a letter grade or audit. Assignments are comprised of daily problem sets. You are encouraged to work in groups, and the instructional staff is available for consultation during class hours. We expect most students should be able to finish the problem sets during class hours. Grades will be based upon performance on the problem sets.
 
 ## Final Placement Exam
-The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator. One example would be [this calculator](https://www.target.com/p/texas-instruments-ti-30xa-scientific-calculator/-/A-14769313). Loaner calculators are available by request if requested by 9/8/23. 
+The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator. The study sheets will be collected at the end of the exam. One example kind of calculator would be [this calculator](https://www.target.com/p/texas-instruments-ti-30xa-scientific-calculator/-/A-14769313). Loaner calculators are available by request if requested by 9/8/23. 
+
+### Exam study guide
+Submit your practice questions here](https://forms.gle/FGmpjwDpHw5mVyVp6). We will use this to generate the final exam and we will circulate the questions here to all students. Note that not all questions here will be on the exam -- it depends upon the quality and variety of submissions. 
 
 ## Disability services
 
