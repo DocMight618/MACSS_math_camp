@@ -33,8 +33,8 @@ Join our gradescope classroom: WB3W6G This code should enable anyone to join. Pl
 
 This course may only be taken for pass/fail (non-credit), not for a letter grade or audit. Assignments are comprised of daily problem sets. You are encouraged to work in groups, and the instructional staff is available for consultation during class hours. We expect most students should be able to finish the problem sets during class hours. Grades will be based upon performance on the problem sets.
 
-## Final Exam
-The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator.  Loaner calculators are available by request if requested by 9/8/23. 
+## Final Placement Exam
+The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator. One example would be [this calculator](https://www.target.com/p/texas-instruments-ti-30xa-scientific-calculator/-/A-14769313). Loaner calculators are available by request if requested by 9/8/23. 
 
 ## Disability services
 
