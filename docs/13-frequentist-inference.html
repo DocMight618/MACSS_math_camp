@@ -175,7 +175,8 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 ---
 
 # Properties of point estimates 
-##### Consistency: on average, how does it do?
+##### Consistency: on average, how does it do? 
+*note: efficiency has to do with overall variance*
 
 As the number of observations `\(n\)` increases, the estimator converges towards the true parameter `\(\theta\)`
 
@@ -579,13 +580,14 @@ Truth / Decision | Reject | Fail to Reject
 Truth / Decision | Reject | Fail to Reject
 --------|---------|---------
 `\(H_0\)` True | WRONG! | YES! 
-|(false negative) |
-| type II error |
+|(false positive) |
+| type I error |
 `\(H_0\)` False | YES! |  WRONG! 
-||(false positive)
-|| type I error
+||(false negative)
+|| type II error
 
---
+---
+# Positives and negative
 
 Example: Suppose our null is that people support a six-hour exam. We need to understand if we have sufficient evidence against this. 
 
