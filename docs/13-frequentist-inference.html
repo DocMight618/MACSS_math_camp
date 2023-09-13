@@ -28,6 +28,9 @@ class: center, middle, inverse, title-slide
 
 
 `$$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}} \newcommand{\se}{\text{se}} \newcommand{\sd}{\text{sd}} \newcommand{\Cor}{\mathrm{Cor}} \newcommand{\Lagr}{\mathcal{L}} \newcommand{\lagr}{\mathcal{l}}$$`
+# Misc
+
+* ALMOST THERE!
 
 ---
 
@@ -52,6 +55,13 @@ Process of using data to infer the probability distribution/random variable that
 --
 
 Given a sample `\(X_1, \ldots, X_n \sim F\)`, how do we infer `\(F\)`?
+
+---
+class: middle
+
+# Parametric models and functional form: 
+
+* Parametric models make assumptions about parameters / the underlying functional form (e.g. a linear relationship between variables)
 
 ---
 
@@ -125,6 +135,29 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 
 # Properties of point estimates
 
+&lt;img src="https://www.bluey.tv/wp-content/themes/bbc-bluey/assets/images/characters/bluey-star@2x.png" width="300px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Properties of point estimates: BLUE
+--
+
+## Best
+
+--
+
+## Linear
+
+--
+## Unbiased
+
+--
+## Estimate 
+
+---
+
+# Properties of point estimates: BLUE
+
 ##### Bias
 
 `$$\text{bias}(\hat{\theta}_n) = \E_\theta (\hat{\theta_n}) - \theta$$`
@@ -134,13 +167,18 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 * `\(\E (\hat{\theta_n}) - \theta = 0\)`
 * Importance of unbiased estimators
 
---
+---
 
+# Properties of point estimates: BLUE
 ##### Consistency
 
 As the number of observations `\(n\)` increases, the estimator converges towards the true parameter `\(\theta\)`
 
---
+
+
+---
+
+# Properties of point estimates: BLUE
 
 ##### Sampling distribution
 
@@ -274,6 +312,10 @@ The log-likelihood function is therefore
 &lt;img src="13-frequentist-inference_files/figure-html/loglik-bern-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
+# Log-likelihood close-up
+
+&lt;img src="13-frequentist-inference_files/figure-html/unnamed-chunk-3-1.png" width="864" style="display: block; margin: auto;" /&gt;
+---
 
 # Properties of maximum likelihood estimators
 
@@ -404,6 +446,10 @@ $$
 
 ---
 
+# Confidence: Precision vs accuracy
+
+---
+
 # Confidence sets
 
 A `\(1 - \alpha\)` **confidence interval** for a parameter `\(\theta\)` is an interval `\(C_n = (a,b)\)` where `\(a = a(X_1, \ldots, X_n)\)` and `\(b = b(X_1, \ldots, X_n)\)` are functions of the data such that
@@ -467,10 +513,15 @@ $$
 
 ---
 
+# Hypothesis testing: 
+## Am I right or am I right? 
+
+---
+
 # Hypothesis testing
 
 * Null hypothesis
-* Ask if the data provide sufficient evidence to reject the theory
+* Ask if the data **provide sufficient evidence** to reject the theory
 
 --
 
@@ -498,9 +549,63 @@ If `\(X \subset R\)` we reject the null hypothesis, otherwise we do not reject t
 
 ---
 
-# Types of errors
+# Types of errors: table
 
-&lt;img src="https://2378nh2nfow32gm3mb25krmuyy-wpengine.netdna-ssl.com/wp-content/uploads/2014/05/Type-I-and-II-errors1-625x468.jpg" style="display: block; margin: auto;" /&gt;
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+`\(H_0\)` True | ? |  ?
+`\(H_0\)` False | ? | ? 
+
+
+---
+
+# Types of errors: table
+
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+`\(H_0\)` True | ? | YES! 
+`\(H_0\)` False | YES! |  ?
+
+
+---
+
+# Types of errors: table
+
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+`\(H_0\)` True | WRONG! | YES! 
+|(false negative) |
+| type II error |
+`\(H_0\)` False | YES! |  WRONG! 
+||(false positive)
+|| type I error
+
+--
+
+Example: Suppose our null is that people support a six-hour exam. We need to understand if we have sufficient evidence against this. 
+
+--
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+`\(H_0\)` T: YAY EXAM | WRONG! | YES! 
+|(false negative) |
+| type II error |
+`\(H_0\)` F: BOO EXAM | YES! |  WRONG! 
+||(false positive)
+|| type I error
+
+So, if we had a false negative, we would think that people DO NOT want the exam, when really they DO! Meanwhile in the false positive, we would think that people DO want the exam when really they DO NOT!
+
+---
+
+
+# Types of errors: visual
+
+&lt;img src="https://i.stack.imgur.com/Kq0OH.jpg" style="display: block; margin: auto;" /&gt;
+
+What is our null?
+--
+*pregnant* (type I is fail to reject / false positive)
 
 ---
 
@@ -676,7 +781,7 @@ The size `\(\alpha\)` Wald test rejects `\(H_0\)` when `\(|W| &gt; z_{\alpha / 2
 
 ---
 
-# `\(p\)`-values
+# Understanding `\(p\)`-values
 
 Generally, if the test rejects at level `\(\alpha\)` it will also reject at level `\(\alpha' &gt; \alpha\)`
 
@@ -692,10 +797,14 @@ The smaller the `\(p\)`-value, the stronger the evidence against `\(H_0\)`
 
 `\(p\)`-value  | evidence
 -----------|-----------------------------------------
-`\(&lt; .01\)`    | very strong evidence against `\(H_0\)`
-`\(.01 - .05\)`| strong evidence against `\(H_0\)`
-`\(.05 - .10\)`| weak evidence against `\(H_0\)`
-`\(&gt; .1\)`     | little or no evidence against `\(H_0\)`
+`\(&lt; 0.01\)`    | very strong evidence against `\(H_0\)`
+`\(0.01 - 0.05\)`| strong evidence against `\(H_0\)`
+`\(0.05 - 0.10\)`| weak evidence against `\(H_0\)`
+`\(&gt; 0.1\)`     | little or no evidence against `\(H_0\)`
+
+
+--
+&lt;img src="https://imgs.xkcd.com/comics/p_values_2x.png" width="220px" style="display: block; margin: auto;" /&gt;
 
 ---
 
