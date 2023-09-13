@@ -31,6 +31,10 @@ class: center, middle, inverse, title-slide
 # Misc
 
 * ALMOST THERE!
+* MPCS placement exam
+* Career services 9/14
+* Review 9/14
+
 
 ---
 
@@ -139,7 +143,7 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 
 ---
 
-# Properties of point estimates: BLUE
+# Properties of point estimates: BLUE (OLS)
 --
 
 ## Best
@@ -149,16 +153,17 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 ## Linear
 
 --
-## Unbiased
+## Unbiased 
 
 --
 ## Estimate 
 
+
 ---
 
-# Properties of point estimates: BLUE
+# Properties of point estimates 
 
-##### Bias
+##### Bias: does it give you what you expect? 
 
 `$$\text{bias}(\hat{\theta}_n) = \E_\theta (\hat{\theta_n}) - \theta$$`
 
@@ -169,8 +174,8 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 
 ---
 
-# Properties of point estimates: BLUE
-##### Consistency
+# Properties of point estimates 
+##### Consistency: on average, how does it do?
 
 As the number of observations `\(n\)` increases, the estimator converges towards the true parameter `\(\theta\)`
 
@@ -178,7 +183,7 @@ As the number of observations `\(n\)` increases, the estimator converges towards
 
 ---
 
-# Properties of point estimates: BLUE
+# Properties of point estimates 
 
 ##### Sampling distribution
 
@@ -452,7 +457,7 @@ $$
 
 # Confidence sets
 
-A `\(1 - \alpha\)` **confidence interval** for a parameter `\(\theta\)` is an interval `\(C_n = (a,b)\)` where `\(a = a(X_1, \ldots, X_n)\)` and `\(b = b(X_1, \ldots, X_n)\)` are functions of the data such that
+A ($1 - \alpha$) **confidence interval** for a parameter `\(\theta\)` is an interval `\(C_n = (a,b)\)` where `\(a = a(X_1, \ldots, X_n)\)` and `\(b = b(X_1, \ldots, X_n)\)` are functions of the data such that
 
 `$$\Pr_{\theta} (\theta \in C_n) \geq 1 - \alpha, \quad \forall \, \theta \in \Theta$$`
 
@@ -813,12 +818,16 @@ The smaller the `\(p\)`-value, the stronger the evidence against `\(H_0\)`
 Suppose that the size `\(\alpha\)` test is of the form
 
 `$$\text{reject } H_0 \text{ if and only if } T(X_n) \geq c_\alpha$$`
+--
 
 Then,
 
 `$$\text{p-value} = \text{sup}_{\theta \in \Theta_0} \Pr_\theta (T(X^n) \geq T(x^n))$$`
 
-where `\(x^n\)` is the observed value of `\(X^n\)`. If `\(\Theta_0 = \{ \theta_0 \}\)` then
+where `\(x^n\)` is the observed value of `\(X^n\)`. 
+
+--
+If `\(\Theta_0 = \{ \theta_0 \}\)` then
 
 `$$\text{p-value} = \Pr_{\theta_0} (T(X^n) \geq T(x^n))$$`
 
