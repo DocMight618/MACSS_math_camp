@@ -133,13 +133,14 @@ Steps:
 
 --
   
-  | `\(z^*\)` | `\(1-\alpha\)` | `\(\alpha\)`|
+  
+  | `\(z^*\)` | `\(1-\alpha\)`| `\(\alpha\)`| 
   | ---|------------|---------|
   | `\(\pm 1.65\)` | 90% | 0.10 | 
   | `\(\pm 1.96\)` | 95% | 0.05 | 
   | `\(\pm 2.58\)` | 99% | 0.01 | 
   
-  
+  * `\(z^*\)` is the critical value while `\(z\)` is the test statistic we calculate!
 ---
 
 # Example: cholesterol data
@@ -189,9 +190,9 @@ From our cholesterol example before, suppose:
 Let the estimated mean cholesterol levels for the first group be `\(\bar{X} = 216.2\)` and for the second group `\(\bar{Y} = 195.3\)`. Let the estimated standard error for each group be `\(\widehat{\se}(\hat{\mu}_1) = 5.0\)` and `\(\widehat{\se}(\hat{\mu}_2) = 2.4\)`
 
 --
-`$$3.78 \pm 1.96* \sqrt{5^2 + 2.4^2}$$`
+`$$(216.2-195.3) \pm 1.96* \sqrt{5^2 + 2.4^2}$$`
 --
-`$$(-7.1, 14.65)$$`
+`$$(10.03, 31.8)$$`
 
 
 ---
@@ -324,7 +325,7 @@ Suppose you are interested in how many hours people spend online per week. In 20
 
 --
 
-`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE$=\sqrt{\frac{se_1^2}{n_1} + \frac{se_2^2}{n_2}}$.
+`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE `\(=\sqrt{\frac{se_1^2}{n_1} + \frac{se_2^2}{n_2}}\)`.
 --
 
 `$$z = \frac{( 11.6 - 5.9)-0}{\sqrt{\frac{15.02^2}{1399} + \frac{8.86^2}{1574}}}$$`
@@ -340,7 +341,7 @@ Suppose you are interested in how many hours people spend online per week. In 20
 
 --
 
-`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE$=\sqrt{\frac{se_1^2}{n_1} + \frac{se_2^2}{n_2}}$.
+`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE `\(=\sqrt{\frac{se_1^2}{n_1} + \frac{se_2^2}{n_2}}\)`.
 --
 
 `$$z = \frac{( 11.6 - 10.5)-0}{\sqrt{\frac{15.02^2}{1399} + \frac{14.5^2}{1019}}}$$`
