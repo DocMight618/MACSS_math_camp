@@ -226,7 +226,7 @@ where `\(\E[X_j] = np_{0j}\)` is the expected value under `\(H_0\)`.
 
 # Attitudes towards abortion
 
-| Right to Abortion | Liberal | Moderate | Conservative | Total |
+| Abortion Right | Liberal | Moderate | Conservative | Total |
 |-------------------|----------|----------|--------------|--------|
 | Yes | 40.8% | 40.8% | 40.8% | 40.8% |
 |  | (206.45) | (289.68) | (271.32) | (768) |
@@ -239,7 +239,7 @@ where `\(\E[X_j] = np_{0j}\)` is the expected value under `\(H_0\)`.
 
 # Attitudes towards abortion
 
-| Right to Abortion | Liberal | Moderate | Conservative | Total |
+| Abortion Right  | Liberal | Moderate | Conservative | Total |
 |-------------------|---------|----------|--------------|--------|
 | Yes | 62.6% | 36.6% | 28.7% | 40.8% |
 |  | (317) | (260) | (191) | (768) |
@@ -252,15 +252,15 @@ where `\(\E[X_j] = np_{0j}\)` is the expected value under `\(H_0\)`.
 
 # Attitudes towards abortion
 
-| Right to Abortion |     | Liberal | Moderate | Conservative |
+| Abortion Right  |     | Liberal | Moderate | Conservative |
 |-------------------|---------------|---------|----------|--------------|
-|  Yes | Observed Frequency `\(X_j\)` | 317.0 | 260.0 | 191.0 |
-|     | Expected Frequency `\(\E[X_j]\)` | 206.6 | 289.9 | 271.5 |
+|  Yes | Obs Frequency `\(X_j\)` | 317.0 | 260.0 | 191.0 |
+|     | Exp Frequency `\(\E[X_j]\)` | 206.6 | 289.9 | 271.5 |
 |     | `\(X_j - \E[X_j]\)` | 110.4 | -29.9 | -80.5 |
 |     | `\((X_j - \E[X_j])^2\)` | 12188.9 | 893.3 | 6482.7 |
 |     | `\(\frac{(X_j - \E[X_j])^2}{\E[X_j]}\)` | **59.0** | **4.1** | **23.9** |
-|  No   | Observed Frequency `\(X_j\)` | 189.0 | 450.0 | 474.0 |
-|     | Expected Frequency `\(\E[X_j]\)` | 299.4 | 420.1 | 393.5 |
+|  No   | Obs Frequency `\(X_j\)` | 189.0 | 450.0 | 474.0 |
+|     | Exp Frequency `\(\E[X_j]\)` | 299.4 | 420.1 | 393.5 |
 |     | `\(X_j - \E[X_j]\)` | -110.4 | 29.9 | 80.5 |
 |     | `\((X_j - \E[X_j])^2\)` | 12188.9 | 893.3 | 6482.7 |
 |     | `\(\frac{(X_j - \E[X_j])^2}{\E[X_j]}\)` | **40.7** | **2.1** | **16.5** |
@@ -274,6 +274,7 @@ Calculating test statistic
 * `\(\chi^2=\sum{\frac{(X_j - \E[X_j])^2}{\E[X_j]}}=145.27\)`
 * `\(\text{Degrees of freedom} = (\text{number of rows}-1)(\text{number of columns}-1)=2\)`
 
+Here, it would be `\(59+4.1+23.9+40.7+2.1+16.5=146.3\)`.
 --
 
 Calculating `\(p\)`-value
@@ -303,7 +304,7 @@ Suppose you are interested in how many hours people spend online per week. In 20
 
 Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. In 2004, the average time was 5.9 with a sample SD of 8.86 and a n of 1,574. In 2012 the average was 10.5 with a sample SD of 14.5 and n of 1,019.In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
 
-`$$11.6 \pm 1.96 \frac{15.02}{1399^{0.5}}$$`
+`$$11.6 \pm 1.96 \frac{15.02}{\sqrt{1399}}$$`
 
 --
 
@@ -323,21 +324,29 @@ Suppose you are interested in how many hours people spend online per week. In 20
 
 --
 
-`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE$=\sqrt{se_1^2 + se_2^2}$ and se$=\sqrt{\frac{s}{n}}$.
+`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE$=\sqrt{\frac{se_1^2}{n_1} + \frac{se_2^2}{n_2}}$.
 --
 
-`$$z = \frac{( 11.6 - 5.9-0}{\sqrt{\frac{15.02}{1399} + \frac{}{}}}$$`
+`$$z = \frac{( 11.6 - 5.9)-0}{\sqrt{\frac{15.02^2}{1399} + \frac{8.86^2}{1574}}}$$`
+--
 
+`$$z = 12.04$$` ... this is a lot! So, yeah, we can reject the null. 
 
 ---
 
 # Test for 2014 vs 2012:
 
-Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. We can place this number in a broader context: In 2004, the average time was 5.9 and in 2012 the average was 10.5. In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
+Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. In 2004, the average time was 5.9 with a sample SD of 8.86 and a n of 1,574. In 2012 the average was 10.5 with a sample SD of 14.5 and n of 1,019.In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
 
 --
 
-`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE$=\sqrt{se_1^2 + se_2^2}$ and se$=\sqrt{\frac{s}{n}}$.
+`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE$=\sqrt{\frac{se_1^2}{n_1} + \frac{se_2^2}{n_2}}$.
+--
+
+`$$z = \frac{( 11.6 - 10.5)-0}{\sqrt{\frac{15.02^2}{1399} + \frac{14.5^2}{1019}}}$$`
+--
+
+`$$z = 1.81$$` BUT HOW? WHY do we see that this value is smaller than what we would use to reject? 
 
 ---
 class: middle
