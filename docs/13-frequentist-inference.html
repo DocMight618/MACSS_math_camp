@@ -176,7 +176,7 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 
 # Properties of point estimates 
 ##### Consistency: on average, how does it do? 
-*note: efficiency has to do with overall variance*
+*note: efficiency has to do with overall variance across estimators*
 
 As the number of observations `\(n\)` increases, the estimator converges towards the true parameter `\(\theta\)`
 
@@ -211,6 +211,14 @@ $$
 --
 
 `$$\frac{\hat{\theta}_n - \theta}{\se} \leadsto N(0,1)$$`
+---
+# Understanding expected values of estimators
+
+KEY for homework: 
+
+`$$E[\bar X] = \frac{1}{n} \sum_{i=1}^n E[X_i]$$`
+--
+Translation: *when we take the expected value of an average of a random variable, we can take the average of the expected value for our random values*
 
 ---
 
@@ -218,9 +226,9 @@ $$
 
 Let `\(X_1, \ldots, X_n ~ \text{Bernoulli}(\pi)\)` and let `\(\hat{\pi}_n = \frac{1}{n} \sum_{i=1}^n X_i\)`. Then
 
-`$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$`
+`$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$`. We can then compare our expected value from the distribution `\(\pi\)`, to what we obtained here, to verify they are equal.
 
-so `\(\hat{\pi}_n\)` is unbiased
+They are, so `\(\hat{\pi}_n\)` is unbiased
 
 ---
 
@@ -228,7 +236,13 @@ so `\(\hat{\pi}_n\)` is unbiased
 
 The standard error is
 
-`$$\se = \sqrt{\Var (\hat{\pi}_n)} = \sqrt{\frac{\pi (1 - \pi)}{n}}$$`
+`$$\se = \sqrt{\Var (\hat{\pi}_n)}$$`
+--
+We can think of this as: `$$\frac{Var(\pi_n)}{n}$$`. HOW?? We are adding up all the variances across our random variables and averaging them. 
+
+--
+Therefore, we get: 
+`$$\se= \sqrt{\frac{\pi (1 - \pi)}{n}}$$`
 
 --
 
@@ -451,6 +465,7 @@ $$
 &lt;img src="13-frequentist-inference_files/figure-html/loglik-normal-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
+class: middle
 
 # Confidence: Precision vs accuracy
 
@@ -458,7 +473,7 @@ $$
 
 # Confidence sets
 
-A ($1 - \alpha$) **confidence interval** for a parameter `\(\theta\)` is an interval `\(C_n = (a,b)\)` where `\(a = a(X_1, \ldots, X_n)\)` and `\(b = b(X_1, \ldots, X_n)\)` are functions of the data such that
+A ( `\(1 - \alpha\)` ) **confidence interval** for a parameter `\(\theta\)` is an interval `\(C_n = (a,b)\)` where `\(a = a(X_1, \ldots, X_n)\)` and `\(b = b(X_1, \ldots, X_n)\)` are functions of the data such that
 
 `$$\Pr_{\theta} (\theta \in C_n) \geq 1 - \alpha, \quad \forall \, \theta \in \Theta$$`
 
@@ -518,6 +533,7 @@ $$
 $$
 
 ---
+class: middle
 
 # Hypothesis testing: 
 ## Am I right or am I right? 
@@ -580,10 +596,10 @@ Truth / Decision | Reject | Fail to Reject
 Truth / Decision | Reject | Fail to Reject
 --------|---------|---------
 `\(H_0\)` True | WRONG! | YES! 
-|(false positive) |
+|(false negative) |
 | type I error |
 `\(H_0\)` False | YES! |  WRONG! 
-||(false negative)
+||(false positive)
 || type II error
 
 ---
@@ -592,6 +608,7 @@ Truth / Decision | Reject | Fail to Reject
 Example: Suppose our null is that people support a six-hour exam. We need to understand if we have sufficient evidence against this. 
 
 --
+
 Truth / Decision | Reject | Fail to Reject
 --------|---------|---------
 `\(H_0\)` T: YAY EXAM | WRONG! | YES! 
@@ -610,9 +627,6 @@ So, if we had a false negative, we would think that people DO NOT want the exam,
 
 &lt;img src="https://i.stack.imgur.com/Kq0OH.jpg" style="display: block; margin: auto;" /&gt;
 
-What is our null?
---
-*pregnant* (type I is fail to reject / false positive)
 
 ---
 
@@ -854,6 +868,122 @@ where `\(Z \sim N(0,1)\)`
 &lt;img src="13-frequentist-inference_files/figure-html/wald-p-val-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
+class: middle
+# Applications
+
+---
+# Misc:
+
+* Career services TODAY!
+* Exam TOMORROW!
+* All calculators claimed -- bring one if you'd like
+* Not yet enough questions to circulate (need ~2 more people)
+
+
+---
+class: middle
+
+# Review: theoretical side
+
+
+---
+# Understanding expected values of estimators
+
+KEY for homework: 
+
+`$$E[\bar X] = \frac{1}{n} \sum_{i=1}^n E[X_i]$$`
+--
+Translation: *when we take the expected value of an average of a random variable, we can take the average of the expected value for our random values*
+
+
+---
+# Answering statistical questions
+
+## Descriptive statistics
+
+* describe your data
+* don't come to any conclusions
+* generally give you a sense of what's there
+
+--
+
+## Inferential statistics
+
+* test a hypothesis
+* come to a conclusion
+* deal with evidence (sufficient / insufficient) and information
+
+---
+# Statistical tests:
+
+* One mean
+* Two means
+  * Group mean
+  * Proportions
+* Counts ( `\(\chi^2\)`) 
+* Multiple means (ANOVA)
+
+
+---
+# What is at stake?
+
+## HOW WEIRD IS IT?
+
+Just need the information and framing of our question
+To answer, need the sample size to help figure out appropriate test
+
+---
+# Cool, what test do I use? 
+
+* Counts: if only two choices, use z test for proportions, if lots of choices or table, use `\(\chi^2\)`
+* Means: if two groups and small sample, t; if two groups and large-ish sample, z; if multiple groups (and decent sample size) ANOVA
+
+---
+# OK SO HOW DO I DO IT????
+
+--
+
+General format: (observed mean)-(expected value) / SE
+
+--
+Steps: 
+
+--
+* Find sample mean (AKA POINT ESTIMATE)
+
+--
+* Find expected value
+
+--
+* Find SE
+
+--
+* Calculate in formula above
+
+--
+* Evaluate / make decision
+
+--
+* PROFIT???
+
+---
+
+# Evaluating a test statistic
+
+* Could use tables
+* Could use statistical software
+* Could use critical value approach: reject when calculated `\(z &gt; z^*\)`
+
+--
+  
+  | `\(z^*\)` | `\(1-\alpha\)` | `\(\alpha\)`|
+  | ---|------------|---------|
+  | `\(\pm 1.65\)` | 90% | 0.10 |
+  | `\(\pm 1.96\)` | 95% | 0.05 |
+  | `\(\pm 2.58\)` | 99% | 0.01 |
+  
+  
+---
 
 # Example: cholesterol data
 
@@ -874,6 +1004,38 @@ The Wald test statistic is
 To compute the `\(p\)`-value, let `\(Z \sim N(0,1)\)` denote a standard Normal random variable. Then
 
 `$$\text{p-value} = \Pr (|Z| &gt; 3.78) = 2 \Pr(Z &lt; -3.78) = 0.0002$$`
+
+---
+# Degrees of freedom and t tests
+
+When dealing with small samples, things get a little bit complicated since it's not *universal* -- it depends on the sample size-ish. It has to do with how many degrees of freedom exist, which is `\(n-1\)`. Therefore, each sample could potentially have a different degree of freedom. 
+
+Otherwise, the process / procedure is exactly the same as before. 
+
+---
+
+# PROPORTIONS!
+
+We won't get into this deeply, but you effectively will always use z for proportions. The procedure is the same, BUT you may not receive the SE for a distribution. ...
+
+WHY??
+
+--
+
+Because we can think of these as a series of Bernoulli trials with a mean of `\(\pi\)` and var of `\(\pi(1-\pi)\)`. We can use this to determine the standard error!
+
+---
+# Confidence intervals
+We can conduct hypothesis testing with confidence intervals as well. 
+
+From our cholesterol example before, suppose: 
+Let the estimated mean cholesterol levels for the first group be `\(\bar{X} = 216.2\)` and for the second group `\(\bar{Y} = 195.3\)`. Let the estimated standard error for each group be `\(\widehat{\se}(\hat{\mu}_1) = 5.0\)` and `\(\widehat{\se}(\hat{\mu}_2) = 2.4\)`
+
+--
+`$$3.78 \pm 1.96* \sqrt{5^2 + 2.4^2}$$`
+--
+`$$(-7.1, 14.65)$$`
+
 
 ---
 
@@ -960,6 +1122,131 @@ Calculating test statistic
 Calculating `\(p\)`-value
 
 * `\(\text{p-value} = \Pr (\chi_2^2 &gt; 145.27) = 0\)`
+
+---
+class: middle
+
+# Extended example: one-sample, two-sample, and CIs
+
+
+---
+class: middle
+
+# A TL;DR of Bayesian v Frequentist statistics
+
+---
+
+&lt;img src="https://imgs.xkcd.com/comics/frequentists_vs_bayesians_2x.png" width="390px" style="display: block; margin: auto;" /&gt;
+---
+
+# Bayesian Inference
+
+* Works how you probably *thought* frequentist statistics works
+
+--
+* Uses information to provide context for how to understand data
+
+--
+* We can make probability statements about parameters, even though they are fixed constants
+
+--
+* We make inferences about a parameter `\(\theta\)` by producing a probability distribution for `\(\theta\)`
+
+---
+
+# Bayesian inference
+
+1. Choose a prior distribution `\(f(\theta)\)`
+1. Choose a statistical model `\(f(x|\theta)\)`
+    * `\(f(x|\theta) \neq f(x; \theta)\)`
+1. Calculate the posterior distribution `\(f(\theta | X_1, \ldots, X_n)\)`
+
+
+---
+
+# Bayesian inference
+
+* Suppose that `\(\theta\)` is discrete and that there is a single, discrete observation `\(X\)`
+* `\(\Theta\)` is a random variable
+
+--
+
+##### Discrete random variable
+
+$$
+`\begin{align}
+\Pr(\Theta = \theta | X = x) &amp;= \frac{\Pr(X = x, \Theta = \theta)}{\Pr(X = x)} \\
+&amp;= \frac{\Pr(X = x | \Theta = \theta) \Pr(\Theta = \theta)}{\sum_\theta \Pr (X = x| \Theta = \theta) \Pr (\Theta = \theta)}
+\end{align}`
+$$
+
+##### Continuous random variable
+
+`$$f(\theta | x) = \frac{f(x | \theta) f(\theta)}{\int f(x | \theta) f(\theta) d\theta}$$`
+
+
+---
+
+# Critique of Bayesian inference
+
+1. The subjective prior is subjective
+
+--
+
+1. Probabilities on hypotheses are wrong. There is only one outcome
+
+--
+
+1. For many parametric models with large samples, Bayesian and frequentist methods give approximately the same inferences
+
+--
+
+1. Bayesian inference depends entirely on the likelihood function
+
+---
+
+# Defense of Bayesian inference
+
+1. The probability of hypotheses is exactly what we need to make decisions
+
+--
+
+1. Bayes' theorem is logically rigorous (once we obtain a prior)
+
+--
+
+1. By testing different priors we can see how sensitive our results are to the choice of prior
+
+--
+
+1. It is easy to communicate a result framed in terms of probabilities of hypotheses
+
+--
+
+1. Priors can be defended based on the assumptions made to arrive at it
+
+--
+
+1. Evidence derived from the data is independent of notions about "data more extreme" that depend on the exact experimental setup
+
+--
+
+1. Data can be used as it comes in. We don't have to wait for every contingency to be planned for ahead of time
+
+---
+# Recap
+
+* Estimators: generate our point estimate
+* Point estimates: best guess 
+* Testing: HOW WEIRD IS IT
+* Evaluation:
+  * Find sample mean (AKA POINT ESTIMATE)
+  * Find expected value
+  * Find SE
+  * Calculate in formula above
+  * Evaluate / make decision
+* Bayes: different approach to statistics vs frequentist
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

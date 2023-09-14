@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Classical statistical inference: Applications</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MACS 33000   University of Chicago" />
+    <script src="14-classical-applied_files/header-attrs/header-attrs.js"></script>
+    <link href="14-classical-applied_files/remark-css/default.css" rel="stylesheet" />
+    <link href="14-classical-applied_files/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Classical statistical inference: Applications
+]
+.author[
+### <a href="https://jmclip.github.io/MACSS_math_camp/">MACS 33000</a> <br /> University of Chicago
+]
+
+---
+
+
+
+
+
+
+
+`$$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}} \newcommand{\se}{\text{se}} \newcommand{\sd}{\text{sd}} \newcommand{\Cor}{\mathrm{Cor}} \newcommand{\Lagr}{\mathcal{L}} \newcommand{\lagr}{\mathcal{l}}$$`
+
+# Misc:
+
+* Career services TODAY!
+* Exam TOMORROW!
+* All calculators claimed -- bring one if you'd like
+* Not yet enough questions to circulate (need ~2 more people)
+
+
+---
+class: middle
+
+# Review: theoretical side
+
+
+---
+# Understanding expected values of estimators
+
+KEY for homework: 
+
+`$$E[\bar X] = \frac{1}{n} \sum_{i=1}^n E[X_i]$$`
+--
+Translation: *when we take the expected value of an average of a random variable, we can take the average of the expected value for our random values*
+
+
+---
+# Answering statistical questions
+
+## Descriptive statistics
+
+* describe your data
+* don't come to any conclusions
+* generally give you a sense of what's there
+
+--
+
+## Inferential statistics
+
+* test a hypothesis
+* come to a conclusion
+* deal with evidence (sufficient / insufficient) and information
+
+---
+# Statistical tests:
+
+* One mean
+* Two means
+  * Group mean
+  * Proportions
+* Counts ( `\(\chi^2\)`) 
+* Multiple means (ANOVA)
+
+
+---
+# What is at stake?
+
+## HOW WEIRD IS IT?
+
+Just need the information and framing of our question
+To answer, need the sample size to help figure out appropriate test
+
+---
+# Cool, what test do I use? 
+
+* Counts: if only two choices, use z test for proportions, if lots of choices or table, use `\(\chi^2\)`
+* Means: if two groups and small sample, t; if two groups and large-ish sample, z; if multiple groups (and decent sample size) ANOVA
+
+---
+# OK SO HOW DO I DO IT????
+
+--
+
+General format: (observed mean)-(expected value) / SE
+
+--
+Steps: 
+
+--
+* Find sample mean (AKA POINT ESTIMATE)
+
+--
+* Find expected value
+
+--
+* Find SE
+
+--
+* Calculate in formula above
+
+--
+* Evaluate / make decision
+
+--
+* PROFIT???
+
+---
+
+# Evaluating a test statistic
+
+* Could use tables
+* Could use statistical software
+* Could use critical value approach: reject when calculated `\(z &gt; z^*\)`
+
+--
+  
+  | `\(z^*\)` | `\(1-\alpha\)` | `\(\alpha\)`|
+  | ---|------------|---------|
+  | `\(\pm 1.65\)` | 90% | 0.10 | 
+  | `\(\pm 1.96\)` | 95% | 0.05 | 
+  | `\(\pm 2.58\)` | 99% | 0.01 | 
+  
+  
+---
+
+# Example: cholesterol data
+
+Consider a set of 371 individuals in a health study examining cholesterol levels (in mg/dl). 320 individuals have narrowing of the arteries, while 51 patients have no evidence of heart disease. Is the mean cholesterol different in the two groups?
+
+--
+
+Let the estimated mean cholesterol levels for the first group be `\(\bar{X} = 216.2\)` and for the second group `\(\bar{Y} = 195.3\)`. Let the estimated standard error for each group be `\(\widehat{\se}(\hat{\mu}_1) = 5.0\)` and `\(\widehat{\se}(\hat{\mu}_2) = 2.4\)`
+
+--
+
+The Wald test statistic is
+
+`$$W = \frac{\hat{\delta} - 0}{\widehat{\se}} = \frac{\bar{X} - \bar{Y}}{\sqrt{\widehat{\se}_1^2 + \widehat{\se}_2^2}} = \frac{216.2 - 195.3}{\sqrt{5^2 + 2.4^2}} = 3.78$$`
+
+--
+
+To compute the `\(p\)`-value, let `\(Z \sim N(0,1)\)` denote a standard Normal random variable. Then
+
+`$$\text{p-value} = \Pr (|Z| &gt; 3.78) = 2 \Pr(Z &lt; -3.78) = 0.0002$$`
+
+---
+# Degrees of freedom and t tests
+
+When dealing with small samples, things get a little bit complicated since it's not *universal* -- it depends on the sample size-ish. It has to do with how many degrees of freedom exist, which is `\(n-1\)`. Therefore, each sample could potentially have a different degree of freedom. 
+
+Otherwise, the process / procedure is exactly the same as before. 
+
+---
+
+# PROPORTIONS!
+
+We won't get into this deeply, but you effectively will always use z for proportions. The procedure is the same, BUT you may not receive the SE for a distribution. ...
+
+WHY??
+
+--
+
+Because we can think of these as a series of Bernoulli trials with a mean of `\(\pi\)` and var of `\(\pi(1-\pi)\)`. We can use this to determine the standard error!
+
+---
+# Confidence intervals
+We can conduct hypothesis testing with confidence intervals as well. 
+
+From our cholesterol example before, suppose: 
+Let the estimated mean cholesterol levels for the first group be `\(\bar{X} = 216.2\)` and for the second group `\(\bar{Y} = 195.3\)`. Let the estimated standard error for each group be `\(\widehat{\se}(\hat{\mu}_1) = 5.0\)` and `\(\widehat{\se}(\hat{\mu}_2) = 2.4\)`
+
+--
+`$$3.78 \pm 1.96* \sqrt{5^2 + 2.4^2}$$`
+--
+`$$(-7.1, 14.65)$$`
+
+
+---
+
+# Pearson's `\(\chi^2\)` test for multinomial data
+
+* Used for multinomial data
+* If `\(X = (X_1, \ldots, X_k)\)` has a multinomial `\((n,p)\)` distribution, then the MLE of `\(p\)` is `\(\hat{p} = (\hat{p}_1, \ldots, \hat{p}_k) = (x_1 / n, \ldots, x_k / n)\)`.
+
+--
+
+Let `\(p_0 = (p_{01}, \ldots, p_{0k})\)` be some fixed vector and suppose we want to test
+
+`$$H_0: p = p_0 \quad \text{versus} \quad H_1: p \neq p_0$$`
+
+--
+
+Pearson's `\(\chi^2\)` statistic is
+
+`$$T = \sum_{j=1}^k \frac{(X_j - np_{0j})^2}{np_{0j}} = \sum_{j=1}^k \frac{(X_j - \E[X_j])^2}{\E[X_j]}$$`
+
+where `\(\E[X_j] = np_{0j}\)` is the expected value under `\(H_0\)`.
+
+---
+
+# Attitudes towards abortion
+
+* `\(H_A\)` - In a comparison of individuals, liberals are more likely to favor allowing a woman to obtain an abortion for any reason than conservatives
+* `\(H_0\)` - There is no difference in support between liberals and conservatives for allowing a woman to obtain an abortion for any reason. Any difference is the result of random sampling error.
+
+---
+
+# Attitudes towards abortion
+
+| Right to Abortion | Liberal | Moderate | Conservative | Total |
+|-------------------|----------|----------|--------------|--------|
+| Yes | 40.8% | 40.8% | 40.8% | 40.8% |
+|  | (206.45) | (289.68) | (271.32) | (768) |
+| No | 59.2% | 59.2% | 59.2% | 59.2% |
+|  | (299.55) | (420.32) | (393.68) | (1113) |
+| Total | 26.9% | 37.7% | 35.4% | 100% |
+|  | (506) | (710) | (665) | (1881) |
+
+---
+
+# Attitudes towards abortion
+
+| Right to Abortion | Liberal | Moderate | Conservative | Total |
+|-------------------|---------|----------|--------------|--------|
+| Yes | 62.6% | 36.6% | 28.7% | 40.8% |
+|  | (317) | (260) | (191) | (768) |
+| No | 37.4% | 63.4% | 71.28% | 59.2% |
+|  | (189) | (450) | (474) | (1113) |
+| Total | 26.9% | 37.7% | 35.4% | 100% |
+|  | (506) | (710) | (665) | (1881) |
+
+---
+
+# Attitudes towards abortion
+
+| Right to Abortion |     | Liberal | Moderate | Conservative |
+|-------------------|---------------|---------|----------|--------------|
+|  Yes | Observed Frequency `\(X_j\)` | 317.0 | 260.0 | 191.0 |
+|     | Expected Frequency `\(\E[X_j]\)` | 206.6 | 289.9 | 271.5 |
+|     | `\(X_j - \E[X_j]\)` | 110.4 | -29.9 | -80.5 |
+|     | `\((X_j - \E[X_j])^2\)` | 12188.9 | 893.3 | 6482.7 |
+|     | `\(\frac{(X_j - \E[X_j])^2}{\E[X_j]}\)` | **59.0** | **4.1** | **23.9** |
+|  No   | Observed Frequency `\(X_j\)` | 189.0 | 450.0 | 474.0 |
+|     | Expected Frequency `\(\E[X_j]\)` | 299.4 | 420.1 | 393.5 |
+|     | `\(X_j - \E[X_j]\)` | -110.4 | 29.9 | 80.5 |
+|     | `\((X_j - \E[X_j])^2\)` | 12188.9 | 893.3 | 6482.7 |
+|     | `\(\frac{(X_j - \E[X_j])^2}{\E[X_j]}\)` | **40.7** | **2.1** | **16.5** |
+
+---
+
+# Attitudes towards abortion
+
+Calculating test statistic
+
+* `\(\chi^2=\sum{\frac{(X_j - \E[X_j])^2}{\E[X_j]}}=145.27\)`
+* `\(\text{Degrees of freedom} = (\text{number of rows}-1)(\text{number of columns}-1)=2\)`
+
+--
+
+Calculating `\(p\)`-value
+
+* `\(\text{p-value} = \Pr (\chi_2^2 &gt; 145.27) = 0\)`
+
+---
+class: middle
+
+# Extended example: one-sample, two-sample, and CIs
+
+---
+
+Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. In 2004, the average time was 5.9 with a sample SD of 8.86 and a n of 1,574. In 2012 the average was 10.5 with a sample SD of 14.5 and n of 1,019.In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
+--
+
+* First: CI for 2014 (point estimate `\(\pm\)` `\(z^*\)`*se)
+* Next: Difference of means test (difference - expected / se)
+  * Look at 2014 vs 2004
+  * Look at 2014 vs 2012
+* Third: Explore the differences in what we see
+
+
+---
+
+# CI for 2014:
+
+Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. In 2004, the average time was 5.9 with a sample SD of 8.86 and a n of 1,574. In 2012 the average was 10.5 with a sample SD of 14.5 and n of 1,019.In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
+
+`$$11.6 \pm 1.96 \frac{15.02}{1399^{0.5}}$$`
+
+--
+
+`$$(10.8, 12.4)$$`
+--
+We are 95% confident that the true value in 2014 lies within this interval. 
+
+--
+
+Are 5.9 or 10.5 in the interval? What does this tell us?
+
+---
+
+# Test for 2014 vs 2004:
+
+Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. In 2004, the average time was 5.9 with a sample SD of 8.86 and a n of 1,574. In 2012 the average was 10.5 with a sample SD of 14.5 and n of 1,019.In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
+
+--
+
+`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE$=\sqrt{se_1^2 + se_2^2}$ and se$=\sqrt{\frac{s}{n}}$.
+--
+
+`$$z = \frac{( 11.6 - 5.9-0}{\sqrt{\frac{15.02}{1399} + \frac{}{}}}$$`
+
+
+---
+
+# Test for 2014 vs 2012:
+
+Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. We can place this number in a broader context: In 2004, the average time was 5.9 and in 2012 the average was 10.5. In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
+
+--
+
+`$$z = \frac{(\bar x_1 - \bar x_2)-0}{se}$$` where SE$=\sqrt{se_1^2 + se_2^2}$ and se$=\sqrt{\frac{s}{n}}$.
+
+---
+class: middle
+
+# A TL;DR of Bayesian v Frequentist statistics
+
+---
+
+&lt;img src="https://imgs.xkcd.com/comics/frequentists_vs_bayesians_2x.png" width="390px" style="display: block; margin: auto;" /&gt;
+---
+
+# Bayesian Inference
+
+* Works how you probably *thought* frequentist statistics works
+
+--
+* Uses information to provide context for how to understand data
+
+--
+* We can make probability statements about parameters, even though they are fixed constants
+
+--
+* We make inferences about a parameter `\(\theta\)` by producing a probability distribution for `\(\theta\)`
+
+---
+
+# Bayesian inference
+
+1. Choose a prior distribution `\(f(\theta)\)`
+1. Choose a statistical model `\(f(x|\theta)\)`
+    * `\(f(x|\theta) \neq f(x; \theta)\)`
+1. Calculate the posterior distribution `\(f(\theta | X_1, \ldots, X_n)\)`
+
+
+---
+
+# Bayesian inference
+
+* Suppose that `\(\theta\)` is discrete and that there is a single, discrete observation `\(X\)`
+* `\(\Theta\)` is a random variable
+
+--
+
+##### Discrete random variable
+
+$$
+`\begin{align}
+\Pr(\Theta = \theta | X = x) &amp;= \frac{\Pr(X = x, \Theta = \theta)}{\Pr(X = x)} \\
+&amp;= \frac{\Pr(X = x | \Theta = \theta) \Pr(\Theta = \theta)}{\sum_\theta \Pr (X = x| \Theta = \theta) \Pr (\Theta = \theta)}
+\end{align}`
+$$
+
+##### Continuous random variable
+
+`$$f(\theta | x) = \frac{f(x | \theta) f(\theta)}{\int f(x | \theta) f(\theta) d\theta}$$`
+
+
+---
+
+# Critique of Bayesian inference
+
+1. The subjective prior is subjective
+
+--
+
+1. Probabilities on hypotheses are wrong. There is only one outcome
+
+--
+
+1. For many parametric models with large samples, Bayesian and frequentist methods give approximately the same inferences
+
+--
+
+1. Bayesian inference depends entirely on the likelihood function
+
+---
+
+# Defense of Bayesian inference
+
+1. The probability of hypotheses is exactly what we need to make decisions
+
+--
+
+1. Bayes' theorem is logically rigorous (once we obtain a prior)
+
+--
+
+1. By testing different priors we can see how sensitive our results are to the choice of prior
+
+--
+
+1. It is easy to communicate a result framed in terms of probabilities of hypotheses
+
+--
+
+1. Priors can be defended based on the assumptions made to arrive at it
+
+--
+
+1. Evidence derived from the data is independent of notions about "data more extreme" that depend on the exact experimental setup
+
+--
+
+1. Data can be used as it comes in. We don't have to wait for every contingency to be planned for ahead of time
+
+---
+# Recap
+
+* Estimators: generate our point estimate
+* Point estimates: best guess 
+* Testing: HOW WEIRD IS IT
+* Evaluation:
+  * Find sample mean (AKA POINT ESTIMATE)
+  * Find expected value
+  * Find SE
+  * Calculate in formula above
+  * Evaluate / make decision
+* Bayes: different approach to statistics vs frequentist
+
+--
+
+### EXAM TOMORROW! GOOD LUCK!!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
