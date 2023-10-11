@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Current Projects</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jean Clipperton" />
+    <meta name="date" content="2023-10-11" />
+    <script src="CSSworkshop_clipperton_files/header-attrs-2.24.2/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Current Projects
+]
+.author[
+### Jean Clipperton
+]
+.date[
+### 2023-10-11
+]
+
+---
+
+
+
+
+
+
+
+
+# About me!
+
+* Trained as political scientist
+* Background in math / philosophy
+* Love for **agent-based models** and **data visualization**
+
+---
+# Current work : Two main projects
+
+* Housing (*new project!*)
+
+--
+* Taylor Swift
+
+
+---
+
+# Housing in MPLS: 2040 plan
+
+* **Minneapolis' 2040 plan** effectively bans new single-family homes through zoning approaches
+* Plan in limbo but question remains: is this an **effective way to address affordable and accessible housing**?
+
+---
+# Project: Carrots and Sticks (housing policy in minneapolis)
+
+* **Agent-Based Model**: parameters of the city
+
+--
+* Aiming for a complex but not 100% realistic rendering
+
+--
+* Hoping to **calibrate with local data** but we'll see
+
+---
+# Phases
+
+* Setup of model
+
+--
+* Predict response to announcement of policy (compare movement to explore if people /prices shift)
+
+--
+* Test **multiple housing policies** to explore
+  * Ban (e.g. MPLS 2040)
+  * Incentives for new (re) development
+  * Penalties or costs for low density development 
+  
+--
+* Explore **discourse around policy**
+  * LA development
+  * Office building redevelopment (NYC)
+
+---
+class: center
+
+# Taylor Swift
+
+
+&lt;img src="https://64.media.tumblr.com/b1b379fe983f77ad8ce62411ed0328db/cd645e56f1547b02-90/s640x960/82c3c608de0e02eb2f053b4a6f881ced331c08e0.gifv" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+# Project overview
+
+* **Lyrics** of all work (focusing on original studio recordings -- e.g. no Taylor's Version except for tour info)
+* Data on **Eras Tour**
+
+---
+
+# Guiding questions:
+
+* What can we learn about **Swift's work**?
+
+--
+* How has her work **changed over time**?
+
+--
+* How can we think about the Eras Tour w/r/t how an **artist imagines and packages their work**?
+
+---
+class: center, middle
+# Preliminary findings
+
+---
+# Overall body of work
+
+* Dominant words
+* Sentiment
+* Positive / negative words
+
+---
+# Frequent words
+
+&lt;img src="../img/ts_frequent_words.png" width="85%" /&gt;
+
+Above we see that her work is **overwhelmingly about love** (which tracks, given her reputation for writing about breakup songs). We also see some simple words that are recognizable given the structure of her songs. Let's dig deeper!
+---
+# Overall sentiment
+
+&lt;img src="../img/ts_sentiment_overall.png" width="75%" style="display: block; margin: auto;" /&gt;
+More positive sentiment than negative, but general balance: loosely structured from most negative to most positive sentiments. 
+
+---
+# Positive / negative words
+
+&lt;img src="../img/ts_sentiment.png" width="80%" /&gt;
+
+*future work: explore use of* **like** *in work*
+
+---
+class: center 
+# By album 
+**(temporal exploration)**
+
+&lt;img src="https://64.media.tumblr.com/0101577cd3b0ae823f4100d4b66630bb/6cc4c8bb51e8a7c6-fa/s640x960/f2b5970caf31fc6e03a289420cc09a781968dca7.gifv" width="45%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Frequent words
+
+&lt;img src="../img/ts_idf_words.png" width="75%" style="display: block; margin: auto;" /&gt;
+We can see three things: a) **song-specific words** (repetive song structure), b) **language evolution** from more fanciful to more 'direct' language, and c) lots of **evocative nouns**, particularly in her more 'country' work and her more 'story' albums (evermore and folklore). 
+
+---
+# Overall sentiment
+
+&lt;img src="../img/ts_sentiment.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+---
+# Positive / negative words
+
+&lt;img src="../img/ts_negative_words_album.png" width="75%" style="display: block; margin: auto;" /&gt;
+As in the case of the overall evolution, we see much **more mature language **here (wrong and stupid vs shit and regret).
+---
+
+# Positive / negative words
+&lt;img src="../img/ts_positive_words_album.png" width="75%" style="display: block; margin: auto;" /&gt;
+Two things: a) **consistency** (like and love) and b) **more imaginative vs direct** (perfect, beautiful vs pretty, great, best). 
+
+---
+# Track five
+
+&lt;img src="../img/ts_sentiment_album.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+Look at bar height and distribution to explore whether some tracks tend to be more positive, negative, and/or more range. We don't see that Track 5 are the most personal (maybe Track 6?). **Track 11 seems to be the 'glitter pen' songs.** 
+
+---
+# Next steps
+
+* Digging more into literature
+* Incorporating Eras setlist (separate: what is / not included)
+* Additional data (album measures (PCA), TikTok data)
+
+
+&lt;img src="https://media.giphy.com/media/tNTq5fw9apN2OzZID9/giphy.gif" width="80%" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
