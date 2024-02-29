@@ -1,4 +1,4 @@
-# MACS 33000 - Computational Mathematics and Statistics Camp (Pre-Fall 2023)
+# MACS 33000 - Computational Mathematics and Statistics Camp (September Term 2024)
 
 |  | Jean Clipperton|
 |-|-|
@@ -12,9 +12,7 @@
 
 
 ## TA TEAM!
-* Loizos Bitsikokos: bitsikokos@uchicago.edu
-* Bhavya Pandey: bhavyapandey@uchicago.edu
-* Adam Wu: adamwu@uchicago.edu
+* TBD!
 
 ## Course description
 
@@ -50,7 +48,7 @@ This course is open to all students who meet the academic requirements for parti
 
 ## Core texts
 
-**Course texts are subject to change for fall 2023**
+**Course texts are subject to change for 2024**
 
 * Bertsekas, D. P., & Tsitsiklis, J. N. (2008). *Introduction to probability*, 2nd edition. Belmont, MA: Athena Scientific.
 * Pemberton, M., & Rau, N. (2015). *Mathematics for economists: an introductory textbook*, 4th edition. Oxford University Press.
@@ -59,11 +57,11 @@ This course is open to all students who meet the academic requirements for parti
 
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
-| 28-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/01-functions-sets.pdf) & [answer key](solutions/01-functions-sets-solution-key.pdf)
-| 29-Sep | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/02-seq-limits-critical-points.pdf) & [answer key](solutions/02-sequences-limits-derivatives-solution-key.pdf)
-| 30-Aug | Calculus | [Critical points and approximation + Intro Linear Algebra](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 3](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/03-critical-points.pdf) & [answer key](solutions/03-critical-points-solution-key.md)
-| 31-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [NO HOMEWORK!]
-| 1-Sep | Linear algebra  |  [Systems of linear equations and determinants](https://jmclip.github.io/MACSS_math_camp/06-matrix-inversion-decomposition.html) | [Pset 4](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/04-linear-algebra.pdf) & [answer key](solutions/pset4___answer_key.pdf)
+| 26-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/01-functions-sets.pdf) & [answer key](solutions/01-functions-sets-solution-key.pdf)
+| 27-Sep | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/02-seq-limits-critical-points.pdf) & [answer key](solutions/02-sequences-limits-derivatives-solution-key.pdf)
+| 28-Aug | Calculus | [Critical points and approximation + Intro Linear Algebra](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 3](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/03-critical-points.pdf) & [answer key](solutions/03-critical-points-solution-key.md)
+| 29-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [NO HOMEWORK!]
+| 30-Aug | Linear algebra  |  [Systems of linear equations and determinants](https://jmclip.github.io/MACSS_math_camp/06-matrix-inversion-decomposition.html) | [Pset 4](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/04-linear-algebra.pdf) & [answer key](solutions/pset4___answer_key.pdf)
 | 4-Sep | No class (Labor Day) |  | 
 | 5-Sep | Calculus |[Functions of several variables and optimization with several variables](https://jmclip.github.io/MACSS_math_camp/07-multivariable-differentiation.html)| [NO HMWK]
 | 6-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | [Pset 5/6](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/05-06-diff-integration.pdf) & [answer key](solutions/pset5n6___answer_key.pdf)
