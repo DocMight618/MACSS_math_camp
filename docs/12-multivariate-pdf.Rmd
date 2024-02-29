@@ -19,12 +19,34 @@ library(plotly)
 
 $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}} \newcommand{\Cor}{\mathrm{Cor}}$$
 
+
+# Misc
+
+* Calcs spoken for
+* Link for practice questions open on github / pset
+* Meetings with preceptors!
+
+---
+
+# Acronym recap:
+
+* Discrete: pmf and CMF
+* Continuous: pdf and CDF
+  * The lowercase reflects that we're associating it with particular values (e.g. f)
+  * Uppercase is integrating (e.g. F)
+* Rules of probability:
+  * $0 \leq p(x) \leq 1$
+  * Total probability must sum to 1!
+* Expected values: tells us what we can anticipate getting from our function: IN THE LONG RUN
+  * multiply your value times its probability
+* Moments: tell us about the function and multiply $x^n$ by the probability for the $n^{th}$ moment
+
 ---
 
 # Learning objectives
 
 * Define a joint probability density function
-* Condition PDFs on other random variables
+* Condition pdfs on other random variables
 * Identify independence between two random variables
 * Define covariance and correlation
 * Examine sums of random variables
@@ -49,7 +71,7 @@ What is $C \subset R^{2}$?
 
 ---
 
-# $C = \{x, y: x \in [0,1] , y\in [0,1] \}$
+## $C = \{x, y: x \in [0,1] , y\in [0,1] \}$
 
 ```{r a-2d-rect}
 function_plot +
@@ -95,18 +117,16 @@ function_plot +
 
 ---
 
-# Multivariate distribution
+# Multivariate distribution: role of integrals
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 C &= \{ x, y: x \in A, y \in B \} \\
 \Pr\{(X,Y) \in C \} &= \int_{B} \int_{A} f(x,y) \, dx\, dy
-\end{aligned}
-$$
+\end{aligned}$$
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs
 
 Consider a function $f:\Re \times \Re \rightarrow \Re$:
 
@@ -114,23 +134,11 @@ Consider a function $f:\Re \times \Re \rightarrow \Re$:
 * Output: a number from the real line
 * $f(x,y) = a$
 
----
-
-# Examples of joint PDFs
-
-```{r multivar-point}
-tribble(
-  ~"x", ~"y", ~"z",
-  1, 1, 1,
-  0, 1, .2
-) %>%
-  plot_ly(x = ~x, y = ~y, z = ~z) %>%
-  add_markers()
-```
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs: normal
+$$f(x,y) = \frac{1}{2\pi}exp[\frac{(x^2+y^2)}{-2}]$$
 
 ```{r multivar-fun}
 x1 <- seq(from = -2, to = 2, length.out = 101)
@@ -156,7 +164,7 @@ plot_ly(x = ~x1, y = ~x2, z = ~z_mat) %>%
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs: normal
 
 ```{r multivar-contour, dependson = "multivar-fun"}
 ggplot(data = z, mapping = aes(x = x1, y = x2)) +
@@ -171,7 +179,7 @@ ggplot(data = z, mapping = aes(x = x1, y = x2)) +
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs: uniform
 
 $f(x,y) = 1$ if $x \in [0,1], y \in [0,1]$, $f(x,y) = 0$
 
@@ -198,7 +206,7 @@ plot_ly(x = ~x1, y = ~x2, z = ~z_mat) %>%
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs: uniform
 
 $f(x,y) = 1$ if $x \in [0,1], y \in [0,1]$, $f(x,y) = 0$
 
@@ -215,9 +223,9 @@ ggplot(data = z, mapping = aes(x = x1, y = x2)) +
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs: exponential
 
-$f(x,y) = \frac{2 \exp(-2x)}{\sqrt{2\pi}}\exp\left(-\frac{(x)^2}{2}\right)$ if $x \in [0,\infty), y \in \Re$, $f(x,y) = 0$ otherwise
+$f(x,y) = \frac{2 \exp(-2x)}{\sqrt{2\pi}}\exp\left(-\frac{(y)^2}{2}\right)$ if $x \in [0,\infty), y \in \Re$, $f(x,y) = 0$ otherwise
 
 ```{r joint-pdf-exp}
 x1 <- seq(from = 0, to = 3, length.out = 101)
@@ -242,9 +250,9 @@ plot_ly(x = ~x1, y = ~x2, z = ~z_mat) %>%
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs
 
-$f(x,y) = \frac{2 \exp(-2x)}{\sqrt{2\pi}}\exp\left(-\frac{(x)^2}{2}\right)$ if $x \in [0,\infty), y \in \Re$, $f(x,y) = 0$ otherwise
+$f(x,y) = \frac{2 \exp(-2x)}{\sqrt{2\pi}}\exp\left(-\frac{(y)^2}{2}\right)$ if $x \in [0,\infty), y \in \Re$, $f(x,y) = 0$ otherwise
 
 ```{r joint-pdf-exp-2d, dependson = "joint-pdf-exp"}
 ggplot(data = z, mapping = aes(x = x1, y = x2)) +
@@ -259,7 +267,7 @@ ggplot(data = z, mapping = aes(x = x1, y = x2)) +
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs: plane
 
 $f(x,y) = x + y$, if $x \in [0,1], y \in [0,1]$
 
@@ -286,7 +294,7 @@ plot_ly(x = ~x1, y = ~x2, z = ~z_mat) %>%
 
 ---
 
-# Examples of joint PDFs
+# Examples of joint pdfs: plane
 
 $f(x,y) = x + y$, if $x \in [0,1], y \in [0,1]$
 
@@ -300,6 +308,14 @@ ggplot(data = z, mapping = aes(x = x1, y = x2)) +
     fill = expression(f(x, y))
   )
 ```
+
+---
+class: middle
+
+# Evaluating probability
+
+--
+### IT WORKS THE SAME-*ish*
 
 ---
 
@@ -408,6 +424,16 @@ multi_cdf +
 ```
 
 ---
+class: middle
+
+# MARGINAL PROBABILITIES!
+
+--
+Remember how we talked about $f_X$? ....
+--
+Now we can see why/how that would be worthwhile. (how one variable changes relative to another vs on its own)
+
+---
 
 # Marginalization
 
@@ -426,6 +452,32 @@ $$f_{Y}(y) = \int_{-\infty}^{\infty} f(x,y)\, dx$$
 $X$ and $Y$ are continuous random variables with joint pdf $f(x,y)$. Define the conditional probability function $f(x|y)$ as 
 
 $$f(x|y) = \frac{f(x, y) }{f_{Y}(y) }$$
+
+---
+
+# Marginalization in action
+$f(x,y) = -x^2 - y^2$, if $x \in [-2,2], y \in [-2,2]$
+
+```{r joint-pdf-EXmar}
+x1 <- seq(from = -2, to = 2, length.out = 101)
+x2 <- seq(from = -2, to = 2, length.out = 101)
+
+z <- expand_grid(
+  x1 = x1,
+  x2 = x2
+) %>%
+  mutate(y = -x1^2 - x2^2)
+z_mat <- matrix(data = z$y, nrow = length(x1), ncol = length(x2), byrow = TRUE)
+
+plot_ly(x = ~x1, y = ~x2, z = ~z_mat) %>%
+  add_surface() %>%
+  layout(
+    scene = list(
+      xaxis = list(title = "x"),
+      yaxis = list(title = "y")
+    )
+  )
+```
 
 ---
 
@@ -475,7 +527,7 @@ z <- expand_grid(
 function_plot +
   geom_line(
     data = z,
-    mapping = aes(x = x1, y = y, color = y)
+    mapping = aes(x = x1, y = y, color = y), linewidth = 6
   ) +
   scale_color_viridis_c() +
   labs(
@@ -496,7 +548,7 @@ function_plot +
 
 ### Discrete case
 
-Consider jointly distributed discrete random variables, $X$ and $Y$ with join PMF
+Consider jointly distributed discrete random variables, $X$ and $Y$ with joint PMF
 
 $$\Pr(X =x, Y = y) = p(x, y)$$
 
@@ -504,16 +556,18 @@ $$\Pr(X =x, Y = y) = p(x, y)$$
 
 Suppose that the distribution allocates its mass at $x_{1}, x_{2}, \ldots, x_{M}$ and $y_{1}, y_{2}, \ldots, y_{N}$. Define the conditional mass function $\Pr(X= x| Y= y)$ as,
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \Pr(X=x|Y=y) &\equiv p(x|y)  \\
 & = \frac{p(x,y)}{p(y)}
-\end{aligned}
-$$
+\end{aligned}$$
 
 --
 
 $$p(x,y) = p(x|y)p(y)$$
+
+---
+# Marginalization (discrete):
+So, we have: $$p(x,y) = p(x|y)p(y)$$
 
 --
 
@@ -531,6 +585,7 @@ $$p(x_{j}) = \sum_{i=1}^{N} p(x_{j} |y_{i})p(y_{i} )$$
 | $X = 1$ | $p(1,0)$ | $p(1,1)$ | $p_{X}(1)$ |
 |  | $p_{Y} (0)$ | $p_{Y} (1)$ |  |
 
+
 ---
 
 # Why does marginalization work?
@@ -543,23 +598,20 @@ $$p(x_{j}) = \sum_{i=1}^{N} p(x_{j} |y_{i})p(y_{i} )$$
 
 --
 
-$$
-\begin{aligned}
-p_{X}(0) & = \Pr(0|y = 0) \Pr(y= 0) + \Pr(0|y=1) \Pr(y=1) \\ 
-& = \frac{0.01}{0.26} \times 0.26 + \frac{0.05}{0.74} \times 0.74 \\
-& = 0.06
-\end{aligned}
-$$
+$$p_{X}(0) = \Pr(0|y = 0) *\Pr(y= 0) + \Pr(0|y=1)*\Pr(y=1)$$
 
 --
 
-$$
-\begin{aligned}
+$$= \frac{0.01}{0.26} * 0.26 + \frac{0.05}{0.74} * 0.74 \\
+ = 0.06$$
+
+--
+
+$$\begin{aligned}
 p_{X}(1) & = \Pr(1|y = 0) \Pr(y= 0) + \Pr(1|y=1) \Pr(y=1) \\ 
-& = \frac{0.25}{0.26} \times 0.26 + \frac{0.69}{0.74} \times 0.74 \\
+& = \frac{0.25}{0.26} * 0.26 + \frac{0.69}{0.74} * 0.74 \\
 & = 0.94
-\end{aligned}
-$$
+\end{aligned}$$
 
 ---
 
@@ -679,37 +731,61 @@ expand_grid(
 
 # More complex example
 
-Suppose $X$ and $Y$ are jointly distributed with PDF 
+Suppose $X$ and $Y$ are jointly distributed with pdf 
 
 $$f(x,y) = 2 \exp(-x) \exp(-2y), \forall \, x>0, y>0)$$
 
+--
+
+Note: equivalent to :
+$$f(x,y) = 2 e^{(-x)} e^{(-2y)}, \forall \, x>0, y>0)$$
+
 ---
 
-# Verify this is a PDF
+# Verify this is a pdf (e version)
 
-$$
-\begin{aligned}
-\int_{0}^{\infty} \int_{0}^{\infty} f(x, y) & = 2\int_{0}^{\infty} \int_{0}^{\infty} \exp(-x) \exp(-2y) \, dx\, dy \\
-& = 2 \int_{0}^{\infty}\exp(-2y) \, dy \int_{0}^{\infty} \exp(-x) \, dx  \\
-& = 2 (-\frac{1}{2} \exp(-2y)|_{0}^{\infty}  ) ( - \exp(-x)|_{0}^{\infty} ) \\
-& = 2\left[ (-\frac{1}{2}(\lim_{y\rightarrow\infty} \exp(-2y) - 1))(- (\lim_{x\rightarrow \infty} \exp(-x) - 1) ) \right] \\
-& = 2 \left[  -\frac{1}{2} (-1) \times -1 (-1)   \right] \\
-& = 1 
-\end{aligned}
-$$
+$$\int_{0}^{\infty} \int_{0}^{\infty} f(x, y) = 2\int_{0}^{\infty} \int_{0}^{\infty} e^{(-x)} e^{(-2y)} \, dx\, dy$$
+
+--
+
+$$2 \int_{0}^{\infty}e^{(-2y)} \, dy \int_{0}^{\infty} e^{(-x)} \, dx$$
+--
+$$= 2 (-\frac{1}{2} e^{(-2y)}|_{0}^{\infty}  ) ( - e^{(-x)}|_{0}^{\infty} )$$
+--
+$$= 2\left[ (-\frac{1}{2}(\lim_{y\rightarrow\infty} e^{(-2y)} - 1))(- (\lim_{x\rightarrow \infty} e^{(-x)} - 1) ) \right]$$
+--
+$$= 2 \left[  -\frac{1}{2} (-1) * -1 (-1)   \right] = 1$$
+---
+
+# Verify this is a pdf (exp version)
+
+$$\int_{0}^{\infty} \int_{0}^{\infty} f(x, y) = 2\int_{0}^{\infty} \int_{0}^{\infty} \exp(-x) \exp(-2y) \, dx\, dy$$
+--
+
+$$2\int_{0}^{\infty}\exp(-2y) \, dy \int_{0}^{\infty} \exp(-x) \, dx$$
+--
+$$= 2 (-\frac{1}{2} \exp(-2y)|_{0}^{\infty}  ) ( - \exp(-x)|_{0}^{\infty} )$$
+--
+$$= 2\left[ (-\frac{1}{2}(\lim_{y\rightarrow\infty} \exp(-2y) - 1))(- (\lim_{x\rightarrow \infty} \exp(-x) - 1) ) \right]$$
+--
+$$= 2 \left[  -\frac{1}{2} (-1) * -1 (-1)   \right]= 1$$
 
 ---
 
 # Calculate CDF
 
-$$
-\begin{aligned}
-F(x,y) \equiv \Pr\{X \leq b, Y \leq a\} & = 2 \int_{0}^{a} \int_{0}^{b} \exp(-x) \exp(-2y) \, dx\, dy \\
-& = 2 (\int_{0}^{a} \exp(-2y) \, dy) (\int_{0}^{b} \exp(-x) \, dx) \\
-& = 2 \left[-\frac{1}{2} (\exp(-2a) -1 )\right]\left[ - (\exp(-b) - 1) \right] \\
-& = \left[1 - \exp(-2a) \right] \left[ 1- \exp(-b) \right]
-\end{aligned}
-$$
+$$F(x,y) \equiv \Pr\{X \leq b, Y \leq a\} = 2 \int_{0}^{a} \int_{0}^{b} \exp(-x) \exp(-2y) \, dx\, dy$$
+--
+$$= 2 (\int_{0}^{a} \exp(-2y) \, dy) (\int_{0}^{b} \exp(-x) \, dx)$$
+--
+$$ = 2 \left[-\frac{1}{2} (\exp(-2a) -1 )\right]\left[ - (\exp(-b) - 1) \right]$$
+
+--
+$$ = \left[1 - \exp(-2a) \right] \left[ 1- \exp(-b) \right]$$
+--
+NOW WHAT? 
+--
+Plug in values for a and b, respectively. 
 
 ---
 
@@ -753,25 +829,100 @@ $$\begin{eqnarray}f(x,y) &  = & x + y \text{ , if  } x \in [0,1], y \in [0,1] \\
 
 --
 
-$$\begin{eqnarray}f_{X}(x) & = & \int_{0}^{1} \left(x + y \right) \, dy \\& = & xy  + \frac{y^2}{2} |^{1}_{0} \\& = & x + \frac{1}{2} \\f_{Y}(y) & = & \frac{1}{2} + y \end{eqnarray}$$
+Are they dependent? 
 
+---
+
+# A (simple) example of dependence
+
+
+$$f_{X}(x) = \int_{0}^{1} \left(x + y \right) \, dy$$
 --
+$$xy  + \frac{y^2}{2} |^{1}_{0} = x + \frac{1}{2}$$
+--
+$$f_{Y}(y) = \int_{0}^{1} \left(x + y \right) \, dx =  \frac{x^2}{2} + xy  |^{1}_{0} = \frac{1}{2} + y$$
+--
+$$\begin{eqnarray}f_{X}(x) f_{Y}(y) & = & (\frac{1}{2} + x) (\frac{1}{2} + y) \\& = & \frac{1}{4} + \frac{x + y}{2} + xy \neq (x+y)\end{eqnarray}$$
+---
+class: middle
 
-$$\begin{eqnarray}f(x, y)  &= & x + y \\f_{X}(x) f_{Y}(y) & = & (\frac{1}{2} + x) (\frac{1}{2} + y) \\& = & \frac{1}{4} + \frac{x + y}{2} + xy\end{eqnarray}$$
+# But what to expect?
 
 ---
 
 # Expectation
 
-For jointly continuous random variables $X$ and $Y$ define,
+For jointly continuous random variables $X$ and $Y$,
 
-$$\begin{eqnarray}\E[X] & = & \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x f(x,y) \, dx\, dy \\\E[Y] & = & \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} y f(x,y) \, dx\, dy \\\E[XY] & = & \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x y f(x,y) \, dx\, dy \end{eqnarray}$$
+--
+
+$$\E[X] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x f(x,y) \, dx\, dy$$
+--
+
+$$E[Y] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} y f(x,y) \, dx\, dy$$
+--
+$$E[XY] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x y f(x,y) \, dx\, dy$$
 
 --
 
 Suppose $g:\Re^{2} \rightarrow \Re$. Then
 
 $$\E[g(X, Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x,y) \, dx\, dy$$
+---
+
+# Expectation ex with g(x)
+
+$$\E[g(X, Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x,y) \, dx\, dy$$
+
+Suppose we have the following functions: $f(x,y) = xy$ where $0 \leq x \leq 1$ and $0 \leq y \leq 2$. 
+1. Is this a valid pdf? why or why not?
+2. Suppose you earn revenue equal to $x^3+2$. What is your expected utility? 
+
+---
+
+# Expectation ex with g(x): pdf
+
+
+Suppose we have the following functions: $f(x,y) = xy$ where $0 \leq x \leq 1$ and $0 \leq y \leq 2$. 
+
+$$\int_0^2\int_0^1 xy\, \,dx\,dy$$
+--
+$$\int_0^2\frac{x^2y}{2}|_0^1 \, dy= \int_0^2 \frac{y}{2} \, dy$$
+$$=\frac{y^2}{4}|_0^2 = 1$$
+
+--
+So, yes it appears to satisfy our requirements!
+
+
+---
+
+# Expectation ex with g(x): expectation
+ > Suppose you earn revenue equal to $x^3+2$. What is your expected utility? 
+
+Well, our function is: $\int_0^2\int_0^1 xy\, \,dx\,dy$, so our expected utility will be: 
+$$\int_0^2\int_0^1 (x^3+2)*xy\, \,dx\,dy$$
+
+We know we can do this because: 
+$$\E[g(X, Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x,y) \, dx\, dy$$
+---
+# Expected value: Math party
+
+$$\int_0^2\int_0^1 (x^3+2)*xy\, \,dx\,dy = \int_0^2\int_0^1 (x^4+2x)y\, \,dx\,dy$$
+--
+$$=\int_0^2 y \,dy* \int_0^1 (x^4+2x) \,dx= \frac{y^2}{2}|_0^2*(\frac{x^5}{5}+x^2 )|_0^1$$
+--
+$$=2*(1^5/5+1)=2.4$$
+--
+NOW WHAT? 
+
+--
+This is our expected value!
+
+---
+class: middle
+
+# And now, something quite a bit different*
+*(but also not!)*
 
 ---
 
@@ -779,7 +930,13 @@ $$\E[g(X, Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x,y) \
 
 For jointly continous random variables $X$ and $Y$ define, the covariance of $X$ and $Y$ as,
 
-$$\begin{eqnarray}\Cov(X,Y) & = & \E[(X-\E[X])(Y- \E[Y])] \\& = & \E\left[ XY - \E[X] Y - \E[Y] X + \E[X]\E[Y] \right] \\& = & \E[XY] - 2\E[X]\E[Y] + \E[\E[X]\E[Y]] \\& = & \E[XY] - \E[X]\E[Y]\end{eqnarray}$$
+$$Cov(X,Y) = E[(X-E[X])(Y- E[Y])]$$
+--
+$$=E\left[ XY - E[X] Y - E[Y] X + E[X]E[Y] \right]$$
+--
+$$=E[XY] - 2E[X]E[Y] + E[E[X]E[Y]]$$
+--
+$$=E[XY] - E[X]E[Y]$$
 
 --
 
@@ -791,7 +948,7 @@ $$\Cor(X,Y) =  \frac{\Cov(X,Y) }{\sqrt{\Var(X) \Var(Y) } }$$
 
 # Variance is covariance with itself
 
-$$\begin{eqnarray}\Cov(X,X) & = & \E[X X] - \E[X]\E[X] \\& = & \E[X^2] - \E[X]^2\end{eqnarray}$$
+$$\begin{eqnarray}\Cov(X,X) & = & E[X X] - E[X]E[X] \\& = & E[X^2] - E[X]^2\end{eqnarray}$$
 
 ---
 
@@ -826,6 +983,9 @@ $$f(\boldsymbol{x}) = f(x_{1}, x_{2}, \ldots, x_{n})$$
 --
 
 * $\E[\sum_{i=1}^{N}X_{i} ]  = \sum_{i=1}^{N} \E[X_{i}]$
+
+--
+
 * $\Var(\sum_{i=1}^{N} X_{i} )   = \sum_{i=1}^{N} \Var(X_{i} )  + 2 \sum_{i<j} \Cov(X_{i}, X_{j})$ 
 
 ---
@@ -881,6 +1041,13 @@ $$
 $$
 
 ---
+class: middle
+
+# Oh good, matrices!
+--
+
+### AKA: What happens when you bring multiple variables to the party? 
+---
 
 # Multivariate normal distribution
 
@@ -902,7 +1069,7 @@ $$\boldsymbol{X} \sim \text{Multivariate Normal} (\boldsymbol{\mu}, \boldsymbol{
 
 # Bivariate example
 
-Consider the (bivariate) special case where $\boldsymbol{\mu} = (0, 0)$ and 
+Consider the (bivariate) **special case** where $\boldsymbol{\mu} = (0, 0)$ and 
 
 $$\boldsymbol{\Sigma} = \begin{pmatrix} 1 & 0 \\0 & 1 \\\end{pmatrix}$$
 
@@ -960,7 +1127,6 @@ $$\Cov(X, Y) = 0$$
 
 --
 
-Suppose $X$ and $Y$ are independent.
 
 $$\Cov(X, Y) = \E[XY] - \E[X]\E[Y]$$
 
@@ -983,7 +1149,7 @@ Then $\Cov(X,Y) = 0$.
 
 # Independence and multivariate normal
 
-Zero covariance does not generally imply independence!
+**Zero covariance does not generally imply independence!**
 
 --
 
@@ -995,11 +1161,20 @@ Zero covariance does not generally imply independence!
 $$
 \begin{eqnarray}
 \E[XY] & = & \sum_{i \in \{-1, 1\} } \sum_{j \in \{-1, 0, 1\}} i j \Pr(X = i, Y = j) \\
-& = & -1 \times 0 \times  \Pr(X = -1, Y = 0) + 1 \times 1  \times \Pr(X = 1, Y = 1)  \\
- && - 1 \times 1 \times \Pr(X = 1, Y = -1) \\
+& = & -1 * 0 *  \Pr(X = -1, Y = 0) + 1 * 1  * \Pr(X = 1, Y = 1)  \\
+ && - 1 * 1 * \Pr(X = 1, Y = -1) \\
  &= & 0 + \Pr(X = 1, Y = 1)  - \Pr(X = 1, Y = -1 ) \\
   & = &  0.25 - 0.25 = 0  \\
 \E[X] & = &  0 \\
 \E[Y] & = & 0 
 \end{eqnarray}
 $$
+
+---
+
+# Recap!
+
+* Joint pdf: same concept, integrate over variables
+* Condition pdfs on other random variables and marginal probability
+* Covariance and correlation: linear relationship
+* Matrices: can keep going with many dimensions!

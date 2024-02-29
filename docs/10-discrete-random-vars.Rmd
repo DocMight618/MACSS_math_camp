@@ -17,6 +17,7 @@ library(gganimate)
 ```
 
 $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$
+# Misc
 
 ---
 
@@ -72,14 +73,22 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 
 # Discrete random variables
 
-* A random variable with a finite or countably infinite range
+* A random variable with a finite or countably infinite range is **discrete**
 * A random variable with an uncountably infinite number of values is **continuous**
 
 ---
 
 # Probability mass functions
 
-* Probability of the values that it can take
+* Probability of the values that our value can take. 
+* FOR DISCRETE VALUES ONLY!!
+* Operator is the $\sum$ (sum) because we are ADDING PIECES
+* Need a corresponding probability for each value (remember what we said re: probability ($0 \leq p \leq 1$))
+
+
+---
+# Probability mass function (PMF)
+Define these for our domain (x). 
 
 ### Intuition
 
@@ -121,13 +130,18 @@ pmf %>%
 * Note that
 
     $$\sum_x p_{X}(x) = 1$$
+  
+  --
     
 * Can also add probabilities for smaller sets $S$ of possible values of $X \in S$
 
     $$\Pr(X \in S) = \sum_{x \in S} p_X (x)$$
     $$\Pr (X > 0) = \sum_{x=1}^2 p_X (x) = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}$$
 
---
+
+---
+
+# Calculating our PMF!
 
 To calculate the PMF of a random variable $X$
 
@@ -165,8 +179,8 @@ $\Pr(\text{afghanistan}) = 0.0001$; $\Pr(\text{fire}) = 0.3$; $\Pr(\text{departm
 * For a random variable $X$
 
     $$F(x) = \Pr(X \leq x)$$
-    
-* Characterizes how probability cumulates as $X$ gets larger
+  --
+* Characterizes how probability **CUMULATES** as $X$ gets larger
 * $F(x) \in [0,1]$
 * $F(x)$ is non-decreasing
 
@@ -188,6 +202,13 @@ What is $F(2) - F(1)$?
 
 $$\begin{aligned} F(2)  - F(1) & = [\Pr(X = 0) + \Pr(X = 1) + \Pr(X = 2)]  \nonumber \\& \quad -[\Pr(X = 0) + \Pr(X = 1)] \\F(2) - F(1) & = \Pr(X = 2)\end{aligned}$$
 
+
+---
+class: middle, center
+
+# PMFs and CMFs
+
+PMF is to our original function as CMF is to an integral
 ---
 
 # PMFs and CMFs
@@ -209,7 +230,29 @@ pmf %>%
 * Similar to integration, but over a discrete set of values
 
 ---
+class: middle, center
+# Distributions and the functions we love
 
+```{r}
+knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbEyaYCtKvH69f_7DIShQ_Kc67Me-j5knH0A&usqp=CAU")
+```
+
+---
+# Function & Distribution overview
+
+So far, we've looked at how to add up values. However, the values we get depend upon the underlying function. There are a few well-known distributions that we'll cover as these will be increasingly useful as you move through your coursework. 
+
+* Bernoulli
+* Binomial
+* Geometric
+* Poisson 
+
+--
+
+This is a selection of distributions -- each has certain properties that can be useful for predicting outcomes and events but there are many, many more that may be useful to you as well. 
+
+
+---
 # Bernoulli
 
 Suppose $X$ is a random variable, with $X \in \{0, 1\}$ and $\Pr(X = 1) = \pi$. Then we will say that $X$ is **Bernoulli** random variable,
@@ -265,26 +308,28 @@ bernoulli_plot(.5) +
 
 # Binomial
 
-A model to count the number of successes across $N$ trials
+A model to count the number of successes across $N$ trials. 
 
 --
 
 Suppose $X$ is a random variable that counts the number of successes in $N$ independent and identically distributed Bernoulli trials.  Then $X$ is a **Binomial** random variable, 
 
+--
+
 $$p_X(k) = {N\choose{k}}\pi^{k} (1- \pi)^{n-k}$$
     
-for $k \in \{0, 1, 2, \ldots, N\}$ and $p_X(k) = 0$ otherwise
+for $k \in \{0, 1, 2, \ldots, N\}$ and 0 otherwise
 
 $$\binom N{k} = \frac{N!}{(N-k)! k!}$$
 
 --
-
+To say that a variable, $Y$, has or follows a binomial distribution we write: 
 $$Y \sim \text{Binomial}(N, \pi)$$
 
 ---
 
-# Binomial PMF
-
+# Binomial PMF: trials
+--
 ```{r binomial}
 binomial_plot <- function(n, p) {
   tibble(
@@ -321,10 +366,10 @@ Recall our experiment example
 $$
 \begin{aligned}
 Z & \sim  \text{Binomial}(1/2)\\
-p_Z(0) & = {3\choose0} (1/2)^0 (1- 1/2)^{3-0} = 1 \times \frac{1}{8}\\
-p_Z(1) & = {3\choose1} (1/2)^2 (1 - 1/2)^{2} = 3 \times \frac{1}{8} \\
-p_Z(2) & = {3\choose2} (1/2)^3 (1- 1/2)^1 = 3 \times \frac{1}{8} \\
-p_Z(3) & = {3\choose3} (1/2)^3 (1 - 1/2)^{0} = 1 \times \frac{1}{8}
+p_Z(0) & = {3\choose0} (1/2)^0 (1- 1/2)^{3-0} = 1 * \frac{1}{8}\\
+p_Z(1) & = {3\choose1} (1/2)^2 (1 - 1/2)^{2} = 3 * \frac{1}{8} \\
+p_Z(2) & = {3\choose2} (1/2)^3 (1- 1/2)^1 = 3 * \frac{1}{8} \\
+p_Z(3) & = {3\choose3} (1/2)^3 (1 - 1/2)^{0} = 1 * \frac{1}{8}
 \end{aligned}
 $$
 
@@ -332,18 +377,20 @@ $$
 
 # Geometric
 
-* A model to count the number of trials of a Bernoulli outcome before success occurs the first time
+* A model to **count the number of trials** of a Bernoulli outcome **before success occurs the FIRST time**
+--
+
 * Suppose $X$ is a random variable that counts the number of tosses needed for a head to come up the first time. Its PMF is 
 
     $$p_X(k) = (1 - p)^{k-1}p, \quad k = 1, 2, \ldots$$
     
 --
-
+We can then add up all these possibilities to ensure it satisfies our criteria for probability: 
 $$
 \begin{aligned}
 \sum_{k=1}^{\infty} p_X(k) &= \sum_{k=1}^{\infty} (1 - p)^{k-1}p \\
 &= p \sum_{k=1}^{\infty} (1 - p)^{k-1} \\&
-= p \times \frac{1}{1 - (1-p)} \\
+= p * \frac{1}{1 - (1-p)} \\
 &= 1
 \end{aligned}
 $$
@@ -377,12 +424,6 @@ geometric_plot(.5) +
 
 # Poisson
 
-<div style='position:relative; padding-bottom:calc(75.00%)'><iframe src='https://gfycat.com/ifr/AcceptableRegalAfricanharrierhawk' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
-
----
-
-# Poisson
-
 * Often interested in counting number of events that occur
     * Number of wars started
     * Number of speeches made
@@ -398,7 +439,7 @@ Suppose $X$ is a random variable that takes on values $X \in \{0, 1, 2, \ldots, 
 
 $$p_X(k) = e^{-\lambda} \frac{\lambda^{k}}{k!}, \quad k = 0,1,2,\ldots$$
     
-for $k \in \{0, 1, \ldots, \}$ and $0$ otherwise
+for $k \in \{0, 1, \ldots, \}$ and $0$ otherwise. (Here, $\lambda$ is the mean number of events per year that we're interested in.)
 
 --
 
@@ -439,7 +480,7 @@ poisson_plot(2) +
 
 --
 
-$$p_X(10) = e^{-\lambda} \frac{5^{10}}{10!}$$
+$$p_X(10) = e^{-5} \frac{5^{10}}{10!}$$
 
 ```{r poisson-president, fig.height = 5}
 tibble(
@@ -450,6 +491,36 @@ tibble(
   geom_col() +
   labs(
     x = "Number of threats",
+    y = "Probability"
+  )
+```
+
+---
+# Example: working backwards
+
+* Suppose we have an event which we believe follows a Poisson distribution. Perhaps this is the number of students who forget their calculator for the exam. If we observed that last year, about $4.979\%$ of the time all students remembered their calculator. How could we figure out the likelihood that exactly one student forgets theirs in the upcoming exam?
+
+--
+
+$$p_X(0) = e^{-\lambda} \frac{\lambda^{x}}{x!}$$
+--
+$$p_X(0) = e^{-\lambda} \frac{\lambda^{0}}{0!}=0.04979$$
+--
+$$0.04979 = e^{-\lambda}$$
+--
+$$ln(0.0479) = - \lambda \, \text{ therefore } \lambda \approx 3.0$$
+---
+# Poisson plot
+
+```{r poisson-student, fig.height = 5}
+tibble(
+  n = 0:50,
+  prob = dpois(n, 3)
+) %>%
+  ggplot(aes(n, prob)) +
+  geom_col() +
+  labs(
+    x = "Number of forgotten calculators",
     y = "Probability"
   )
 ```
@@ -477,13 +548,13 @@ $$e^{-\lambda} \frac{\lambda^{k}}{k!} \approx {N\choose{k}}\pi^{k} (1- \pi)^{n-k
 
 #### Using the binomial PMF
 
-$$\frac{100!}{95! 5!} \times 0.01^5 (1 - 0.01)^{95} = 0.00290$$
+$$\frac{100!}{95! 5!} * 0.01^5 (1 - 0.01)^{95} = 0.00290$$
 
 --
 
 #### Using the Poisson PMF
 
-* $\lambda = np = 100 \times 0.01 = 1$
+* $\lambda = np = 100 * 0.01 = 1$
 
 $$e^{-1} \frac{1}{5!} = 0.00306$$
 
@@ -550,7 +621,7 @@ What is $\E[X]$?
 
 --
 
-$$\begin{aligned}\E[X]  & = 0\times \frac{1}{8} + 1 \times \frac{3}{8} + 2 \times \frac{3}{8} + 3 \times \frac{1}{8} \\& = 1.5 \end{aligned}$$
+$$\begin{aligned}\E[X]  & = 0* \frac{1}{8} + 1 * \frac{3}{8} + 2 * \frac{3}{8} + 3 * \frac{1}{8} \\& = 1.5 \end{aligned}$$
 
 --
 
@@ -563,8 +634,8 @@ $$\begin{aligned}\E[X]  & = 0\times \frac{1}{8} + 1 \times \frac{3}{8} + 2 \time
 
 Suppose that there is a group of $N$ people
 
-* Suppose $M< N$ people approve of Donald Trump's performance as president
-* $N - M$ disapprove of his performance
+* Suppose $M< N$ people approve of the president's performance
+* $N - M$ disapprove of their performance
 
 --
 
@@ -578,7 +649,7 @@ What is $\E[X]$?
 
 --
 
-$$\begin{aligned}\E[X] & = 1 \times \Pr(\text{Approve})  + 0 \times \Pr(\text{Disapprove}) \\ & = 1 \times \frac{M}{N} \\ & = \frac{M}{N}  \end{aligned}$$
+$$\begin{aligned}\E[X] & = 1 * \Pr(\text{Approve})  + 0 * \Pr(\text{Disapprove}) \\ & = 1 * \frac{M}{N} \\ & = \frac{M}{N}  \end{aligned}$$
 
 ---
 
@@ -593,7 +664,7 @@ $$\E[I] = \Pr(A)$$
 --
 
 
-$$\begin{aligned}\E[I]  & =  1 \times \Pr(A) + 0 \times \Pr(A^{c}) \\ & = \Pr(A) \end{aligned}$$
+$$\begin{aligned}\E[I]  & =  1 * \Pr(A) + 0 * \Pr(A^{c}) \\ & = \Pr(A) \end{aligned}$$
 
 ---
 
@@ -620,7 +691,10 @@ $$d(x, E[X])^{2} = (x - E[X])^2$$
 
 Weighted average of these distances
     
-$$\begin{aligned} \E[(X - \E[X])^2] & = \sum_{x:p_X(x)>0} (x  - \E[X])^2p_X(x) \\& = \sum_{x:p_X(x)>0} \left(x^2 p_X(x)\right)  - 2 \E[X]\sum_{x:p_X(x)>0} \left(x p_X(x)\right) + \E[X]^2\sum_{x:p_X(x)>0} p_X(x)  \\& =  \E[X^2] - 2\E[X]^2 + \E[X]^2 \\& = \E[X^2] - \E[X]^2 \\& = \text{Var}(X)\end{aligned}$$
+$$\begin{aligned} \E[(X - \E[X])^2] & = \sum_{x:p_X(x)>0} (x  - \E[X])^2p_X(x)\end{aligned}$$
+
+$$\sum_{x:p_X(x)>0} \left(x^2 p_X(x)\right)- 2 \E[X]\sum_{x:p_X(x)>0} \left(x p_X(x)\right) + \E[X]^2\sum_{x:p_X(x)>0} p_X(x)$$
+$$=  \E[X^2] - 2\E[X]^2 + \E[X]^2 \\ = \E[X^2] - \E[X]^2 \\= \text{Var}(X)$$
 
 ---
 
@@ -658,7 +732,7 @@ $$\begin{align}\Var(X) &= \E[(X - \E[X])^2] \\\Var(X) &= \E[X^2] - \E[X]^2\end{a
 
 * Suppose $Y \sim \text{Bernoulli}(\pi)$
 
-    $$\begin{aligned} \E[Y] & = 1 \times \Pr(Y = 1) + 0 \times \Pr(Y = 0) \nonumber \\& = \pi + 0 (1 - \pi) \nonumber  = \pi \\\Var(Y) & = \E[Y^2] - \E[Y]^2 \nonumber  \\\E[Y^2] & = 1^{2} \Pr(Y = 1) + 0^{2} \Pr(Y = 0) \nonumber \\& = \pi \nonumber \\ \Var(Y) & = \pi - \pi^{2} \nonumber \\& = \pi(1 - \pi ) \nonumber\end{aligned}$$
+    $$\begin{aligned} \E[Y] & = 1 * \Pr(Y = 1) + 0 * \Pr(Y = 0) \nonumber \\& = \pi + 0 (1 - \pi) \nonumber  = \pi \\\Var(Y) & = \E[Y^2] - \E[Y]^2 \nonumber  \\\E[Y^2] & = 1^{2} \Pr(Y = 1) + 0^{2} \Pr(Y = 0) \nonumber \\& = \pi \nonumber \\ \Var(Y) & = \pi - \pi^{2} \nonumber \\& = \pi(1 - \pi ) \nonumber\end{aligned}$$
 
 --
 
@@ -706,7 +780,7 @@ $$\begin{aligned}\E[Z] & = \E[Y_{1} + Y_{2} + Y_3 + \ldots + Y_N ] \\& = \sum_{i
 
 --
 
-$$\begin{aligned}\E[U(\text{war})] & = U(\text{war} | \text{win}) \times \Pr(\text{win}) + U(\text{war} | \text{lose}) \times \Pr(\text{lose}) \\& = (B - c) \Pr(Y = 1) + (- c) \Pr(Y = 0 ) \\& = B \times \Pr(Y = 1)  - c(\Pr(Y = 1)  + \Pr(Y = 0)) \\& = B \times \pi - c \end{aligned}$$
+$$\begin{aligned}\E[U(\text{war})] & = U(\text{war} | \text{win}) * \Pr(\text{win}) + U(\text{war} | \text{lose}) * \Pr(\text{lose}) \\& = (B - c) \Pr(Y = 1) + (- c) \Pr(Y = 0 ) \\& = B * \Pr(Y = 1)  - c(\Pr(Y = 1)  + \Pr(Y = 0)) \\& = B * \pi - c \end{aligned}$$
 
 ---
 
@@ -889,3 +963,19 @@ poisson_cmf_plot <- function(lambda, max_n = 10) {
 
 poisson_cmf_plot(2)
 ```
+
+---
+
+# RECAP:
+
+* Random variables: $P(X=x)$
+* DISCRETE VARIABLES: **different from continuous**
+* PMF: probability mass function
+  * Probability for a particular value
+* CDF: cumulative distribution function
+  * ADD UP VALUES (akin to a sum)
+* Distributions:
+  * Bernoulli
+  * Binomial
+  * Geometric
+  * Poisson

@@ -17,6 +17,20 @@ library(gganimate)
 ```
 
 $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$
+# Misc
+
+* Homework: check by 9am on day it's released
+* Attendance: Responsible for content and announcements in class
+* Github updated
+
+---
+# Survey Results
+
+* First, THANK YOU!
+* Room (sorry!)
+* Homework: daily
+* Pacing: examples good, wish for slower pace (also sorry)
+
 
 ---
 
@@ -93,6 +107,9 @@ The probability that the value of $X$ falls within an interval is
 $$\Pr (a \leq X \leq b) = \int_a^b f_X(x) \,dx$$
 
 --
+Compare discrete and continuous variables. Suppose we have a probability function $f(x)= 1/3$ where $0 < x \leq 3$. What is $p(X=x)$?
+
+--
 
 * For any single value $a$, $\Pr (X = a) = \int_a^a f_X(x) \,dx = 0$
 
@@ -138,36 +155,30 @@ tibble(
 
 # Uniform random variable
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \Pr(X \in [0.2, 0.5]) & = \int_{0.2}^{0.5} 1 \,dx \\
 & = X |^{0.5}_{0.2} \\
 & = 0.5  - 0.2  \\
 & = 0.3 
-\end{aligned}
-$$
+\end{aligned}$$
 
 --
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \Pr(X \in [0.5, 0.5]) & = \int_{0.5}^{0.5} 1\,dx \\
 & = X|^{0.5}_{0.5} \\
 & = 0.5 - 0.5 \\
 & = 0 
-\end{aligned}
-$$
+\end{aligned}$$
 
 --
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \Pr(X \in \{[0, 0.2]\cup[0.5, 1]\}) & = \int_{0}^{0.2} 1\,dx + \int_{0.5}^{1} 1\,dx \\
  & = X_{0}^{0.2} + X_{0.5}^{1} \\
  & = 0.2 - 0 + 1 - 0.5 \\
  & = 0.7 
-\end{aligned}
-$$
+\end{aligned}$$
 
 ---
 
@@ -182,6 +193,31 @@ $$f_X(x) = \left\{    \begin{array}{ll}        \frac{1}{b-a} & \quad \text{if } 
 * $\Pr(X = a) = 0$
 * $\Pr(X \in (-\infty, \infty) ) = 1$ 
 * If $F$ is antiderivative of $f$, then $\Pr(X \in [c,d]) = F(d) - F(c)$
+
+---
+class: middle
+
+# Having a moment
+
+---
+# Moments: what they are and what they tell us
+Moments help us understand the shape of the distribution
+
+1. Shape around the center (mean): $E[X]$
+1. Width (variance): $E[X^2]$
+1. Balance of width (skew): $E[X^3]$
+1. Tail-y-ness (kurtosis): $E[X^4]$
+
+---
+class: middle
+
+# Great expectations: first moment
+
+--
+
+* Summarizing a distribution
+* What we can expect FROM THE DISTRIBUTION re: center, ON AVERAGE
+* This will give us our baseline expectation for what we *should* be observing *if* our assumptions are true
 
 ---
 
@@ -200,35 +236,62 @@ $$\E[X] = \int_{-\infty}^{\infty} x f_X(x) \,dx$$
 --
 
 * $n$th moment = $\E[X^n]$
-* $\Var(X) = (X - \E[X])^2 = \E[X^2] - (\E[X])^2$
+
+--
+
+* $\Var(X) = E[(X-\mu)^2]=E[(X - \E[X])^2] = \E[X^2] - (\E[X])^2$
 
 ---
 
-# Uniform random variable
-
-$$
-\begin{align}
-\E[X] = \int_{-\infty}^{\infty} x f_X(x) \,dx &= \int_a^b x \times \frac{1}{b-a} \,dx \\
-&= \frac{1}{b-a} \times \frac{1}{2}x^2 \Big|_a^b \\
-&= \frac{1}{b-a} \times \frac{b^2 - a^2}{2} \\
-&= \frac{a+b}{2}
-\end{align}
-$$
+# Uniform random variable: Mean
+Start with our pdf: $f(x) = \frac{1}{b-a}$ (defined over a to b).
 
 --
 
-$$
-\begin{align}
-\E[X^2] = \int_a^b x^2 \times \frac{1}{b-a} \,dx &= \frac{1}{b-a} \int_a^b x^2 \,dx \\
-&= \frac{1}{b-a} \times \frac{1}{3}x^3 \Big|_a^b \\
-&= \frac{b^3 - a^3}{3(b-a)} \\
-&= \frac{a^2 + ab + b^2}{3}
-\end{align}
-$$
+$$\E[X] = \int_{-\infty}^{\infty} x f_X(x) \,dx$$
+--
+$$= \int_a^b x * \frac{1}{b-a} \,dx$$
+--
+$$= \frac{1}{b-a} * \frac{1}{2}x^2 \Big|_a^b$$
+--
+$$= \frac{1}{b-a} * \frac{b^2 - a^2}{2}= \frac{a+b}{2}$$
+---
+# Uniform random variable: Mean
+Start with our pdf: $f(x) = \frac{1}{b-a}$ (defined over a to b). $$\mu = \frac{a+b}{2}$$
+
+SO WHAT?????
 
 --
+
+This is what we can anticipate as the mean of our distribution. 
+--
+On average. 
+--
+Over time. 
+--
+In the long run. 
+
+---
+
+# Uniform random variable: Variance
+Start with our pdf: $f(x) = \frac{1}{b-a}$ (defined over a to b). We need to recall two things: the formula for $V(X) \text{ and } E(X)$ 
+
+$$\E[X^2] = \int_a^b x^2 * f(x) \,dx$$
+--
+$$\int_a^b x^2 * \frac{1}{b-a} \,dx$$
+--
+$$= \frac{1}{b-a} \int_a^b x^2 \,dx = \frac{1}{b-a} * \frac{1}{3}x^3 \Big|_a^b$$
+--
+
+$$= \frac{b^3 - a^3}{3(b-a)} = \frac{a^2 + ab + b^2}{3}$$
+
+---
+# Uniform random variable: Variance Cont'd
+
+So, we can just plug these values into our formula:
 
 $$\Var(X) = \E[X^2] - (\E[X])^2 = \frac{a^2 + ab + b^2}{3} - \left( \frac{a+b}{2} \right)^2 = \frac{(b-a)^2}{12}$$
+
 
 ---
 
@@ -458,7 +521,7 @@ $$\E[Y] = a\mu + b, \quad \Var(Y) = a^2 \sigma^2$$
 
 ---
 
-# Support for President Trump
+# Support for President Biden
 
 Suppose we are interested in modeling presidential approval
 
@@ -506,7 +569,7 @@ animate(clt_plot, nframes = 200)
 
 ---
 
-# Back to Trump
+# Back to Biden
 
 * Suppose $\mu = 0.39$ and $\sigma^2 = 0.0025$
 * $\Pr(Y\geq 0.45)$ (What is the probability it isn't that bad?)
@@ -703,7 +766,9 @@ F_{X}(x)   & =  \Pr(X \leq x) \\
 \end{aligned}
 $$
 
---
+---
+
+# $\chi^2$ distribution
 
 $$
 \begin{aligned}
@@ -780,7 +845,10 @@ $$
 \end{aligned}
 $$
 
---
+
+---
+
+# $\chi^2$ properties
 
 $$
 \begin{aligned}
@@ -836,3 +904,18 @@ expand.grid(
   transition_states(states = df) +
   view_follow(fixed_x = TRUE)
 ```
+
+
+---
+
+# Recap:
+
+* Continuous vs discrete
+* Integrals!
+* Distributions and their formal properties
+* Different types of distributions:
+  * Uniform
+  * Exponential
+  * Gamma
+  * Normal
+  * $\chi^2$ 

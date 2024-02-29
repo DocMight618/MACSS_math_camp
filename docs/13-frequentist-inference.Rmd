@@ -17,6 +17,13 @@ library(gganimate)
 ```
 
 $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}} \newcommand{\se}{\text{se}} \newcommand{\sd}{\text{sd}} \newcommand{\Cor}{\mathrm{Cor}} \newcommand{\Lagr}{\mathcal{L}} \newcommand{\lagr}{\mathcal{l}}$$
+# Misc
+
+* ALMOST THERE!
+* MPCS placement exam
+* Career services 9/14
+* Review 9/14
+
 
 ---
 
@@ -41,6 +48,13 @@ Process of using data to infer the probability distribution/random variable that
 --
 
 Given a sample $X_1, \ldots, X_n \sim F$, how do we infer $F$?
+
+---
+class: middle
+
+# Parametric models and functional form: 
+
+* Parametric models make assumptions about parameters / the underlying functional form (e.g. a linear relationship between variables)
 
 ---
 
@@ -114,7 +128,33 @@ $$\hat{\theta}_n = g(X_1, \ldots, X_n)$$
 
 # Properties of point estimates
 
-##### Bias
+```{r, out.width = "300px"}
+knitr::include_graphics("https://www.bluey.tv/wp-content/themes/bbc-bluey/assets/images/characters/bluey-star@2x.png")
+```
+
+---
+
+# Properties of point estimates: BLUE (OLS)
+--
+
+## Best
+
+--
+
+## Linear
+
+--
+## Unbiased 
+
+--
+## Estimate 
+
+
+---
+
+# Properties of point estimates 
+
+##### Bias: does it give you what you expect? 
 
 $$\text{bias}(\hat{\theta}_n) = \E_\theta (\hat{\theta_n}) - \theta$$
 
@@ -123,13 +163,19 @@ $$\text{bias}(\hat{\theta}_n) = \E_\theta (\hat{\theta_n}) - \theta$$
 * $\E (\hat{\theta_n}) - \theta = 0$
 * Importance of unbiased estimators
 
---
+---
 
-##### Consistency
+# Properties of point estimates 
+##### Consistency: on average, how does it do? 
+*note: efficiency has to do with overall variance across estimators*
 
 As the number of observations $n$ increases, the estimator converges towards the true parameter $\theta$
 
---
+
+
+---
+
+# Properties of point estimates 
 
 ##### Sampling distribution
 
@@ -156,6 +202,14 @@ $$
 --
 
 $$\frac{\hat{\theta}_n - \theta}{\se} \leadsto N(0,1)$$
+---
+# Understanding expected values of estimators
+
+KEY for homework: 
+
+$$E[\bar X] = \frac{1}{n} \sum_{i=1}^n E[X_i]$$
+--
+Translation: *when we take the expected value of an average of a random variable, we can take the average of the expected value for our random values*
 
 ---
 
@@ -163,9 +217,9 @@ $$\frac{\hat{\theta}_n - \theta}{\se} \leadsto N(0,1)$$
 
 Let $X_1, \ldots, X_n ~ \text{Bernoulli}(\pi)$ and let $\hat{\pi}_n = \frac{1}{n} \sum_{i=1}^n X_i$. Then
 
-$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$
+$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$. We can then compare our expected value from the distribution $\pi$, to what we obtained here, to verify they are equal.
 
-so $\hat{\pi}_n$ is unbiased
+They are, so $\hat{\pi}_n$ is unbiased
 
 ---
 
@@ -173,7 +227,13 @@ so $\hat{\pi}_n$ is unbiased
 
 The standard error is
 
-$$\se = \sqrt{\Var (\hat{\pi}_n)} = \sqrt{\frac{\pi (1 - \pi)}{n}}$$
+$$\se = \sqrt{\Var (\hat{\pi}_n)}$$
+--
+We can think of this as: $$\frac{Var(\pi_n)}{n}$$. HOW?? We are adding up all the variances across our random variables and averaging them. 
+
+--
+Therefore, we get: 
+$$\se= \sqrt{\frac{\pi (1 - \pi)}{n}}$$
 
 --
 
@@ -282,11 +342,27 @@ ggplot(bern, aes(x, lik)) +
   geom_line() +
   geom_vline(xintercept = (12 / 20), linetype = 2) +
   labs(
-    title = "Likelihood function for Bernoulli random variable",
+    title = "Likelihood function \n for Bernoulli random var",
     subtitle = "20 trials and 12 successes",
     x = expression(hat(pi)),
     y = expression(L[n](pi))
   ) +
+  ggplot(bern, aes(x, loglik)) +
+  geom_line() +
+  geom_vline(xintercept = (12 / 20), linetype = 2) +
+  labs(
+    title = "Log-likelihood function \n for Bernoulli random var",
+    subtitle = "20 trials and 12 successes",
+    x = expression(hat(pi)),
+    y = expression(l[n](pi))
+  ) +
+  plot_layout(ncol = 2)
+```
+
+---
+# Log-likelihood close-up
+
+```{r}
   ggplot(bern, aes(x, loglik)) +
   geom_line() +
   geom_vline(xintercept = (12 / 20), linetype = 2) +
@@ -296,9 +372,8 @@ ggplot(bern, aes(x, lik)) +
     x = expression(hat(pi)),
     y = expression(l[n](pi))
   ) +
-  plot_layout(ncol = 1)
+  ylim(-20, -13)
 ```
-
 ---
 
 # Properties of maximum likelihood estimators
@@ -455,10 +530,15 @@ tibble(
 ```
 
 ---
+class: middle
+
+# Confidence: Precision vs accuracy
+
+---
 
 # Confidence sets
 
-A $1 - \alpha$ **confidence interval** for a parameter $\theta$ is an interval $C_n = (a,b)$ where $a = a(X_1, \ldots, X_n)$ and $b = b(X_1, \ldots, X_n)$ are functions of the data such that
+A ( $1 - \alpha$ ) **confidence interval** for a parameter $\theta$ is an interval $C_n = (a,b)$ where $a = a(X_1, \ldots, X_n)$ and $b = b(X_1, \ldots, X_n)$ are functions of the data such that
 
 $$\Pr_{\theta} (\theta \in C_n) \geq 1 - \alpha, \quad \forall \, \theta \in \Theta$$
 
@@ -518,11 +598,17 @@ $$
 $$
 
 ---
+class: middle
+
+# Hypothesis testing: 
+## Am I right or am I right? 
+
+---
 
 # Hypothesis testing
 
 * Null hypothesis
-* Ask if the data provide sufficient evidence to reject the theory
+* Ask if the data **provide sufficient evidence** to reject the theory
 
 --
 
@@ -550,11 +636,64 @@ $$R = \left\{ x: T(x) > c \right\}$$
 
 ---
 
-# Types of errors
+# Types of errors: table
+
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+$H_0$ True | ? |  ?
+$H_0$ False | ? | ? 
+
+
+---
+
+# Types of errors: table
+
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+$H_0$ True | ? | YES! 
+$H_0$ False | YES! |  ?
+
+
+---
+
+# Types of errors: table
+
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+$H_0$ True | WRONG! | YES! 
+|(false negative) |
+| type I error |
+$H_0$ False | YES! |  WRONG! 
+||(false positive)
+|| type II error
+
+---
+# Positives and negative
+
+Example: Suppose our null is that people support a six-hour exam. We need to understand if we have sufficient evidence against this. 
+
+--
+
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+$H_0$ T: YAY EXAM | WRONG! | YES! 
+|(false negative) |
+| type II error |
+$H_0$ F: BOO EXAM | YES! |  WRONG! 
+||(false positive)
+|| type I error
+
+So, if we had a false negative, we would think that people DO NOT want the exam, when really they DO! Meanwhile in the false positive, we would think that people DO want the exam when really they DO NOT!
+
+---
+
+
+# Types of errors: visual
 
 ```{r type-1-2-error}
-knitr::include_graphics("https://2378nh2nfow32gm3mb25krmuyy-wpengine.netdna-ssl.com/wp-content/uploads/2014/05/Type-I-and-II-errors1-625x468.jpg")
+knitr::include_graphics("https://i.stack.imgur.com/Kq0OH.jpg")
 ```
+
 
 ---
 
@@ -766,7 +905,7 @@ knitr::include_graphics("http://www.azquotes.com/picture-quotes/quote-the-absenc
 
 ---
 
-# $p$-values
+# Understanding $p$-values
 
 Generally, if the test rejects at level $\alpha$ it will also reject at level $\alpha' > \alpha$
 
@@ -782,10 +921,16 @@ The smaller the $p$-value, the stronger the evidence against $H_0$
 
 $p$-value  | evidence
 -----------|-----------------------------------------
-$< .01$    | very strong evidence against $H_0$
-$.01 - .05$| strong evidence against $H_0$
-$.05 - .10$| weak evidence against $H_0$
-$> .1$     | little or no evidence against $H_0$
+$< 0.01$    | very strong evidence against $H_0$
+$0.01 - 0.05$| strong evidence against $H_0$
+$0.05 - 0.10$| weak evidence against $H_0$
+$> 0.1$     | little or no evidence against $H_0$
+
+
+--
+```{r, out.width="220px"}
+knitr::include_graphics("https://imgs.xkcd.com/comics/p_values_2x.png")
+```
 
 ---
 
@@ -794,12 +939,16 @@ $> .1$     | little or no evidence against $H_0$
 Suppose that the size $\alpha$ test is of the form
 
 $$\text{reject } H_0 \text{ if and only if } T(X_n) \geq c_\alpha$$
+--
 
 Then,
 
 $$\text{p-value} = \text{sup}_{\theta \in \Theta_0} \Pr_\theta (T(X^n) \geq T(x^n))$$
 
-where $x^n$ is the observed value of $X^n$. If $\Theta_0 = \{ \theta_0 \}$ then
+where $x^n$ is the observed value of $X^n$. 
+
+--
+If $\Theta_0 = \{ \theta_0 \}$ then
 
 $$\text{p-value} = \Pr_{\theta_0} (T(X^n) \geq T(x^n))$$
 
@@ -846,109 +995,16 @@ tibble(
 ```
 
 ---
+# Recap
 
-# Example: cholesterol data
+* Estimators: generate our point estimate
+* Point estimates: best guess 
+* Testing: HOW WEIRD IS IT
+* Evaluation:
+  * Find sample mean (AKA POINT ESTIMATE)
+  * Find expected value
+  * Find SE
+  * Calculate in formula above
+  * Evaluate / make decision
+* Bayes: different approach to statistics vs frequentist
 
-Consider a set of 371 individuals in a health study examining cholesterol levels (in mg/dl). 320 individuals have narrowing of the arteries, while 51 patients have no evidence of heart disease. Is the mean cholesterol different in the two groups?
-
---
-
-Let the estimated mean cholesterol levels for the first group be $\bar{X} = 216.2$ and for the second group $\bar{Y} = 195.3$. Let the estimated standard error for each group be $\widehat{\se}(\hat{\mu}_1) = 5.0$ and $\widehat{\se}(\hat{\mu}_2) = 2.4$
-
---
-
-The Wald test statistic is
-
-$$W = \frac{\hat{\delta} - 0}{\widehat{\se}} = \frac{\bar{X} - \bar{Y}}{\sqrt{\widehat{\se}_1^2 + \widehat{\se}_2^2}} = \frac{216.2 - 195.3}{\sqrt{5^2 + 2.4^2}} = 3.78$$
-
---
-
-To compute the $p$-value, let $Z \sim N(0,1)$ denote a standard Normal random variable. Then
-
-$$\text{p-value} = \Pr (|Z| > 3.78) = 2 \Pr(Z < -3.78) = 0.0002$$
-
----
-
-# Pearson's $\chi^2$ test for multinomial data
-
-* Used for multinomial data
-* If $X = (X_1, \ldots, X_k)$ has a multinomial $(n,p)$ distribution, then the MLE of $p$ is $\hat{p} = (\hat{p}_1, \ldots, \hat{p}_k) = (x_1 / n, \ldots, x_k / n)$.
-
---
-
-Let $p_0 = (p_{01}, \ldots, p_{0k})$ be some fixed vector and suppose we want to test
-
-$$H_0: p = p_0 \quad \text{versus} \quad H_1: p \neq p_0$$
-
---
-
-Pearson's $\chi^2$ statistic is
-
-$$T = \sum_{j=1}^k \frac{(X_j - np_{0j})^2}{np_{0j}} = \sum_{j=1}^k \frac{(X_j - \E[X_j])^2}{\E[X_j]}$$
-
-where $\E[X_j] = np_{0j}$ is the expected value under $H_0$.
-
----
-
-# Attitudes towards abortion
-
-* $H_A$ - In a comparison of individuals, liberals are more likely to favor allowing a woman to obtain an abortion for any reason than conservatives
-* $H_0$ - There is no difference in support between liberals and conservatives for allowing a woman to obtain an abortion for any reason. Any difference is the result of random sampling error.
-
----
-
-# Attitudes towards abortion
-
-| Right to Abortion | Liberal | Moderate | Conservative | Total |
-|-------------------|----------|----------|--------------|--------|
-| Yes | 40.8% | 40.8% | 40.8% | 40.8% |
-|  | (206.45) | (289.68) | (271.32) | (768) |
-| No | 59.2% | 59.2% | 59.2% | 59.2% |
-|  | (299.55) | (420.32) | (393.68) | (1113) |
-| Total | 26.9% | 37.7% | 35.4% | 100% |
-|  | (506) | (710) | (665) | (1881) |
-
----
-
-# Attitudes towards abortion
-
-| Right to Abortion | Liberal | Moderate | Conservative | Total |
-|-------------------|---------|----------|--------------|--------|
-| Yes | 62.6% | 36.6% | 28.7% | 40.8% |
-|  | (317) | (260) | (191) | (768) |
-| No | 37.4% | 63.4% | 71.28% | 59.2% |
-|  | (189) | (450) | (474) | (1113) |
-| Total | 26.9% | 37.7% | 35.4% | 100% |
-|  | (506) | (710) | (665) | (1881) |
-
----
-
-# Attitudes towards abortion
-
-| Right to Abortion |     | Liberal | Moderate | Conservative |
-|-------------------|---------------|---------|----------|--------------|
-|  Yes | Observed Frequency $X_j$ | 317.0 | 260.0 | 191.0 |
-|     | Expected Frequency $\E[X_j]$ | 206.6 | 289.9 | 271.5 |
-|     | $X_j - \E[X_j]$ | 110.4 | -29.9 | -80.5 |
-|     | $(X_j - \E[X_j])^2$ | 12188.9 | 893.3 | 6482.7 |
-|     | $\frac{(X_j - \E[X_j])^2}{\E[X_j]}$ | **59.0** | **4.1** | **23.9** |
-|  No   | Observed Frequency $X_j$ | 189.0 | 450.0 | 474.0 |
-|     | Expected Frequency $\E[X_j]$ | 299.4 | 420.1 | 393.5 |
-|     | $X_j - \E[X_j]$ | -110.4 | 29.9 | 80.5 |
-|     | $(X_j - \E[X_j])^2$ | 12188.9 | 893.3 | 6482.7 |
-|     | $\frac{(X_j - \E[X_j])^2}{\E[X_j]}$ | **40.7** | **2.1** | **16.5** |
-
----
-
-# Attitudes towards abortion
-
-Calculating test statistic
-
-* $\chi^2=\sum{\frac{(X_j - \E[X_j])^2}{\E[X_j]}}=145.27$
-* $\text{Degrees of freedom} = (\text{number of rows}-1)(\text{number of columns}-1)=2$
-
---
-
-Calculating $p$-value
-
-* $\text{p-value} = \Pr (\chi_2^2 > 145.27) = `r 1 - pchisq(q = 145.27, df = 2)`$

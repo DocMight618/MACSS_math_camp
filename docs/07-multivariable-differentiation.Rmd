@@ -17,19 +17,39 @@ library(gganimate)
 library(plotly)
 ```
 
+# Misc
+
+* HELLO and welcome back!
+* Canvas page -- join, class info, preceptor groups
+  * When submitting class requests -- expect ~1 week and **PLEASE include a syllabus**!
+* **NO HOMEWORK DUE TONIGHT!**
+
+---
 # Learning objectives
 
+* Revisit derivatives
 * Define a partial derivative
 * Identify higher order derivatives and partial derivatives
 * Define notation for calculus performed on vector and matrix forms
 * Demonstrate multivariable calculus methods on social scientific research
-* Calculate critical points, partial derivatives, and double integrals
+* Calculate critical points, partial derivatives, saddle points
 
 ---
 
-# Higher order derivatives
+# Derivatives: Rates of change
+
+* Way to understand how a function is changing
+* (So far) Change relative to one variable
+* Useful for max, min (derivative at zero) 
+* Can determine when shifting from concave down to concave up (convex) (second derivative at zero)
+
+---
+
+# Higher order derivatives: can talk about the change in the rate of change
 
 * Derivatives of derivatives
+
+--
 * First derivative
 
     $$f'(x),  ~~ y',  ~~ \frac{d}{dx}f(x), ~~ \frac{dy}{dx}$$
@@ -45,8 +65,18 @@ library(plotly)
 ---
 
 # Multivariate function
+Multivariate functions have ... multiple ... variables ... 
 
+These are situations where we have a function that is not within one plane. It is easy to imagine how challenging optimizing this can be. Instead of a line, we have what is effectively a surface that we're trying to look at. 
+
+We're trying to get some understanding of the underlying function and see how things do/not change in relation to our variables. 
+
+---
+
+# Multivariate function: Example
+Suppose we have the following function: 
 $$f(x_{1}, x_{2}) = x_{1}  + x_{2}$$
+--
 
 ```{r multivariate-fun1}
 x1 <- seq(from = -5, to = 5, by = 0.1)
@@ -68,7 +98,11 @@ plot_ly(x = ~x1, y = ~x2, z = ~z) %>%
     ))
 ```
 
+
+
 ---
+
+
 
 # Multivariate function
 
@@ -148,10 +182,10 @@ plot_ly(x = ~x1, y = ~x2, z = ~z) %>%
 
 ---
 
-# Multivariate function
-
+# Multivariate function evaluation
+Suppose we have the following function: 
 $$f(x_{1}, x_{2}, x_{3} ) = x_1 + x_2 + x_3$$
-
+To evaluate it, we would then need to add our three variables up for whichever value we're exploring. We could imagine having $n$ many values of $x$. (to be clear, we're thinking of each x as different variable, akin to $x,y,z$, etc.)
 --
 
 $$
@@ -164,7 +198,7 @@ $$
 
 ---
 
-# Multivariate function
+# Multivariate function: definition
 
 * $f:\Re^{n} \rightarrow \Re^{1}$
 * $f$ is a multivariate function
@@ -196,6 +230,7 @@ $$f(x_{1}, x_{2} ) = x_{1} + x_{2} + x_{1} x_{2}$$
 --
 
 ### Evaluate at $\mathbf{w} = (w_{1}, w_{2} ) = (1, 2)$ 
+--
 
 $$\begin{aligned}f(w_{1}, w_{2}) & = w_{1} + w_{2} + w_{1} w_{2}  \\								& = 1  + 2  + 1 \times 2  \\								& = 5  \end{aligned}$$						
 
@@ -212,10 +247,42 @@ $$\begin{aligned}f(w_{1}, w_{2}) & = w_{1} + w_{2} + w_{1} w_{2}  \\								& = 
 
 --
 
-* $\mathbf{\mu} = (\mu_{1}, \mu_{2}, \ldots, \mu_{N} ) = (0, 0, \ldots, 0)$
+* Suppose: $\mathbf{\mu} = (\mu_{1}, \mu_{2}, \ldots, \mu_{N} ) = (0, 0, \ldots, 0)$
+
+
+---
+
+# Preferences for multidimensional policy
+We can take these preferences and put them into our utility function. 
 * Evaluate legislator's utility for a policy proposal of $\mathbf{m} = (1, 1, \ldots, 1)$
 
     $$\begin{aligned}U(\mathbf{m} ) & = U(1, 1, \ldots, 1) \\						  & = - (1 - 0)^2 - (1- 0) ^2 - \ldots - (1- 0) ^2 \\				& = -\sum_{j=1}^{N} 1 = - N   \\\end{aligned}$$
+
+---
+# Multivariate function: Policy
+
+$$f(x_{1}, x_{2}) =  -(x-0)^2 - (y-0)^2$$
+
+```{r}
+x1 <- seq(from = -5, to = 5, by = 0.1)
+x2 <- seq(from = -5, to = 5, by = 0.1)
+
+z <- expand.grid(x1 = x1,
+                 x2 = x2) %>%
+  as_tibble() %>%
+  mutate(y = -(x1 - 0)^2 - (x2 - 0)^2)
+z <- matrix(data = z$y, nrow = length(x1), ncol = length(x2), byrow = TRUE)
+
+plot_ly(x = ~x1, y = ~x2, z = ~z) %>%
+  add_surface() %>%
+  layout(
+    scene = list(
+      xaxis = list(title = "x1"),
+      yaxis = list(title = "x2"),
+      zaxis = list(title = "f(x1, x2)")
+    ))
+```
+
 
 ---
 
@@ -239,46 +306,116 @@ $$\begin{aligned}f(w_{1}, w_{2}) & = w_{1} + w_{2} + w_{1} w_{2}  \\								& = 
     $$\begin{aligned}f(T = 1, x_2) - f(T=0, x_2) & = \beta_{0} + \beta_{1} 1  + \beta_{2} x_{2} - (\beta_{0} + \beta_{1}  0 + \beta_{2} x_{2}) \\& = \beta_{0} - \beta_{0}  + \beta_{1}(1 - 0) + \beta_{2}(x_{2} - x_{2} ) \\	& = \beta_{1} \end{aligned}$$
 
 ---
+# NOW WHAT?
+
+We have a function that we can start to sort out re: how it is that these pieces come together. However, we may want or need to figure out how our *outcome* variable may change relative to our input variables. 
+
+--
+**INTRODUCING...**
+
+---
+class: middle, center
+
+## Multivariate derivatives: AKA partial derivatives
+
+---
+
+# Multivariate function: Optimizing
+
+To find or max / min, what would you do (think about realistically and then mathematically).
+
+--
+
+Ideas: slowly move across an axis, finding a max or min. Metaphorically, this *is* what we'll be doing when we think about partial derivatives.  
+
+---
 
 # Multivariate derivatives
+If you have more than one variable changing simultaneously, you will need to evaluate **partial derivatives**. 
 
-* More than one variable changing simultaneously
-* Partial derivative
+--
+
 * Let $f$ be a function of the variables $(x_1,\ldots,x_n)$. Partial derivative of $f$ with respect to $x_i$ is 
 
     $$\frac{\partial f}{\partial x_i} (x_1,\ldots,x_n) = \lim\limits_{h\to 0} \frac{f(x_1,\ldots,x_i+h,\ldots,x_n)-f(x_1,\ldots,x_i,\ldots,x_n)}{h}$$
 
-    * Only the $i$th variable changes
+--
+    * NOTICE: only the $i$th variable changes. Same basic concept as derivatives!
 
 ---
 
-# Multivariate derivatives
+# Multivariate derivatives: example
 
+$$f(x_1, x_2) = 2x+3y$$
+--
+$$\frac{\partial f}{\partial x} (x,y) = \lim\limits_{h\to 0} \frac{f(x+h,y)-f(x,y)}{h}$$
+--
+$$\lim\limits_{h\to 0}\frac{2(x+h) +3y}{h} = \frac{(2x + 2h + 3y)-(2x+3y)}{h}$$ 
+We can simplify: $$\lim\limits_{h\to 0}\frac{2h}{h}=2$$
+---
+
+# Multivariate derivatives: strategy / procedure
+
+To take a derivative when you have a multivariate function, you will focus on ONE variable of interest at a time. You will then take the derivative treating all other elements / variables as CONSTANTS. Finally, you will repeat this for EACH variable present. 
+
+--
 $$f(x,y)=x^2+y^2$$
+--
 
-$$
-\begin{aligned}
-\frac{\partial f}{\partial x}(x,y) &= 2x \\
-\frac{\partial f}{\partial y}(x,y) &= 2y\\
-\frac{\partial^2 f}{\partial x^2}(x,y) &= 2\\
-\frac{\partial^2 f}{\partial x \partial y}(x,y) &= 0
-\end{aligned}
-$$
+Try it out, how many derivatives? What are they? 
+
+--
+
+$$\frac{\partial f}{\partial x}(x,y) = 2x \\$$
+
+$$\frac{\partial f}{\partial y}(x,y) = 2y\\$$
+---
+## Second derivatives! 
+Like usual, you can take a second derivative. But wait, there's more! You can also take the derivative with respect to one variable and then the other. e.g. dx then dy. 
+
+
+$$\frac{\partial f}{\partial x}(x,y) = 2x, \text{  } \frac{\partial f}{\partial y}(x,y) = 2y $$
+--
+$$\frac{\partial^2 f}{\partial x^2}(x,y) = 2, \text{  } \frac{\partial^2 f}{\partial y^2}(x,y) = 2$$
+
+--
+$$\frac{\partial^2 f}{\partial x \partial y}(x,y) = 0$$
+$$\frac{\partial^2 f}{\partial y \partial x}(x,y) = 0$$
+
+
+---
+
+# Multivariate derivatives: Simple-ish example
+
+$$ 2xy^2+3x+4y-yx^3$$
+
+Find all first derivatives, second derivatives, and partial derivatives. 
+--
+$$\frac{\partial f}{\partial x}(x,y) = 2y^2+ 3-3yx^2$$
+$$\frac{\partial f}{\partial y}(x,y) = 4xy+ 4-x^3$$
+--
+$$\frac{\partial^2 f}{\partial x^2}(x,y) = -6xy, \frac{\partial^2 f}{\partial y^2}(x,y) = 4x$$
+
+--
+$$\frac{\partial^2 f}{\partial x \partial y}(x,y) = 4y-3x^2, \text{  } \frac{\partial^2 f}{\partial y \partial x}(x,y) = 4y-3x^2$$
+---
+
+# Interpretations: Rates of change 
+
+Think about how things are changing with respect to y, respect to x, x and then y, etc. 
 
 ---
 
 # Multivariate derivatives
 
-$$f(x,y)=x^3 y^4 +e^x -\log y$$
+$$f(x,y)=x^3 y^4 +e^x -\ln y$$
+--
 
-$$
-\begin{aligned}
-\frac{\partial f}{\partial x}(x,y) &= 3x^2y^4 + e^x\\
-\frac{\partial f}{\partial y}(x,y) &=4x^3y^3 - \frac{1}{y}\\
-\frac{\partial^2 f}{\partial x^2}(x,y) &= 6xy^4 + e^x\\
-\frac{\partial^2 f}{\partial x \partial y}(x,y) &= 12x^2y^3
-\end{aligned}
-$$
+$$\frac{\partial f}{\partial x}(x,y) = 3x^2y^4 + e^x$$
+$$\frac{\partial f}{\partial y}(x,y) =4x^3y^3 - \frac{1}{y}$$
+--
+$$\frac{\partial^2 f}{\partial x^2}(x,y) = 6xy^4 + e^x$$
+$$\frac{\partial^2 f}{\partial x \partial y}(x,y) = 12x^2y^3$$
 
 ---
 
@@ -292,6 +429,11 @@ $$
 * Partial derivative with respect to employment
 
     $$\frac{\partial f(\text{Employ}_{i}, \text{Gas}_{i} ) }{\partial \text{Employ}_{i} } = -0.5$$
+
+---
+class: middle
+
+# Optimization approaches
 
 ---
 
@@ -325,10 +467,12 @@ $$
 # Neighborhood
 
 * Let $\mathbf{x} \in \Re^{n}$ and let $\delta >0$
+--
+
 * Define a **neighborhood** of $\mathbf{x}$, $B(\mathbf{x}, \delta)$, as the set of points such that,
 
     $$B(\mathbf{x}, \delta) = \{ \mathbf{y} \in \Re^{n} : ||\mathbf{x} - \mathbf{y}||< \delta \}$$
-
+--
 * $B(\mathbf{x}, \delta)$ is the set of points where the vector $\mathbf{y}$ is a vector in n-dimensional space such that vector norm of $\mathbf{x} - \mathbf{y}$  is less than $\delta$
 
 ---
@@ -336,17 +480,26 @@ $$
 # Maxima/minima
 
 * $f:X \rightarrow \Re$ with $X \subset \Re^{n}$
-* Global maximum - a vector $\mathbf{x}^{*} \in X$ if, for all other $\mathbf{x} \in X$
+* **Global maximum** - a vector $\mathbf{x}^{*} \in X$ if, for all other $\mathbf{x} \in X$, $f(\mathbf{x}^{*}) > f(\mathbf{x} )$
 
-    $$f(\mathbf{x}^{*}) > f(\mathbf{x} )$$
+* **Local maximum** - a vector $\mathbf{x}^{\text{local}}$ if there is a neighborhood around $\mathbf{x}^{\text{local}}$, $Q \subset X$ such that, for all $x \in Q$, $f(\mathbf{x}^{\text{local} }) > f(\mathbf{x} )$
 
-* Local maximum - a vector $\mathbf{x}^{\text{local}}$ if there is a neighborhood around $\mathbf{x}^{\text{local}}$, $Q \subset X$ such that, for all $x \in Q$,
-
-    $$f(\mathbf{x}^{\text{local} }) > f(\mathbf{x} )$$
-
-* Reverse for minima
+* Reverse for minima:
+  * **Global min**: a vector $\mathbf{x}^{*} \in X$ if, for all other $\mathbf{x} \in X$, $f(\mathbf{x}^{*}) < f(\mathbf{x} )$
+  * **Local min**: a vector $\mathbf{x}^{\text{local}}$ if there is a neighborhood around $\mathbf{x}^{\text{local}}$, $Q \subset X$ such that, for all $x \in Q$, $f(\mathbf{x}^{\text{local} }) < f(\mathbf{x} )$
 * Values for $f:X \rightarrow \Re$ on the real number line (in n-dimensional space)
 * Fall somewhere along $\mathbf{X}$
+
+---
+# VOCAB ROUNDUP
+
+We want to think about how these pieces come together and what they're telling us about the overall picture. We had been working with derivatives already, but now that our functions are more complicated, we're going to have to explore and track things a little differently. 
+
+--
+
+* **Gradient** $\nabla f$: vector, contains the first derivatives with respect to each of our variables in our function.This is a vector of derivatives, typically of a function.  
+  * *Jacobian* matrix of derivatives (sometimes you'll see reference to this). It is a matrix of derivatives of a vector. 
+* **Hessian** matrix of second derivatives, *including partials*. This is a matrix of derivatives, typically of a vector. 
 
 ---
 
@@ -358,7 +511,7 @@ $$
     $$\nabla f (\mathbf{x}_{0}) = \left(\frac{\partial f (\mathbf{x}_{0}) }{\partial x_{1} }, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{2} }, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{3} }, \ldots, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{n} } \right)$$
 
 * First partial derivatives for each variable $x_n$ stored in a vector
-* Gradient points in the direction that the function is **increasing** in the fastest direction
+* Gradient points in the direction that the function is **changing** in the fastest direction (e.g. positive -> greatest increase; negative -> greatest decrease)
 
 --
 
@@ -386,10 +539,43 @@ f(x,y) &= x^3 y^4 +e^x -\log y \\
 \end{aligned}
 $$
 
+
+---
+# Jacobian
+The Jacobian matrix is a matrix of derivatives (derivative of a vector function) while the gradient is the derivative of a scalar function. If we start with a function, $f$, we can evaluate its gradient. 
+
+### Gradient
+* $f:X \rightarrow \Re^{n}$ with $X \subset \Re^{1}$ is a differentiable function
+* Gradient vector of $f$ at $\mathbf{x}_{0}$
+
+    $$\nabla f (\mathbf{x}_{0}) = \left(\frac{\partial f (\mathbf{x}_{0}) }{\partial x_{1} }, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{2} }, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{3} }, \ldots, \frac{\partial f (\mathbf{x}_{0}) }{\partial x_{n} } \right)$$
+In contrast, the Jacobian is the matrix of gradients for a vector. 
+$$\mathbf{J_{ij}} = \begin{bmatrix}\frac{\partial F (\mathbf{x}_{i}) }{\partial x_{j} } \end{bmatrix}$$
+
+--
+All this to say, that if we wanted to have a matrix of derivatives of our gradient, the **Jacobian of the gradient vector** is the **Hessian**. 
+
+---
+# Hessian 
+
+The Hessian is a matrix that has all the second derivatives of our gradient vector (as we just stated, it's the Jacobian of the gradient). 
+
+$$\mathbf{H_{ij}} = \begin{bmatrix}\frac{\partial f }{\partial x_{i}\partial x_{j} } \end{bmatrix}$$
+
+---
+
+# Example with functions
+
+$$ 2xy^2+3x+4y-yx^3$$
+Gradient: $$\nabla f (\mathbf{x}_{0}) = \left(2y^2+3-3yx^2, 4xy+4-x^3 \right)$$
+Hessian: $$\begin{bmatrix} -6yx & 4y-3x^2 \\ 4y-3x^2 & 4x \end{bmatrix}$$
+
 ---
 
 # Critical values
+Like before, we are also interested in where and how our function changes. We want to get a sense of maxes and mins and critical values. Now, things are a little more complicated, so instead of concave up/down, we have multidimensional versions. In these instances, we're looking for the analogous concept, now called a *saddle point*. 
 
+--
 1. Maximum
 1. Minimum
 1. Saddle point
@@ -414,8 +600,18 @@ $$
 
 # Example Hessians
 
-$$\begin{aligned}f(x,y) &= x^2+y^2 \\\nabla f(x,y) &= (2x, \, 2y) \\\mathbf{H}(f)(x,y) &= \begin{bmatrix}2 & 0 \\0 & 2\end{bmatrix}\end{aligned}$$
+Start with the below function and identify the gradient and Hessian. 
 
+$$f(x,y) = x^2+y^2$$ 
+--
+$$\nabla f(x,y) = (2x, \, 2y)$$
+--
+$$\mathbf{H}(f)(x,y) = \begin{bmatrix}2 & 0 \\0 & 2\end{bmatrix}$$
+
+---
+
+# Hessian: practice and example
+Try this equation, finding the gradient and Hessian: $$f(x,y)= x^3 y^4 +e^x -\log y$$
 --
 
 $$\begin{aligned}f(x,y) &= x^3 y^4 +e^x -\log y \\\nabla f(x,y) &= (3x^2 y^4 + e^x, \, 4x^3y^3 - \frac{1}{y}) \\\mathbf{H}(f)(x,y) &= \begin{bmatrix}6xy^4 + e^x & 12x^2y^3 \\12x^2y^3 & 12x^3y^2 + \frac{1}{y^2}\end{bmatrix}\end{aligned}$$
@@ -423,6 +619,9 @@ $$\begin{aligned}f(x,y) &= x^3 y^4 +e^x -\log y \\\nabla f(x,y) &= (3x^2 y^4 + e
 ---
 
 # Definiteness of a matrix
+This is important and tells us about the matrix and can give indications regarding how the underlying function is changing. A positive definite matrix has positive eigenvalues (but those are a pain to calculate!). We can also approach it y looking at our matrix through multiplication. 
+
+--
 
 * Consider $n \times n$ matrix $\mathbf{A}$
 * If, for all $\mathbf{x} \in \Re^{n}$ where $\mathbf{x} \neq \mathbf{0}$
@@ -431,7 +630,7 @@ $$\begin{aligned}\mathbf{x}^{'} \mathbf{A} \mathbf{x} &> 0, \quad \mathbf{A} \te
 
 * If $\mathbf{x}^{'} \mathbf{A} \mathbf{x} >0$ for some $\mathbf{x}$ and $\mathbf{x}^{'} \mathbf{A} \mathbf{x}<0$ for other $\mathbf{x}$, then we say $\mathbf{A}$ is **indefinite**
 
---
+---
 
 ## Second derivative test
 
@@ -499,7 +698,11 @@ $$\textbf{H}(f)(\mathbf{x}^{*}) = \begin{bmatrix} 6 & 0 \\ 0 & 8 \\ \end{bmatrix
 * $\mathbf{x^{*}}$ is a **local minimum**
 
 ---
+class: middle
 
+# Applications 
+
+---
 # Maximum likelihood estimation
 
 $$
@@ -629,3 +832,18 @@ grid_search_plot
 ```{r grad-descent}
 vembedr::embed_url("http://www.youtube.com/watch?v=DpdndQUZKqs")
 ```
+
+
+---
+
+# Recap:
+
+* Multivariate functions + Second derivatives: work the way we'd guess
+* Bringing matrices to the party
+* Gradient vs Hessian
+* Finding critical values:
+  1. Calculate gradient
+  1. Set equal to zero, solve system of equations
+  1. Calculate Hessian
+  1. Assess Hessian at critical values
+  1. Boundary values? (if relevant)

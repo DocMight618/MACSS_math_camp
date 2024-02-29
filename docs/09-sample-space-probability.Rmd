@@ -1,5 +1,6 @@
 ---
 title: "Sample space and probability"
+subtitle: "Funky Cats and Their Feisty Stats"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
   xaringan::moon_reader
@@ -14,8 +15,15 @@ library(tidyverse)
 library(patchwork)
 library(here)
 library(gganimate)
+library(knitr)
 ```
+---
 
+# Misc
+* Meet the Deans! 11:30 today
+* Preceptor meetings!
+
+---
 # Learning objectives
 
 * Review set notation and operations
@@ -25,6 +33,116 @@ library(gganimate)
 * Implement Bayes' Rule
 * Define and evaluate independence of events
 * Identify the importance of counting possible events
+
+---
+
+# Sets
+
+* Collection of objects
+
+$$
+\begin{aligned}
+A & = \{1, 2, 3\} \nonumber  \\
+B  & = \{4, 5, 6\}\nonumber  \\
+C  & = \{ \text{First year cohort} \} \\
+D & = \{ \text{U of Chicago Lecturers} \}
+\end{aligned}
+$$
+---
+
+# Sets
+
+* If $A$ is a set, we say that $x$ is an element of $A$ by writing $x \in A$
+* If $x$ is not an element of $A$ then, we write $x \notin A$
+
+--
+
+* $1 \in \{ 1, 2, 3\}$
+* $4 \in \{4, 5, 6\}$
+* $\text{Will} \notin \{ \text{First year cohort} \}$
+* $\text{Benjamin} \in \{ \text{U of Chicago Lecturers} \}$
+
+--
+
+Why do we care about sets?
+
+* Sets are necessary for probability theory
+* Defining **set** is equivalent to choosing population of interest (usually)
+
+---
+
+# Subsets
+
+* If $A$ and $B$ are sets, then we say that $A = B$ if, for all $x \in A$ then $x \in B$ and for all $y \in B$ then $y \in A$
+* Test to determine equality:
+    * Take all elements of $A$, see if in $B$
+    * Take all elements of $B$, see if in $A$
+
+--
+
+-----------
+
+* If $A$ and $B$ are sets, then we say that $A \subset B$ is, for all $x \in A$, then $x \in B$
+    * What is the difference between the definitions?
+
+---
+
+# Set builder notation
+
+Some famous sets:
+
+* $\mathbb{N} = \{1, 2, 3, \ldots \}$
+* $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots, \}$
+* $\Re = \mbox{Real numbers}$
+
+--
+
+Use **set builder notation** to identify subsets:
+
+* $[a, b]  = \{x: x \in \Re \text{ and } a \leq x \leq b \}$
+* $(a, b]  = \{x: x \in \Re \text{ and } a < x \leq b \}$
+* $[a, b)  = \{x: x \in \Re \text{ and } a \leq x <  b \}$
+* $(a, b)  = \{x: x \in \Re \text{ and } a < x < b \}$
+* $\emptyset$
+
+---
+
+# Union
+
+* $A$ and $B$ are sets
+* New set that contains all elements in set $A$ *or* in set $B$
+
+    $$\begin{aligned}C & = A \cup B  \\   & = \{x: x \in A \text{ or } x \in B \}\end{aligned}$$
+
+--
+
+* $A = \{1, 2, 3\}, B = \{3, 4, 5\}$, then $C = A \cup B  = \{ 1, 2, 3, 4, 5\}$
+* $D  = \{\text{First Year Cohort} \}, E = \{\text{Me} \}$, then $F = D \cup E = \{ \text{First Year Cohort, Me} \}$
+
+---
+
+# Intersection
+
+* New set that contains all elements in set $A$ *and* set $B$
+
+    $$\begin{aligned}C  & = A \cap B \\  & = \{x: x \in A \text{ and } x \in B \}\end{aligned}$$
+
+--
+
+* $A =\{1, 2, 3\}, B = \{3, 4, 5\}$, then, $C = A \cap B = \{3\}$
+* $D = \{\text{First Year Cohort} \}, E = \{\text{Me} \}$, then $F = D \cap E = \emptyset$
+
+---
+
+# Some facts about sets
+
+1. $A \cap B = B \cap A$
+1. $A \cup B = B \cup A$
+1. $(A \cap B) \cap C = A \cap (B \cap C)$
+1. $(A \cup B) \cup C = A \cup (B \cup C)$
+1. $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+1. $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+
 
 ---
 
@@ -198,7 +316,7 @@ $$\cap_{i=1}^{N} E_{i} = E_{1} \cap E_{2} \cap \ldots \cap E_{N}$$
 
 1. **Nonnegativity**: For all events $E$, $0 \leq \Pr(E) \leq 1$
 1. **Normalization**: $\Pr(S) = 1$
-1. **Additivity**: For all sequences of mutually exclusive events $E_{1}, E_{2}, \ldots,E_{N}$ (where $N$ can go to infinity):
+1. **Additivity**: For all sequences of **mutually exclusive events** $E_{1}, E_{2}, \ldots,E_{N}$ (where $N$ can go to infinity):
 
     $$\Pr\left(\cup_{i=1}^{N} E_{i}  \right)  = \sum_{i=1}^{N} \Pr(E_{i} )$$
 
@@ -317,24 +435,38 @@ tibble(z = 2:366) %>%
 ```
 
 ---
+# BIRTHDAY: BUT WHYYYYY?
 
-# E-Harmony problem
-
-* Curse of dimensionality and online dating
-
-    > eHarmony matches you based on compatibility in the most important areas of life -- like values, character, intellect, sense of humor, and 25 other dimensions
-    
-* Suppose 29 dimensions are binary (0,1)
-* Suppose dimensions are independent
-* $\Pr(\text{2 people agree}) = 0.5$
+* Me and you: only two possible birthdays and only one pair: (Me, You)
+* Me and you and you there: three possible birthdays BUT THREE possible pairs (MY, MYT, YYT)
+* Fifty of us! Then, we have about 97\% chance that there's a shared birthday: 1225 pairs (!!!)
 
 --
 
-$$\begin{aligned}\Pr\text{(Exact)} &= \Pr\text{(Agree)}_{1} \times \Pr\text{(Agree)}_{2}\times \ldots \times \Pr\text{(Agree)}_{29}  \\&= 0.5 \times 0.5 \times \ldots \times 0.5  \\&= 0.5^{29} \\&\approx 1.8 \times 10^{-9} \end{aligned}$$
+To math it even more, think about it: suppose you have one person's birthday. Now, it has to be the case that each other person does not share thair birthday. When it's you and another person, that means there are only two days that are off limits. However, if you have 50 people, it would have to be the case that you have fifty separate days, which is pretty unlikely (about 3\% likelihood). 
 
-* Across many "variables" (events) agreement is harder
-    * Approximate or match on a handful of dimensions
-    * $k$-nearest neighbors
+---
+# Combining Birthdays: Passwords and Committees
+
+We can figure out how many different groups are possible using combinatorics. They bring the fun!
+
+If we have a group of $n$ individuals and we want to select a committee of $k$ individuals, we can represent this mathematically as: 
+$$n \choose k$$
+
+--
+This becomes: $$\frac{n!}{k!(n-k)!}$$
+In words: we have n groups and we're splitting them into loose groups of k. This is the **committee** version -- you are on the committee or not, so the order of our list is inconsequential. Mathematically, we call this is a **combination**. 
+
+
+---
+# Combining Birthdays: Passwords and Committees
+In contrast, suppose you are making a TOP SECRET PASSWORD! Here, it needs to be $k$ letters long, from $n$ possible letters. In this case, ORDER DOES MATTER (hello vs elloh). 
+
+--
+
+If this is the case, we would use the formula:
+$$\frac{n!}{(n-k)!}$$
+Here, we're allowing **MORE GROUPS** because, for example, (1,2,3) is different from (2,1,3). This is the **password** or **permutation** approach. 
 
 ---
 
@@ -344,7 +476,7 @@ Social scientists almost always examine **conditional** relationships
 
 * Given opposite Party ID, probability of date
 * Given low-interest rates probability of high inflation
-* Given "economic anxiety" probability of voting for Trump
+* Given "economic anxiety" probability of voting for politician
 
 --
 
@@ -383,7 +515,10 @@ $$\Pr(E|F) = \frac{\Pr(E\cap F ) } {\Pr(F) }$$
 * $E = \{ \text{Louie Gohmert Wins (R-TX)} \}$
 * $F \cap E = \emptyset \Rightarrow \Pr(E|F) = \frac{\Pr(F \cap E) }{\Pr(F)} = \frac{\Pr(\emptyset)}{\Pr(F)} = 0$
 
---
+
+---
+
+# Elections
 
 ### Incumbency advantage
 
@@ -404,15 +539,19 @@ $$
 
 --
 
-Type of person who attends football games:
+Type of person who is a Swiftie:
 
-$$\begin{aligned}\Pr(\text{Attending a football game}| \text{Drunk}) & = 0.01  \\\Pr(\text{Drunk}| \text{Attending a football game}) & \approx 1\end{aligned}$$
+$$\begin{aligned}\Pr(\text{Seeing the Eras tour}| \text{Swiftie}) & = 0.1  \\\Pr(\text{Swiftie}| \text{Seeing the Eras tour}) & \approx 1\end{aligned}$$
  
 ---
 
 # Law of total probability
 
-Suppose that we have a set of events $F_{1}, F_{2}, \ldots, F_{N}$ such that the events are mutually exclusive and together comprise the entire sample space $\cup_{i=1}^{N} F_{i} = \Omega$. Then, for any event $E$
+Suppose that we have a set of events $F_{1}, F_{2}, \ldots, F_{N}$ such that the events are mutually exclusive and together comprise the entire sample space $\cup_{i=1}^{N} F_{i} = \Omega$. 
+
+--
+
+Then, for any event $E$
 
 $$\Pr(E) = \sum_{i=1}^{N} \Pr(E | F_{i} ) \times \Pr(F_{i})$$
 
@@ -431,7 +570,10 @@ Infer $\Pr(\text{vote})$ after mobilization campaign
 
 Sample space (one person) = $\{$ (mobilized, vote), (mobilized, not vote), (not mobilized, vote) , (not mobilized, not vote) $\}$
 
+--
 * Mobilization partitions the space
+--
+
 * Apply the law of total probability
 
     $$\begin{aligned}\Pr(\text{vote} ) & = \Pr(\text{vote}| \text{mob.} ) \times \Pr(\text{mob.} ) + \Pr(\text{vote} | \text{not mob} ) \times \Pr(\text{not mob}) \\ & = 0.75 \times 0.6  + 0.25 \times 0.4   \\  & = 0.55  \end{aligned}$$
@@ -527,11 +669,12 @@ $$\begin{aligned}\Pr (A_1 | B) &= \frac{\Pr (A_1) \Pr (B | A_1)}{\Pr (A_1) \Pr (
 $$\begin{aligned}\Pr(\text{black}|\text{Wash} ) & = \frac{\Pr(\text{black}) \Pr(\text{Wash}| \text{black}) }{\Pr(\text{Wash} ) } \\ & = \frac{\Pr(\text{black}) \Pr(\text{Wash}| \text{black}) }{\Pr(\text{black})\Pr(\text{Wash}|\text{black}) + \Pr(\text{nb})\Pr(\text{Wash}| \text{nb}) } \\ & = \frac{0.126 \times 0.00378}{0.126\times 0.00378 + 0.874 \times 0.000060616} \\ & \approx 0.9   \end{aligned}$$
 
 
+
 ---
 
 # Let's Make a Deal
 
-```{r monty-hall}
+```{r monty-hall-b99}
 vembedr::embed_url("https://www.youtube.com/watch?v=QGxyIQzLeUc")
 ```
 
@@ -540,6 +683,7 @@ vembedr::embed_url("https://www.youtube.com/watch?v=QGxyIQzLeUc")
 # Monty Hall problem
 
 > Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?
+
 
 ---
 
@@ -557,10 +701,20 @@ $$\begin{aligned}\Pr(B| C \text{ revealed} ) & = \frac{\Pr(B)\Pr(C \text{ reveal
 --
 
 $$\begin{aligned}\Pr(A| C \text{ revealed} ) & = \frac{\Pr(A) \Pr(C \text{ revealed} | A)}{ \Pr(B)\Pr(C \text{ revealed} | B) + \Pr(A) \Pr(C \text{ revealed} | A) } \\& = \frac{1/3 \times 1/2}{1/3 \times 1 + 1/3 \times 1/2} = \frac{1}{3} \end{aligned}$$
+---
+# Monty Hall
+Moral: ALWAYS* SWITCH! (non-random revelation!)
+
+--
+```{r}
+include_graphics("https://imgs.xkcd.com/comics/monty_hall_2x.png")
+```
 
 ---
 
-# False-positive puzzle
+# Additional Bayes applications: False-positive puzzle
+
+--
 
 > A test for a certain rare disease is assumed to be correct 95% of the time: if a person has the disease, the test results are positive with probability $0.95$, and if the person does not have the disease, the test results are negative with probability $0.95$. A random person drawn from a certain population has probability $0.001$ of having the disease. Given that the person just tested positive, what is the probability of having the disease?
 
@@ -583,6 +737,29 @@ $$
 --
 
 $$\begin{aligned}\Pr (A|B) &= \frac{\Pr (A) \Pr (B|A)}{\Pr (A) \Pr (B|A) + \Pr (A^c) \Pr (B | A^c)} \\&= \frac{0.001 \times 0.95}{0.001 \times 0.95 + 0.999 \times 0.05} \\&= 0.0187\end{aligned}$$
+--
+
+### Bonus: what is the probability that someone does NOT have the disease given that they have a positive result? 
+--
+
+*Ans*: $(0.999*0.05)/(0.001*0.95+0.999*0.05)$ OR $1-0.0187=0.09813$
+
+
+---
+
+# Recap: Bayes' Rule
+
+* $\Pr(B|A)$ may be easy to obtain
+* $\Pr(A|B)$ may be harder to determine
+* Bayes' rule provides a method to move from $\Pr(B|A)$ to $\Pr(A|B)$
+
+> Helps you to understand (estimate) the likelihood of some event, given some other has occurred. Typically can think of as placing context around something you have observed. 
+
+Bayes' Rule: For two events $A$ and $B$, 
+
+$$\Pr(A|B) = \frac{\Pr(A)\times \Pr(B|A)}{\Pr(B)} $$
+
+
 
 ---
 
@@ -596,14 +773,28 @@ $$\begin{aligned}\Pr (A|B) &= \frac{\Pr (A) \Pr (B|A)}{\Pr (A) \Pr (B|A) + \Pr (
 * Suppose $E$ and $F$ are independent. Then,
 
     $$\begin{aligned}\Pr(E|F) & = \frac{\Pr(E \cap F) }{\Pr(F) }  \\& = \frac{\Pr(E)\Pr(F)}{\Pr(F)} \\& = \Pr(E)  \end{aligned}$$
+    
+--
+> An alternative way to think about this is re: information...If knowing one variable's value / that it has occurred helps you make a better guess, then they probably are not independent. If it doesn't help you make a better guess, then they are likely independent (or you're a bad guesser). 
 
 ---
 
 # Rolling a 4-sided die
 
-Consider an experiment involving two successive rolls of a 4-sided die in which all 16 possible outcomes are equally likely and have probability $1/16$
+Consider an experiment involving two successive rolls of a 4-sided die in which all 16 possible outcomes are equally likely and have probability $1/16$. First: try to identify all outcomes -- what is our sample space? 
 
---------------------------------
+--
+
+$$\Omega = \{(1,1), (1,2), (1,3), (1,4),\\ (2,1), (2,2), (2,3), (2,4), \\ (3,1), (3,2), (3,3), (3,4),\\ (4,1), (4,2), (4,3), (4,4) \}$$
+
+--
+What would it mean for two events to be independent? 
+--
+ For $P(A\cap B) = P(A)*P(B)$ AND $P(A|B)=P(A)$
+ 
+---
+
+# Rolling a 4-sided die
 
 Are the events
 
@@ -629,11 +820,9 @@ Consider an experiment involving two successive rolls of a 4-sided die in which 
 
 --------------------------------
 
-Are the events
+Are the events below independent? 
 
 $$A = \{ \text{1st roll is a 1} \}, \quad B = \{ \text{sum of the two rolls is a 5} \}$$
-
-independent?
 
 --
 
@@ -643,9 +832,33 @@ $$\Pr (A) = \frac{\text{number of elements of } A}{\text{total number of possibl
 
 --
 
-Event $B$ consists of the outcomes $(1,4), (2,3), (3,2), (4,1)$
-
+<!--Event $B$ consists of the outcomes $(1,4), (2,3), (3,2), (4,1)$ -->
 $$\Pr (B) = \frac{\text{number of elements of } B}{\text{total number of possible outcomes}} = \frac{4}{16}$$
+
+Test: $P(A|B) = P(A)$? $P(A|B) = \frac{2}{4}$, $P(B)=\frac{4}{16}$. NOPE! (also $P(A\cap B) \neq P(A)*P(B)$)
+
+---
+
+# Rolling a 4-sided die
+
+Are the events below independent?
+
+$$A = \{ \text{1st roll is even} \}, \quad B = \{ \text{2nd roll is even} \}$$
+
+--
+
+$$\Pr (A \cap B) = \Pr (\text{the result of the two rolls is } \{(2,2), (2,4), (4,2), (4,4)\} = \frac{4}{16}$$
+
+$$\Pr (A) = \frac{\text{number of elements of } A}{\text{total number of possible outcomes}} = \{(2,1), (2,2),(2,3), (2,4), (4,1), (4,2), (4,3), (4,4)\}=\frac{8}{16}$$
+
+--
+
+Similarly, event $B$ consists of rolling a 2 or 4 for our second roll: $\{(1,2),(1,4),(2,2),(2,4), (3,2), (3,4), (4,2), (4,4)\}$ 
+--
+$$\Pr (B) = \frac{\text{number of elements of } B}{\text{total number of possible outcomes}} = \frac{8}{16}$$
+
+Test: $P(A|B) = P(A)$? $P(A|B) = \frac{4}{8}$, $P(B)=\frac{8}{16}$. YES!! (also $P(A\cap B) = P(A)*P(B)$)
+
 
 ---
 
@@ -671,7 +884,7 @@ $$\begin{aligned}\Pr (A) &= \frac{\text{number of elements in } A_i}{\text{total
 
 # Independence and causal inference
 
-* Selection and observational Studies
+* Selection and observational studies
     * We often want to infer the effect of some treatment 
         * Incumbency on vote return
         * College education and job earnings
@@ -708,11 +921,16 @@ $$
 # Independent trials
 
 * Sequence of independent trials
+
+    
+```{r, out.width="35%"}
+knitr::include_graphics(here("..", "images/bernoulli.png"))
+```
 * Bernoulli trials - sequence of independent binary trials
     * Heads or tails
     * Success or fail
     * Rains or does not rain
-
+    
 ---
 
 # Binomial probabilities
@@ -725,6 +943,9 @@ $$
 
 # Binomial probabilities
 
+The binomial function is a series of $n$ independent Bernoulli trials. Each trial has the same possible outcome (success or failure and the probablity of each is constant across the trials). 
+
+--
 $$p(k) = \Pr(k \text{ heads come up in an } n \text{-toss sequence})$$
 
 The probability of any given sequence that contains $k$ heads is $p^k (1-p)^{n-k}$
@@ -737,7 +958,7 @@ $$\binom{n}{k} = \frac{n!}{k! (n-k)!}, \quad k=0,1,\ldots,n$$
 
 $$i! = 1 \times 2 \times \cdots \times (i-1) \times i$$
 
---
+---
 
 ## Binomial formula
 
@@ -745,31 +966,7 @@ $$\sum_{k=0}^n \binom{n}{k} p^k (1-p)^{n-k} = 1$$
 
 ---
 
-# Reliability of an $k \text{-out-of-} n$ system
-
-* System consists of $n$ identical components
-* Components operational with probability $p$, independent of other components
-* System is operational if at least $k$ out of the $n$ components are operational
-* What is the probability that the system is operational?
-
---
-
-* $A_i$ the event that exactly $i$ components are operational
-* Probability that the system is operational is the probability of the union $\bigcup_{i=k}^n A_i$
-
-    $$\sum_{i=k}^n \Pr (A_i) = \sum_{i=k}^n p(i)$$
-
-    where $p(i)$ are the binomial probabilities
-
---
-
-* Probability of an operational system is
-
-    $$\sum_{i=k}^n \binom{n}{i} p^i (1-p)^{n-i}$$
-
----
-
-# Counting
+# Counting (AKA EXPECTED VALUE!!!!!!)
 
 * Calculate the total number of possible outcomes in a sample space
 * Probability of an event $A$ with a finite number of equally likely outcomes, each of which has an already known probability $p$
@@ -853,4 +1050,16 @@ $$8 \times 10 \times 10 \times 10 \times 10 \times 10 \times 10 = 8 \times 10^6$
 
 The number of combinations of two out of the four letters $A, B, C, D$ is found by letting $n=4$ and $k=2$
 
+--
+
 $$\binom{n}{k} = \binom{4}{2} = \frac{4!}{2!2!} = 6$$
+
+---
+# RECAP!
+
+* Sample spaces
+* Sets: union, intersect
+* Thinking about how to count elements
+  * Permutations vs Combinations $n \choose k$: $\frac{n!}{k!(n-k)!}$ (denominator depends on p vs c)
+* Conditional probability and independence
+* Bayes' Rule: $\Pr(A|B) = \frac{\Pr(A)\times \Pr(B|A)}{\Pr(B)}$
