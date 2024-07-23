@@ -6,13 +6,16 @@
 | Office | Room 219, 1155 E. 60th St. |
 | GitHub | [jmclip](https://github.com/jmclip) |
 
-* Meeting day: August 28-September 15, MTWThF
+* Meeting day: August 26-September 13, MTWThF
 * Time: 9:00am-1:00pm
-* Location: Room 142, 1155 E 60th St
+* Location: 107 Kent Hall
 
 
 ## TA TEAM!
-* TBD!
+* Alejandro Sarria: asarria@uchicago.edu	
+* Huanrui Chen: hchen0628@uchicago.edu		
+* Nalin Bhatt: nalinb@uchicago.edu		
+* Charlotte Zhou: jialez@uchicago.edu		
 
 ## Course description
 
@@ -35,7 +38,7 @@ Join our gradescope classroom: WB3W6G This code should enable anyone to join. Pl
 This course may only be taken for pass/fail (non-credit), not for a letter grade or audit. Assignments are comprised of daily problem sets. You are encouraged to work in groups, and the instructional staff is available for consultation during class hours. We expect most students should be able to finish the problem sets during class hours. Grades will be based upon performance on the problem sets.
 
 ## Final Placement Exam
-The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator. The study sheets will be collected at the end of the exam. One example kind of calculator would be [this calculator](https://www.target.com/p/texas-instruments-ti-30xa-scientific-calculator/-/A-14769313). Loaner calculators are available by request if requested by 9/8/23. 
+The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator. The study sheets will be collected at the end of the exam. One example kind of calculator would be [this calculator](https://www.target.com/p/texas-instruments-ti-30xa-scientific-calculator/-/A-14769313). Loaner calculators are available by request if requested by 9/7/23. 
 
 ### Exam study guide
 [Submit your practice questions here](https://forms.gle/FGmpjwDpHw5mVyVp6). We will use this to generate the final exam and we will circulate the questions here to all students. Note that not all questions here will be on the exam -- it depends upon the quality and variety of submissions. 
