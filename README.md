@@ -30,8 +30,8 @@ This course surveys mathematical and statistical tools that are foundational to 
   ### Attendance
   Attendance is expected but not required. Students are responsible for the content covered in class. 
 
-### Assignments: Gradescope
-Join our gradescope classroom: WB3W6G This code should enable anyone to join. Please be sure to upload a CLEAR AND READABLE DOCUMENT that is labeled. 
+### COURSE: CANVAS
+[Join our canvas classroom by clicking this link](https://canvas.uchicago.edu/enroll/WCWJRE) This code should enable anyone to join. For assignments, please be sure to upload a CLEAR AND READABLE DOCUMENT that is labeled with the assignment name and your name. 
 
 ## Grades
 
@@ -61,7 +61,7 @@ This course is open to all students who meet the academic requirements for parti
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
 | 26-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/01-functions-sets.pdf) & [answer key](solutions/01-functions-sets-solution-key.pdf)
-| 27-Sep | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/02-seq-limits-critical-points.pdf) & [answer key](solutions/02-sequences-limits-derivatives-solution-key.pdf)
+| 27-Aug | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/02-seq-limits-critical-points.pdf) & [answer key](solutions/02-sequences-limits-derivatives-solution-key.pdf)
 | 28-Aug | Calculus | [Critical points and approximation + Intro Linear Algebra](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 3](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/03-critical-points.pdf) & [answer key](solutions/03-critical-points-solution-key.md)
 | 29-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [NO HOMEWORK!]
 | 30-Aug | Linear algebra  |  [Systems of linear equations and determinants](https://jmclip.github.io/MACSS_math_camp/06-matrix-inversion-decomposition.html) | [Pset 4](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/04-linear-algebra.pdf) & [answer key](solutions/pset4___answer_key.pdf)
