@@ -29,14 +29,18 @@ This course surveys mathematical and statistical tools that are foundational to 
 * Students looking for a slower-paced camp focused specifically on algebra, calculus, and probability should enroll in SOSC 30100 - Mathematics for Social Sciences. This two-week course makes no assumption of prior math/stats training. Those of you who struggle with the material of this course may switch after the first week to SOSC 30100.
 
   ### Attendance
-  Attendance is expected but not required. Students are responsible for the content covered in class. 
+  Attendance is expected but not required. Students are responsible for the content covered in class.
+
+  ### Enrolling / Withdrawing
+  Students can withdraw at any point in the course without penalty. Only students who pass the course have it on their transcript (no W will appear). 
+
 
 ### COURSE: CANVAS
 [Join our canvas classroom by clicking this link](https://canvas.uchicago.edu/enroll/WCWJRE) This code should enable anyone to join. For assignments, please be sure to upload a CLEAR AND READABLE DOCUMENT that is labeled with the assignment name and your name. 
 
 ## Grades
 
-This course may only be taken for pass/fail (non-credit), not for a letter grade or audit. Assignments are comprised of daily problem sets. You are encouraged to work in groups, and the instructional staff is available for consultation during class hours. We expect most students should be able to finish the problem sets during class hours. Grades will be based upon performance on the problem sets.
+This course may only be taken for pass/fail (non-credit), not for a letter grade or audit. Assignments are comprised of daily problem sets. You are encouraged to work in groups, and the instructional staff is available for consultation during class hours. We expect most students should be able to finish the problem sets during class hours. Grades will be based upon performance on the problem sets and in the final exam.
 
 ## Final Placement Exam
 The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator. The study sheets will be collected at the end of the exam. One example kind of calculator would be [this calculator](https://www.target.com/p/texas-instruments-ti-30xa-scientific-calculator/-/A-14769313). Loaner calculators are available by request if requested by 9/7/23. 
