@@ -74,22 +74,25 @@ class: center, middle, inverse, title-slide
 
 # Computational social science
 
-&lt;img src="images/ccsvenn.jpeg" width="213" style="display: block; margin: auto;" /&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/ccsvenn.jpeg" alt="Venn diagram of disciplines" width="75%" /&gt;
+&lt;p class="caption"&gt;Venn diagram of disciplines&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 
 # Acquiring CSS skills
 
-* Computer science
-    * MACS 30121/122/123 sequence (note: also 30111/30112/30113 sequence)
-    * [MACS 30500](https://cfss.uchicago.edu)
+* **Computer science**
+    * CAPP 30121/122/123 sequence
+    * MACS 30500
 --
-* Social science
+* **Social science**
     * Perspectives sequence (MACS 30000/100/200)
     * Seminars
     * Non-computational courses
 --
-* Math/statistics
+* **Math/statistics**
     * Mathematical models of social worlds
     * Probability and statistics used across sciences
     * Start with Computational Math Camp
@@ -133,12 +136,12 @@ class: center, middle, inverse, title-slide
 
 # Their uses
 
-* Mathematical models
+* **Mathematical models**
     * Game theory
     * Formal theory
     * Much bigger in economics
     * Defining statistical models and relationships
-* Probability/statistics
+* **Probability/statistics**
     * Establishing a structure for relationships between variables using data
     * Inferring relationships and assessing their validity
 
@@ -153,20 +156,27 @@ class: center, middle, inverse, title-slide
 * Review common mathematical notation
 * Apply math/statistics methods
 
+
+**NOTE: we will move FAST -- do your best to keep up and follow along. Come to OH and please check in when/as needed!**
+
 ---
 
 # Course logistics
 
 * [Course site](https://github.com/math-camp/course)
+* [Canvas course](https://canvas.uchicago.edu/enroll/WCWJRE)
+* Gradescope (accessed via Canvas)
 
 --
 
 ## Course staff
 
-* Dr. Jean Clipperton
-* Loizos Bitsikokos
-* Bhavya Pandey
-* Adam Wu
+* Dr. Jean Clipperton: clipperton@uchicago.edu 
+* Alejandro Sarria: asarria@uchicago.edu
+* Charlotte Zhou: jialez@uchicago.edu
+* Huanrui Chen: hchen0628@uchicago.edu
+* Nalin Bhatt: nalinb@uchicago.edu
+
 
 ---
 
@@ -180,7 +190,7 @@ class: center, middle, inverse, title-slide
     * Statistical inference
 * High school/AP/IB training may be sufficient
 * We assume prior exposure to the content covered in this camp
-* Alternatives to this camp
+* Alternatives to this camp: through PS department (conflicts with computing boot camp)
 
 ---
 
@@ -191,14 +201,15 @@ class: center, middle, inverse, title-slide
 * The irony of grad school
     * Grades no longer matter (or should not)
     * Learn as much material as possible
-    * **If you truly only care about learning material, you'll get amazing grades**
+    * **If you truly only care about learning material, you'll do well**
 
 ---
 
 # Pedagogical approach
 
-* Flipped-classroom design
-* Instructional staff is to be your "sherpa" and guide you along your journey
+* Focus on participation and engagement
+* Practice questions integrated
+* Regular assignments to check understanding
 
 ## Paths to success
 
@@ -210,7 +221,8 @@ class: center, middle, inverse, title-slide
     
 # Why are we doing this?
 
-&lt;div class="reddit-embed" data-embed-media="www.redditmedia.com" data-embed-parent="false" data-embed-live="false" data-embed-uuid="8304bbaa-04bb-4a98-b866-ebc381d9afff" data-embed-created="2018-08-30T17:34:20.160Z"&gt;&lt;a href="https://www.reddit.com/r/AskReddit/comments/9anxn8/kids_in_school_used_to_say_well_never_need_to/e4x4j3a/"&gt;Comment&lt;/a&gt; from discussion &lt;a href="https://www.reddit.com/r/AskReddit/comments/9anxn8/kids_in_school_used_to_say_well_never_need_to/"&gt;Kids in school used to say “We’ll never need to know this in the real world”. What, in your experience, were they wrong about?&lt;/a&gt;.&lt;/div&gt;
+* This is the magic that makes our models work
+* Implicit knowledge: no explicit focus on proofs but understanding assumed
 
 ---
 
@@ -264,6 +276,12 @@ Most elections have thousands, if not millions, of ballots cast. There is no poi
     * How to measure `\(C\)`
 
 ---
+class: center, inverse, middle
+
+
+# **Questions?**
+
+---
 
 # Sets
 
@@ -274,7 +292,7 @@ $$
 A &amp; = \{1, 2, 3\} \nonumber  \\
 B  &amp; = \{4, 5, 6\}\nonumber  \\
 C  &amp; = \{ \text{First year cohort} \} \\
-D &amp; = \{ \text{U of Chicago Instructors} \}
+D &amp; = \{ \text{U of Chicago Lecturers} \}
 \end{aligned}`
 $$
 
@@ -289,8 +307,8 @@ $$
 
 * `\(1 \in \{ 1, 2, 3\}\)`
 * `\(4 \in \{4, 5, 6\}\)`
-* `\(\text{Adam} \notin \{ \text{First year cohort} \}\)`
-* `\(\text{Jean} \in \{ \text{U of Chicago Instructors} \}\)`
+* `\(\text{Will} \notin \{ \text{First year cohort} \}\)`
+* `\(\text{Jean} \in \{ \text{U of Chicago SIPs} \}\)`
 
 --
 
@@ -348,6 +366,10 @@ Use **set builder notation** to identify subsets:
 
 * `\(A = \{1, 2, 3\}, B = \{3, 4, 5\}\)`, then `\(C = A \cup B  = \{ 1, 2, 3, 4, 5\}\)`
 * `\(D  = \{\text{First Year Cohort} \}, E = \{\text{Me} \}\)`, then `\(F = D \cup E = \{ \text{First Year Cohort, Me} \}\)`
+
+--
+
+This of the union as a list of the elements that are present (not an accounting of their number).
 
 ---
 
@@ -612,9 +634,7 @@ $$
 
 ---
 
-# Let’s get to know each other a bit more – (front three rows) 
-
-*Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies*
+# Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

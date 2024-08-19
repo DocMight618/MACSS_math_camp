@@ -63,7 +63,7 @@ library(rcis)
 
 # Computational social science
 
-```{r css-img}
+```{r css-img, out.width="75%", fig.cap="Venn diagram of disciplines"}
 knitr::include_graphics("images/ccsvenn.jpeg")
 ```
 
@@ -71,16 +71,16 @@ knitr::include_graphics("images/ccsvenn.jpeg")
 
 # Acquiring CSS skills
 
-* Computer science
+* **Computer science**
     * CAPP 30121/122/123 sequence
-    * [MACS 30500](https://cfss.uchicago.edu)
+    * MACS 30500
 --
-* Social science
+* **Social science**
     * Perspectives sequence (MACS 30000/100/200)
     * Seminars
     * Non-computational courses
 --
-* Math/statistics
+* **Math/statistics**
     * Mathematical models of social worlds
     * Probability and statistics used across sciences
     * Start with Computational Math Camp
@@ -124,12 +124,12 @@ knitr::include_graphics("images/ccsvenn.jpeg")
 
 # Their uses
 
-* Mathematical models
+* **Mathematical models**
     * Game theory
     * Formal theory
     * Much bigger in economics
     * Defining statistical models and relationships
-* Probability/statistics
+* **Probability/statistics**
     * Establishing a structure for relationships between variables using data
     * Inferring relationships and assessing their validity
 
@@ -144,20 +144,27 @@ knitr::include_graphics("images/ccsvenn.jpeg")
 * Review common mathematical notation
 * Apply math/statistics methods
 
+
+**NOTE: we will move FAST -- do your best to keep up and follow along. Come to OH and please check in when/as needed!**
+
 ---
 
 # Course logistics
 
 * [Course site](https://github.com/math-camp/course)
+* [Canvas course](https://canvas.uchicago.edu/enroll/WCWJRE)
+* Gradescope (accessed via Canvas)
 
 --
 
 ## Course staff
 
-* Dr. Jean Clipperton
-* Loizos Bitsikokos
-* Bhavya Pandey
-* Adam Wu
+* Dr. Jean Clipperton: clipperton@uchicago.edu 
+* Alejandro Sarria: asarria@uchicago.edu
+* Charlotte Zhou: jialez@uchicago.edu
+* Huanrui Chen: hchen0628@uchicago.edu
+* Nalin Bhatt: nalinb@uchicago.edu
+
 
 ---
 
@@ -171,7 +178,7 @@ knitr::include_graphics("images/ccsvenn.jpeg")
     * Statistical inference
 * High school/AP/IB training may be sufficient
 * We assume prior exposure to the content covered in this camp
-* Alternatives to this camp
+* Alternatives to this camp: through PS department (conflicts with computing boot camp)
 
 ---
 
@@ -182,14 +189,15 @@ knitr::include_graphics("images/ccsvenn.jpeg")
 * The irony of grad school
     * Grades no longer matter (or should not)
     * Learn as much material as possible
-    * **If you truly only care about learning material, you'll get amazing grades**
+    * **If you truly only care about learning material, you'll do well**
 
 ---
 
 # Pedagogical approach
 
-* Flipped-classroom design
-* Instructional staff is to be your "sherpa" and guide you along your journey
+* Focus on participation and engagement
+* Practice questions integrated
+* Regular assignments to check understanding
 
 ## Paths to success
 
@@ -201,7 +209,8 @@ knitr::include_graphics("images/ccsvenn.jpeg")
     
 # Why are we doing this?
 
-<div class="reddit-embed" data-embed-media="www.redditmedia.com" data-embed-parent="false" data-embed-live="false" data-embed-uuid="8304bbaa-04bb-4a98-b866-ebc381d9afff" data-embed-created="2018-08-30T17:34:20.160Z"><a href="https://www.reddit.com/r/AskReddit/comments/9anxn8/kids_in_school_used_to_say_well_never_need_to/e4x4j3a/">Comment</a> from discussion <a href="https://www.reddit.com/r/AskReddit/comments/9anxn8/kids_in_school_used_to_say_well_never_need_to/">Kids in school used to say “We’ll never need to know this in the real world”. What, in your experience, were they wrong about?</a>.</div>
+* This is the magic that makes our models work
+* Implicit knowledge: no explicit focus on proofs but understanding assumed
 
 ---
 
@@ -255,6 +264,12 @@ Most elections have thousands, if not millions, of ballots cast. There is no poi
     * How to measure $C$
 
 ---
+class: center, inverse, middle
+
+
+# **Questions?**
+
+---
 
 # Sets
 
@@ -281,7 +296,7 @@ $$
 * $1 \in \{ 1, 2, 3\}$
 * $4 \in \{4, 5, 6\}$
 * $\text{Will} \notin \{ \text{First year cohort} \}$
-* $\text{Benjamin} \in \{ \text{U of Chicago Lecturers} \}$
+* $\text{Jean} \in \{ \text{U of Chicago SIPs} \}$
 
 --
 
@@ -339,6 +354,10 @@ Use **set builder notation** to identify subsets:
 
 * $A = \{1, 2, 3\}, B = \{3, 4, 5\}$, then $C = A \cup B  = \{ 1, 2, 3, 4, 5\}$
 * $D  = \{\text{First Year Cohort} \}, E = \{\text{Me} \}$, then $F = D \cup E = \{ \text{First Year Cohort, Me} \}$
+
+--
+
+This of the union as a list of the elements that are present (not an accounting of their number).
 
 ---
 
