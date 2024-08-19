@@ -8,7 +8,8 @@
 
 * Meeting day: August 26-September 13, MTWThF
 * Time: 9:00am-1:00pm
-* Location: 107 Kent Hall
+* Location: week of 8.26: 107 Kent Hall
+* Location: 9.2-9/13: IMSI auditorium
 
 
 ## TA TEAM!
