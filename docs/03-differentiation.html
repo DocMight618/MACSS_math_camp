@@ -258,9 +258,9 @@ $$
 
 * `\(f'(0)\)`
 
-    `$$\begin{aligned} \lim_{x \rightarrow 0 } R(x) &amp; = \lim_{x \rightarrow 0 } \frac{f(x) - 1000}{ x - 0   } \\ &amp;= \lim_{x \rightarrow 0 } \frac{x^2}{x} - \lim_{x \rightarrow 0 } \frac{1000}{x} \end{aligned}$$`
+    `$$\begin{aligned} \lim_{x \rightarrow 0 } R(x) &amp; = \lim_{x \rightarrow 0 } \frac{f(x+h)-h}{ h   } \\ &amp;= \lim_{x \rightarrow 0 }\frac{h^2}{h}\\ &amp;= \lim_{x \rightarrow 0 } h \end{aligned}$$`
 
-* `\(\lim_{x \rightarrow 0 } \frac{1000}{x}\)` diverges, so the limit doesn't exist										
+* `\(\lim_{x \rightarrow 0 } h \neq 1000\)`, so the limit doesn't exist										
 
 ---
 
@@ -280,7 +280,7 @@ $$
 
 ---
 
-# Derivative rules
+# Derivative rules: WRITE THESE DOWN
 
 Suppose `\(a\)` is some constant, `\(f(x)\)` and `\(g(x)\)` are functions:
 
@@ -312,12 +312,12 @@ $$
 
 # Derivatives with a friend
 
-Differentiate the following functions and evaluate at the specified value:
+Differentiate the following functions:
 
 1. `\(f(x)= x^3 + 5 x^2  + 4 x\)`, &lt;span style="color: gray;"&gt; at `\(x_{0} = 2\)`&lt;/span&gt;
-1. `\(f(x) = \sin(x) x^3\)`,&lt;span style="color: gray;"&gt;at `\(x_{0} = 2\)`&lt;/span&gt;
-1. `\(h(x) = \dfrac{e^{x}}{x^3}\)`, &lt;span style="color: gray;"at `\(x_{0} = 2\)` &lt;/span&gt;
-1. `\(h(x) = \log (x) x^3\)`,&lt;span style="color: gray;"at `\(x_{0} = e\)` &lt;/span&gt;
+1. `\(f(x) = \sin(x) x^3\)`, &lt;span style="color: gray;"&gt; at `\(x_{0} = 2\)`&lt;/span&gt;
+1. `\(h(x) = \dfrac{e^{x}}{x^3}\)`, &lt;span style="color: gray;"&gt; at `\(x_{0} = 2\)` &lt;/span&gt;
+1. `\(h(x) = \log (x) x^3\)`, &lt;span style="color: gray;"&gt; at `\(x_{0} = e\)` &lt;/span&gt;
 
 ---
 
@@ -416,7 +416,6 @@ $$
 
 &lt;img src="03-differentiation_files/figure-html/exp-func-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
-* Properties of derivatives
 
 ---
 
@@ -761,6 +760,48 @@ g''(x) &amp;= 2 \\
 \lim_{x \rightarrow 0} \frac{f''(x)}{g''(x)} &amp;= \frac{(1 + x)^{-2}}{2} = \frac{1^{-2}}{2} = \frac{1}{2}
 \end{aligned}`
 $$
+
+---
+
+class: inverse, center, middle
+
+# RECAP
+
+---
+
+class: inverse, center, middle
+
+## Helpful formulas
+
+---
+
+# Derivative rules: WRITE THESE DOWN
+
+Suppose `\(a\)` is some constant, `\(f(x)\)` and `\(g(x)\)` are functions:
+
+$$
+`\begin{aligned}
+f(x) &amp;= x &amp; \quad f^{'}(x) &amp;= 1 \\
+f(x) &amp;= a x^{k} &amp; \quad f^{'}(x) &amp;= (a) (k) x ^{k-1} \\
+f(x) &amp;= e^{x } &amp; \quad f^{'} (x) &amp;= e^{x} \\
+f(x) &amp;= \sin(x) &amp; \quad f^{'} (x) &amp;= \cos (x) \\
+f(x) &amp;= \cos(x) &amp; \quad f^{'} (x) &amp;= - \sin(x) \\
+\end{aligned}`
+$$
+
+---
+
+# Derivative rules
+
+##### Constant rule `\(\left[k f(x)\right]' = k f'(x)\)`
+
+##### Sum rule `\(\left[f(x)\pm g(x)\right]' = f'(x)\pm g'(x)\)`
+
+##### Product rule `\(\left[f(x)g(x)\right]' = f'(x)g(x)+f(x)g'(x)\)`
+
+##### Quotient rule `\(\frac{f(x)}{g(x)}' = \frac{f'(x)g(x)-f(x)g'(x)}{[g(x)]^2}, g(x)\neq 0\)`
+
+##### Power rule `\(\left[x^k\right]' = k x^{k-1}\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

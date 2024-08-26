@@ -328,9 +328,9 @@ $$
 
 * $f'(0)$
 
-    $$\begin{aligned} \lim_{x \rightarrow 0 } R(x) & = \lim_{x \rightarrow 0 } \frac{f(x) - 1000}{ x - 0   } \\ &= \lim_{x \rightarrow 0 } \frac{x^2}{x} - \lim_{x \rightarrow 0 } \frac{1000}{x} \end{aligned}$$
+    $$\begin{aligned} \lim_{x \rightarrow 0 } R(x) & = \lim_{x \rightarrow 0 } \frac{f(x+h)-h}{ h   } \\ &= \lim_{x \rightarrow 0 }\frac{h^2}{h}\\ &= \lim_{x \rightarrow 0 } h \end{aligned}$$
 
-* $\lim_{x \rightarrow 0 } \frac{1000}{x}$ diverges, so the limit doesn't exist										
+* $\lim_{x \rightarrow 0 } h \neq 1000$, so the limit doesn't exist										
 
 ---
 
@@ -350,7 +350,7 @@ $$
 
 ---
 
-# Derivative rules
+# Derivative rules: WRITE THESE DOWN
 
 Suppose $a$ is some constant, $f(x)$ and $g(x)$ are functions:
 
@@ -382,12 +382,12 @@ $$
 
 # Derivatives with a friend
 
-Differentiate the following functions and evaluate at the specified value:
+Differentiate the following functions:
 
 1. $f(x)= x^3 + 5 x^2  + 4 x$, <span style="color: gray;"> at $x_{0} = 2$</span>
-1. $f(x) = \sin(x) x^3$,<span style="color: gray;">at $x_{0} = 2$</span>
-1. $h(x) = \dfrac{e^{x}}{x^3}$, <span style="color: gray;"at $x_{0} = 2$ </span>
-1. $h(x) = \log (x) x^3$,<span style="color: gray;"at $x_{0} = e$ </span>
+1. $f(x) = \sin(x) x^3$, <span style="color: gray;"> at $x_{0} = 2$</span>
+1. $h(x) = \dfrac{e^{x}}{x^3}$, <span style="color: gray;"> at $x_{0} = 2$ </span>
+1. $h(x) = \log (x) x^3$, <span style="color: gray;"> at $x_{0} = e$ </span>
 
 ---
 
@@ -491,7 +491,6 @@ function_plot +
   labs(title = expression(f(x) == e^x))
 ```
 
-* Properties of derivatives
 
 ---
 
@@ -962,3 +961,45 @@ g''(x) &= 2 \\
 \lim_{x \rightarrow 0} \frac{f''(x)}{g''(x)} &= \frac{(1 + x)^{-2}}{2} = \frac{1^{-2}}{2} = \frac{1}{2}
 \end{aligned}
 $$
+
+---
+
+class: inverse, center, middle
+
+# RECAP
+
+---
+
+class: inverse, center, middle
+
+## Helpful formulas
+
+---
+
+# Derivative rules: WRITE THESE DOWN
+
+Suppose $a$ is some constant, $f(x)$ and $g(x)$ are functions:
+
+$$
+\begin{aligned}
+f(x) &= x & \quad f^{'}(x) &= 1 \\
+f(x) &= a x^{k} & \quad f^{'}(x) &= (a) (k) x ^{k-1} \\
+f(x) &= e^{x } & \quad f^{'} (x) &= e^{x} \\
+f(x) &= \sin(x) & \quad f^{'} (x) &= \cos (x) \\
+f(x) &= \cos(x) & \quad f^{'} (x) &= - \sin(x) \\
+\end{aligned}
+$$
+
+---
+
+# Derivative rules
+
+##### Constant rule $\left[k f(x)\right]' = k f'(x)$
+
+##### Sum rule $\left[f(x)\pm g(x)\right]' = f'(x)\pm g'(x)$
+
+##### Product rule $\left[f(x)g(x)\right]' = f'(x)g(x)+f(x)g'(x)$
+
+##### Quotient rule $\frac{f(x)}{g(x)}' = \frac{f'(x)g(x)-f(x)g'(x)}{[g(x)]^2}, g(x)\neq 0$
+
+##### Power rule $\left[x^k\right]' = k x^{k-1}$
