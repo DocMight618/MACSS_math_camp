@@ -971,6 +971,16 @@ class: inverse, center, middle
 # RECAP
 
 ---
+RECAP:
+
+* Good chunk of calc 1
+* Rate of change
+* Intuition for derivative
+* Mathematical foundation for derivative
+* Rules for derivatives
+* Making magic: MVT + implications
+
+---
 
 class: inverse, center, middle
 
