@@ -230,7 +230,7 @@ fx
 ```{r inflect-deriv1, fig.height = 3}
 fx1 <- function_plot +
   stat_function(fun = function(x) (x^2 / 5) - 2 * x + 4, size = 0.5) +
-  geom_abline(slope = 0, intercept = -1, linetype = 4,  color = "blue", linewidth = 0.8) +
+  geom_abline(slope = 0, intercept = -1, linetype = 4,  color = "gray40", linewidth = 0.8) +
   geom_abline(slope = 0, intercept = 0, linetype = 2,  color = "green", linewidth = 0.8) +
   geom_vline(xintercept = 5+5^0.5, color = "black", linetype = 3) +
   geom_vline(xintercept = 5-5^0.5, color = "black", linetype = 3) +
@@ -477,7 +477,7 @@ But is it a max or min?
 
    
    
-Try adjacent point (e.g. -1 or 1). $(-1^2+5)=4$ OR take second derivative: $-2$. 
+Try adjacent point (e.g. -1 or 1). $(-1^2+5)=4$ OR take second derivative: $-2$ 
 
 
 
@@ -520,6 +520,28 @@ function_plot +
 
 ```{r inflection-point}
 function_plot +
+  stat_function(fun = function(x) x^3, size = .15) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point(
+    data = tibble(
+      x = 0,
+      y = 0
+    ),
+    aes(x, y)
+  ) +
+  labs(
+    title = expression(f(x) == x^3),
+    x = expression(x),
+    y = expression(f(x))
+  )
+```
+---
+
+### Function and derivative
+
+```{r inflection-point-2}
+function_plot +
+  stat_function(fun = function(x) 3*x^2, size = .5, color = "green") +
   stat_function(fun = function(x) x^3, size = .5) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_point(
@@ -535,7 +557,6 @@ function_plot +
     y = expression(f(x))
   )
 ```
-
 ---
 
 # Framework for analytical optimization
@@ -550,8 +571,7 @@ function_plot +
 
 ---
 
-# Ex: 
-$f(x) = -x^2$,  $x \in [-3, 3]$
+### Ex: $f(x) = -x^2$,  $x \in [-3, 3]$
 
 ```{r ex-1}
 function_plot +
@@ -565,14 +585,13 @@ function_plot +
 
 ---
 
-# Ex:  
-$f(x) = x^3$, $x \in [-3, 3]$
+### Ex:  $f(x) = x^3 - 6x-2$, $x \in [-3, 3]$
 
 ```{r ex-2}
 function_plot +
-  stat_function(fun = function(x) x^3, size = .5) +
+  stat_function(fun = function(x) x^3 - 6*x-2, size = .5) +
   labs(
-    title = expression(f(x) == x^3),
+    title = expression(f(x) == x^3 - 6*x-2),
     y = expression(f(x))
   ) +
   xlim(-3, 3)
@@ -687,6 +706,8 @@ Logit and other limited-dependent variable models: what function creates a curve
 
 # Tangent lines
 
+In words: $y = mx + b$ where b is our intercept (at $x_0$) and the slope is $f'(x_0)$ times how far away we want to get $(x-x_0)$
+
 $$g(x) = f^{'}(x_{0}) (x - x_{0} ) + f(x_{0})$$
 
 ```{r tangent-anim, fig.height = 6}
@@ -735,8 +756,11 @@ animate(tan_lines_anim, nframes = nrow(tan_lines) * 2)
 * Initial guess $x_{0}$
 * Approximate $f(x)$ with the tangent line to generate a new guess:
 
-    $$\begin{aligned}g(x) & = f^{'}(x_{0})(x - x_{0} ) + f(x_{0} ) \\0 & = f^{'}(x_{0}) (x_{1} - x_{0}) + f(x_{0} ) \\x_{1} & =  x_{0} - \frac{f(x_{0}) }{f^{'}(x_{0})}\end{aligned}$$
+    $$\begin{aligned}g(x) & = f^{'}(x_{0})(x - x_{0} ) + f(x_{0} ) \\
+    0 & = f^{'}(x_{0}) (x_{1} - x_{0}) + f(x_{0} ) \\x_{1}
+    & =  x_{0} - \frac{f(x_{0}) }{f^{'}(x_{0})}\end{aligned}$$
 
+* Great! Now we will use $x_1$ as our next guess!
 * Iterate until updated values are the same
 
 ---
@@ -761,7 +785,6 @@ $$
 \begin{aligned}
 y &= -x^2 \\
 \frac{\partial y}{\partial x} &= -2x \\
-\frac{\partial^2 y}{\partial x^2} &= -2
 \end{aligned}
 $$
 
@@ -809,7 +832,6 @@ $$
 \begin{aligned}
 y &= -x^2 \\
 \frac{\partial y}{\partial x} &= -2x \\
-\frac{\partial^2 y}{\partial x^2} &= -2
 \end{aligned}
 $$
 
@@ -818,17 +840,17 @@ $$
 
 ---
 
-# Implementing Newton-Raphson: Max/Min
+# Implementing Newton-Raphson: 
 
-$$x_1 = x_0 - \frac{f'(x_0)}{f''(x_0)}$$
-
---
-
-$$x_{n+1} = x_n - \frac{f'(x_n)}{f''(x_n)}$$
+$$x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}$$
 
 --
 
-$$x_{n+1} = x_n - \frac{-2x}{-2}$$
+$$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$$
+
+--
+
+$$x_{n+1} = x_n - \frac{-x^2}{-2x}$$
 
 * Stop at $x_n$ if $\mid x_n - x_{n-1} \mid < 0.0001$
 
@@ -839,18 +861,18 @@ $$x_{n+1} = x_n - \frac{-2x}{-2}$$
 ```{r newton-raphson}
 ## function for newton's method
 ## source: https://lovetoken.github.io/r/data_visualization/2018/04/24/netwon_raphson_method.html
-newton <- function(fun, tol = 1e-7, x0 = 1, N = 300) {
+newton <- function(fun, tol = 1e-3, x0 = 1, N = 7){
   h <- 1e-7
   i <- 1
   x1 <- x0
   p <- numeric(N)
-  while (i <= N) {
+  while(i <= N){
     df.dx <- (fun(x0 + h) - fun(x0)) / h
     x1 <- (x0 - (fun(x0) / df.dx))
     p[i] <- x1
-    i <- i + 1
-    if (abs(x1 - x0) < tol) break
-    x0 <- x1
+    i = i+1
+    if(abs(x1 - x0) < tol) break
+    x0 = x1
   }
   return(p[1:(i - 1)])
 }
@@ -866,26 +888,23 @@ fun.sec.deriv <- function(x) {
 ```
 
 ```{r first-func-first-guess, dependson = c("newton-raphson", "first-func")}
-newton1 <- newton(fun.first.deriv, x0 = 3)
-
 # generate iterations
 d <- tibble(
-  x = newton(fun.first.deriv, x0 = 3),
-  y = fun.first.deriv(x)
+  x = newton(fun, x0 = 1),
+  y = fun(x)
 ) %>%
   mutate(label = row_number())
 
 # animate the plot
 function_plot +
-  stat_function(fun = fun.first.deriv) +
+  stat_function(fun = fun) +
   geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
   geom_point(data = d, aes(x = x, y = y), color = "red") +
-  xlim(-1e-7, 1e-7) +
+  xlim(-1, 1) +
   labs(
     title = expression(-x^2),
     y = expression({
-      f * minute
-    }(x)),
+      f * minute}(x)),
     subtitle = "Iteration #{frame_along}"
   ) +
   transition_reveal(label)
@@ -899,9 +918,9 @@ function_plot +
 
 ```{r base-plot-two-points, fig.width = 6}
 f0 <- function_plot +
-  stat_function(fun = function(x) x^3 + 2 * x^2 - 3 * x + 4, size = .5) +
+  stat_function(fun = function(x) x^3 -6*x-2, size = .75) +
   labs(y = expression(f(x))) +
-  xlim(-4, 2)
+  xlim(-4, 4)
 f0
 ```
 
@@ -911,9 +930,8 @@ f0
 
 $$
 \begin{aligned}
-y &= x^3 + 2x^2 - 3x + 4 \\
-\frac{\partial y}{\partial x} &=  3x^2 + 4x - 3 \\
-\frac{\partial^2 y}{\partial x^2} &= 6x + 4
+y &= x^3 -6x -2 \\
+\frac{\partial y}{\partial x} &=  3x^2 -6 
 \end{aligned}
 $$
 
@@ -921,90 +939,30 @@ $$
 
 ---
 
-# Implementing Newton-Raphson
-
-.pull-left[
-
-```{r optims-two-points, dependson = "base-plot-two-points", fig.width = 6}
-f0 +
-  geom_point(
-    data =
-      tibble(
-        x = 0.5351838, y = 3.12058
-      ),
-    aes(x, y, color = "minimum")
-  ) +
-  geom_point(
-    data =
-      tibble(
-        x = -1.868517, y = 10.0646
-      ),
-    aes(x, y, color = "maximum")
-  ) +
-  geom_hline(
-    data =
-      tibble(
-        intercept = c(3.12058, 10.0646),
-        color = c("minimum", "maximum")
-      ),
-    aes(yintercept = intercept, color = color), linetype = 2
-  ) +
-  geom_vline(
-    data =
-      tibble(
-        intercept = c(0.5351838, -1.868517),
-        color = c("minimum", "maximum")
-      ),
-    aes(xintercept = intercept, color = color), linetype = 2
-  ) +
-  scale_color_brewer(type = "qual", guide = FALSE)
-```
-
-]
-
-.pull-right[
-
-$$
-\begin{aligned}
-y &= x^3 + 2x^2 - 3x + 4 \\
-\frac{\partial y}{\partial x} &=  3x^2 + 4x - 3 \\
-\frac{\partial^2 y}{\partial x^2} &= 6x + 4
-\end{aligned}
-$$
-
-]
-
----
-
-# Initial guess $x_0 = 10$
+# Initial guess $x_0 = 5$
 
 ```{r second-func}
-fun <- function(x) x^3 + 2 * x^2 - 3 * x + 4
-fun.first.deriv <- function(x) 3 * x^2 + 4 * x - 3
-fun.sec.deriv <- function(x) 6 * x + 4
+fun <- function(x) x^3 -6*x-2
+fun.first.deriv <- function(x) 3 * x^2 -6
 ```
 
 ```{r second-func-first-guess, dependson = c("newton-raphson", "second-func")}
-newton1 <- newton(fun.first.deriv, x0 = 10)
-
 # generate iterations
 d <- tibble(
-  x = newton(fun.first.deriv, x0 = 10),
-  y = fun.first.deriv(x)
+  x = newton(fun, tol = 0.01, x0 = 5),
+  y = fun(x)
 ) %>%
   mutate(label = row_number())
 
 # animate the plot
 function_plot +
-  stat_function(fun = fun.first.deriv) +
+  stat_function(fun = fun) +
   geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
   geom_point(data = d, aes(x = x, y = y), color = "red") +
-  xlim(-4, 5) +
+  xlim(-4, 4) +
   labs(
-    title = expression(x^3 + 2 * x^2 - 3 * x + 4),
-    y = expression({
-      f * minute
-    }(x)),
+    title = expression(x^3 -6*x-2),
+    y = expression(f (x)),
     subtitle = "Iteration #{frame_along}"
   ) +
   transition_reveal(label)
@@ -1012,29 +970,25 @@ function_plot +
 
 ---
 
-# Initial guess $x_0 = -10$
+# Initial guess $x_0 = -6$
 
 ```{r second-func-second-guess, dependson = "first-guess"}
-newton2 <- newton(fun, x0 = -10)
-
 # generate iterations
 d <- tibble(
-  x = newton(fun.first.deriv, x0 = -10),
-  y = fun.first.deriv(x)
+  x = newton(fun, x0 = -6),
+  y = fun(x)
 ) %>%
   mutate(label = row_number())
 
 # animate the plot
 function_plot +
-  stat_function(fun = fun.first.deriv) +
+  stat_function(fun = fun) +
   geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
   geom_point(data = d, aes(x = x, y = y), color = "red") +
-  xlim(-6, 2) +
+  xlim(-4, 4) + ylim(-40, 40) +
   labs(
-    title = expression(x^3 + 2 * x^2 - 3 * x + 4),
-    y = expression({
-      f * minute
-    }(x)),
+    title = expression(x^3 -6*x-2),
+    y = expression(f(x)),
     subtitle = "Iteration #{frame_along}"
   ) +
   transition_reveal(label)
@@ -1233,3 +1187,19 @@ Matrices are incredibly helpful, despite also being a bit challenging to get the
 # INTROS
 
 * Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
+
+---
+
+class: inverse, middle, center
+
+# RECAP
+---
+
+# SO FAR:
+
+* Critical points
+* Inflection points
+* Root finding
+* Grid search 
+* Gradient descent
+* Matrices

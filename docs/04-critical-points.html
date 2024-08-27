@@ -297,7 +297,7 @@ But is it a max or min?
 
    
    
-Try adjacent point (e.g. -1 or 1). `\((-1^2+5)=4\)` OR take second derivative: `\(-2\)`. 
+Try adjacent point (e.g. -1 or 1). `\((-1^2+5)=4\)` OR take second derivative: `\(-2\)` 
 
 
 
@@ -322,7 +322,11 @@ Since 4 is less than 5, we know this is a max at x = 0, since `\(f(x = 0) &gt; f
 # Types of extreme values
 
 &lt;img src="04-critical-points_files/figure-html/inflection-point-1.png" width="864" style="display: block; margin: auto;" /&gt;
+---
 
+### Function and derivative
+
+&lt;img src="04-critical-points_files/figure-html/inflection-point-2-1.png" width="864" style="display: block; margin: auto;" /&gt;
 ---
 
 # Framework for analytical optimization
@@ -337,15 +341,13 @@ Since 4 is less than 5, we know this is a max at x = 0, since `\(f(x = 0) &gt; f
 
 ---
 
-# Ex: 
-`\(f(x) = -x^2\)`,  `\(x \in [-3, 3]\)`
+### Ex: `\(f(x) = -x^2\)`,  `\(x \in [-3, 3]\)`
 
 &lt;img src="04-critical-points_files/figure-html/ex-1-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Ex:  
-`\(f(x) = x^3\)`, `\(x \in [-3, 3]\)`
+### Ex:  `\(f(x) = x^3 - 6x-2\)`, `\(x \in [-3, 3]\)`
 
 &lt;img src="04-critical-points_files/figure-html/ex-2-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
@@ -458,6 +460,8 @@ Logit and other limited-dependent variable models: what function creates a curve
 
 # Tangent lines
 
+In words: `\(y = mx + b\)` where b is our intercept (at `\(x_0\)`) and the slope is `\(f'(x_0)\)` times how far away we want to get `\((x-x_0)\)`
+
 `$$g(x) = f^{'}(x_{0}) (x - x_{0} ) + f(x_{0})$$`
 
 &lt;img src="04-critical-points_files/figure-html/tangent-anim-1.gif" style="display: block; margin: auto;" /&gt;
@@ -469,8 +473,11 @@ Logit and other limited-dependent variable models: what function creates a curve
 * Initial guess `\(x_{0}\)`
 * Approximate `\(f(x)\)` with the tangent line to generate a new guess:
 
-    `$$\begin{aligned}g(x) &amp; = f^{'}(x_{0})(x - x_{0} ) + f(x_{0} ) \\0 &amp; = f^{'}(x_{0}) (x_{1} - x_{0}) + f(x_{0} ) \\x_{1} &amp; =  x_{0} - \frac{f(x_{0}) }{f^{'}(x_{0})}\end{aligned}$$`
+    `$$\begin{aligned}g(x) &amp; = f^{'}(x_{0})(x - x_{0} ) + f(x_{0} ) \\
+    0 &amp; = f^{'}(x_{0}) (x_{1} - x_{0}) + f(x_{0} ) \\x_{1}
+    &amp; =  x_{0} - \frac{f(x_{0}) }{f^{'}(x_{0})}\end{aligned}$$`
 
+* Great! Now we will use `\(x_1\)` as our next guess!
 * Iterate until updated values are the same
 
 ---
@@ -489,7 +496,6 @@ $$
 `\begin{aligned}
 y &amp;= -x^2 \\
 \frac{\partial y}{\partial x} &amp;= -2x \\
-\frac{\partial^2 y}{\partial x^2} &amp;= -2
 \end{aligned}`
 $$
 
@@ -511,7 +517,6 @@ $$
 `\begin{aligned}
 y &amp;= -x^2 \\
 \frac{\partial y}{\partial x} &amp;= -2x \\
-\frac{\partial^2 y}{\partial x^2} &amp;= -2
 \end{aligned}`
 $$
 
@@ -520,17 +525,17 @@ $$
 
 ---
 
-# Implementing Newton-Raphson: Max/Min
+# Implementing Newton-Raphson: 
 
-`$$x_1 = x_0 - \frac{f'(x_0)}{f''(x_0)}$$`
-
---
-
-`$$x_{n+1} = x_n - \frac{f'(x_n)}{f''(x_n)}$$`
+`$$x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}$$`
 
 --
 
-`$$x_{n+1} = x_n - \frac{-2x}{-2}$$`
+`$$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$$`
+
+--
+
+`$$x_{n+1} = x_n - \frac{-x^2}{-2x}$$`
 
 * Stop at `\(x_n\)` if `\(\mid x_n - x_{n-1} \mid &lt; 0.0001\)`
 
@@ -558,9 +563,8 @@ $$
 
 $$
 `\begin{aligned}
-y &amp;= x^3 + 2x^2 - 3x + 4 \\
-\frac{\partial y}{\partial x} &amp;=  3x^2 + 4x - 3 \\
-\frac{\partial^2 y}{\partial x^2} &amp;= 6x + 4
+y &amp;= x^3 -6x -2 \\
+\frac{\partial y}{\partial x} &amp;=  3x^2 -6 
 \end{aligned}`
 $$
 
@@ -568,29 +572,7 @@ $$
 
 ---
 
-# Implementing Newton-Raphson
-
-.pull-left[
-
-&lt;img src="04-critical-points_files/figure-html/optims-two-points-1.png" width="432" style="display: block; margin: auto;" /&gt;
-
-]
-
-.pull-right[
-
-$$
-`\begin{aligned}
-y &amp;= x^3 + 2x^2 - 3x + 4 \\
-\frac{\partial y}{\partial x} &amp;=  3x^2 + 4x - 3 \\
-\frac{\partial^2 y}{\partial x^2} &amp;= 6x + 4
-\end{aligned}`
-$$
-
-]
-
----
-
-# Initial guess `\(x_0 = 10\)`
+# Initial guess `\(x_0 = 5\)`
 
 
 
@@ -598,7 +580,7 @@ $$
 
 ---
 
-# Initial guess `\(x_0 = -10\)`
+# Initial guess `\(x_0 = -6\)`
 
 &lt;img src="04-critical-points_files/figure-html/second-func-second-guess-1.gif" style="display: block; margin: auto;" /&gt;
 
@@ -710,6 +692,22 @@ Matrices are incredibly helpful, despite also being a bit challenging to get the
 # INTROS
 
 * Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
+
+---
+
+class: inverse, middle, center
+
+# RECAP
+---
+
+# SO FAR:
+
+* Critical points
+* Inflection points
+* Root finding
+* Grid search 
+* Gradient descent
+* Matrices
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
