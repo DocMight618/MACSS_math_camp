@@ -691,7 +691,7 @@ function_plot +
 
 ---
 
-# Rolle's theorem XXX
+# Rolle's theorem
 
 * The only way, then, that we can have something $\geq 0$ equal to $\leq 0$ is if $f^{'}(c) = 0$ :
 $$\lim_{x \rightarrow c^{-}} \frac{f(x) - f(c) }{x -c}  = \lim_{x \rightarrow c^{+}} \frac{f(x) - f(c) } {x - c}$$ 
@@ -822,7 +822,7 @@ Suppose that $f:[a,b] \rightarrow \Re$ is continuous on $[a,b]$ and differentiab
 
 * By way of contradiction, suppose that there is $x, y \in (a,b)$ with $y<x$ but $f(y)>f(x)$. But then, 
 
-    $$f'(c) = \frac{f(x) - f(y) }{x - y } < 0$$
+    $$f'(c) = \frac{f(x) - f(y) }{x - y } < 0,$$ which contradicts $f^{'}(x)> 0$
 * Proof for strictly decreasing is the reverse of this
 
 ---
@@ -841,23 +841,25 @@ Suppose that $f:[a,b] \rightarrow \Re$ is continuous on $[a,b]$ and differentiab
 
 ---
 
-# Applying Cauchy MVT
+# Implications and a little help from Cauchy
+
+Suppose we want to find
 
 $$\lim_{x \rightarrow a} \frac{f(x)}{g(x)}$$
 
 where $f$ and $g$ are continuous functions
 
-* If $g(a) \neq 0$ then
+* Suppose $g(a) \neq 0$, then we can do this:
 
     $$\lim_{x \rightarrow a} \frac{f(x)}{g(x)} = \frac{f(a)}{g(a)}$$
 
-* Indeterminate form (e.g. $\frac{0}{0}$)
+* BUT if $f(a) = g(a) = 0$... OH NO! What do we do with an indeterminate form (e.g. $\frac{0}{0}$)?
 
 ---
 
-# L'Hôpital's Rule
+# New bestie: L'Hôpital's Rule
 
-* Suppose that $f(a) = g(a) = 0$ and $g'(x) \neq 0$ if $x$ is close but not equal to $a$
+* Suppose that $f(a) = g(a) = 0$ and $g'(x) \neq 0$ if $x$ is close but not equal to $a$ (also applies for $\frac{\pm\infty}{\infty}$).
 * Then
 
     $$\lim_{x \rightarrow a} \frac{f(x)}{g(x)} = \lim_{x \rightarrow a} \frac{f'(x)}{g'(x)}$$
@@ -866,9 +868,9 @@ where $f$ and $g$ are continuous functions
 
 $$
 \begin{aligned}
-\frac{f(x) - f(a)}{g(x) - g(a)} &= \frac{f'(p)}{g'(p)} \\
-\frac{f(x) - 0}{g(x) - 0} &= \frac{f'(p)}{g'(p)} \\
-\frac{f(x)}{g(x)} &= \frac{f'(p)}{g'(p)}
+\frac{f(x) - f(a)}{g(x) - g(a)} &= \frac{f'(c)}{g'(c)} \\
+\frac{f(x) - 0}{g(x) - 0} &= \frac{f'(c)}{g'(c)} \\
+\frac{f(x)}{g(x)} &= \frac{f'(c)}{g'(c)}
 \end{aligned}
 $$
 
@@ -939,13 +941,11 @@ $$
 $$
 \begin{aligned}
 L &= \lim_{x \rightarrow 0} \frac{1 - \frac{1}{1 + x}}{2x} \\
-&= \lim_{x \rightarrow 0} \frac{1}{2x} - \frac{\frac{1}{1 + x}}{2x} \\
-&= \lim_{x \rightarrow 0} \frac{1}{2x} - \frac{1}{2x(1 + x)} \\
+&= \lim_{x \rightarrow 0} \frac{1}{2x} - \frac{\frac{1}{1 + x}}{2x} = \lim_{x \rightarrow 0} \frac{1}{2x} - \frac{1}{2x(1 + x)} \\
 &= \lim_{x \rightarrow 0} \frac{1(1 + x)}{2x(1 + x)} - \frac{1}{2x(1 + x)} \\
 &= \lim_{x \rightarrow 0} \frac{1(1 + x) - 1}{2x(1 + x)} \\
 &= \lim_{x \rightarrow 0} \frac{1 + x - 1}{2x(1 + x)} \\
-&= \lim_{x \rightarrow 0} \frac{x}{2x(1 + x)} \\
-&= \lim_{x \rightarrow 0} \frac{1}{2(1 + x)} \\
+&= \lim_{x \rightarrow 0} \frac{x}{2x(1 + x)} = \lim_{x \rightarrow 0} \frac{1}{2(1 + x)} \\
 &= \lim_{x \rightarrow 0} \frac{1}{2(1 + 0)} = \frac{1}{2}
 \end{aligned}
 $$
