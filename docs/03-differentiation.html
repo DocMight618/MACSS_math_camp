@@ -492,23 +492,20 @@ $$
 ---
 
 # Derivative of a natural logarithm
-
-* Inverse function rule
     
-    `$$\begin{aligned} g'(y) &amp;= \frac{1}{f'(x)} \\ \frac{dx}{dy} &amp;= \frac{1}{\frac{dy}{dx}} \end{aligned}$$`
+  $$(f^{-1})'(x) = \frac{1}{f'(f^{-1}(x))} $$
     
-* `\(\frac{d}{dx} e^x = e^x\)`
-
+Let's find the derivative of `\(log(x)\)`. We already know the derivative of its inverse, `\(e^x\)` is `\(e^x\)`. So, we begin with `\(f(x) = e^x\)` (and `\(f'(x) = e^x\)`) and want to know `\((f^{-1})'(x)\)`.
+  
+We know `\(f'(f^{-1}(x)) = f'(log(x)) = e^{log(x)} = x\)`
+  
 --
+    
 
-$$
-`\begin{aligned}
-y &amp;= \log(x) \\
-x &amp;= e^y \\
-\frac{dx}{dy} &amp;= e^y = x \\
-\frac{dy}{dx} &amp;= \frac{1}{\frac{dx}{dy}} = \frac{1}{x}
-\end{aligned}`
-$$
+Therefore,
+  `$$\begin{aligned} (f^{-1})'(x) &amp;= \frac{1}{f'(f^{-1}(x))} \\
+   &amp;= \frac{1}{(e^{log(x)})} \\
+  &amp;= \frac{1}{x} \end{aligned}$$`
 
 ---
 
@@ -560,7 +557,13 @@ $$
 
     `$$\begin{aligned} \lim_{x \rightarrow c^{-}} \frac{f(x) - f(c ) }{x - c } &amp; = f^{'}(c)  \\ \lim_{x \rightarrow c^{+}} \frac{f(x) - f(c) } {x - c }  &amp;  =  f^{'}(c) \end{aligned}$$`
 
-* The only way, then, that `\(\lim_{x \rightarrow c^{-}} \frac{f(x) - f(c) }{x -c}  = \lim_{x \rightarrow c^{+}} \frac{f(x) - f(c) } {x - c}\)` is if `\(f^{'}(c) = 0\)`
+
+---
+
+# Rolle's theorem XXX
+
+* The only way, then, that we can have something `\(\geq 0\)` equal to `\(\leq 0\)` is if `\(f^{'}(c) = 0\)` :
+`$$\lim_{x \rightarrow c^{-}} \frac{f(x) - f(c) }{x -c}  = \lim_{x \rightarrow c^{+}} \frac{f(x) - f(c) } {x - c}$$` 
 
 ---
 
@@ -586,13 +589,13 @@ $$
 
 * This will come up in a formal theory article. You'll at least know where to look
 * It allows us to say lots of powerful stuff about functions
-* Especially useful for approximating derivatives (see tomorrow)
+* Especially useful for approximating derivatives (see next set of slides)
 
 ---
 
 # Applications of the mean value theorem
 
-Suppose that `\(f:[a,b] \rightarrow \Re\)` is continuous on `\([a,b]\)` and differentiable on `\((a,b)\)`. Then, 
+Suppose that `\(f:[a,b] \rightarrow \Re\)` is continuous on `\([a,b]\)` and differentiable on `\((a,b).\)` Then, 
 
 1. If `\(f^{'}(x) \neq 0\)` for all `\(x \in (a,b)\)` then `\(f\)` is 1-1
 1. If `\(f^{'}(x) = 0\)` then `\(f(x)\)` is constant 
@@ -645,7 +648,7 @@ Suppose that `\(f:[a,b] \rightarrow \Re\)` is continuous on `\([a,b]\)` and diff
 
 --
 
-* The ordinary mean value theorem is the special case where `\(g(x) = x\)` for all `\(x\)`
+* The classical mean value theorem is the special case where `\(g(x) = x\)` for all `\(x\)`
 
 ---
 
@@ -659,8 +662,7 @@ where `\(f\)` and `\(g\)` are continuous functions
 
     `$$\lim_{x \rightarrow a} \frac{f(x)}{g(x)} = \frac{f(a)}{g(a)}$$`
 
-* `\(f(a) = g(a) = 0\)`
-* Indeterminate form
+* Indeterminate form (e.g. `\(\frac{0}{0}\)`)
 
 ---
 
