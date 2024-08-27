@@ -18,8 +18,8 @@ library(gganimate)
 
 # Misc
 
-* Gradescope: show work!
-* Library presentation 8/31 @ 11:30 (in here!)
+* Gradescope: grading underway -- should be all OK
+* Academic Integrity: 8/29 @ 11:30 am
 * No homework tomorrow (!!)
 
 ---
@@ -118,7 +118,7 @@ $$
 ---
 
 # Inflection point
-Inflection points are where we move from being concave up to concave down (or vice versa). 
+Inflection points are where we move from being concave down to concave up (or vice versa). 
 
 ```{r concave-inf}
 concave_func <- function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15
@@ -131,15 +131,15 @@ tibble(
   max = ifelse(concave_up, 10, y)
 ) %>%
   mutate(concave_up = factor(concave_up,
-    levels = c(TRUE, FALSE),
-    labels = c("Concave up", "Concave down")
+    levels = c(FALSE, TRUE),
+    labels = c("Concave down", "Concave up")
   )) %>%
   ggplot(aes(x = x)) +
   stat_function(fun = concave_func, size = 0.5) +
   geom_ribbon(aes(y = y, ymin = min, ymax = max, fill = concave_up),
     alpha = .5
   ) +
-  scale_fill_brewer(type = "qual", palette = 2) +
+  scale_fill_brewer(type = "qual", palette = 3) +
   labs(
     x = expression(x),
     y = expression(f(x)),
@@ -211,7 +211,7 @@ fx
 
 Let's now consider the same function, but the derivative. We are expecting THE VALUE OF CHANGE (AKA RATE OF CHANGE TO BE ZERO). GREEN: where the derivative (change) is positive or negative. GRAY: point where we don't see any more change (rate of change = 0).
 
-```{r inflect-deriv0, fig.height = 2.5}
+```{r inflect-deriv0, fig.height = 2}
 fx <- function_plot +
   stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
   geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 4, color = "blue", linewidth = 0.8) +
@@ -224,7 +224,10 @@ fx <- function_plot +
 fx
 ```
 --
-```{r inflect-deriv1, fig.height = 3.5}
+
+### Derivative of original function: 
+
+```{r inflect-deriv1, fig.height = 3}
 fx1 <- function_plot +
   stat_function(fun = function(x) (x^2 / 5) - 2 * x + 4, size = 0.5) +
   geom_abline(slope = 0, intercept = -1, linetype = 4,  color = "blue", linewidth = 0.8) +
@@ -296,7 +299,7 @@ fx + fx1 + fx2 +
 What does this mean? 
 --  
 
-* We're starting at a critical point $(f'(x)=0)$, so we know we're starting from either a max or min. 
+* If it's concave, there must be a critical point $(f'(x)=0)$. Let's start there.
 
 * We are then moving away from that point and we're either *increasing* (min - concave up) or *decreasing* (max - concave down). 
   * If we're increasing, the second derivative is positive, $f''(x) > 0$. 
@@ -318,16 +321,16 @@ tibble(
   min = ifelse(concave_up, y, 2),
   max = ifelse(concave_up, 10, y)
 ) %>%
-  mutate(concave_up = factor(concave_up,
-    levels = c(TRUE, FALSE),
-    labels = c("Concave up", "Concave down")
+   mutate(concave_up = factor(concave_up,
+    levels = c(FALSE, TRUE),
+    labels = c("Concave down", "Concave up")
   )) %>%
   ggplot(aes(x = x)) +
   stat_function(fun = concave_func, size = 0.5) +
   geom_ribbon(aes(y = y, ymin = min, ymax = max, fill = concave_up),
     alpha = .5
   ) +
-  scale_fill_brewer(type = "qual", palette = 2) +
+  scale_fill_brewer(type = "qual", palette = 3) +
   labs(
     x = expression(x),
     y = expression(f(x)),
@@ -353,12 +356,14 @@ function_plot +
 
 .pull-right[
 
-<font size="2"> Exploring change:
+Exploring change:
+<font size="2"> 
 $$
 \begin{aligned}
 f(x) & =  e^{x} \text{ (what the function is doing?)}\\ 
 f^{'}(x) & =  e^{x} \text{ rate of change (never zero!)} \\
-f^{''}(x) & =  e^{x} \text{ rate of change of rate of change (never zero!) }
+f^{''}(x) & =  e^{x} \text{ rate of change of rate of change} \\
+  & \text{        (still never zero!)}
 \end{aligned}
 $$
 </font>
@@ -382,18 +387,21 @@ function_plot +
 ]
 
 .pull-right[
-<font size="2"> Exploring change:
-
+Exploring change:
+<font size="2"> 
 $$
 \begin{aligned}
-f(x) & =  \ln(x) \\
-f^{'}(x) & =  \frac{1}{x} \text{ rate of change (always positive (above 0)*}\\
-f^{''}(x) & =  -\frac{1}{x^2} \text{ rate of change of rate of change}
+f(x) & =  \ln(x) \\ \\
+f^{'}(x) & =  \frac{1}{x} \\
+& \text{    rate of change (always positive (above 0)*}\\ \\
+f^{''}(x) & =  -\frac{1}{x^2} \\
+& \text{ rate of change of rate of change}
 \end{aligned}
 $$
-</font>
 
-\* note that $ln(x)$ only defined for $x > 0$
+</font>
+\* .tiny[note that $ln(x)$ only defined for $x > 0$]
+
 ]
 
 ---
@@ -457,7 +465,7 @@ function_plot +
 --
 
 
-#### $f'(x) = -2x$, zero at $x=0$, $f(x) = 0^2+5=5$. 
+#### $f'(x) = -2x$;  zero at $x=0$, $f(x) = 0^2+5=5$. 
 
  
 But is it a max or min?   
@@ -475,7 +483,7 @@ Try adjacent point (e.g. -1 or 1). $(-1^2+5)=4$ OR take second derivative: $-2$.
 
 --
 
-Since 4 is less than 5, we know this is a max at x = 0, since $f(x = 0) > f(x=1)$. Similarly, the second derivative is negative, so this also indicates that it is a max. 
+Since 4 is less than 5, we know this is a max at x = 0, since $f(x = 0) > f(x=1)$. Similarly, the second derivative is negative, so this also indicates that it is a max (decreasing from this point). 
 
 ---
 
@@ -538,7 +546,7 @@ function_plot +
     * If $f''(x) > 0$, concave up, and therefore a local minimum
     * If $f''(x) < 0$, concave down, and therefore a local maximum
     * If it's the global maximum/minimum, it will produce the largest/smallest value for $f(x)$
-    * On a closed range along the domain, check the endpoints as well
+    * On a closed range along the domain, **check the endpoints as well**
 
 ---
 

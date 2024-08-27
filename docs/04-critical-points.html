@@ -29,8 +29,8 @@ class: center, middle, inverse, title-slide
 
 # Misc
 
-* Gradescope: show work!
-* Library presentation 8/31 @ 11:30 (in here!)
+* Gradescope: grading underway -- should be all OK
+* Academic Integrity: 8/29 @ 11:30 am
 * No homework tomorrow (!!)
 
 ---
@@ -117,7 +117,7 @@ $$
 ---
 
 # Inflection point
-Inflection points are where we move from being concave up to concave down (or vice versa). 
+Inflection points are where we move from being concave down to concave up (or vice versa). 
 
 &lt;img src="04-critical-points_files/figure-html/concave-inf-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
@@ -147,6 +147,9 @@ Let's now consider the same function, but the derivative. We are expecting THE V
 
 &lt;img src="04-critical-points_files/figure-html/inflect-deriv0-1.png" width="864" style="display: block; margin: auto;" /&gt;
 --
+
+### Derivative of original function: 
+
 &lt;img src="04-critical-points_files/figure-html/inflect-deriv1-1.png" width="864" style="display: block; margin: auto;" /&gt;
 ---
 
@@ -176,7 +179,7 @@ Let's now consider the same function, but the derivative. We are expecting THE V
 What does this mean? 
 --  
 
-* We're starting at a critical point `\((f'(x)=0)\)`, so we know we're starting from either a max or min. 
+* If it's concave, there must be a critical point `\((f'(x)=0)\)`. Let's start there.
 
 * We are then moving away from that point and we're either *increasing* (min - concave up) or *decreasing* (max - concave down). 
   * If we're increasing, the second derivative is positive, `\(f''(x) &gt; 0\)`. 
@@ -202,12 +205,14 @@ What does this mean?
 
 .pull-right[
 
-&lt;font size="2"&gt; Exploring change:
+Exploring change:
+&lt;font size="2"&gt; 
 $$
 `\begin{aligned}
 f(x) &amp; =  e^{x} \text{ (what the function is doing?)}\\ 
 f^{'}(x) &amp; =  e^{x} \text{ rate of change (never zero!)} \\
-f^{''}(x) &amp; =  e^{x} \text{ rate of change of rate of change (never zero!) }
+f^{''}(x) &amp; =  e^{x} \text{ rate of change of rate of change} \\
+  &amp; \text{        (still never zero!)}
 \end{aligned}`
 $$
 &lt;/font&gt;
@@ -226,18 +231,21 @@ $$
 ]
 
 .pull-right[
-&lt;font size="2"&gt; Exploring change:
-
+Exploring change:
+&lt;font size="2"&gt; 
 $$
 `\begin{aligned}
-f(x) &amp; =  \ln(x) \\
-f^{'}(x) &amp; =  \frac{1}{x} \text{ rate of change (always positive (above 0)*}\\
-f^{''}(x) &amp; =  -\frac{1}{x^2} \text{ rate of change of rate of change}
+f(x) &amp; =  \ln(x) \\ \\
+f^{'}(x) &amp; =  \frac{1}{x} \\
+&amp; \text{    rate of change (always positive (above 0)*}\\ \\
+f^{''}(x) &amp; =  -\frac{1}{x^2} \\
+&amp; \text{ rate of change of rate of change}
 \end{aligned}`
 $$
-&lt;/font&gt;
 
-\* note that `\(ln(x)\)` only defined for `\(x &gt; 0\)`
+&lt;/font&gt;
+\* .tiny[note that `\(ln(x)\)` only defined for `\(x &gt; 0\)`]
+
 ]
 
 ---
@@ -277,7 +285,7 @@ Try with a neighbor:
 --
 
 
-#### `\(f'(x) = -2x\)`, zero at `\(x=0\)`, `\(f(x) = 0^2+5=5\)`. 
+#### `\(f'(x) = -2x\)`;  zero at `\(x=0\)`, `\(f(x) = 0^2+5=5\)`. 
 
  
 But is it a max or min?   
@@ -295,7 +303,7 @@ Try adjacent point (e.g. -1 or 1). `\((-1^2+5)=4\)` OR take second derivative: `
 
 --
 
-Since 4 is less than 5, we know this is a max at x = 0, since `\(f(x = 0) &gt; f(x=1)\)`. Similarly, the second derivative is negative, so this also indicates that it is a max. 
+Since 4 is less than 5, we know this is a max at x = 0, since `\(f(x = 0) &gt; f(x=1)\)`. Similarly, the second derivative is negative, so this also indicates that it is a max (decreasing from this point). 
 
 ---
 
@@ -325,7 +333,7 @@ Since 4 is less than 5, we know this is a max at x = 0, since `\(f(x = 0) &gt; f
     * If `\(f''(x) &gt; 0\)`, concave up, and therefore a local minimum
     * If `\(f''(x) &lt; 0\)`, concave down, and therefore a local maximum
     * If it's the global maximum/minimum, it will produce the largest/smallest value for `\(f(x)\)`
-    * On a closed range along the domain, check the endpoints as well
+    * On a closed range along the domain, **check the endpoints as well**
 
 ---
 
