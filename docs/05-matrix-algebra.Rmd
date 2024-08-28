@@ -21,8 +21,7 @@ library(gganimate)
 
 * Grading up
 * Check github for updates
-* Library presentation @ 11:30
-* TYPOS FIXED IN HERE! SORRY!
+* Academic integrity session @ 11:30 
 
 ---
 
@@ -859,7 +858,9 @@ $$\mathbf{Z} = \begin{pmatrix} 25 \\ 43 \\ \end{pmatrix}$$
 Try this example and check with a neighbor: $\mathbf{XY}$
 
 $$\mathbf{X} = \begin{pmatrix} 1 & 1 \\ 1& 1 \\ \end{pmatrix} , \quad \mathbf{Y} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ \end{pmatrix}$$
--- 
+
+--
+
 
 $$\begin{aligned} \mathbf{A} & = \mathbf{X} \mathbf{Y} \\& = \begin{pmatrix}1 & 1 \\ 1 & 1 \\\end{pmatrix} \begin{pmatrix}1 & 2 \\3 & 4 \\\end{pmatrix} \\&= \begin{pmatrix}1 \times 1 + 1 \times 3 & 1 \times 2 + 1 \times 4 \\1 \times 1 + 1 \times 3 & 1 \times 2 + 1 \times 4\\\end{pmatrix} \\&= \begin{pmatrix}4 & 6 \\4 & 6\end{pmatrix}\end{aligned}$$
 

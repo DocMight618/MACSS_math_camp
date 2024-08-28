@@ -598,6 +598,14 @@ function_plot +
 ```
 
 ---
+class: center, middle, inverse
+
+# CSS Application of optimization: MLE
+You aren't going to have to calculate this, 
+
+but you need to understand the big picture
+
+---
 
 # Maximum likelihood estimation
 
@@ -682,6 +690,11 @@ Logit and other limited-dependent variable models: what function creates a curve
 
 * Simplest example: 0s and 1s as outcome
 * Trying to determine which function best predicts the outcome for parameter estimates
+
+---
+class: inverse, middle, center
+
+# Optimization in CSS
 
 ---
 
@@ -903,8 +916,7 @@ function_plot +
   xlim(-1, 1) +
   labs(
     title = expression(-x^2),
-    y = expression({
-      f * minute}(x)),
+    y = expression(f(x)),
     subtitle = "Iteration #{frame_along}"
   ) +
   transition_reveal(label)
@@ -1005,10 +1017,12 @@ function_plot +
 
 # Grid search
 
+*Often used in finetuning hyperparameters (e.g. structure of the model) *
 * Exhaustive search algorithm
 * Define a specified set of $f_i$
 * Calculate $f(x_i) \forall i$
 * Compare all resulting values
+
 
 ---
 
