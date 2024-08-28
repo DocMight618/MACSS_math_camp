@@ -54,7 +54,7 @@ The University of Chicago is committed to diversity and rigorous inquiry from mu
 
 This course is open to all students who meet the academic requirements for participation. Any student who has a documented need for accommodation should contact Student Disability Services (773-702-6000 or [disabilities@uchicago.edu](mailto:disabilities@uchicago.edu)) as soon as possible.
 
-## Core texts
+## Core texts: suggested, not required
 
 **Course texts are subject to change for 2024**
 
