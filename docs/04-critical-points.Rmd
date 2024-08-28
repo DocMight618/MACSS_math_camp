@@ -993,6 +993,13 @@ function_plot +
   ) +
   transition_reveal(label)
 ```
+---
+
+# Newton Raphson: AND BEYOND!
+
+* Just like we were doing, we can also use it to find max / min. 
+
+* It's similar but different: $$x_0 - \frac{f^{'}(x)}{f^{''}(x)}$$
 
 ---
 
@@ -1027,30 +1034,29 @@ function_plot +
   xlim(-2, 2) +
   labs(title = expression(f(x) == -x^2))
 ```
-<!--
 
-# Analytically optimize
+<!-- <!-- -->
+<!-- # Analytically optimize -->
 
-$$
-\begin{aligned}
-f'(x) &= 2.4x - 4.8 \\
-0 &= 2.4x - 4.8 \\
-4.8 &= 2.4x \\
-x &= 2
-\end{aligned}
-$$
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- f'(x) &= 2.4x - 4.8 \\ -->
+<!-- 0 &= 2.4x - 4.8 \\ -->
+<!-- 4.8 &= 2.4x \\ -->
+<!-- x &= 2 -->
+<!-- \end{aligned} -->
+<!-- $$ -->
 
---
+<!-- -- -->
 
-$$
-\begin{aligned}
-f''(x) &= 2.4 \\
-f''(2) &= 2.4
-\end{aligned}
-$$
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- f''(x) &= 2.4 \\ -->
+<!-- f''(2) &= 2.4 -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+<!-- -->
 
-
--->
 ---
 
 # Gradient descent
@@ -1159,7 +1165,11 @@ function_plot +
 ```
 ---
 
+class: inverse, center, middle
+
 # STARTING THE PARTY: Matrices
+
+---
 ## Example matricies
 We have two matrices: X and Y. 
 

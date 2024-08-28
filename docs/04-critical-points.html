@@ -583,6 +583,13 @@ $$
 # Initial guess `\(x_0 = -6\)`
 
 &lt;img src="04-critical-points_files/figure-html/second-func-second-guess-1.gif" style="display: block; margin: auto;" /&gt;
+---
+
+# Newton Raphson: AND BEYOND!
+
+* Just like we were doing, we can also use it to find max / min. 
+
+* It's similar but different: `$$x_0 - \frac{f^{'}(x)}{f^{''}(x)}$$`
 
 ---
 
@@ -604,30 +611,29 @@ $$
 --
 
 &lt;img src="04-critical-points_files/figure-html/grid-search-1.png" width="864" style="display: block; margin: auto;" /&gt;
-&lt;!--
 
-# Analytically optimize
+&lt;!-- &lt;!-- --&gt;
+&lt;!-- # Analytically optimize --&gt;
 
-$$
-`\begin{aligned}
-f'(x) &amp;= 2.4x - 4.8 \\
-0 &amp;= 2.4x - 4.8 \\
-4.8 &amp;= 2.4x \\
-x &amp;= 2
-\end{aligned}`
-$$
+&lt;!-- $$ --&gt;
+&lt;!-- \begin{aligned} --&gt;
+&lt;!-- f'(x) &amp;= 2.4x - 4.8 \\ --&gt;
+&lt;!-- 0 &amp;= 2.4x - 4.8 \\ --&gt;
+&lt;!-- 4.8 &amp;= 2.4x \\ --&gt;
+&lt;!-- x &amp;= 2 --&gt;
+&lt;!-- \end{aligned} --&gt;
+&lt;!-- $$ --&gt;
 
---
+&lt;!-- -- --&gt;
 
-$$
-`\begin{aligned}
-f''(x) &amp;= 2.4 \\
-f''(2) &amp;= 2.4
-\end{aligned}`
-$$
+&lt;!-- $$ --&gt;
+&lt;!-- \begin{aligned} --&gt;
+&lt;!-- f''(x) &amp;= 2.4 \\ --&gt;
+&lt;!-- f''(2) &amp;= 2.4 --&gt;
+&lt;!-- \end{aligned} --&gt;
+&lt;!-- $$ --&gt;
+&lt;!-- --&gt; --&gt;
 
-
---&gt;
 ---
 
 # Gradient descent
@@ -664,7 +670,11 @@ $$
 &lt;img src="04-critical-points_files/figure-html/grad-descent-learn-rate-2-1.gif" style="display: block; margin: auto;" /&gt;
 ---
 
+class: inverse, center, middle
+
 # STARTING THE PARTY: Matrices
+
+---
 ## Example matricies
 We have two matrices: X and Y. 
 
