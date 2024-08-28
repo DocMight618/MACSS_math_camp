@@ -627,7 +627,7 @@ $$
 * Usefulness
 * Desirable properties
     * The **maximum** should be the document with itself
-    * The **minimum** should be documents which have no words in common
+    * The **minimum** should be documents which have no words in common (orthogonal to one another)
     * Increasing when more of the same words are used
     * Normalize for document length
 
@@ -653,7 +653,7 @@ tribble(
   coord_fixed()
 ```
 
-<!--
+---
 
 # Length dependence
 
@@ -675,10 +675,11 @@ tribble(
   xlim(0, 4) +
   coord_fixed()
 ```
--->
+
 ---
 
 # Cosine similarity
+Allows us to look at the angle between them instead
 
 ```{r cosine-sim}
 # hacky way to create angle visual
@@ -743,13 +744,93 @@ $$
 
 $$
 \begin{aligned}
-\cos (\theta) & \equiv  \left(\frac{\textbf{Doc3} \cdot \textbf{Doc2}}{\| \textbf{Doc3}\| \|\textbf{Doc2} \|} \right) \\
- & = \frac{(4,2) \cdot (1, 4)} {\| (24,2)\| \| (1,4) \|} \\
+\cos (\theta) & \equiv  \left(\frac{\textbf{Doc1} \cdot \textbf{Doc2}}{\| \textbf{Doc1}\| \|\textbf{Doc2} \|} \right) \\
+ & = \frac{(4, 2) \cdot (1, 4)} {\| (4,2)\| \| (1,4) \|} \\
  & = \frac{12} {(\sqrt{4^2 + 2^2}) (\sqrt{1^2 + 4^2})} \\
  & = \frac{12} {(\sqrt{20}) (\sqrt{17})} \\
   & \approx 0.65
 \end{aligned}
 $$
+
+---
+
+# Cosine similarity
+
+$$
+\begin{aligned}
+\cos (\theta) & \equiv  \left(\frac{\textbf{Doc3} \cdot \textbf{Doc2}}{\| \textbf{Doc3}\| \|\textbf{Doc2} \|} \right) \\
+ & = \frac{(1,2) \cdot (1, 4)} {\| (1,2)\| \| (1,4) \|} \\
+ & = \frac{9} {(\sqrt{1^2 + 2^2}) (\sqrt{1^2 + 4^2})} \\
+ & = \frac{9} {(\sqrt{5}) (\sqrt{17})} \\
+  & \approx 0.976
+\end{aligned}
+$$
+--
+
+Interpretation: closer to 1, more similar
+
+
+---
+```{r cosine-sima}
+# hacky way to create angle visual
+circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
+  r = diameter / 2
+  tt <- seq(0,2*pi,length.out = npoints)
+  xx <- center[1] + r * cos(tt)
+  yy <- center[2] + r * sin(tt)
+  return(tibble(x = xx, y = yy))
+}
+
+tribble(
+  ~x1, ~x2, ~y1, ~y2, ~notorig,
+  0, 2, 0, 1, FALSE,
+  0, 1, 0, 4, FALSE
+) %>%
+  ggplot() +
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2, color = notorig),
+               arrow = arrow(length = unit(0.03, "npc"))) +
+  geom_path(data = circleFun(center = c(0, 0),
+                             diameter = 2) %>%
+              filter(x > .23, y > .44),
+            aes(x, y)) +
+  scale_color_brewer(type = "qual", guide = FALSE) +
+  annotate("text", x = .8, y = .95, label = "theta", parse = TRUE, size = 7) +
+  xlim(0, 4) +
+  labs(x = "Doc1",
+       y = "Doc2") +
+  coord_fixed()
+```
+
+---
+```{r cosine-simb}
+# hacky way to create angle visual
+circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
+  r = diameter / 2
+  tt <- seq(0,2*pi,length.out = npoints)
+  xx <- center[1] + r * cos(tt)
+  yy <- center[2] + r * sin(tt)
+  return(tibble(x = xx, y = yy))
+}
+
+tribble(
+  ~x1, ~x2, ~y1, ~y2, ~notorig,
+  0, 1, 0, 2, FALSE,
+  0, 1, 0, 4, FALSE
+) %>%
+  ggplot() +
+  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2, color = notorig),
+               arrow = arrow(length = unit(0.03, "npc"))) +
+  geom_path(data = circleFun(center = c(0, 0),
+                             diameter = 2) %>%
+              filter(x > .23, y > .89),
+            aes(x, y)) +
+  scale_color_brewer(type = "qual", guide = FALSE) +
+  annotate("text", x = .45, y = 1.3, label = "theta", parse = TRUE, size = 7) +
+  xlim(0, 4) +
+  labs(x = "Doc1",
+       y = "Doc3") +
+  coord_fixed()
+```
 
 ---
 class: center, middle, inverse
@@ -787,16 +868,16 @@ a_{m1} & a_{m2} & \ldots & a_{mn} \\
 ---
 # Special matrices
 
-  * Diagonal matrix (only numbers on diagonal; zero elsewhere)
-    * Identity (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called $I$)
-  * Square (n rows = n columns)
-  * Triangular matrix (half of matrix has zeros -- see below for lower/upper distinction)
-    * lower triangular (numbers in lower half (diagonal down) and zeros above diagonal)
-    * upper triangular (numbers in upper half (diagonal up) and zeros below diagonal)
-  * Zero matrix (all zeros!)
-  * Matrix of only ones (sometimes given letter J)
-  * Transpose / transposition (mathematical operation on a matrix) (superscript with T)
-  * Inverse (this is a mathematical operation) (superscipt with $-1$)
+  * **Diagonal matrix** (only numbers on diagonal; zero elsewhere)
+    * Identity** (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called $I$)
+  * **Square** (n rows = n columns)
+  * **Triangular matri**x (half of matrix has zeros -- see below for lower/upper distinction)
+    * **lower triangular** (numbers in lower half (diagonal down) and zeros above diagonal)
+    * **upper triangular** (numbers in upper half (diagonal up) and zeros below diagonal)
+  * **Zero matrix** (all zeros!)
+  * **Matrix** of only ones (sometimes given letter J)
+  * **Transpose** / transposition (mathematical operation on a matrix) (superscript with T)
+  * **Inverse** (this is a mathematical operation) (superscipt with $-1$)
 
 ---
 
@@ -892,7 +973,7 @@ Here, we have a very simple example -- so, we'll take the row (in this case, the
 
 --
 
-Similarly, we'll multiply the remaining row of our matrix Y by the column in X to produce the following:  <span style = "color: red;"> $3*$ </span> <span style = "color: blue;"> $1$ </span> + <span style = "color: red;"> $4*$ </span> $+$ <span style = "color: blue;"> $10$ </span>. This will give us <span style = "color: purple;"> $3+ 40 = 43$ </span> as the first cell in our resulting matrix. 
+Similarly, we'll multiply the remaining row of our matrix Y by the column in X to produce the following:  <span style = "color: red;"> $3*$ </span> <span style = "color: blue;"> $1$ </span> + <span style = "color: red;"> $4*$ </span> $+$ <span style = "color: blue;"> $10$ </span>. This will give us <span style = "color: purple;"> $3+ 40 = 43$ </span> as the second cell in our resulting matrix. 
 
 ---
 
@@ -947,6 +1028,22 @@ $$\begin{aligned} \mathbf{A} & = \mathbf{I} \mathbf{Y} \\& = \begin{pmatrix}1 & 
 IT'S LIKE MAGIC! (*actually it's just the matrix version of multiplying by 1*)
 
 
+
+---
+# Let's try this out on our own:
+
+Suppose we have a $3 \times 4$ matrix, $$\boldsymbol{X} = 
+  \begin{pmatrix} 2 & 3 & 4 & 5 \\
+	1 & 5 & 1 & 2\\
+	3 & 5 & 3 & 4 \\
+	\end{pmatrix} 	$$ 
+ and a $4 \times 1$ matrix, 
+ $$\boldsymbol{v}  = \begin{pmatrix} 3\\ 3 \\ 4 \\ 10 \end{pmatrix} $$  (or a \alert{column} vector) what is \\
+$\boldsymbol{X} \boldsymbol{v}$?
+
+
+What is $\boldsymbol{X}^{'} \boldsymbol{v}$?
+
 ---
 
 class: center 
@@ -985,7 +1082,7 @@ knitr::include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/9
   * Order matters: $\mathbf{XY} \neq \mathbf{YX}$
     * Different from scalar multiplication: $xy = yx$
 * Order of matrix: sometimes you'll see subscripts referring to a matrix's order -- this is particularly true for square matrices. E.g:
-  * $I_2$ is an identity matrix (and therefore a square matrix) with two rows and two columns
+  * $\mathbf{I_2}$ is an identity matrix (and therefore a square matrix) with two rows and two columns
   * $\mathbf{J}_{2\times3}$ is a matrix (likely full of ones) with two rows and three columns
 * Operations on matrix: transposing means flipping / reflecting across the diagonal
 
@@ -997,16 +1094,16 @@ knitr::include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/9
   * Sometimes the opposite diagonal is referred to by a name, but this varies
 * Matrices referred to by their overall properties (elements) and/or behavior of the diagonal 
 * Special names for *special* matrices:
-  * Diagonal matrix (only numbers on diagonal; zero elsewhere)
-    * Identity (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called $I$)
-  * Square (n rows = n columns)
-  * Triangular matrix (half of matrix has zeros -- see below for lower/upper distinction)
-    * lower triangular (numbers in lower half (diagonal down) and zeros above diagonal)
-    * upper triangular (numbers in upper half (diagonal up) and zeros below diagonal)
-  * Zero matrix (all zeros!)
-  * Matrix of only ones (sometimes given letter J)
-  * Transpose / transposition (mathematical operation on a matrix) (superscript with T)
-  * Inverse (this is a mathematical operation) (superscipt with $-1$)
+    * **Diagonal matrix** (only numbers on diagonal; zero elsewhere)
+    * Identity** (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called $I$)
+  * **Square** (n rows = n columns)
+  * **Triangular matri**x (half of matrix has zeros -- see below for lower/upper distinction)
+    * **lower triangular** (numbers in lower half (diagonal down) and zeros above diagonal)
+    * **upper triangular** (numbers in upper half (diagonal up) and zeros below diagonal)
+  * **Zero matrix** (all zeros!)
+  * **Matrix** of only ones (sometimes given letter J)
+  * **Transpose** / transposition (mathematical operation on a matrix) (superscript with T)
+  * **Inverse** (this is a mathematical operation) (superscipt with $-1$)
 
 
 <!--

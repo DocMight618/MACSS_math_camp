@@ -529,7 +529,7 @@ $$
 * Usefulness
 * Desirable properties
     * The **maximum** should be the document with itself
-    * The **minimum** should be documents which have no words in common
+    * The **minimum** should be documents which have no words in common (orthogonal to one another)
     * Increasing when more of the same words are used
     * Normalize for document length
 
@@ -541,17 +541,18 @@ $$
 
 &lt;img src="05-matrix-algebra_files/figure-html/inner-product-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
-&lt;!--
+---
 
 # Length dependence
 
 `$$(4,2) \cdot (1,4) = 12$$`
 
 &lt;img src="05-matrix-algebra_files/figure-html/inner-product-not-same-1.png" width="864" style="display: block; margin: auto;" /&gt;
---&gt;
+
 ---
 
 # Cosine similarity
+Allows us to look at the angle between them instead
 
 &lt;img src="05-matrix-algebra_files/figure-html/cosine-sim-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
@@ -587,13 +588,37 @@ $$
 
 $$
 `\begin{aligned}
-\cos (\theta) &amp; \equiv  \left(\frac{\textbf{Doc3} \cdot \textbf{Doc2}}{\| \textbf{Doc3}\| \|\textbf{Doc2} \|} \right) \\
- &amp; = \frac{(4,2) \cdot (1, 4)} {\| (24,2)\| \| (1,4) \|} \\
+\cos (\theta) &amp; \equiv  \left(\frac{\textbf{Doc1} \cdot \textbf{Doc2}}{\| \textbf{Doc1}\| \|\textbf{Doc2} \|} \right) \\
+ &amp; = \frac{(4, 2) \cdot (1, 4)} {\| (4,2)\| \| (1,4) \|} \\
  &amp; = \frac{12} {(\sqrt{4^2 + 2^2}) (\sqrt{1^2 + 4^2})} \\
  &amp; = \frac{12} {(\sqrt{20}) (\sqrt{17})} \\
   &amp; \approx 0.65
 \end{aligned}`
 $$
+
+---
+
+# Cosine similarity
+
+$$
+`\begin{aligned}
+\cos (\theta) &amp; \equiv  \left(\frac{\textbf{Doc3} \cdot \textbf{Doc2}}{\| \textbf{Doc3}\| \|\textbf{Doc2} \|} \right) \\
+ &amp; = \frac{(1,2) \cdot (1, 4)} {\| (1,2)\| \| (1,4) \|} \\
+ &amp; = \frac{9} {(\sqrt{1^2 + 2^2}) (\sqrt{1^2 + 4^2})} \\
+ &amp; = \frac{9} {(\sqrt{5}) (\sqrt{17})} \\
+  &amp; \approx 0.976
+\end{aligned}`
+$$
+--
+
+Interpretation: closer to 1, more similar
+
+
+---
+&lt;img src="05-matrix-algebra_files/figure-html/cosine-sima-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+&lt;img src="05-matrix-algebra_files/figure-html/cosine-simb-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 class: center, middle, inverse
@@ -629,16 +654,16 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn} \\
 ---
 # Special matrices
 
-  * Diagonal matrix (only numbers on diagonal; zero elsewhere)
-    * Identity (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called `\(I\)`)
-  * Square (n rows = n columns)
-  * Triangular matrix (half of matrix has zeros -- see below for lower/upper distinction)
-    * lower triangular (numbers in lower half (diagonal down) and zeros above diagonal)
-    * upper triangular (numbers in upper half (diagonal up) and zeros below diagonal)
-  * Zero matrix (all zeros!)
-  * Matrix of only ones (sometimes given letter J)
-  * Transpose / transposition (mathematical operation on a matrix) (superscript with T)
-  * Inverse (this is a mathematical operation) (superscipt with `\(-1\)`)
+  * **Diagonal matrix** (only numbers on diagonal; zero elsewhere)
+    * Identity** (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called `\(I\)`)
+  * **Square** (n rows = n columns)
+  * **Triangular matri**x (half of matrix has zeros -- see below for lower/upper distinction)
+    * **lower triangular** (numbers in lower half (diagonal down) and zeros above diagonal)
+    * **upper triangular** (numbers in upper half (diagonal up) and zeros below diagonal)
+  * **Zero matrix** (all zeros!)
+  * **Matrix** of only ones (sometimes given letter J)
+  * **Transpose** / transposition (mathematical operation on a matrix) (superscript with T)
+  * **Inverse** (this is a mathematical operation) (superscipt with `\(-1\)`)
 
 ---
 
@@ -734,7 +759,7 @@ Here, we have a very simple example -- so, we'll take the row (in this case, the
 
 --
 
-Similarly, we'll multiply the remaining row of our matrix Y by the column in X to produce the following:  &lt;span style = "color: red;"&gt; `\(3*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(4*\)` &lt;/span&gt; `\(+\)` &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(3+ 40 = 43\)` &lt;/span&gt; as the first cell in our resulting matrix. 
+Similarly, we'll multiply the remaining row of our matrix Y by the column in X to produce the following:  &lt;span style = "color: red;"&gt; `\(3*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(4*\)` &lt;/span&gt; `\(+\)` &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(3+ 40 = 43\)` &lt;/span&gt; as the second cell in our resulting matrix. 
 
 ---
 
@@ -789,6 +814,22 @@ Try this example and check with a neighbor: `\(\mathbf{IY}\)` (let's see why `\(
 IT'S LIKE MAGIC! (*actually it's just the matrix version of multiplying by 1*)
 
 
+
+---
+# Let's try this out on our own:
+
+Suppose we have a `\(3 \times 4\)` matrix, $$\boldsymbol{X} = 
+  \begin{pmatrix} 2 &amp; 3 &amp; 4 &amp; 5 \\
+	1 &amp; 5 &amp; 1 &amp; 2\\
+	3 &amp; 5 &amp; 3 &amp; 4 \\
+	\end{pmatrix} 	$$ 
+ and a `\(4 \times 1\)` matrix, 
+ $$\boldsymbol{v}  = \begin{pmatrix} 3\\ 3 \\ 4 \\ 10 \end{pmatrix} $$  (or a \alert{column} vector) what is \\
+`\(\boldsymbol{X} \boldsymbol{v}\)`?
+
+
+What is `\(\boldsymbol{X}^{'} \boldsymbol{v}\)`?
+
 ---
 
 class: center 
@@ -825,7 +866,7 @@ class: center
   * Order matters: `\(\mathbf{XY} \neq \mathbf{YX}\)`
     * Different from scalar multiplication: `\(xy = yx\)`
 * Order of matrix: sometimes you'll see subscripts referring to a matrix's order -- this is particularly true for square matrices. E.g:
-  * `\(I_2\)` is an identity matrix (and therefore a square matrix) with two rows and two columns
+  * `\(\mathbf{I_2}\)` is an identity matrix (and therefore a square matrix) with two rows and two columns
   * `\(\mathbf{J}_{2\times3}\)` is a matrix (likely full of ones) with two rows and three columns
 * Operations on matrix: transposing means flipping / reflecting across the diagonal
 
@@ -837,16 +878,16 @@ class: center
   * Sometimes the opposite diagonal is referred to by a name, but this varies
 * Matrices referred to by their overall properties (elements) and/or behavior of the diagonal 
 * Special names for *special* matrices:
-  * Diagonal matrix (only numbers on diagonal; zero elsewhere)
-    * Identity (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called `\(I\)`)
-  * Square (n rows = n columns)
-  * Triangular matrix (half of matrix has zeros -- see below for lower/upper distinction)
-    * lower triangular (numbers in lower half (diagonal down) and zeros above diagonal)
-    * upper triangular (numbers in upper half (diagonal up) and zeros below diagonal)
-  * Zero matrix (all zeros!)
-  * Matrix of only ones (sometimes given letter J)
-  * Transpose / transposition (mathematical operation on a matrix) (superscript with T)
-  * Inverse (this is a mathematical operation) (superscipt with `\(-1\)`)
+    * **Diagonal matrix** (only numbers on diagonal; zero elsewhere)
+    * Identity** (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called `\(I\)`)
+  * **Square** (n rows = n columns)
+  * **Triangular matri**x (half of matrix has zeros -- see below for lower/upper distinction)
+    * **lower triangular** (numbers in lower half (diagonal down) and zeros above diagonal)
+    * **upper triangular** (numbers in upper half (diagonal up) and zeros below diagonal)
+  * **Zero matrix** (all zeros!)
+  * **Matrix** of only ones (sometimes given letter J)
+  * **Transpose** / transposition (mathematical operation on a matrix) (superscript with T)
+  * **Inverse** (this is a mathematical operation) (superscipt with `\(-1\)`)
 
 
 &lt;!--
