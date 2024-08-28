@@ -157,7 +157,7 @@ $$
 
 ---
 
-# Linear combinations: (in)dependence
+# Linear combinations:  
 
 * Linear combinations of vectors `\(\mathbf{a}\)` and `\(\mathbf{b}\)`
 
@@ -169,13 +169,18 @@ $$
 
     `$$\alpha \mathbf{a} + \beta\mathbf{b} + \gamma\mathbf{c} + \delta\mathbf{d} + \ldots$$`
 
-* Linear independence: cannot get from one vector to another through transformation. Another way to consider is if you have to go *beyond the space (span)* of the set to include an additional vector. 
-  * Can think of as multiplication by a scalar, but technically, combining each vector, multiplied by a scalar, gives us zero. (e.g. `\(\alpha_1*v_1 + \alpha_2*v_2 + ... + \alpha_n*v_n=0\)` where at least one scalar is non-zero)
+---
+# Linear combinations: (in)dependence
+
+* **Linear independence**: cannot get from one vector to another through transformation. 
+  * Another way to consider is if you have to go *beyond the space (span)* of the set to include an additional vector. 
+  * Can think of as multiplication by a scalar, but technically, combining each NON-ZERO vector, multiplied by a scalar, gives us zero. (e.g. `\(\alpha_1*\mathbf{v_1} + \alpha_2*\mathbf{v_2} + ... + \alpha_n*\mathbf{v_n}=\mathbf{0}\)` where at least one scalar is non-zero)
+* Overall, we may be in a situation where the number of dimensions helps us understand the size of the solution set
 
 
 ---
 
-# Linear dependence
+# Linear (in)dependence
 
 `$$\mathbf{a} = \begin{bmatrix}
 3 \\
@@ -193,6 +198,10 @@ Are any of these linearly dependent?
 
 These are (together) linearly dependent.
 
+--
+
+`$$\mathbf{a}-2*\mathbf{b}+\mathbf{c} =\Big( \begin{matrix} 0 \\ 0 \end{matrix}\Big)$$`
+
 ---
 
 # Detecting linear dependence
@@ -203,7 +212,7 @@ These are (together) linearly dependent.
 
 ---
 
-# Example
+# Example: determining (independence)
 
 `$$\mathbf{a} = \begin{bmatrix}
 2 \\
@@ -218,6 +227,9 @@ These are (together) linearly dependent.
 1 \\
 2
 \end{bmatrix}$$`
+
+If we're not sure what to do, we set this up as trying to solve for our variable of choice. so, if we're multiplying scalars, it must be the case, for example, that `\(2\alpha + 4\beta + 1\gamma = 0\)`, and so on. That is, we're trying to solve for `\(\alpha \mathbf{a} + \beta\mathbf{b} + \gamma\mathbf{c} = \mathbf{0}\)`.
+--
 
 * Express as a **system of equations** (note: renaming each line so you can see the transformations more easily on the next slide)
 
@@ -227,25 +239,33 @@ These are (together) linearly dependent.
     \end{aligned}$$`
 
 ---
+## Aside: solving systems of equations
 
+* Need at least x equations for x unknowns (e.g. 2 unknowns, 2 equations)
+* Multiply/divide each equation and add together 
+* Different approaches, but often try to eliminate or 'kick out' variables to get down to solving for one variable 
+* Once you have one variable, continue!
+
+---
 # Solve the system of equations
 Let's work through an example to evaluate whether our matrices are linearly independent or dependent. 
 
 .pull-left[
 * **Step 1: write out equations**
 
-    `$$\begin{aligned}2\alpha &amp;+ 4\beta &amp;+ \gamma  &amp;= 0 \text{ (}\mathbf{h}\text{) }\\
-    \alpha &amp;+ \beta &amp;+ \gamma  &amp;= 0 \text{ (}\mathbf{j}\text{) }\\
-    2\alpha &amp;+ 3\beta &amp;+ 2\gamma &amp;= 0\text{ (}\mathbf{k}\text{) }
-    \end{aligned}$$`
+`$$\begin{aligned}
+2\alpha + 4\beta &amp;+ \gamma  &amp;= 0 \text{ (}\mathbf{h}\text{) }\\
+\alpha + \beta &amp;+ \gamma  &amp;= 0 \text{ (}\mathbf{j}\text{) }\\
+2\alpha + 3\beta &amp;+ 2\gamma &amp;= 0\text{ (}\mathbf{k}\text{) }
+\end{aligned}$$`
 
 * **Step 2: Add/subtract**
 
 $$
 `\begin{aligned}
- 2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\
- &amp;- \beta &amp;+ \frac{1}{2}\gamma &amp;= 0 \\
- &amp;- \beta &amp;+ \gamma &amp;= 0
+ 2\alpha + 4\beta + \gamma &amp;= 0 \\
+  \alpha + \beta + \gamma &amp;= 0 \\
+ -\beta + \gamma &amp;= 0
 \end{aligned}`
 $$
 
@@ -255,7 +275,7 @@ $$
 
 * **Step 1:** We re-write our matrices from the previous slide, setting each equal to zero. Note that we've named them to make following along a little easier. 
 
-* **Step 2:** We leave our first equation `\(\mathbf{h}\)` as-is. We then take our second equation and calculate: `\(j-h/2\)` and replace that result in the middle row. for the third row, we take `\(k-h\)`.
+* **Step 2:** We leave our first equation `\(\mathbf{h}\)` as-is. We then take our second equation and calculate: `\(h-k\)` and replace that result in the third row. We can see from the third row that `\(\beta = \gamma\)`.
 
 
 ]
@@ -270,9 +290,9 @@ Let's work through an example to evaluate whether our matrices are linearly inde
 
 $$
 `\begin{aligned}
- 2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\
- &amp;- \beta &amp;+ \frac{1}{2}\gamma &amp;= 0 \\
- &amp;- \beta &amp;+ \gamma &amp;= 0
+ 2\alpha + 4\beta + \gamma &amp;= 0 \\
+  \alpha + \beta + \gamma &amp;= 0 \\
+ -\beta + \gamma &amp;= 0
 \end{aligned}`
 $$
 
@@ -280,9 +300,9 @@ $$
 
 $$ 
 `\begin{aligned}
-2\alpha &amp;+ 4\beta &amp;+ \gamma &amp;= 0 \\
- &amp;- \beta &amp;+ \frac{1}{2}\gamma &amp;= 0 \\
- &amp; &amp;+ \frac{1}{2} \gamma &amp;= 0
+ 2\alpha + 5\gamma &amp;= 0 \\
+  \alpha + 2\gamma &amp;= 0 \\
+ -\beta + \gamma &amp;= 0
 \end{aligned}`
 $$
 ]
@@ -290,7 +310,44 @@ $$
 .pull-right[
 
 
-* **Step 3**: Now, we continue to work, trying to solve for any of our three variables (three variables, three functions). We see that if we add `\(j+k\)`, we can get to `\(\frac{1}{2} \gamma = 0\)`. This means that `\(\gamma = 0\)`. Subbing this into the middle row, `\(\beta\)` must also be 0. Which means that ... `\(\alpha = 0\)` as well. Therefore, these equations (and matrices) are linearly independent as the only possible solution that satisfies our requirements is for all variables to be zero (trivial). 
+* **Step 3**: Now, we continue to work, trying to solve for any of our three variables (three variables, three functions). We can sub in `\(\gamma\)` for `\(\beta\)` and simplify our middle equation.  
+
+
+]
+
+---
+# Solve the system of equations
+Let's work through an example to evaluate whether our matrices are linearly independent or dependent. 
+
+.pull-left[
+
+* **Step 3: ... Solve ...**
+
+$$ 
+`\begin{aligned}
+ 2\alpha + 5\gamma &amp;= 0 \\
+  \alpha + 2\gamma &amp;= 0 \\
+ -\beta + \gamma &amp;= 0
+\end{aligned}`
+$$
+
+* **Step 4: ... continue ...**
+
+$$ 
+`\begin{aligned}
+  \gamma &amp;= 0 \\
+  \alpha + 2\gamma &amp;= 0 \\
+ -\beta + \gamma &amp;= 0
+\end{aligned}`
+$$
+]
+
+.pull-right[
+
+
+* **Step 4**:  We can then take 2 times our middle row (j) from the top row (replacing h) to get `\(\gamma = 0\)`. As `\(\gamma = \beta = 0\)`, we can substitute those in to our middle equation. 
+
+* **Conclusion**: This means that ... `\(\alpha = 0\)` as well. Therefore, these equations (and matrices) are linearly independent as the only possible solution that satisfies our requirements is for all variables to be zero (trivial). 
 
 
 ]
@@ -300,28 +357,27 @@ $$
 Now, let's try this together -- work with a partner. Are these matrices linearly dependent or independent? 
 
 `$$\mathbf{a} = \begin{bmatrix}
+4 \\
+3 \\
+3
+\end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
 2 \\
+1 \\
+-1
+\end{bmatrix}, \quad \mathbf{c} = \begin{bmatrix}
+1 \\
 1 \\
 2
-\end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
-4 \\
-1 \\
-3
-\end{bmatrix}, \quad \mathbf{c} = \begin{bmatrix}
-2 \\
-2 \\
-3
 \end{bmatrix}$$`
 
 ---
-
 # Example
 * **Step 1: write out**
 $$
 `\begin{aligned}
-2\alpha &amp;+ 4\beta &amp;+ 2\gamma &amp;= 0 \\
-\alpha &amp;+ \beta &amp;+ 2\gamma &amp;= 0 \\
-2\alpha &amp;+ 3\beta &amp;+ 3\gamma &amp;= 0
+4\alpha + 2\beta + 1\gamma &amp;= 0 \\
+3\alpha + 1\beta + 1\gamma &amp;= 0 \\
+3\alpha - 1\beta + 2\gamma &amp;= 0
 \end{aligned}`
 $$
 
@@ -330,9 +386,9 @@ $$
 * **Step 2: manipulate**
 $$
 `\begin{aligned}
-2\alpha &amp;+ 4\beta &amp;+ 2\gamma &amp;= 0 \\
- &amp;- \beta &amp;+ \gamma &amp;= 0 \\
- &amp;- \beta &amp;+ \gamma &amp;= 0
+4\alpha + 2\beta + 1\gamma &amp;= 0 \\
+ 2\beta - 1\gamma &amp;= 0 \\
+3\alpha - 1\beta + 2\gamma &amp;= 0
 \end{aligned}`
 $$
 
@@ -341,8 +397,8 @@ $$
 * **Step 3: Solve!!**
 $$
 `\begin{aligned}
-2\alpha &amp;+ 4\beta &amp;+ 2\gamma &amp;= 0 \\
- &amp;- \beta &amp;+ \gamma &amp;= 0
+4\alpha + 4\beta &amp;= 0 \\
+ 2\beta &amp;=\gamma  \\
 \end{aligned}`
 $$
 
@@ -351,6 +407,11 @@ $$
 
 `$$\gamma = 1, \quad \beta = 1, \quad \alpha = -3$$`
 *Is this our only solution?*
+
+---
+class: center, middle, inverse
+
+# Vectors
 
 ---
 
@@ -535,7 +596,7 @@ $$
 $$
 
 ---
-class: center
+class: center, middle, inverse
 # The Matrix, Part I
 &lt;img src="https://media.tenor.com/ang0VzOwbdAAAAAC/the-matrix-reloaded-matrix.gif" style="display: block; margin: auto;" /&gt;
 ---
@@ -562,7 +623,12 @@ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn} \\
 * Diagonal from upper left to lower right matters 
   * Sometimes the opposite diagonal is referred to by a name, but this varies
 * Matrices referred to by their overall properties (elements) and/or behavior of the diagonal 
-* Special names for *special* matrices:
+* Special names for *special* matrices.
+
+
+---
+# Special matrices
+
   * Diagonal matrix (only numbers on diagonal; zero elsewhere)
     * Identity (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called `\(I\)`)
   * Square (n rows = n columns)
@@ -626,13 +692,12 @@ Transposing a matrix means *flipping* it in a sense -- swapping across the diago
  
 # Matrix multiplication
  
-This is conceptually a bit hard as I find it really unintuitive (maybe it's not for you!). 
-
 * Step 1: have two (or more matrices to multiply)
 * Step 2: check dimensions (rows vs columns)
 * Step 3: **ORDER MATTERS** the number of COLUMNS of the FIRST matrix MUST MATCH the number of ROWS of the second matrix (YES, I KNOW!! )
 * Step n: final output will have the number of ROWS of the FIRST and the number of COLUMNS of the second matrix. 
-(steps continued on next slide -- just setting up logic here!) \\
+(steps continued on next slide -- just setting up logic here!) 
+
 
 &lt;span style = "color: blue;"&gt;
 `$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
@@ -704,7 +769,7 @@ Try this example and check with a neighbor: `\(\mathbf{XY}\)`
 --
 
 
-`$$\begin{aligned} \mathbf{A} &amp; = \mathbf{X} \mathbf{Y} \\&amp; = \begin{pmatrix}1 &amp; 1 \\ 1 &amp; 1 \\\end{pmatrix} \begin{pmatrix}1 &amp; 2 \\3 &amp; 4 \\\end{pmatrix} \\&amp;= \begin{pmatrix}1 \times 1 + 1 \times 3 &amp; 1 \times 2 + 1 \times 4 \\1 \times 1 + 1 \times 3 &amp; 1 \times 2 + 1 \times 4\\\end{pmatrix} \\&amp;= \begin{pmatrix}4 &amp; 6 \\4 &amp; 6\end{pmatrix}\end{aligned}$$`
+`$$\begin{aligned} \mathbf{A} &amp; = \mathbf{X} \mathbf{Y} \\&amp; = \begin{pmatrix}1 &amp; 1 \\ 1 &amp; 1 \\\end{pmatrix} \begin{pmatrix}1 &amp; 2 \\3 &amp; 4 \\\end{pmatrix} \\&amp;= \begin{pmatrix}1 * 1 + 1 * 3 &amp; 1 * 2 + 1 * 4 \\1 * 1 + 1 * 3 &amp; 1 * 2 + 1 * 4\\\end{pmatrix} \\&amp;= \begin{pmatrix}4 &amp; 6 \\4 &amp; 6\end{pmatrix}\end{aligned}$$`
 
 ---
 
@@ -717,7 +782,7 @@ Try this example and check with a neighbor: `\(\mathbf{IY}\)` (let's see why `\(
 --
 
 `$$\begin{aligned} \mathbf{A} &amp; = \mathbf{I} \mathbf{Y} \\&amp; = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; 1 \\\end{pmatrix} \begin{pmatrix}1 &amp; 2 \\3 &amp; 4 \\\end{pmatrix} 
-\\&amp;= \begin{pmatrix}1 \times 1 + 0 \times 3 &amp; 1 \times 2 + 0 \times 4 \\
+\\&amp;= \begin{pmatrix}1 * 1 + 0 \times 3 &amp; 1 \times 2 + 0 \times 4 \\
 0 \times 1 + 1 \times 3 &amp; 0 \times 2 + 1 \times 4\\\end{pmatrix} 
 \\&amp;= \begin{pmatrix}1 &amp; 2 \\3 &amp; 4\end{pmatrix}\end{aligned}$$`
 
