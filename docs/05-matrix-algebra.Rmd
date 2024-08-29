@@ -1055,10 +1055,81 @@ $$\begin{aligned} \mathbf{A} & =
 
 * What is $\boldsymbol{A} \boldsymbol{v}$?
 
-
 * What is $\boldsymbol{A}^{'} \boldsymbol{v}$?
 
+* What is $\boldsymbol{A} \boldsymbol{A}^{'}$?
 
+* What is $\boldsymbol{A}^{'} \boldsymbol{A}$?
+
+
+---
+
+## Answers:
+
+* What is $\boldsymbol{A} \boldsymbol{v}$?
+$$\begin{aligned} \mathbf{A}*\mathbf{v}  & = 
+\begin{pmatrix}   2 & 3 & 4 & 5 \\
+	1 & 5 & 1 & 2\\
+	3 & 5 & 3 & 4 \\\end{pmatrix}  \begin{pmatrix}3 \\ 3 \\ 4 \\10
+ \\\end{pmatrix} = \begin{pmatrix}2*3 + 3*3+4*4+5*10 \\ 1*3+5*3+1*4+2*10 \\ 3*3+5*3+3*4+4*10 \end{pmatrix} \\
+ &= \begin{pmatrix} 81 \\ 42 \\ 76 \\ \end{pmatrix}\end{aligned}$$
+ 
+
+
+* What is $\boldsymbol{A}^{'} \boldsymbol{v}$? **Not possible: $\boldsymbol{A}^{'}$ has dimensions $4\times 3$ and $\boldsymbol{v}$ has dimensions $4 \times 1$ **
+
+---
+## Answers: 
+
+* What is $\boldsymbol{A} \boldsymbol{A}^{'}$?
+
+$\mathbf{A}*\mathbf{v} =$
+$$\begin{aligned} 
+  & = 
+\begin{pmatrix}   
+  2 & 3 & 4 & 5 \\
+	1 & 5 & 1 & 2\\
+	3 & 5 & 3 & 4 \end{pmatrix}  
+	\begin{pmatrix}
+	2 & 1 & 3 \\
+	3 & 5 & 5 \\
+	4 & 1 & 3 \\
+	5 & 2 & 4 \\
+	\end{pmatrix} \\
+	&= 
+	\begin{pmatrix} 
+	 2^2 + 3^2 + 4^2 + 5^2    & 2* 1 + 3* 5 + 4*1 + 5*2     & 2*3 + 3* 5 + 4*3 + 5*4 \\
+	1*2 + 5*3 + 1* 4 + 2* 5     & 1^2 + 5^2 + 1^1 + 2^2       & 1*3 + 5*5 + 1*3 + 2*4 \\
+	3*2 + 5*3 + 3* 4 + 4*5    & 3*1 + 5*5 + 3*1 + 4*2       & 3^2 + 5^ 2 + 3^ 2 + 4^2  \\ 
+	\end{pmatrix} \\
+	& = \begin{pmatrix}
+	54 & 31 & 53 \\
+	31 & 31 & 39 \\
+	53 & 39 & 59
+	\end{pmatrix}
+	\end{aligned}$$
+
+---
+## Answers: 
+
+* What is $\boldsymbol{A}^{'}\boldsymbol{A}$?
+$$\begin{aligned} 
+  & = 	\begin{pmatrix}
+	2 & 1 & 3 \\
+	3 & 5 & 5 \\
+	4 & 1 & 3 \\
+	5 & 2 & 4 \\
+	\end{pmatrix} \begin{pmatrix}   
+  2 & 3 & 4 & 5 \\
+	1 & 5 & 1 & 2\\
+	3 & 5 & 3 & 4 \end{pmatrix}  
+	& = \begin{pmatrix}   
+  14 & 26 & 18 & 24 \\
+	26 & 59 & 32 & 45\\
+	18 & 32 & 26 & 34 \\
+	24 & 45 & 34 & 45 \end{pmatrix}  \\
+	\end{aligned}$$
+	
 ---
 
 class: center 
@@ -1082,6 +1153,22 @@ knitr::include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/9
 * Automatic machine translation
 * Image recognition
 * Detection of diseases
+
+
+---
+# Social networks
+
+```{r office-network, fig.caption = "Source: Data Viz"}
+knitr::include_graphics(path = "https://macs40700.netlify.app/slides/13-visualize-text-network/index_files/figure-html/unnamed-chunk-67-1.png")
+```
+---
+
+# Uses for social networks
+
+* Connections
+* Groupings (e.g. cliques)
+* Density
+* 'Spread' (ideas, disease, etc.)
 
 
 ---
