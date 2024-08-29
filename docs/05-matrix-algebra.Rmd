@@ -630,10 +630,12 @@ $$
     * The **minimum** should be documents which have no words in common (orthogonal to one another)
     * Increasing when more of the same words are used
     * Normalize for document length
+    
+* We can look at the similarity and also calculate the angle between them ($\theta$)
 
 ---
 
-# Using the inner product
+# Similarity: Using the inner product
 
 $$(2,1) \cdot (1,4) = 6$$
 
@@ -771,7 +773,11 @@ Interpretation: closer to 1, more similar
 
 
 ---
-```{r cosine-sima}
+
+# Exploring similarity: 
+
+.pull-left[
+```{r cosine-simd1}
 # hacky way to create angle visual
 circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
   r = diameter / 2
@@ -783,6 +789,7 @@ circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
 
 tribble(
   ~x1, ~x2, ~y1, ~y2, ~notorig,
+  0, 4, 0, 2, TRUE,
   0, 2, 0, 1, FALSE,
   0, 1, 0, 4, FALSE
 ) %>%
@@ -800,8 +807,8 @@ tribble(
        y = "Doc2") +
   coord_fixed()
 ```
-
----
+]
+.pull-right[
 ```{r cosine-simb}
 # hacky way to create angle visual
 circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
@@ -831,6 +838,10 @@ tribble(
        y = "Doc3") +
   coord_fixed()
 ```
+
+]
+
+We can see how the similarity of 0.65 has a larger $\theta$ and a similarity of 0.97 has a smaller $\theta$. We can also use the inverse of cos(arccos) to find our respective angles: approx 0.86 radians (approx 50 degrees) vs 0.25 radians (approx 15 degrees). 
 
 ---
 class: center, middle, inverse
@@ -1032,17 +1043,21 @@ IT'S LIKE MAGIC! (*actually it's just the matrix version of multiplying by 1*)
 ---
 # Let's try this out on our own:
 
-Suppose we have a $3 \times 4$ matrix, $$\boldsymbol{X} = 
-  \begin{pmatrix} 2 & 3 & 4 & 5 \\
+Suppose we have a $3 \times 4$ matrix, **A** and a $4 \times 1$ matrix **v**: 
+$$\begin{aligned} \mathbf{A} & = 
+\begin{pmatrix}   2 & 3 & 4 & 5 \\
 	1 & 5 & 1 & 2\\
-	3 & 5 & 3 & 4 \\
-	\end{pmatrix} 	$$ 
- and a $4 \times 1$ matrix, 
- $$\boldsymbol{v}  = \begin{pmatrix} 3\\ 3 \\ 4 \\ 10 \end{pmatrix} $$  (or a \alert{column} vector) what is \\
-$\boldsymbol{X} \boldsymbol{v}$?
+	3 & 5 & 3 & 4 \\\end{pmatrix} \\
+	\mathbf{v} & = \begin{pmatrix}3 \\ 3 \\ 4 \\10
+ \\\end{pmatrix} \end{aligned}$$
+
+--
+
+* What is $\boldsymbol{A} \boldsymbol{v}$?
 
 
-What is $\boldsymbol{X}^{'} \boldsymbol{v}$?
+* What is $\boldsymbol{A}^{'} \boldsymbol{v}$?
+
 
 ---
 
