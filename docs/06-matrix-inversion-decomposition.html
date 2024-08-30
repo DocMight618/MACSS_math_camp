@@ -126,12 +126,13 @@ x_{41} &amp; x_{42} &amp; x_{43}  \\
 # `\(n \times n\)` matrix
 
 `$$\mid \mathbf{X} \mid = \sum_{j=1}^n (-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid$$`
+  * NOTE: we can add across any one row or column (just be consistent)
 
 * `\(ij\)`th **minor** of `\(\mathbf{X}\)` for `\(x_{ij}\)`, `\(\mid\mathbf{X}_{[ij]}\mid\)`
     * Determinant of the `\((n - 1) \times (n - 1)\)` submatrix that results from taking the `\(i\)`th row and `\(j\)`th column out
-    * Refer to this resulting submatrix at `\(\textbf{M_{ij}}\)`
+    * Refer to this resulting submatrix at `\(\mathbf{M_{ij}}\)`
 * **Cofactor** of `\(\mathbf{X}\)`
-    * Minor signed as `\((-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid\)`
+    * Minor signed as `\((-1)^{i+j}\mid\mathbf{X}_{[ij]}\mid\)`
 * Cycle recursively through columns
 
 ---
@@ -154,7 +155,7 @@ x_{31} &amp; x_{33} \\
 x_{21} &amp; x_{22} \\
 x_{31} &amp; x_{32} \\
 \end{matrix} \right|\end{aligned}$$`
-`$$= (-1)^2x_{11}M_{11}+(-1)^3x_{12}M_{12}+(-1)^4x_{13}M_{13}$$`
+`$$= (-1)^2x_{11}\mathbf{M_{11}}+(-1)^3x_{12}\mathbf{M_{12}}+(-1)^4x_{13}\mathbf{M_{13}}$$`
 --
 NO YOU DO NOT NEED TO BE ABLE TO DO THIS GENERALLY (just for the homework today!)
 
@@ -169,14 +170,114 @@ You can also create the cofactor matrix using your work from the determinant wor
 ---
 # Example: `\(3 \times 3 matrix\)`
 
-`$$\begin{bmatrix}1 &amp; 2 &amp; 3 \\ 2 &amp; 1 &amp; 3 \\ 4&amp; 1 &amp; 2\end{bmatrix}$$`
+`$$\begin{aligned}\begin{bmatrix}1 &amp; 2 &amp; 3 \\ 
+2 &amp; 1 &amp; 3 \\ 
+4 &amp; 1 &amp; 2\end{bmatrix}\end{aligned}$$`
 * Compose into smaller sub-matrices
 * Find cofactors
+* Find determinant of each submatrix
 * Create cofactor matrix
+* Find determinant
 
 ---
 
-class: middle
+# Answer: `\(3 \times 3 matrix\)`
+
+`$$\begin{aligned}\begin{bmatrix}1 &amp; 2 &amp; 3 \\ 2 &amp; 1 &amp; 3 \\ 4&amp; 1 &amp; 2\end{bmatrix}\end{aligned}$$`
+* Compose into smaller sub-matrices
+* Find determinant of each submatrix
+
+`\(\mathbf{M_{11}} = \left|\begin{bmatrix} 1 &amp; 3 \\ 1 &amp; 2 \end{bmatrix}\right|= 2-3 =-1\)`;
+`\(\mathbf{M_{12}} = \left|\begin{bmatrix} 2 &amp;  3\\ 4 &amp;2  \end{bmatrix}\right|=4-12=-8\)`;
+`\(\mathbf{M_{13}} = \left|\begin{bmatrix}  2 &amp;1  \\ 4 &amp;1  \end{bmatrix}\right|=2-4=-2\)`;
+`\(\mathbf{M_{21}} = \left|\begin{bmatrix}2  &amp;3  \\ 1 &amp;2  \end{bmatrix}\right|=4-3=1\)`;
+`\(\mathbf{M_{22}} = \left|\begin{bmatrix} 1 &amp; 3 \\ 4 &amp; 2 \end{bmatrix}\right|=2-12=-10\)`;
+`\(\mathbf{M_{23}} = \left|\begin{bmatrix}1  &amp;2  \\ 4 &amp; 1 \end{bmatrix}\right|=1-8=-7\)`;
+`\(\mathbf{M_{31}} = \left|\begin{bmatrix} 2 &amp; 3 \\ 1 &amp; 3 \end{bmatrix}\right|=6-3=3\)`;
+`\(\mathbf{M_{32}} = \left|\begin{bmatrix}  1&amp;3  \\ 2 &amp; 3 \end{bmatrix}\right|=3-6=-3\)`;
+`\(\mathbf{M_{33}} = \left|\begin{bmatrix}  1&amp; 2 \\ 2 &amp; 1 \end{bmatrix}\right|=1-4=-3\)`
+
+---
+# Answer: `\(3 \times 3 matrix\)`
+* Create cofactor matrix
+`$$\begin{aligned}\begin{bmatrix}
+1 \mathbf{M_{11}} &amp; -1\mathbf{M_{12}} &amp; 1\mathbf{M_{13}} \\
+-1 \mathbf{M_{21}}&amp; 1\mathbf{M_{22}} &amp; -1\mathbf{M_{23}} \\
+1 \mathbf{M_{31}}&amp; -1\mathbf{M_{32}} &amp; 1\mathbf{M_{33}}
+\end{bmatrix}\end{aligned}$$`
+
+`$$\begin{aligned}\begin{bmatrix}
+1 (-1) &amp; -1(-8) &amp; 1 (-2) \\
+-1 (1)&amp; 1(-10)  &amp; -1 (-7) \\
+1 (3) &amp; -1(-3)  &amp; 1 (-3)
+\end{bmatrix} = \begin{bmatrix}
+-1 &amp; 8&amp; -2 \\
+-1&amp; -10  &amp; -7 \\
+3 &amp; 3  &amp; -3
+\end{bmatrix}\end{aligned}$$`
+---
+
+# Answer: `\(3 \times 3 matrix\)`
+
+`$$\mid \mathbf{X} \mid = \sum_{j=1}^n (-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid$$`
+
+Let's live life on the edge and each compute the determiniant differently. I will show TWO examples: row two and column three (EXCITEMENT!). 
+
+--
+
+Recall that what we do is we basically choose a row or column, and then multiply the corresponding row/column from the original matrix. 
+
+---
+# Example: row (i =2)
+`$$\begin{aligned}\mathbf{A}=
+\begin{bmatrix}1 &amp; 2 &amp; 3 \\ 
+2 &amp; 1 &amp; 3 \\ 
+4 &amp; 1 &amp; 2\end{bmatrix}, 
+\mathbf{C} =\begin{bmatrix}
+-1 &amp; 8&amp; -2 \\
+-1&amp; -10  &amp; 7 \\
+3 &amp; 3  &amp; -3
+\end{bmatrix}\end{aligned}$$`
+
+Determinant: 
+`$$\begin{aligned}
+|\mathbf{A}|&amp;=a_{21}\mathbf{C_{21}}+ a_{22}\mathbf{C_{22}} + a_{23}\mathbf{C_{23}}\\
+&amp;=2*-1+1*-10+3*7\\
+&amp;=-2-10+21\\
+&amp;=9 \end{aligned}$$`
+
+-- 
+
+Alternatively, for `\(3 x 3\)` ONLY: `\(det(\mathbf{A}) = a11a22a33 − a_{11}a_{23}a_{32} − a_{12}a_{21}a_{33} +a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} − a_{13}a_{22}a_{31}\)`
+
+---
+# Example: column (j = 2)
+`$$\begin{aligned}\mathbf{A}=
+\begin{bmatrix}1 &amp; 2 &amp; 3 \\ 
+2 &amp; 1 &amp; 3 \\ 
+4 &amp; 1 &amp; 2\end{bmatrix}, 
+\mathbf{C} =\begin{bmatrix}
+-1 &amp; 8&amp; -2 \\
+-1&amp; -10  &amp; 7 \\
+3 &amp; 3  &amp; -3
+\end{bmatrix}\end{aligned}$$`
+
+Determinant: 
+`$$\begin{aligned}|\mathbf{A}|
+&amp;=a_{21}\mathbf{C_{21}}+ a_{22}\mathbf{C_{22}} + a_{23}\mathbf{C_{23}} \\
+&amp;=2*8 + 1*-10+1*3\\
+&amp;=16-10+3 \\
+&amp;=9\end{aligned}$$`
+---
+## Determinants, Minors, Cofactors
+
+Help you break down the matrix, learn about its components, get a sense of it in space. 
+
+* Zero determinant is important (ominous foreshadowing)
+
+---
+
+class: middle, inverse, center
 
 # Inverting matrices
 
@@ -202,7 +303,7 @@ The inverse of a matrix is akin to dividing by itself (although since these are 
 
     `$$\mathbf{X}^{-1} \mathbf{X} = \mathbf{X} \mathbf{X}^{-1} = \mathbf{I}$$`
 
-    where `\(\mathbf{I}\)` is the `\(n \times n\)` identity matrix
+  where `\(\mathbf{I}\)` is the `\(n \times n\)` identity matrix
 
 --
 
@@ -285,10 +386,14 @@ x_{1} + x_{2} + x_{3} &amp;= 0 \\
 
 # Inverting a matrix
 
-* `\(\mathbf{A}^{-1}\)`
     
 
 ```
+##      [,1] [,2] [,3]
+## [1,]    1    1    1
+## [2,]    0    5    0
+## [3,]    0    0    3
+## [1] "inverse of A"
 ##      [,1] [,2]   [,3]
 ## [1,]    1 -0.2 -0.333
 ## [2,]    0  0.2  0.000
@@ -318,7 +423,11 @@ Remember when our determinant was zero?
 6 &amp; 9
 \end{matrix} \right| = (2)(9) - (3)(6) = 18 - 18 = 0$$`
 
-Here, we can see that our two vectors are not linearly independent. Thus, our determinant is zero. If we don't have linear independence, we can't take an inverse (singular matrix). [THIS IS WHY WE CARE ABOUT COLLINEARITY!]
+Here, we can see that our two vectors are not linearly independent.(for example, try `\(x=-3, y=2\)`) 
+
+--
+
+Thus, our determinant is zero. If we don't have linear independence, we can't take an inverse (singular matrix). [THIS IS WHY WE CARE ABOUT COLLINEARITY!]
 
 ---
 
@@ -327,7 +436,7 @@ Here, we can see that our two vectors are not linearly independent. Thus, our de
 ### Example 1
 
 `$$\mathbf{v}_{1} = (1, 0, 0), \quad \mathbf{v}_{2} = (0,1,0), \quad \mathbf{v}_{3} = (0,0,1)$$`
-
+Thus, we can consider these vectors as linearly independent and check to see whether they are invertible. (surprise: it is...but returns itself!)
 --
 
 ### Example 2
@@ -337,7 +446,8 @@ Here, we can see that our two vectors are not linearly independent. Thus, our de
 --
 
 `$$\mathbf{v}_{4} = \mathbf{v}_{1} + 2 \mathbf{v}_{2} + 3\mathbf{v}_{3}$$`
-
+--
+In this situation, we would want to combine these into a matrix. However, if we wanted to do transformations, a) the matrix is not square and b) because they are linearly dependent, our determinant would be zero even if we *could* calculate it (but we can't). 
 ---
 
 # Inverting a `\(2 \times 2\)` matrix
@@ -345,7 +455,9 @@ Here, we can see that our two vectors are not linearly independent. Thus, our de
 * If `\(\mathbf{A} = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)` and `\(ad \neq bc\)`, then `\(\mathbf{A}\)` is invertible and
 
     `$$\mathbf{A}^{-1} = \frac{1}{ad - bc} \begin{bmatrix}d &amp; -b \\-c &amp; a\end{bmatrix}$$`
-
+    
+  --
+`$$\mathbf{A}^{-1} = \frac{1}{det(\mathbf{A})} \begin{bmatrix}d &amp; -b \\-c &amp; a\end{bmatrix}$$`
 ---
 
 # Inverting a `\(2 \times 2\)` matrix
@@ -361,13 +473,16 @@ Here, we can see that our two vectors are not linearly independent. Thus, our de
 ---
 
 # Inverting an `\(n \times n\)` matrix
+(this gets much less pleasant)
 
+--
 * Gauss-Jordan elimination
 * Augmented matrix
-* Elementary row operations
+* Elementary row operations (do in to get the identity on the left)
     1. Exchanging two rows in the matrix
     1. Subtracting a multiple of one row from another row
 * Obtain a diagonal matrix
+
 
 ---
 
@@ -418,129 +533,66 @@ Here, we can see that our two vectors are not linearly independent. Thus, our de
 ##### Add twice the third row to the first and second rows
 
 `$$\left[\begin{array}{rrr|rrr}2 &amp; 0 &amp; 0 &amp; -2 &amp; 0 &amp; 2 \\0 &amp; -1/2 &amp; 0 &amp; -3/2 &amp; -1 &amp; 2 \\0 &amp; 0 &amp; 1 &amp; 0 &amp; -1 &amp; 1\end{array}\right]$$`
+--
 
 ##### Norm out the diagonal matrix to be `\(\mathbf{I}\)`
+`$$\left[\begin{array}{rrr|rrr}1 &amp; 0 &amp; 0 &amp; -1 &amp; 0 &amp; 1 \\0 &amp; 1 &amp; 0 &amp; 3  &amp; -2 &amp; -4 \\0 &amp; 0 &amp; 1 &amp; 0 &amp; -1 &amp; 1\end{array}\right]$$`
+--
     
 `$$\mathbf{A}^{-1} = \begin{bmatrix}-1 &amp; 0 &amp; 1 \\3 &amp; 2 &amp; -4 \\0 &amp; -1 &amp; 1\end{bmatrix}$$`
 
 ---
 
-# Another example
+# Another example 
 
 `$$\mathbf{A} = \begin{bmatrix}
 1 &amp; 3 &amp; 5 \\
-1 &amp; 7 &amp; 5 \\
-5 &amp; 10 &amp; 15
+1 &amp; 7 &amp; 2 \\
+1 &amp; 4 &amp; 5
 \end{bmatrix}$$`
-
-##### First setup the augmented matrix
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\1 &amp; 7 &amp; 5 &amp; 0 &amp; 1 &amp; 0 \\5 &amp; 10 &amp; 15 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$`
-
-##### Subtract 3 x row 1 from row 2
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\5 &amp; 10 &amp; 15 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$`
-    
----
-
-# Another example
-
-##### Subtract 3 x row 1 from row 2
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\5 &amp; 10 &amp; 15 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$`
-    
-##### Subtract 2 x row 1 from row 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; -3 &amp; -3 &amp; -2 &amp; 0 &amp; 1\end{array}\right]$$`
-    
----
-
-# Another example
-
-##### Subtract 2 x row 1 from row 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; -3 &amp; -3 &amp; -2 &amp; 0 &amp; 1\end{array}\right]$$`
-    
-##### Subtract `\(\frac{3}{4}\)` x row 2 from row 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 3 &amp; \frac{1}{4} &amp; -\frac{3}{4} &amp; 1\end{array}\right]$$`
-    
----
-
-# Another example
-
-##### Subtract `\(\frac{3}{4}\)` x row 2 from row 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 3 &amp; \frac{1}{4} &amp; -\frac{3}{4} &amp; 1\end{array}\right]$$`
-    
-##### Divide row 3 by 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
----
-
-# Another example
-
-##### Divide row 3 by 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
-##### Add 8 times row 3 to row 2
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; 0 &amp; -\frac{7}{3} &amp; -1 &amp; \frac{8}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
----
-
-# Another example
-
-##### Add 8 times row 3 to row 2
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; 0 &amp; -\frac{7}{3} &amp; -1 &amp; \frac{8}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
-##### Subtract 3 x row 3 from row 1
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 2 &amp; 0 &amp; \frac{3}{4} &amp; \frac{3}{4} &amp; -1 \\0 &amp; -4 &amp; 0 &amp; -\frac{7}{3} &amp; -1 &amp; \frac{8}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
----
-
-# Another example
-
-##### Subtract 3 x row 3 from row 1
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 2 &amp; 0 &amp; \frac{3}{4} &amp; \frac{3}{4} &amp; -1 \\0 &amp; -4 &amp; 0 &amp; -\frac{7}{3} &amp; -1 &amp; \frac{8}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
-##### Divide row 2 by -4
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 2 &amp; 0 &amp; \frac{3}{4} &amp; \frac{3}{4} &amp; -1 \\0 &amp; 1 &amp; 0 &amp; \frac{7}{12} &amp; \frac{1}{4} &amp; -\frac{2}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
----
-
-# Another example
-
-##### Divide row 2 by -4
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 2 &amp; 0 &amp; \frac{3}{4} &amp; \frac{3}{4} &amp; -1 \\0 &amp; 1 &amp; 0 &amp; \frac{7}{12} &amp; \frac{1}{4} &amp; -\frac{2}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
-##### Subtract 2 x row 2 from row 1
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 0 &amp; 0 &amp; -\frac{5}{12} &amp; \frac{1}{4} &amp; \frac{1}{3} \\0 &amp; 1 &amp; 0 &amp; \frac{7}{12} &amp; \frac{1}{4} &amp; -\frac{2}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
 
 --
 
-`$$\mathbf{A}^{-1} = \begin{bmatrix}-\frac{5}{12} &amp; \frac{1}{4} &amp; \frac{1}{3} \\\frac{7}{12} &amp; \frac{1}{4} &amp; -\frac{2}{3} \\\frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{bmatrix} = \frac{1}{12}\begin{bmatrix}-5 &amp; 3 &amp; 4 \\7 &amp; 3 &amp; -8 \\1 &amp; -3 &amp; 4\end{bmatrix}$$`
+##### First setup the augmented matrix
+
+`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\1 &amp; 7 &amp; 2 &amp; 0 &amp; 1 &amp; 0 \\1 &amp; 4 &amp; 5 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$`
+--
+##### Subtract row 3 from row 2 and row 1 from row 3:
+
+`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; 3 &amp; -3 &amp; 0 &amp; 1 &amp; -1 \\0 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 1\end{array}\right]$$`
+    
+---
+
+# Another example 
+
+##### Subtract row 2 from row 1; divide row 2 by 3; add rows 2 and 3
+
+`$$\left[\begin{array}{rrr|rrr}1 &amp; 0 &amp; 8 &amp; 1 &amp; -1 &amp; 1 \\0 &amp; 1 &amp; -1 &amp; 0 &amp; \frac{1}{3} &amp; -\frac{1}{3} \\ 0 &amp; 0 &amp; 1 &amp; -1 &amp; -\frac{1}{3} &amp; \frac{4}{3}\end{array}\right]$$`
+    
+##### Subtract 8 * row 3 from row 1; add row 2 to row 3
+
+`$$\left[\begin{array}{rrr|rrr}1 &amp; 0 &amp; 0 &amp; 9 &amp; \frac{5}{3} &amp; -\frac{29}{3} \\
+0 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; -1 &amp; -\frac{1}{3} &amp; \frac{4}{3}\end{array}\right]$$`
+
+--
+
+We found it!
 
 
 ---
 
-# Alternative: Inverse matrix:
+# Alternative: Inverse matrix
 
 `$$\frac{1}{det(A)}C^T$$`
 
-Where `\(C^T\)` is the transpose of the cofactor matrix (aka adjoint matrix)
+Where `\(C^T\)` is the *transpose of the cofactor matrix* (aka adjoint matrix)
+
+Note: by hand, really a `\(3\times 3\)` matrix is the absolute limit for finding an inverse, but even that can be quite time consuming. While we show you how to do this, you will likely never need to do this beyond a 'proof of concept' demonstration.
+
 ---
 
-# Regression analysis: Application
-In methods classes you learn about linear regression. For each `\(i\)` (individual) we observe covariates `\(x_{i1}, x_{i2}, \ldots, x_{ik}\)` and dependent variable `\(Y_{i}\)`. Then,
+# Application: Regression analysis
+In some methods/quantitative classes you learn about linear regression. For each `\(i\)` (individual) we observe covariates `\(x_{i1}, x_{i2}, \ldots, x_{ik}\)` and dependent variable `\(Y_{i}\)`. Then,
 
 `$$\begin{aligned}
 Y_{1} &amp; = \beta_{0} + \beta_{1} x_{11} + \beta_{2} x_{12} + \ldots + \beta_{k} x_{1k} \\
@@ -552,72 +604,44 @@ Y_{n} &amp; = \beta_{0} + \beta_{1} x_{n1} + \beta_{2} x_{n2} + \ldots + \beta_{
 \end{aligned}$$`
 
 * `\(\mathbf{x}_{i} = (1, x_{i1}, x_{i2}, \ldots, x_{ik})\)`
-* `\(\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}\\\mathbf{x}_{2}\\ \vdots \\ \mathbf{x}_{n} \end{bmatrix}\)`
-* `\(\boldsymbol{\beta} = (\beta_{0}, \beta_{1}, \ldots, \beta_{k} )\)`
-* `\(\mathbf{Y} = (Y_{1}, Y_{2}, \ldots, Y_{n})\)`
+
+ `\(\mathbf{Y} = \begin{bmatrix}Y_{1} \\ Y_{2} \\  \vdots \\ Y_{n}\end{bmatrix}\)`, 
+ `\(\boldsymbol{\beta} = \begin{bmatrix}\beta_{0} \\ \beta_{1} \\ \vdots \\ \beta_{k} \end{bmatrix}\)`,$\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}\\\mathbf{x}_{2}\\ \vdots \\ \mathbf{x}_{n} \end{bmatrix}$
 
 ---
 
 # Solve the system of equations
 
+GOAL: find `\(\beta\)`
 `$$\begin{aligned}
-\mathbf{Y} &amp;= \mathbf{X}\mathbf{\beta} \\
-\mathbf{X}^{'} \mathbf{Y} &amp;= \mathbf{X}^{'} \mathbf{X} \mathbf{\beta} \\
-(\mathbf{X}^{'}\mathbf{X})^{-1} \mathbf{X}^{'} \mathbf{Y} &amp;= (\mathbf{X}^{'}\mathbf{X})^{-1}\mathbf{X}^{'} \mathbf{X} \mathbf{\beta} \\
+\mathbf{Y} &amp;= \mathbf{X}\mathbf{\beta} \\\end{aligned}$$`
+
+
+* Ok, so, we have an `\(\mathbf{X}\)`. We want to 'undo' it, so we need the inverse. Is it invertible? How do we make sure? 
+
+--
+
+* Ah, yes, we multiply it by its transpose. It will certainly be square (and likely invertible) then
+
+`$$\begin{aligned}
+\mathbf{X}^{'} \mathbf{Y} &amp;= \mathbf{X}^{'} \mathbf{X} \mathbf{\beta} \\\end{aligned}$$`
+
+--
+* Great! Now, we can 'undo' this (inverse-land)
+--
+`$$\begin{aligned}
+(\mathbf{X}^{'}\mathbf{X})^{-1} \mathbf{X}^{'} \mathbf{Y} &amp;= 
+(\mathbf{X}^{'}\mathbf{X})^{-1}\mathbf{X}^{'} \mathbf{X} \mathbf{\beta} \\ \end{aligned}$$`
+--
+
+`$$\begin{aligned}
+(\mathbf{X}^{'}\mathbf{X})^{-1} \mathbf{X}^{'} \mathbf{Y} &amp;=\mathbf{I}\mathbf{\beta} 
+\end{aligned}$$`
+
+--
+`$$\begin{aligned}
 (\mathbf{X}^{'}\mathbf{X})^{-1} \mathbf{X}^{'} \mathbf{Y} &amp;=\mathbf{\beta} 
 \end{aligned}$$`
-
----
-
-# Tax benefits of charitable contributions
-
-* Company earns before-tax profits of $100,000
-* 10% contribution of after-tax profits to charity
-* State tax is 5% of profits (after charitable deduction)
-* Federal tax is 40% of profits (after charitable and state tax deduction)
-* How much does the company pay in state taxes, federal taxes, and Red Cross donation?
-
----
-
-# Tax benefits of charitable contributions
-
-`$$\begin{aligned}
-C &amp;+ 0.1S &amp;+ 0.1F &amp;= 10{,}000 \\
-0.05C &amp;+ S &amp; &amp;= 5{,}000 \\
-0.4C &amp;+ 0.4S &amp;+ F &amp;= 40{,}000
-\end{aligned}$$`
-
----
-
-# Solve via matrix inversion
-
-##### `\(\mathbf{A}\)`
-
-
-```
-##      [,1] [,2] [,3]
-## [1,] 1.00  0.1  0.1
-## [2,] 0.05  1.0  0.0
-## [3,] 0.40  0.4  1.0
-```
-
---
-
-##### `\(\mathbf{b}\)`
-
-
-```
-## [1] 10000  5000 40000
-```
-
---
-
-##### `\(\mathbf{A}^{-1} \mathbf{b}\)`
-    
-
-```
-## [1]  5956  4702 35737
-```
 
 ---
 
@@ -647,7 +671,80 @@ I think about **eigenvectors** as the 'essence' of a vector -- meaning that tran
 
 The **eigenvalue** is the length the vector changes in its transformation.
 
-More formally, suppose we have a matrix `\(\mathbf{X}\)`. If we multiply that by our eigenvector `\(\mathbf{v}\)`, what we'll get out is simply a rescaled vector `\(mathbf{v}\)`. How much will it be rescaled by? By some scalar amount of our eigenvalue, represented by `\(\lambda\)`. 
+More formally, suppose we have a matrix `\(\mathbf{X}\)`. If we multiply that by our eigenvector `\(\mathbf{v}\)`, what we'll get out is simply a rescaled vector `\(\mathbf{v}\)`. How much will it be rescaled by? By some scalar amount of our eigenvalue, represented by `\(\lambda\)`. 
+
+
+---
+# Calculating eigenvalues
+
+An *eigenvector* of a matrix, `\(\mathbf{A}\)` is a nonzero vector \mathbf{v} where `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)`, for some scalar `\(\lambda\)`. 
+
+An *eigenvalue* of `\(\mathbf{A}\)` is a scalar `\(\lambda\)` where `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)` has a nontrivial solution. 
+
+--
+
+cue: flashbacks from solving systems of equations!
+
+---
+# Eigenvalues: cont'd
+
+To find eigenvalues, we can consider our equation, `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)`.
+
+We can move things around to find: `\(0 = \lambda \mathbf{v}-\mathbf{A}\mathbf{v}\)`
+We can work in the identity matrix to make things a little nicer: 
+
+`\(0 = \lambda \mathbf{I} \mathbf{v}-\mathbf{A}\mathbf{v}=(\lambda \mathbf{I} -\mathbf{A})\mathbf{v}\)` (note: can also solve `\((\mathbf{A}- \lambda \mathbf{I})\mathbf{v}\)`)
+
+--
+
+Additionally, this matrix needs a zero determinant, so we also know:
+`\(det(\lambda \mathbf{I}−\mathbf{A})=0\)`
+
+
+
+Example: start with `\(\begin{pmatrix} 0 &amp; 4 \\ 1 &amp; 0 \end{pmatrix}\)`. 
+
+--
+
+`\(det(\lambda \mathbf{I}−\mathbf{A}) = det(\begin{pmatrix}\lambda - 0 &amp; 4 \\ 1 &amp; \lambda - 0 \end{pmatrix})=0\)`
+
+--
+
+`\((\lambda^2-4) = 0\)` 
+
+
+--
+
+
+`\(\lambda \pm 2\)`
+
+--
+
+So, `\(\lambda\)` is our eigenvalue(s) and we can plug this in to a system of equations to find our eigenvectors!
+
+---
+# Eigenvalues: becoming an eigenvector
+
+We can start with our eigenvalue (let's begin with `\(\lambda = -2\)`). We then setup our system of equations use our matrix `\(\lambda \mathbf{I}-\mathbf{A}\)`, knowing that  `\((\lambda \mathbf{I}-\mathbf{A})\mathbf{v} =0\)`.
+
+--
+
+`\(\begin{pmatrix}\lambda &amp; 4 \\ 1 &amp; \lambda\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix}\)` becomes
+
+--
+
+`\(-2v_1 + 4v_2 =0 \\\)`
+`\(v_1 - 2v_2 = 0\)`
+
+--
+
+We can rearrange to find that `\(4v_2 = 2v_1\)`, simplyfing to `\(v_1 =2v_2\)`. Since these are going to have infinitely many solutions, we can choose an arbitrary value for one of our vectors, suppose `\(v_1\)` is 1 (start small and go from there!). Thus, we end up with `\(v_1=1\)` and `\(v_2 = 2\)`.
+
+--
+
+By a similar process, we can substitute to find that `\(2v_1 + 4v_2 = 0\)`, arriving at `\(v_1 = -2v_2\)`. Again, we suppose `\(v_1=1\)` (for simplicity), and find that `\(v_2=-2\)`
+
+So, our eigenvectors are `\(\begin{pmatrix} 1 \\ 2 \end{pmatrix}\)` and `\(\begin{pmatrix}1 \\ -2\end{pmatrix}\)`. (How we interpret them depends on what our question is!)
 
 ---
 # Cool. So what?!
@@ -655,6 +752,20 @@ More formally, suppose we have a matrix `\(\mathbf{X}\)`. If we multiply that by
 --
 
 So glad you asked!!! We sometimes want to get an idea of what happens if we are reducing the thing we care about from a whole bunch of stuff to a few core directions / topics (cue PCA / topic analysis. )
+
+--
+
+Another way to consider eigenvalues and eigenvectors is as a way to understand how things are/not transformed and how (e.g. what are the most productive/effective ways of dealing with things)
+
+---
+# Which dimensions matter? 
+(note: for illustrative purposes only!)
+
+&lt;img src="https://cdn.britannica.com/43/244843-050-67BE1C71/Potemkin-village-building-facades-concept-photo-illustration.jpg" width="60%" style="display: block; margin: auto;" /&gt;
+
+--
+
+A way to conceptualize this is we want maximum information for minimum effort. Which dimensions are giving us the most variation here? 
 
 ---
 class: middle
@@ -720,6 +831,88 @@ In either case, the goal is to reduce the dimensionality of the data by identify
 # Senate: Second dimension
 
 &lt;img src="images/senate_party_means_1879-2015_2nd.png" width="671" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Principal components analysis
+
+* Technique for dimension reduction
+* Find a low-dimensional representation of the data that contains as much as possible of the variation
+* Dimensions are linear combinations of the variables
+
+---
+
+# Implementing PCA
+
+1. Rescale each column to be mean 0 and standard deviation 1
+1. Compute the covariance matrix `\(\mathbf{S}\)`
+    `$$\mathbf{S} = \dfrac{1}{N} \mathbf{X}' \mathbf{X}$$`
+1. Compute the `\(K\)` largest **eigenvectors** of `\(\mathbf{S}\)`
+    * Eigenvector - principal directions
+    * Values of observations along eigenvector - principal components
+    * Eigenvalues - amount of variance along the eigenvector
+
+--
+
+* Not an efficient approach
+* Let's use SVD!
+
+---
+
+# Calculating the PCA
+
+`$$\mathbf{M} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{*}$$`
+
+* `\(\mathbf{V}^{*}\)` = principal directions (eigenvector)
+* Columns of `\(\mathbf{U} \boldsymbol{\Sigma}\)` = principal components (values along eigenvector)
+* Values of the diagonal elements of `\(\boldsymbol{\Sigma}\)` `\(\approx\)` eigenvalues
+
+---
+
+# `USArrests`
+
+
+
+
+
+
+
+
+
+
+
+&lt;img src="06-matrix-inversion-decomposition_files/figure-html/usarrests-pc-scores-plot-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# `USArrests`
+
+&lt;img src="06-matrix-inversion-decomposition_files/figure-html/usarrests-pc-scores-biplot-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# MNIST data set
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png" style="display: block; margin: auto;" /&gt;
+
+
+
+
+
+
+
+---
+
+# MNIST data set
+
+&lt;img src="06-matrix-inversion-decomposition_files/figure-html/pixels-pca-pc12-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# MNIST data set
+
+&lt;img src="06-matrix-inversion-decomposition_files/figure-html/pixels-pca-pc12-facet-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -884,86 +1077,6 @@ In either case, the goal is to reduce the dimensionality of the data by identify
 
 &lt;img src="06-matrix-inversion-decomposition_files/figure-html/lions-rank-all-1.gif" style="display: block; margin: auto;" /&gt;
 
----
-
-# Principal components analysis
-
-* Technique for dimension reduction
-* Find a low-dimensional representation of the data that contains as much as possible of the variation
-* Dimensions are linear combinations of the variables
-
----
-
-# Implementing PCA
-
-1. Rescale each column to be mean 0 and standard deviation 1
-1. Compute the covariance matrix `\(\mathbf{S}\)`
-    `$$\mathbf{S} = \dfrac{1}{N} \mathbf{X}' \mathbf{X}$$`
-1. Compute the `\(K\)` largest **eigenvectors** of `\(\mathbf{S}\)`
-    * Eigenvector - principal directions
-    * Values of observations along eigenvector - principal components
-    * Eigenvalues - amount of variance along the eigenvector
-
---
-
-* Not an efficient approach
-* Let's use SVD!
-
----
-
-# Calculating the PCA
-
-`$$\mathbf{M} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^{*}$$`
-
-* `\(\mathbf{V}^{*}\)` = principal directions (eigenvector)
-* Columns of `\(\mathbf{U} \boldsymbol{\Sigma}\)` = principal components (values along eigenvector)
-* Values of the diagonal elements of `\(\boldsymbol{\Sigma}\)` `\(\approx\)` eigenvalues
-
----
-
-# `USArrests`
-
-
-
-
-
-
-
-
-
-
-
-&lt;img src="06-matrix-inversion-decomposition_files/figure-html/usarrests-pc-scores-plot-1.png" width="864" style="display: block; margin: auto;" /&gt;
-
----
-
-# `USArrests`
-
-&lt;img src="06-matrix-inversion-decomposition_files/figure-html/usarrests-pc-scores-biplot-1.png" width="864" style="display: block; margin: auto;" /&gt;
-
----
-
-# MNIST data set
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png" style="display: block; margin: auto;" /&gt;
-
-
-
-
-
-
-
----
-
-# MNIST data set
-
-&lt;img src="06-matrix-inversion-decomposition_files/figure-html/pixels-pca-pc12-1.png" width="864" style="display: block; margin: auto;" /&gt;
-
----
-
-# MNIST data set
-
-&lt;img src="06-matrix-inversion-decomposition_files/figure-html/pixels-pca-pc12-facet-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
