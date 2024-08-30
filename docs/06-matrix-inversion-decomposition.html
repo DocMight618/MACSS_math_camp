@@ -248,7 +248,7 @@ Determinant:
 
 -- 
 
-Alternatively, for `\(3 x 3\)` ONLY: `\(det(\mathbf{A}) = a11a22a33 − a_{11}a_{23}a_{32} − a_{12}a_{21}a_{33} +a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} − a_{13}a_{22}a_{31}\)`
+Alternatively, for `\(3 x 3\)` ONLY: `\(det(\mathbf{A}) = a_{11}a_{22}a_{33} − a_{11}a_{23}a_{32} − a_{12}a_{21}a_{33} +a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} − a_{13}a_{22}a_{31}\)`
 
 ---
 # Example: column (j = 2)
@@ -606,7 +606,8 @@ Y_{n} &amp; = \beta_{0} + \beta_{1} x_{n1} + \beta_{2} x_{n2} + \ldots + \beta_{
 * `\(\mathbf{x}_{i} = (1, x_{i1}, x_{i2}, \ldots, x_{ik})\)`
 
  `\(\mathbf{Y} = \begin{bmatrix}Y_{1} \\ Y_{2} \\  \vdots \\ Y_{n}\end{bmatrix}\)`, 
- `\(\boldsymbol{\beta} = \begin{bmatrix}\beta_{0} \\ \beta_{1} \\ \vdots \\ \beta_{k} \end{bmatrix}\)`,$\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}\\\mathbf{x}_{2}\\ \vdots \\ \mathbf{x}_{n} \end{bmatrix}$
+ `\(\boldsymbol{\beta} = \begin{bmatrix}\beta_{0} \\ \beta_{1} \\ \vdots \\ \beta_{k} \end{bmatrix}\)`,
+ `\(\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}\\\mathbf{x}_{2}\\ \vdots \\ \mathbf{x}_{n} \end{bmatrix}\)`
 
 ---
 
@@ -738,13 +739,13 @@ We can start with our eigenvalue (let's begin with `\(\lambda = -2\)`). We then 
 
 --
 
-We can rearrange to find that `\(4v_2 = 2v_1\)`, simplyfing to `\(v_1 =2v_2\)`. Since these are going to have infinitely many solutions, we can choose an arbitrary value for one of our vectors, suppose `\(v_1\)` is 1 (start small and go from there!). Thus, we end up with `\(v_1=1\)` and `\(v_2 = 2\)`.
+We can rearrange to find that `\(4v_2 = 2v_1\)`, simplyfing to `\(v_1 =2v_2\)`. Since these are going to have infinitely many solutions, we can choose an arbitrary value for one of our vectors, suppose `\(v_2\)` is 1 (start small and go from there!). Thus, we end up with `\(v_1=2\)` and `\(v_2 = 1\)`.
 
 --
 
-By a similar process, we can substitute to find that `\(2v_1 + 4v_2 = 0\)`, arriving at `\(v_1 = -2v_2\)`. Again, we suppose `\(v_1=1\)` (for simplicity), and find that `\(v_2=-2\)`
+By a similar process, we can substitute to find that `\(2v_1 + 4v_2 = 0\)`, arriving at `\(v_1 = -2v_2\)`. Again, we suppose `\(v_2=1\)` (for simplicity), and find that `\(v_1=-2\)`
 
-So, our eigenvectors are `\(\begin{pmatrix} 1 \\ 2 \end{pmatrix}\)` and `\(\begin{pmatrix}1 \\ -2\end{pmatrix}\)`. (How we interpret them depends on what our question is!)
+So, our eigenvectors are `\(\begin{pmatrix} 2 \\ 1 \end{pmatrix}\)` and `\(\begin{pmatrix}-2 \\ 1\end{pmatrix}\)`. (How we interpret them depends on what our question is!)
 
 ---
 # Cool. So what?!
@@ -1092,6 +1093,22 @@ In either case, the goal is to reduce the dimensionality of the data by identify
   * **minor**: determinant of submatrix (relates to deleting particular row/column)
   * **cofactor**: product of minor and signed element removed from the matrix
 
+---
+# Determinants, minors and cofactors: `\(n \times n\)` matrix
+
+`$$\mid \mathbf{X} \mid = \sum_{j=1}^n (-1)^{i+j} x_{ij} \mid\mathbf{X}_{[ij]}\mid$$`
+  * NOTE: we can add across any one row or column (just be consistent)
+
+* `\(ij\)`th **minor** of `\(\mathbf{X}\)` for `\(x_{ij}\)`, `\(\mid\mathbf{X}_{[ij]}\mid\)`
+    * Determinant of the `\((n - 1) \times (n - 1)\)` submatrix that results from taking the `\(i\)`th row and `\(j\)`th column out
+    * Refer to this resulting submatrix at `\(\mathbf{M_{ij}}\)`
+* **Cofactor** of `\(\mathbf{X}\)`
+    * Minor signed as `\((-1)^{i+j}\mid\mathbf{X}_{[ij]}\mid\)`
+* Cycle recursively through columns
+
+* Determinants (general form): `\(|\mathbf{A}|=a_{21}\mathbf{C_{21}}+ a_{22}\mathbf{C_{22}} + a_{23}\mathbf{C_{23}}\)`
+  * `\(2\times2\)`: `\(a_{11}a_{22}-a_{12}a_{21}\)`
+  * `\(3\times3\)`: `\(a_{11}a_{22}a_{33} − a_{11}a_{23}a_{32} − a_{12}a_{21}a_{33} +a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} − a_{13}a_{22}a_{31}\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
