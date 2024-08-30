@@ -543,7 +543,7 @@ In this situation, we would want to combine these into a matrix. However, if we 
 
 ---
 
-# Another example EDIT TO FIX XXX
+# Another example 
 
 `$$\mathbf{A} = \begin{bmatrix}
 1 &amp; 3 &amp; 5 \\
@@ -551,102 +551,32 @@ In this situation, we would want to combine these into a matrix. However, if we 
 1 &amp; 4 &amp; 5
 \end{bmatrix}$$`
 
----
+--
+
 ##### First setup the augmented matrix
 
 `$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\1 &amp; 7 &amp; 2 &amp; 0 &amp; 1 &amp; 0 \\1 &amp; 4 &amp; 5 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$`
+--
+##### Subtract row 3 from row 2 and row 1 from row 3:
 
-##### Subtract 3 x row 1 from row 2
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\5 &amp; 10 &amp; 15 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$`
+`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; 3 &amp; -3 &amp; 0 &amp; 1 &amp; -1 \\0 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 1\end{array}\right]$$`
     
 ---
 
-# Another example EDIT TO FIX XXX
+# Another example 
 
-##### Subtract 3 x row 1 from row 2
+##### Subtract row 2 from row 1; divide row 2 by 3; add rows 2 and 3
 
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\5 &amp; 10 &amp; 15 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$`
+`$$\left[\begin{array}{rrr|rrr}1 &amp; 0 &amp; 8 &amp; 1 &amp; -1 &amp; 1 \\0 &amp; 1 &amp; -1 &amp; 0 &amp; \frac{1}{3} &amp; -\frac{1}{3} \\ 0 &amp; 0 &amp; 1 &amp; -1 &amp; -\frac{1}{3} &amp; \frac{4}{3}\end{array}\right]$$`
     
-##### Subtract 2 x row 1 from row 3
+##### Subtract 8 * row 3 from row 1; add row 2 to row 3
 
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; -3 &amp; -3 &amp; -2 &amp; 0 &amp; 1\end{array}\right]$$`
-    
----
-
-# Another example EDIT TO FIX XXX
-
-##### Subtract 2 x row 1 from row 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; -3 &amp; -3 &amp; -2 &amp; 0 &amp; 1\end{array}\right]$$`
-    
-##### Subtract `\(\frac{3}{4}\)` x row 2 from row 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 3 &amp; \frac{1}{4} &amp; -\frac{3}{4} &amp; 1\end{array}\right]$$`
-    
----
-
-# Another example EDIT TO FIX XXX
-
-##### Subtract `\(\frac{3}{4}\)` x row 2 from row 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 3 &amp; \frac{1}{4} &amp; -\frac{3}{4} &amp; 1\end{array}\right]$$`
-    
-##### Divide row 3 by 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
----
-
-# Another example EDIT TO FIX XXX
-
-##### Divide row 3 by 3
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; -8 &amp; -3 &amp; 1 &amp; 0 \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
-##### Add 8 times row 3 to row 2
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; 0 &amp; -\frac{7}{3} &amp; -1 &amp; \frac{8}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
----
-
-# Another example EDIT TO FIX XXX
-
-##### Add 8 times row 3 to row 2
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; -4 &amp; 0 &amp; -\frac{7}{3} &amp; -1 &amp; \frac{8}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
-##### Subtract 3 x row 3 from row 1
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 2 &amp; 0 &amp; \frac{3}{4} &amp; \frac{3}{4} &amp; -1 \\0 &amp; -4 &amp; 0 &amp; -\frac{7}{3} &amp; -1 &amp; \frac{8}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
----
-
-# Another example EDIT TO FIX XXX
-
-##### Subtract 3 x row 3 from row 1
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 2 &amp; 0 &amp; \frac{3}{4} &amp; \frac{3}{4} &amp; -1 \\0 &amp; -4 &amp; 0 &amp; -\frac{7}{3} &amp; -1 &amp; \frac{8}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
-##### Divide row 2 by -4
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 2 &amp; 0 &amp; \frac{3}{4} &amp; \frac{3}{4} &amp; -1 \\0 &amp; 1 &amp; 0 &amp; \frac{7}{12} &amp; \frac{1}{4} &amp; -\frac{2}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
----
-
-# Another example EDIT TO FIX XXX
-
-##### Divide row 2 by -4
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 2 &amp; 0 &amp; \frac{3}{4} &amp; \frac{3}{4} &amp; -1 \\0 &amp; 1 &amp; 0 &amp; \frac{7}{12} &amp; \frac{1}{4} &amp; -\frac{2}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
-
-##### Subtract 2 x row 2 from row 1
-
-`$$\left[\begin{array}{rrr|rrr}1 &amp; 0 &amp; 0 &amp; -\frac{5}{12} &amp; \frac{1}{4} &amp; \frac{1}{3} \\0 &amp; 1 &amp; 0 &amp; \frac{7}{12} &amp; \frac{1}{4} &amp; -\frac{2}{3} \\0 &amp; 0 &amp; 1 &amp; \frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{array}\right]$$`
+`$$\left[\begin{array}{rrr|rrr}1 &amp; 0 &amp; 0 &amp; 9 &amp; \frac{5}{3} &amp; -\frac{29}{3} \\
+0 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; -1 &amp; -\frac{1}{3} &amp; \frac{4}{3}\end{array}\right]$$`
 
 --
 
-`$$\mathbf{A}^{-1} = \begin{bmatrix}-\frac{5}{12} &amp; \frac{1}{4} &amp; \frac{1}{3} \\\frac{7}{12} &amp; \frac{1}{4} &amp; -\frac{2}{3} \\\frac{1}{12} &amp; -\frac{1}{4} &amp; \frac{1}{3}\end{bmatrix} = \frac{1}{12}\begin{bmatrix}-5 &amp; 3 &amp; 4 \\7 &amp; 3 &amp; -8 \\1 &amp; -3 &amp; 4\end{bmatrix}$$`
+We found it!
 
 
 ---
@@ -675,8 +605,8 @@ Y_{n} &amp; = \beta_{0} + \beta_{1} x_{n1} + \beta_{2} x_{n2} + \ldots + \beta_{
 
 * `\(\mathbf{x}_{i} = (1, x_{i1}, x_{i2}, \ldots, x_{ik})\)`
 
- `\(\mathbf{Y} = \begin{bmatrix}Y_{1} \\ Y_{2} \\  \vdots \\ Y_{n}\end{bmatrix}\)`, `\(\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}\\\mathbf{x}_{2}\\ \vdots \\ \mathbf{x}_{n} \end{bmatrix}\)`,
- `\(\boldsymbol{\beta} = \begin{bmatrix}\beta_{0} \\ \beta_{1} \\ \vdots \\ \beta_{k} \end{bmatrix}\)`
+ `\(\mathbf{Y} = \begin{bmatrix}Y_{1} \\ Y_{2} \\  \vdots \\ Y_{n}\end{bmatrix}\)`, 
+ `\(\boldsymbol{\beta} = \begin{bmatrix}\beta_{0} \\ \beta_{1} \\ \vdots \\ \beta_{k} \end{bmatrix}\)`,$\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}\\\mathbf{x}_{2}\\ \vdots \\ \mathbf{x}_{n} \end{bmatrix}$
 
 ---
 
@@ -747,11 +677,12 @@ More formally, suppose we have a matrix `\(\mathbf{X}\)`. If we multiply that by
 ---
 # Calculating eigenvalues
 
-An *eigenvector* of a matrix, `\(\mathbf{A}\)` is a nonzero vector \matbf{v} where `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)`, for some scalar `\(\lambda\)`. 
+An *eigenvector* of a matrix, `\(\mathbf{A}\)` is a nonzero vector \mathbf{v} where `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)`, for some scalar `\(\lambda\)`. 
 
 An *eigenvalue* of `\(\mathbf{A}\)` is a scalar `\(\lambda\)` where `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)` has a nontrivial solution.
 
 --
+
 cue: flashbacks from solving systems of equations!
 
 ---
@@ -760,14 +691,37 @@ cue: flashbacks from solving systems of equations!
 To find eigenvalues, we can consider our equation, `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)`.
 
 We can move things around to find: `\(0 = \lambda \mathbf{v}-\mathbf{A}\mathbf{v}\)`
-We can work in the identity matrix to make thngs a little nicer: 
+We can work in the identity matrix to make things a little nicer: 
 
 `\(0 = \lambda \mathbf{I} \mathbf{v}-\mathbf{A}\mathbf{v}=(\lambda \mathbf{I} -\mathbf{A})\mathbf{v}\)`
 
 --
 
-Additionally, this matrix needs a zero determinant (not invertible), so we also know:
+Additionally, this matrix needs a zero determinant, so we also know:
 `\(det(\lambda \mathbf{I}−\mathbf{A})=0\)`
+
+
+
+Example: start with `\(\begin{pmatrix} 0 &amp; 4 \\ 1 &amp; 0 \end{pmatrix}\)`. 
+
+--
+
+`\(det(\lambda \mathbf{I}−\mathbf{A}) = det(\begin{pmatrix}\lambda - 0 &amp; 4 \\ 1 &amp; \lambda - 0 \end{pmatrix})=0\)`
+
+--
+
+`\((\lambda^2-4) = 0\)` 
+
+
+--
+
+
+`\(\lambda \pm 2\)`
+
+--
+
+So, `\(\lambda\)` is our eigenvalue(s) and we can plug this in to a system of equations to find our eigenvectors!
+
 
 ---
 # Cool. So what?!
