@@ -707,7 +707,7 @@ Example: start with `\(\begin{pmatrix} 0 &amp; 4 \\ 1 &amp; 0 \end{pmatrix}\)`.
 
 --
 
-`\(det(\lambda \mathbf{I}−\mathbf{A}) = det(\begin{pmatrix}\lambda - 0 &amp; 4 \\ 1 &amp; \lambda - 0 \end{pmatrix})=0\)`
+`\(det(\lambda \mathbf{I}−\mathbf{A}) = det(\begin{pmatrix}\lambda - 0 &amp; -4 \\ -1 &amp; \lambda - 0 \end{pmatrix})=0\)`
 
 --
 
@@ -730,20 +730,20 @@ We can start with our eigenvalue (let's begin with `\(\lambda = -2\)`). We then 
 
 --
 
-`\(\begin{pmatrix}\lambda &amp; 4 \\ 1 &amp; \lambda\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix}\)` becomes
+`\(\begin{pmatrix}\lambda &amp; -4 \\ -1 &amp; \lambda\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix}\)` becomes
 
 --
 
-`\(-2v_1 + 4v_2 =0 \\\)`
-`\(v_1 - 2v_2 = 0\)`
+`\(-2v_1 - 4v_2 =0 \\\)`
+`\(-v_1 - 2v_2 = 0\)`
 
 --
 
-We can rearrange to find that `\(4v_2 = 2v_1\)`, simplyfing to `\(v_1 =2v_2\)`. Since these are going to have infinitely many solutions, we can choose an arbitrary value for one of our vectors, suppose `\(v_2\)` is 1 (start small and go from there!). Thus, we end up with `\(v_1=2\)` and `\(v_2 = 1\)`.
+We can rearrange to find that `\(4v_2 = -2v_1\)`, simplyfing to `\(v_1 =-2v_2\)`. Since these are going to have infinitely many solutions, we can choose an arbitrary value for one of our vectors, suppose `\(v_2\)` is 1 (start small and go from there!). Thus, we end up with `\(v_1=-2\)` and `\(v_2 = 1\)`.
 
 --
 
-By a similar process, we can substitute to find that `\(2v_1 + 4v_2 = 0\)`, arriving at `\(v_1 = -2v_2\)`. Again, we suppose `\(v_2=1\)` (for simplicity), and find that `\(v_1=-2\)`
+By a similar process, we can substitute to find that `\(2v_1 - 4v_2 = 0\)`, arriving at `\(v_1 = 2v_2\)`. Again, we suppose `\(v_2=1\)` (for simplicity), and find that `\(v_1=2\)`
 
 So, our eigenvectors are `\(\begin{pmatrix} 2 \\ 1 \end{pmatrix}\)` and `\(\begin{pmatrix}-2 \\ 1\end{pmatrix}\)`. (How we interpret them depends on what our question is!)
 
