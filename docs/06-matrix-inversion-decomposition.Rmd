@@ -670,7 +670,7 @@ More formally, suppose we have a matrix $\mathbf{X}$. If we multiply that by our
 
 An *eigenvector* of a matrix, $\mathbf{A}$ is a nonzero vector \mathbf{v} where $\mathbf{A}\mathbf{v}= \lambda \mathbf{v}$, for some scalar $\lambda$. 
 
-An *eigenvalue* of $\mathbf{A}$ is a scalar $\lambda$ where $\mathbf{A}\mathbf{v}= \lambda \mathbf{v}$ has a nontrivial solution.
+An *eigenvalue* of $\mathbf{A}$ is a scalar $\lambda$ where $\mathbf{A}\mathbf{v}= \lambda \mathbf{v}$ has a nontrivial solution. 
 
 --
 
@@ -684,7 +684,7 @@ To find eigenvalues, we can consider our equation, $\mathbf{A}\mathbf{v}= \lambd
 We can move things around to find: $0 = \lambda \mathbf{v}-\mathbf{A}\mathbf{v}$
 We can work in the identity matrix to make things a little nicer: 
 
-$0 = \lambda \mathbf{I} \mathbf{v}-\mathbf{A}\mathbf{v}=(\lambda \mathbf{I} -\mathbf{A})\mathbf{v}$
+$0 = \lambda \mathbf{I} \mathbf{v}-\mathbf{A}\mathbf{v}=(\lambda \mathbf{I} -\mathbf{A})\mathbf{v}$ (note: can also solve $(\mathbf{A}- \lambda \mathbf{I})\mathbf{v}$)
 
 --
 
@@ -713,6 +713,29 @@ $\lambda \pm 2$
 
 So, $\lambda$ is our eigenvalue(s) and we can plug this in to a system of equations to find our eigenvectors!
 
+---
+# Eigenvalues: becoming an eigenvector
+
+We can start with our eigenvalue (let's begin with $\lambda = -2$). We then setup our system of equations use our matrix $\lambda \mathbf{I}-\mathbf{A}$, knowing that  $(\lambda \mathbf{I}-\mathbf{A})\mathbf{v} =0$.
+
+--
+
+$\begin{pmatrix}\lambda & 4 \\ 1 & \lambda\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix}$ becomes
+
+--
+
+$-2v_1 + 4v_2 =0 \\$
+$v_1 - 2v_2 = 0$
+
+--
+
+We can rearrange to find that $4v_2 = 2v_1$, simplyfing to $v_1 =2v_2$. Since these are going to have infinitely many solutions, we can choose an arbitrary value for one of our vectors, suppose $v_1$ is 1 (start small and go from there!). Thus, we end up with $v_1=1$ and $v_2 = 2$.
+
+--
+
+By a similar process, we can substitute to find that $2v_1 + 4v_2 = 0$, arriving at $v_1 = -2v_2$. Again, we suppose $v_1=1$ (for simplicity), and find that $v_2=-2$
+
+So, our eigenvectors are $\begin{pmatrix} 1 \\ 2 \end{pmatrix}$ and $\begin{pmatrix}1 \\ -2\end{pmatrix}$. (How we interpret them depends on what our question is!)
 
 ---
 # Cool. So what?!
