@@ -258,7 +258,7 @@ class: middle, center
 
 To find or max / min, what would you do (think about realistically and then mathematically).
 
---
+
 
 Ideas: slowly move across an axis, finding a max or min. Metaphorically, this *is* what we'll be doing when we think about partial derivatives.  
 
@@ -285,6 +285,9 @@ If you have more than one variable changing simultaneously, you will need to eva
 `$$\frac{\partial f}{\partial x} (x,y) = \lim\limits_{h\to 0} \frac{f(x+h,y)-f(x,y)}{h}$$`
 --
 `$$\lim\limits_{h\to 0}\frac{2(x+h) +3y}{h} = \frac{(2x + 2h + 3y)-(2x+3y)}{h}$$` 
+
+--
+
 We can simplify: `$$\lim\limits_{h\to 0}\frac{2h}{h}=2$$`
 ---
 
@@ -296,7 +299,7 @@ To take a derivative when you have a multivariate function, you will focus on ON
 `$$f(x,y)=x^2+y^2$$`
 --
 
-Try it out, how many derivatives? What are they? 
+Try it out, how many partial derivatives? What are they? 
 
 --
 
@@ -313,8 +316,7 @@ $$\frac{\partial f}{\partial x}(x,y) = 2x, \text{  } \frac{\partial f}{\partial 
 `$$\frac{\partial^2 f}{\partial x^2}(x,y) = 2, \text{  } \frac{\partial^2 f}{\partial y^2}(x,y) = 2$$`
 
 --
-`$$\frac{\partial^2 f}{\partial x \partial y}(x,y) = 0$$`
-`$$\frac{\partial^2 f}{\partial y \partial x}(x,y) = 0$$`
+`$$\frac{\partial^2 f}{\partial x \partial y}(x,y) = 0 \text{  } \frac{\partial^2 f}{\partial y \partial x}(x,y) = 0$$`
 
 
 ---
@@ -323,12 +325,11 @@ $$\frac{\partial f}{\partial x}(x,y) = 2x, \text{  } \frac{\partial f}{\partial 
 
 $$ 2xy^2+3x+4y-yx^3$$
 
-Find all first derivatives, second derivatives, and partial derivatives. 
+Find all first and second partial derivatives. 
 --
-`$$\frac{\partial f}{\partial x}(x,y) = 2y^2+ 3-3yx^2$$`
-`$$\frac{\partial f}{\partial y}(x,y) = 4xy+ 4-x^3$$`
+`$$\frac{\partial f}{\partial x}(x,y) = 2y^2+ 3-3yx^2, \text{  } \frac{\partial f}{\partial y}(x,y) = 4xy+ 4-x^3$$`
 --
-`$$\frac{\partial^2 f}{\partial x^2}(x,y) = -6xy, \frac{\partial^2 f}{\partial y^2}(x,y) = 4x$$`
+`$$\frac{\partial^2 f}{\partial x^2}(x,y) = -6xy,\text{  } \frac{\partial^2 f}{\partial y^2}(x,y) = 4x$$`
 
 --
 `$$\frac{\partial^2 f}{\partial x \partial y}(x,y) = 4y-3x^2, \text{  } \frac{\partial^2 f}{\partial y \partial x}(x,y) = 4y-3x^2$$`
@@ -433,7 +434,7 @@ We want to think about how these pieces come together and what they're telling u
 
 * **Gradient** `\(\nabla f\)`: vector, contains the first derivatives with respect to each of our variables in our function.This is a vector of derivatives, typically of a function.  
   * *Jacobian* matrix of derivatives (sometimes you'll see reference to this). It is a matrix of derivatives of a vector. 
-* **Hessian** matrix of second derivatives, *including partials*. This is a matrix of derivatives, typically of a vector. 
+* **Hessian** matrix of second derivatives, *including partials*. This is a matrix of second derivatives, typically of a vector (Hessian may be a Jacobian from a Jacobian!). 
 
 ---
 
@@ -478,6 +479,8 @@ $$
 # Jacobian
 The Jacobian matrix is a matrix of derivatives (derivative of a vector function) while the gradient is the derivative of a scalar function. If we start with a function, `\(f\)`, we can evaluate its gradient. 
 
+--
+
 ### Gradient
 * `\(f:X \rightarrow \Re^{n}\)` with `\(X \subset \Re^{1}\)` is a differentiable function
 * Gradient vector of `\(f\)` at `\(\mathbf{x}_{0}\)`
@@ -502,6 +505,7 @@ The Hessian is a matrix that has all the second derivatives of our gradient vect
 
 $$ 2xy^2+3x+4y-yx^3$$
 Gradient: `$$\nabla f (\mathbf{x}_{0}) = \left(2y^2+3-3yx^2, 4xy+4-x^3 \right)$$`
+Jacobian: `$$\begin{bmatrix} 2y^2+3-3yx^2 &amp; 4xy+4-x^3 \end{bmatrix}$$`
 Hessian: `$$\begin{bmatrix} -6yx &amp; 4y-3x^2 \\ 4y-3x^2 &amp; 4x \end{bmatrix}$$`
 
 ---
