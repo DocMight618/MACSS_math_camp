@@ -760,7 +760,7 @@ $$\textbf{H}(f)(\widehat{\mu}, \widehat{\sigma}^2)  =  \begin{bmatrix} \frac{\pa
 
 --
 
-$$\textbf{H}(f)(\widehat{\mu}, \widehat{\sigma}^2) = \begin{bmatrix} \frac{-n}{\widehat{\sigma}^2} & 0 \\ 0 & \frac{-n}{2(\widehat{\sigma}^2)^2}  \\ \end{bmatrix}$$
+$$\textbf{H}(f)(\widehat{\mu}, \widehat{\sigma}^2) = \begin{bmatrix} \frac{-n}{\widehat{\sigma}^2} & 0 \\ 0 & \frac{-n}{(\widehat{\sigma}^2)^2}  \\ \end{bmatrix}$$
 
 --
 
