@@ -500,7 +500,7 @@ Suppose we have two events, `\(E\)` and `\(F\)`, and that `\(\Pr(F)&gt;0\)`.  Th
 ### Example 2
 
 * `\(F = \{\text{All Democrats Win} \}\)`
-* `\(E = \{ \text{Louie Gohmert Wins (R-TX)} \}\)`
+* `\(E = \{ \text{Chuck Grassley Wins (R-IA)} \}\)`
 * `\(F \cap E = \emptyset \Rightarrow \Pr(E|F) = \frac{\Pr(F \cap E) }{\Pr(F)} = \frac{\Pr(\emptyset)}{\Pr(F)} = 0\)`
 
 
@@ -730,7 +730,7 @@ $$
 ### Bonus: what is the probability that someone does NOT have the disease given that they have a positive result? 
 --
 
-*Ans*: `\((0.999*0.05)/(0.001*0.95+0.999*0.05)\)` OR `\(1-0.0187=0.09813\)`
+*Ans*: `\((0.999*0.05)/(0.001*0.95+0.999*0.05)\)` OR `\(1-0.0187=0.9813\)`
 
 
 ---
@@ -823,21 +823,25 @@ Are the events below independent?
 &lt;!--Event `\(B\)` consists of the outcomes `\((1,4), (2,3), (3,2), (4,1)\)` --&gt;
 `$$\Pr (B) = \frac{\text{number of elements of } B}{\text{total number of possible outcomes}} = \frac{4}{16}$$`
 
-Test: `\(P(A|B) = P(A)\)`? `\(P(A|B) = \frac{2}{4}\)`, `\(P(B)=\frac{4}{16}\)`. NOPE! (also `\(P(A\cap B) \neq P(A)*P(B)\)`)
+Test: `\(P(A|B) = P(A)\)`? 
+
+--
+
+`\(P(A|B) = \frac{2}{4}\)`, `\(P(B)=\frac{4}{16}\)`. NOPE! (also `\(P(A\cap B) \neq P(A)*P(B)\)`)
 
 ---
 
 # Rolling a 4-sided die
 
-Are the events below independent?
-
-`$$A = \{ \text{1st roll is even} \}, \quad B = \{ \text{2nd roll is even} \}$$`
+Are these events independent? `\(A = \{ \text{1st roll is even} \}, \quad B = \{ \text{2nd roll is even} \}\)`
 
 --
 
 `$$\Pr (A \cap B) = \Pr (\text{the result of the two rolls is } \{(2,2), (2,4), (4,2), (4,4)\} = \frac{4}{16}$$`
 
-`$$\Pr (A) = \frac{\text{number of elements of } A}{\text{total number of possible outcomes}} = \{(2,1), (2,2),(2,3), (2,4), (4,1), (4,2), (4,3), (4,4)\}=\frac{8}{16}$$`
+`$$\begin{aligned}\Pr (A) &amp;= \frac{\text{number of elements of } A}{\text{total number of possible outcomes}} \\
+&amp;= \{(2,1), (2,2),(2,3), (2,4), (4,1), (4,2), (4,3), (4,4)\} \\
+&amp; =\frac{8}{16}\end{aligned}$$`
 
 --
 
@@ -856,17 +860,27 @@ Consider an experiment involving two successive rolls of a 4-sided die in which 
 
 --------------------------------
 
-Are the events
+Are these events independent? 
 
 `$$A = \{ \text{maximum of the two rolls is 2} \}, \quad B = \{ \text{minimum of the two rolls is 2} \}$$`
 
-independent?
+
 
 --
 
 `$$\Pr (A \cap B) = \Pr (\text{the result of the two rolls is } (2,2)) = \frac{1}{16}$$`
 
 `$$\begin{aligned}\Pr (A) &amp;= \frac{\text{number of elements in } A_i}{\text{total number of possible outcomes}} = \frac{3}{16} \\\Pr (B) &amp;= \frac{\text{number of elements in } B_j}{\text{total number of possible outcomes}} = \frac{5}{16}\end{aligned}$$`
+--
+
+Test: `\(P(A|B) = P(A)\)`? `\(\frac{1}{16} \neq \frac{3}{16}\)` NO
+
+
+---
+class: middle, center, inverse
+
+# Independence 
+
 
 ---
 
@@ -1046,7 +1060,7 @@ The number of combinations of two out of the four letters `\(A, B, C, D\)` is fo
 * Sample spaces
 * Sets: union, intersect
 * Thinking about how to count elements
-  * Permutations vs Combinations `\(n \choose k\)`: `\(\frac{n!}{k!(n-k)!}\)` (denominator depends on p vs c)
+  * Permutations vs Combinations `\(n \choose k\)`: `\(\frac{n!}{k!(n-k)!}\)` (denominator depends on permutation vs combination)
 * Conditional probability and independence
 * Bayes' Rule: `\(\Pr(A|B) = \frac{\Pr(A)\times \Pr(B|A)}{\Pr(B)}\)`
     </textarea>
