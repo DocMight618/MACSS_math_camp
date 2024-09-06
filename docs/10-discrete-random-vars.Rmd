@@ -104,12 +104,11 @@ Define these for our domain (x). NOTE: little 'x' is the value that is being tak
 
 So, $P(X=x)$ refers to the probability that our random variable takes on the value of x. You can also see $P_X(X=x)$ and similar variants.
 
---
+---
 
 ### Intuition
 
 * $\Pr(C, T, C) = \Pr(C)\Pr(T)\Pr(C) = \frac{1}{2}*\frac{1}{2}*\frac{1}{2} = \frac{1}{8}$
-* This applies to all outcomes
 
     $$\begin{aligned}p(X = 0) & = \Pr(C, C, C) = \frac{1}{8}\\p(X = 1) & = \Pr(T, C, C) + \Pr(C, T, C) + \Pr(C, C, T) = \frac{3}{8} \\p(X = 2) & = \Pr(T, T, C)  + \Pr(T, C, T) + \Pr(C, T, T) = \frac{3}{8} \\p(X = 3) & = \Pr(T, T, T) = \frac{1}{8}\end{aligned}$$
     
@@ -240,7 +239,7 @@ pmf %>%
          xend = x + 1) %>%
   ggplot(mapping = aes(x, cumsum)) +
   geom_segment(mapping = aes(xend = xend, yend = cumsum)) +
-  ylim(0, 1) +
+  ylim(0,1) +
   labs(
     title = "Cumulative mass function",
     x = "Number of treated",
@@ -388,8 +387,8 @@ $$
 \begin{aligned}
 Z & \sim  \text{Binomial}(1/2)\\
 p_Z(0) & = {3\choose0} (1/2)^0 (1- 1/2)^{3-0} = 1 * \frac{1}{8}\\
-p_Z(1) & = {3\choose1} (1/2)^2 (1 - 1/2)^{2} = 3 * \frac{1}{8} \\
-p_Z(2) & = {3\choose2} (1/2)^3 (1- 1/2)^1 = 3 * \frac{1}{8} \\
+p_Z(1) & = {3\choose1} (1/2)^1 (1 - 1/2)^{2} = 3 * \frac{1}{8} \\
+p_Z(2) & = {3\choose2} (1/2)^2 (1- 1/2)^1 = 3 * \frac{1}{8} \\
 p_Z(3) & = {3\choose3} (1/2)^3 (1 - 1/2)^{0} = 1 * \frac{1}{8}
 \end{aligned}
 $$
