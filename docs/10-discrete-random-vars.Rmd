@@ -20,6 +20,14 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 # Misc
 
 * CALCULATORS CLAIMED (need your own if you want it!)
+* Survey: https://forms.gle/CyQnBsq7hbLtmpfX6
+  * Please BE SPECIFIC so I can address concerns!
+    * instead of 'more examples', try 'lecture X was challenging. more examples on Y'
+* **Upcoming dates:**
+  * career services (9/10) (tentative: 11-1)
+  * MACSS Econ orientation (9/20)
+  * orientation (9/23) + rest of week
+  * pub night (tbd)
 
 ---
 
@@ -1002,7 +1010,15 @@ poisson_cmf_plot(2)
 * CDF: cumulative distribution function
   * ADD UP VALUES (akin to a sum)
 * Distributions:
-  * Bernoulli
-  * Binomial
-  * Geometric
-  * Poisson
+  * Bernoulli: 
+      * pmf: $1-p$ for k = 0; $p$ for $k = 1$
+      * mean $p$, var $p(1-p)$
+  * Binomial: 
+      * pmf: $p_X(k) = {N\choose{k}}\pi^{k} (1- \pi)^{n-k}$
+      * mean $np$, var $np(1-p)$ (also written $npq$)
+  * Geometric: 
+      * pmf: $p_X(k) = (1 - p)^{k-1}p, \quad k = 1, 2, \ldots$
+      * mean $\frac{1}{p}$ , var $\frac{(1-p)}{p^2}$
+  * Poisson: 
+      * pmf: $p_X(k) = e^{-\lambda} \frac{\lambda^{k}}{k!}, \quad k = 0,1,2,\ldots$
+      * mean $\lambda$, var $\lambda$
