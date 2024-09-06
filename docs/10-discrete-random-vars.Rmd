@@ -19,6 +19,8 @@ library(gganimate)
 $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$
 # Misc
 
+* CALCULATORS CLAIMED (need your own if you want it!)
+
 ---
 
 # Learning objectives
@@ -83,16 +85,22 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 * Probability of the values that our value can take. 
 * FOR DISCRETE VALUES ONLY!!
 * Operator is the $\sum$ (sum) because we are ADDING PIECES
-* Need a corresponding probability for each value (remember what we said re: probability ($0 \leq p \leq 1$))
+* Need a corresponding probability for each value (remember what we said re: probability ( $0 \leq p \leq 1$ ))
 
 
 ---
 # Probability mass function (PMF)
-Define these for our domain (x). 
+Define these for our domain (x). NOTE: little 'x' is the value that is being taken on while big 'X' is the random variable itself. 
+
+--
+
+So, $P(X=x)$ refers to the probability that our random variable takes on the value of x. You can also see $P_X(X=x)$ and similar variants.
+
+--
 
 ### Intuition
 
-* $\Pr(C, T, C) = \Pr(C)\Pr(T)\Pr(C) = \frac{1}{2}\frac{1}{2}\frac{1}{2} = \frac{1}{8}$
+* $\Pr(C, T, C) = \Pr(C)\Pr(T)\Pr(C) = \frac{1}{2}*\frac{1}{2}*\frac{1}{2} = \frac{1}{8}$
 * This applies to all outcomes
 
     $$\begin{aligned}p(X = 0) & = \Pr(C, C, C) = \frac{1}{8}\\p(X = 1) & = \Pr(T, C, C) + \Pr(C, T, C) + \Pr(C, C, T) = \frac{3}{8} \\p(X = 2) & = \Pr(T, T, C)  + \Pr(T, C, T) + \Pr(C, T, T) = \frac{3}{8} \\p(X = 3) & = \Pr(T, T, T) = \frac{1}{8}\end{aligned}$$
@@ -131,14 +139,19 @@ pmf %>%
 
     $$\sum_x p_{X}(x) = 1$$
   
-  --
+  
+
+--
+  
     
 * Can also add probabilities for smaller sets $S$ of possible values of $X \in S$
 
     $$\Pr(X \in S) = \sum_{x \in S} p_X (x)$$
     $$\Pr (X > 0) = \sum_{x=1}^2 p_X (x) = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}$$
 
+--
 
+*remind you of anything* **::cough::** *integrals*
 ---
 
 # Calculating our PMF!
@@ -152,21 +165,21 @@ To calculate the PMF of a random variable $X$
 
 # Topic model example
 
-* Topics: distinct concepts (war in Afghanistan, national debt, fire department grants)
+* Topics: distinct concepts (war in Ukraine, national debt, fire department grants)
 * Mathematically: PMF on words
-* Set of words $\{ \text{afghanistan, fire, department, soldier, troop, war, grant}\}$
+* Set of words $\{ \text{ukraine, fire, department, soldier, troop, war, grant}\}$
 
 --
 
 ### Topic 1
 
-$\Pr(\text{afghanistan}) = 0.3$; $\Pr(\text{fire}) = 0.0001$; $\Pr(\text{department}) = 0.0001$; $\Pr(\text{soldier}) = 0.2$; $\Pr(\text{troop}) = 0.2$; $\Pr(\text{war})=0.2997$; $\Pr(\text{grant})=0.0001$
+$\Pr(\text{ukraine}) = 0.3$; $\Pr(\text{fire}) = 0.0001$; $\Pr(\text{department}) = 0.0001$; $\Pr(\text{soldier}) = 0.2$; $\Pr(\text{troop}) = 0.2$; $\Pr(\text{war})=0.2997$; $\Pr(\text{grant})=0.0001$
 
 --
 
 ### Topic 2
 
-$\Pr(\text{afghanistan}) = 0.0001$; $\Pr(\text{fire}) = 0.3$; $\Pr(\text{department}) = 0.2$; $\Pr(\text{soldier}) = 0.0001$; $\Pr(\text{troop}) = 0.0001$; $\Pr(\text{war})=0.0001$; $\Pr(\text{grant})=0.2997$
+$\Pr(\text{ukraine}) = 0.0001$; $\Pr(\text{fire}) = 0.3$; $\Pr(\text{department}) = 0.2$; $\Pr(\text{soldier}) = 0.0001$; $\Pr(\text{troop}) = 0.0001$; $\Pr(\text{war})=0.0001$; $\Pr(\text{grant})=0.2997$
 
 --
 
@@ -428,7 +441,7 @@ geometric_plot(.5) +
     * Number of wars started
     * Number of speeches made
     * Number of bribes offered
-    * Number of people waiting for license
+    * Number of people waiting for licenses
 * Generally referred to as **event counts**
 
 ---
@@ -508,7 +521,7 @@ $$p_X(0) = e^{-\lambda} \frac{\lambda^{0}}{0!}=0.04979$$
 --
 $$0.04979 = e^{-\lambda}$$
 --
-$$ln(0.0479) = - \lambda \, \text{ therefore } \lambda \approx 3.0$$
+$$log(0.0479) = - \lambda \, \text{ therefore } \lambda \approx 3.0$$
 ---
 # Poisson plot
 
@@ -557,7 +570,18 @@ $$\frac{100!}{95! 5!} * 0.01^5 (1 - 0.01)^{95} = 0.00290$$
 * $\lambda = np = 100 * 0.01 = 1$
 
 $$e^{-1} \frac{1}{5!} = 0.00306$$
+---
+# Function recap:
 
+* We're dealing here ONLY with **DISCRETE** functions
+* Random variable takes on a limited number of values
+* Functions offer a form for calculating probability
+* Different assumptions for different types of functions
+
+---
+class: center, middle, inverse
+
+# More fun with random variables
 ---
 
 # Functions of random variables
@@ -683,7 +707,7 @@ $$\begin{aligned}\E[I]  & =  1 * \Pr(A) + 0 * \Pr(A^{c}) \\ & = \Pr(A) \end{alig
 
 --
 
-For each value, measure distance from the center
+For each value, measure distance from the center. Recall that $E[X]$ is a SET VALUE.
 
 $$d(x, E[X])^{2} = (x - E[X])^2$$
 
@@ -692,8 +716,11 @@ $$d(x, E[X])^{2} = (x - E[X])^2$$
 Weighted average of these distances
     
 $$\begin{aligned} \E[(X - \E[X])^2] & = \sum_{x:p_X(x)>0} (x  - \E[X])^2p_X(x)\end{aligned}$$
+--
 
 $$\sum_{x:p_X(x)>0} \left(x^2 p_X(x)\right)- 2 \E[X]\sum_{x:p_X(x)>0} \left(x p_X(x)\right) + \E[X]^2\sum_{x:p_X(x)>0} p_X(x)$$
+--
+
 $$=  \E[X^2] - 2\E[X]^2 + \E[X]^2 \\ = \E[X^2] - \E[X]^2 \\= \text{Var}(X)$$
 
 ---
@@ -742,7 +769,7 @@ $$\begin{align}\Var(X) &= \E[(X - \E[X])^2] \\\Var(X) &= \E[X^2] - \E[X]^2\end{a
 
 --
 
-$$\begin{aligned} \Var(Y) & = \pi - \pi^{2} \nonumber \\& = 0.5(1 - 0.5 ) \\& = 0.25\end{aligned}$$
+$$\begin{aligned} \Var(Y) & = \pi(1- \pi) \nonumber \\& = 0.5(1 - 0.5 ) \\& = 0.25\end{aligned}$$
 
 ---
 
