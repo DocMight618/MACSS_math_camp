@@ -1009,7 +1009,7 @@ poisson_cmf_plot(2)
   * Probability for a particular value
 * CDF: cumulative distribution function
   * ADD UP VALUES (akin to a sum)
-* **Distributions**:
+* **Distributions**: 
   * Bernoulli: 
       * pmf: $1-p$ for k = 0; $p$ for $k = 1$
       * mean $p$, var $p(1-p)$
