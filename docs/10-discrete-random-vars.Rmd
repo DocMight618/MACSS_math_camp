@@ -856,13 +856,13 @@ bernoulli_cmf_plot <- function(p) {
 
   ggplot(df, aes(x, pmf)) +
     geom_col() +
-    scale_x_continuous(breaks = 0:1) +
+    ylim(0,1) + scale_x_continuous(breaks = 0:1) +
     labs(
       subtitle = bquote(pi == .(p)),
       x = expression(x),
       y = expression(p[X](k))
     ) +
-    ggplot(df, aes(x, cmf)) +
+    ggplot(df, aes(x, cmf)) + ylim(0,1) +
     scale_x_continuous(breaks = 0:1) +
     geom_col() +
     labs(
@@ -888,7 +888,7 @@ binomial_cmf_plot <- function(n, p) {
   )
 
   ggplot(df, aes(x, pmf)) +
-    geom_col() +
+    geom_col() + ylim(0,1) +
     scale_x_continuous(breaks = scales::pretty_breaks()) +
     labs(
       subtitle = bquote(n == .(n) ~ p == .(p)),
@@ -946,7 +946,7 @@ geometric_cmf_plot <- function(p) {
     mutate(x = x + 1)
 
   ggplot(df, aes(x, pmf)) +
-    geom_col() +
+    geom_col() + ylim(0,1) +
     scale_x_continuous(breaks = scales::pretty_breaks()) +
     labs(
       subtitle = bquote(p == .(p)),
@@ -979,7 +979,7 @@ poisson_cmf_plot <- function(lambda, max_n = 10) {
   )
 
   ggplot(df, aes(x, pmf)) +
-    geom_col() +
+    geom_col() + ylim(0,1) +
     scale_x_continuous(breaks = scales::pretty_breaks()) +
     labs(
       subtitle = bquote(lambda == .(lambda)),
@@ -1009,7 +1009,7 @@ poisson_cmf_plot(2)
   * Probability for a particular value
 * CDF: cumulative distribution function
   * ADD UP VALUES (akin to a sum)
-* Distributions:
+* **Distributions**:
   * Bernoulli: 
       * pmf: $1-p$ for k = 0; $p$ for $k = 1$
       * mean $p$, var $p(1-p)$
