@@ -19,18 +19,34 @@ library(gganimate)
 $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$
 # Misc
 
-* Homework: check by 9am on day it's released
-* Attendance: Responsible for content and announcements in class
-* Github updated
+* Donuts: YES
+* Homework moving along
+* Career services TOMORROW
+  * related: get a linkedin page and add me!
+
+
 
 ---
 # Survey Results
 
-* First, THANK YOU!
-* Room (sorry!)
-* Homework: daily
-* Pacing: examples good, wish for slower pace (also sorry)
+* Learning good--I would like people to feel like they're learning a lot
+  * part is because it's review for people, part because it's fast?
+* Supportive learning: 90% 
+  * my goal is 100% reach out to me and/or TAs if you want to talk more
+* Valued as student: 90% 
+  * ditto above -- would like everyone to feel valued
 
+---
+# Survey:
+
+* Shorter, more regular
+* Yes, pre-test
+* Even split on 9 vs 9:30am start time
+* 60/40 on IMSI vs Kent
+* Split on pacing and examples
+* GREAT IDEA: pm TA slots on zoom!
+* Unhappiness re: early problem sets
+  * going to trim them and move some to additional practice
 
 ---
 
@@ -209,7 +225,7 @@ Moments help us understand the shape of the distribution
 1. Tail-y-ness (kurtosis): $E[X^4]$
 
 ---
-class: middle
+class: middle, inverse
 
 # Great expectations: first moment
 
@@ -300,6 +316,14 @@ $$\Var(X) = \E[X^2] - (\E[X])^2 = \frac{a^2 + ab + b^2}{3} - \left( \frac{a+b}{2
 $$f_X(x) = \left\{    \begin{array}{ll}        \lambda e^{-\lambda x} & \quad \text{if } x \geq 0 \\        0 & \quad \text{otherwise}    \end{array}\right.$$
 
 * $\lambda > 0$
+
+--
+
+* NOTE: you will sometimes see this with $\lambda$ replaced with $\frac{1}{\beta}$. 
+
+--
+
+* SUPER FUN NOTE: You can find its expected value yourself using integration by parts!!
 
 ---
 
@@ -497,7 +521,7 @@ $$
 
 For $Y \sim \text{Normal}(\mu, \sigma^2)$
 
-$$\begin{aligned} \E[Y] & = \E[\sigma Z + \mu] \\& = \sigma \E[Z] + \mu \\& = \mu \\\Var(Y) & = \Var(\sigma Z + \mu) \\ & = \sigma^2 \Var(Z) + \Var(\mu) \\ & = \sigma^2 + 0 \\ & = \sigma^2 \end{aligned}$$
+$$\begin{aligned} \E[Y] & = \E[\sigma Z + \mu] \\& = \sigma \E[Z] + \mu \\& = \mu \\\Var(Y) & = \Var(\sigma Z + \mu) \\ & = E((\sigma Z + \mu)^2) - (E(\sigma Z + \mu))^2\\&=\sigma^2 \Var(Z) + \Var(\mu) \\ & = \sigma^2 + 0 \\ & = \sigma^2 \end{aligned}$$
 
 ---
 
@@ -544,7 +568,7 @@ $$
 
 ```{r clt}
 set.seed(124)
-y <- rnorm(1000, mean = .39, sd = sqrt(.0025))
+y <- rnorm(7000, mean = .39, sd = sqrt(.0025))
 
 clt_plot <- seq(from = 2, to = length(y), length.out = 100) %>%
   round() %>%
@@ -564,7 +588,7 @@ clt_plot <- seq(from = 2, to = length(y), length.out = 100) %>%
   ) +
   transition_states(states = nobs)
 
-animate(clt_plot, nframes = 200)
+animate(clt_plot, nframes = 600)
 ```
 
 ---
@@ -572,15 +596,22 @@ animate(clt_plot, nframes = 200)
 # Back to Biden
 
 * Suppose $\mu = 0.39$ and $\sigma^2 = 0.0025$
-* $\Pr(Y\geq 0.45)$ (What is the probability it isn't that bad?)
+* $\Pr(Y\geq 0.45)$ 
 
 --
 
 $$\begin{aligned} \Pr(Y \geq 0.45)  & = 1 - \Pr(Y \leq 0.45 ) \\& = 1 - \Pr(0.05 Z + 0.39 \leq  0.45) \\& = 1 - \Pr(Z \leq \frac{0.45-0.39 }{0.05} ) \\& = 1 - \frac{1}{\sqrt{2\pi} } \int_{-\infty}^{6/5} \exp(-z^2/2) \,dz \\& = 1 - F_{Z} (\frac{6}{5} ) \\& = 0.1150697\end{aligned}$$
 
 ---
+# Gamma distribution
 
-# Gamma function
+We use the gamma distribution when we're looking at something that takes on positive values and has is skewed (long right tail). 
+
+Example: waiting time between events
+
+---
+
+# Gamma distribution
 
 Suppose $\alpha>0$. Define $\Gamma(\alpha)$ as
 
@@ -597,7 +628,7 @@ $$
 
 ---
 
-# Gamma function
+# Gamma distribution
 
 Suppose we have $\Gamma(\alpha)$
 
@@ -698,10 +729,14 @@ function_plot +
     fun = dexp, args = list(rate = 5), n = 501
   ) +
   stat_function(
+    mapping = aes(color = "Gamma(1, 5.5)"),
+    fun = dgamma, args = list(shape = 1, rate = 5.5), n = 501
+  ) +
+  stat_function(
     mapping = aes(color = "Gamma(3, 2)"),
     fun = dgamma, args = list(shape = 3, rate = 2), n = 501
   ) +
-  scale_color_brewer(type = "qual") +
+  scale_color_brewer(type = "div") +
   xlim(0, 10) +
   labs(
     y = expression(f(x)),
@@ -919,3 +954,4 @@ expand.grid(
   * Gamma
   * Normal
   * $\chi^2$ 
+  * Student's t

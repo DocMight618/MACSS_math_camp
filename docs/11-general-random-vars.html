@@ -30,18 +30,34 @@ class: center, middle, inverse, title-slide
 `$$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$`
 # Misc
 
-* Homework: check by 9am on day it's released
-* Attendance: Responsible for content and announcements in class
-* Github updated
+* Donuts: YES
+* Homework moving along
+* Career services TOMORROW
+  * related: get a linkedin page and add me!
+
+
 
 ---
 # Survey Results
 
-* First, THANK YOU!
-* Room (sorry!)
-* Homework: daily
-* Pacing: examples good, wish for slower pace (also sorry)
+* Learning good--I would like people to feel like they're learning a lot
+  * part is because it's review for people, part because it's fast?
+* Supportive learning: 90% 
+  * my goal is 100% reach out to me and/or TAs if you want to talk more
+* Valued as student: 90% 
+  * ditto above -- would like everyone to feel valued
 
+---
+# Survey:
+
+* Shorter, more regular
+* Yes, pre-test
+* Even split on 9 vs 9:30am start time
+* 60/40 on IMSI vs Kent
+* Split on pacing and examples
+* GREAT IDEA: pm TA slots on zoom!
+* Unhappiness re: early problem sets
+  * going to trim them and move some to additional practice
 
 ---
 
@@ -188,7 +204,7 @@ Moments help us understand the shape of the distribution
 1. Tail-y-ness (kurtosis): `\(E[X^4]\)`
 
 ---
-class: middle
+class: middle, inverse
 
 # Great expectations: first moment
 
@@ -279,6 +295,14 @@ So, we can just plug these values into our formula:
 `$$f_X(x) = \left\{    \begin{array}{ll}        \lambda e^{-\lambda x} &amp; \quad \text{if } x \geq 0 \\        0 &amp; \quad \text{otherwise}    \end{array}\right.$$`
 
 * `\(\lambda &gt; 0\)`
+
+--
+
+* NOTE: you will sometimes see this with `\(\lambda\)` replaced with `\(\frac{1}{\beta}\)`. 
+
+--
+
+* SUPER FUN NOTE: You can find its expected value yourself using integration by parts!!
 
 ---
 
@@ -385,7 +409,7 @@ $$
 
 For `\(Y \sim \text{Normal}(\mu, \sigma^2)\)`
 
-`$$\begin{aligned} \E[Y] &amp; = \E[\sigma Z + \mu] \\&amp; = \sigma \E[Z] + \mu \\&amp; = \mu \\\Var(Y) &amp; = \Var(\sigma Z + \mu) \\ &amp; = \sigma^2 \Var(Z) + \Var(\mu) \\ &amp; = \sigma^2 + 0 \\ &amp; = \sigma^2 \end{aligned}$$`
+`$$\begin{aligned} \E[Y] &amp; = \E[\sigma Z + \mu] \\&amp; = \sigma \E[Z] + \mu \\&amp; = \mu \\\Var(Y) &amp; = \Var(\sigma Z + \mu) \\ &amp; = E((\sigma Z + \mu)^2) - (E(\sigma Z + \mu))^2\\&amp;=\sigma^2 \Var(Z) + \Var(\mu) \\ &amp; = \sigma^2 + 0 \\ &amp; = \sigma^2 \end{aligned}$$`
 
 ---
 
@@ -437,15 +461,22 @@ $$
 # Back to Biden
 
 * Suppose `\(\mu = 0.39\)` and `\(\sigma^2 = 0.0025\)`
-* `\(\Pr(Y\geq 0.45)\)` (What is the probability it isn't that bad?)
+* `\(\Pr(Y\geq 0.45)\)` 
 
 --
 
 `$$\begin{aligned} \Pr(Y \geq 0.45)  &amp; = 1 - \Pr(Y \leq 0.45 ) \\&amp; = 1 - \Pr(0.05 Z + 0.39 \leq  0.45) \\&amp; = 1 - \Pr(Z \leq \frac{0.45-0.39 }{0.05} ) \\&amp; = 1 - \frac{1}{\sqrt{2\pi} } \int_{-\infty}^{6/5} \exp(-z^2/2) \,dz \\&amp; = 1 - F_{Z} (\frac{6}{5} ) \\&amp; = 0.1150697\end{aligned}$$`
 
 ---
+# Gamma distribution
 
-# Gamma function
+We use the gamma distribution when we're looking at something that takes on positive values and has is skewed (long right tail). 
+
+Example: waiting time between events
+
+---
+
+# Gamma distribution
 
 Suppose `\(\alpha&gt;0\)`. Define `\(\Gamma(\alpha)\)` as
 
@@ -462,7 +493,7 @@ $$
 
 ---
 
-# Gamma function
+# Gamma distribution
 
 Suppose we have `\(\Gamma(\alpha)\)`
 
@@ -703,6 +734,7 @@ If `\(Z\)` and `\(U\)` are independent then `\(Y \sim t(n)\)`, with PDF
   * Gamma
   * Normal
   * `\(\chi^2\)` 
+  * Student's t
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
