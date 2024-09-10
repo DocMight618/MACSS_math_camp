@@ -345,7 +345,7 @@ z <- expand.grid(
   x2 = x2
 ) %>%
   as_tibble() %>%
-  mutate(y = -x1^2 + -x2^2)
+  mutate(y = 6*x1^2 + x2^2)
 
 multi_cdf <- ggplot(data = z, mapping = aes(x = x1, y = x2)) +
   geom_raster(mapping = aes(fill = y)) +
@@ -624,6 +624,16 @@ p_{X}(1) & = \Pr(1|y = 0) \Pr(y= 0) + \Pr(1|y=1) \Pr(y=1) \\
 
 # Why does marginalization work?
 
+|  | $Y = 0$ | $Y = 1$ |  |
+|-------|-------------|-------------|------------|
+| $X = 0$ | $0.01$ | $0.05$ | $0.06$|
+| $X = 1$ | $0.25$ | $0.69$ | $0.94$ |
+|  | $0.26$ | $0.74$ |  |
+
+---
+
+# Why does marginalization work?
+
 ### Continuous case
 
 For **jointly distributed continuous** random variables $X$ and $Y$ define,
@@ -697,7 +707,52 @@ $$f(x|y) = \frac{x + y}{1/2 + y}$$
 
 $$f(x) = \int_{0}^{1} f(x|y)f(y)\, dy = 1/2 + x$$
 
+---
 
+# A simple(-ish) example
+
+Here are all the possible values for f(x), based on what y might be:
+
+```{r joint-pdf-plus-margin}
+marginal_pdf <- function(x, y) {
+  (x + y) / (1 / 2 + y)
+}
+
+expand_grid(
+  x = seq(from = 0, to = 1, length.out = 101),
+  y = seq(from = 0, to = 1, by = .001)
+) %>%
+  mutate(cond_x = marginal_pdf(x, y)) %>%
+  ggplot(mapping = aes(x, cond_x, color = y, group = y)) +
+  geom_line() +
+  scale_color_viridis_c("Marginal \n values y", option = "plasma") +
+  labs(
+    x = expression(x),
+    y = expression(f(x ~ "|" ~ y)),
+    color = expression(y)
+  )
+```
+
+---
+
+# A simple(-ish) example
+Here's our 'weighted average' for f(x) across all y: 
+```{r joint-pdf-plus-cond, dependson = "joint-pdf-plus-margin"}
+expand_grid(
+  x = seq(from = 0, to = 1, length.out = 101),
+  y = seq(from = 0, to = 1, by = .001)
+) %>%
+  mutate(cond_x = marginal_pdf(x, y)) %>%
+  ggplot(mapping = aes(x, cond_x, color = y, group = y)) +
+  geom_line(alpha = .10) +
+  geom_abline(intercept = 0.5, slope = 1) +
+  scale_color_viridis_c("Marginal \n values y", option = "plasma") +
+  labs(
+    x = expression(x),
+    y = expression(f(x)),
+    color = expression(y)
+  )
+```
 
 ---
 
@@ -815,6 +870,13 @@ $$xy  + \frac{y^2}{2} |^{1}_{0} = x + \frac{1}{2}$$
 $$f_{Y}(y) = \int_{0}^{1} \left(x + y \right) \, dx =  \frac{x^2}{2} + xy  |^{1}_{0} = \frac{1}{2} + y$$
 --
 $$\begin{eqnarray}f_{X}(x) f_{Y}(y) & = & (\frac{1}{2} + x) (\frac{1}{2} + y) \\& = & \frac{1}{4} + \frac{x + y}{2} + xy \neq (x+y)\end{eqnarray}$$
+---
+# Dependence: deep thoughts
+
+$$\begin{eqnarray}f_{X}(x) f_{Y}(y) & = & (\frac{1}{2} + x) (\frac{1}{2} + y) \\& = & \frac{1}{4} + \frac{x + y}{2} + xy \neq (x+y)\end{eqnarray}$$
+
+We can think about this as getting additional INFORMATION from y when we know x and vice versa. 
+
 ---
 class: middle
 
@@ -943,7 +1005,7 @@ So we will effectively add up all the chunks of our function in one direction, t
 
 --
 
-$$\begin{align}F(x,y) &= \int_{1}^{2} \int_{0}^{0.5} (x^2 - \frac{8y}{3}+\frac{1}{3}) \text{ } dy \text{ }dx \\ &=\int_{1}^{2}(x^2y - \frac{4y^2}{3}+\frac{y}{3}) \text{ } |_0^0.5 \text{ }dx \\
+$$\begin{align}F(x,y) &= \int_{1}^{2} \int_{0}^{0.5} (x^2 - \frac{8y}{3}+\frac{1}{3}) \text{ } dy \text{ }dx \\ &=\int_{1}^{2}(x^2y - \frac{4y^2}{3}+\frac{y}{3}) \text{ } |_0^{0.5} \text{ }dx \\
 &= \int_{1}^{2}(0.5x^2 - \frac{1}{3}+\frac{1}{6}) \text{ } \text{ }dx \\
 &= \int_{1}^{2}(0.5x^2 - \frac{1}{6}) \text{ } \text{ }dx \\
 &= (\frac{x^3}{6} - \frac{x}{6}) \text{ }|_1^2 = (\frac{8}{6}- \frac{2}{6})-(\frac{1}{6}-\frac{1}{6}) \text{ } \\
@@ -961,7 +1023,7 @@ Let's look at a slice of it:  $\int_{1}^{1.5} \int_{0}^{0.5} (x^2 - \frac{8y}{3}
 $$\begin{align}F(x,y) &= \int_{1}^{1.5} \int_{0}^{0.5} (x^2 - \frac{8y}{3}+\frac{1}{3}) \text{ } dy \text{ }dx \\ &=\int_{1}^{1.5}(x^2y - \frac{4y^2}{3}+\frac{y}{3}) \text{ } |_0^0.5 \text{ }dx \\
 &= \int_{1}^{1.5}(0.5x^2 - \frac{1}{3}+\frac{1}{6}) \text{ } \text{ }dx \\
 &= \int_{1}^{1.5}(0.5x^2 - \frac{1}{6}) \text{ } \text{ }dx \\
-&= (\frac{x^3}{6} - \frac{x}{6}) \text{ }|_1^1.5 \\
+&= (\frac{x^3}{6} - \frac{x}{6}) \text{ }|_1^{1.5} \\
 &= (\frac{1.5^3}{6}-\frac{3}{12})-(\frac{1}{6}- \frac{1}{6}) \text{ } \\
 &= 0.3125
 \end{align}$$
@@ -977,8 +1039,8 @@ class: middle
 ---
 
 # Covariance and correlation
-
-For jointly continous random variables $X$ and $Y$ define, the covariance of $X$ and $Y$ as,
+We are interested in how our variables vary with one another. 
+For jointly continuous random variables $X$ and $Y$ we define the covariance of $X$ and $Y$ as,
 
 $$Cov(X,Y) = E[(X-E[X])(Y- E[Y])]$$
 --
@@ -1003,7 +1065,7 @@ $$\begin{eqnarray}\Cov(X,X) & = & E[X X] - E[X]E[X] \\& = & E[X^2] - E[X]^2\end{
 ---
 
 # Correlation measures linear relationship
-
+Like covariance, bigger is more, but now we're standardizing relative to variance. 
 Suppose $X = Y$:
 
 $$\begin{eqnarray}\Cor(X,Y) & = & \frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)} } \\& = & \frac{\Var(X)}{\Var(X)} \\& = & 1\end{eqnarray}$$
@@ -1097,6 +1159,11 @@ class: middle
 --
 
 ### AKA: What happens when you bring multiple variables to the party? 
+
+--
+
+These are for information -- they haven't featured into my work, but for some people they have been relevant 
+
 ---
 
 # Multivariate normal distribution
@@ -1104,6 +1171,7 @@ class: middle
 Suppose $\boldsymbol{X} = (X_{1}, X_{2}, \ldots, X_{N})$ is a vector of random variables.  If $\boldsymbol{X}$ has pdf 
 
 $$f(\boldsymbol{x}) = (2 \pi)^{-N/2} \text{det}\left(\boldsymbol{\Sigma}\right)^{-1/2} \exp\left(-\frac{1}{2}(\boldsymbol{x} - \boldsymbol{\mu})^{'}\boldsymbol{\Sigma}^{-1} (\boldsymbol{x} - \boldsymbol{\mu} ) \right)$$
+where $det(\mathbf{\Sigma})$ is the determinant of the covariance matrix, known as generalized variance
 
 --
 
