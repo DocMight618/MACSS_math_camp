@@ -697,50 +697,7 @@ $$f(x|y) = \frac{x + y}{1/2 + y}$$
 
 $$f(x) = \int_{0}^{1} f(x|y)f(y)\, dy = 1/2 + x$$
 
----
 
-# A (simple) example
-
-```{r joint-pdf-plus-margin}
-marginal_pdf <- function(x, y) {
-  (x + y) / (1 / 2 + y)
-}
-
-expand_grid(
-  x = seq(from = 0, to = 1, length.out = 101),
-  y = seq(from = 0, to = 1, by = .001)
-) %>%
-  mutate(cond_x = marginal_pdf(x, y)) %>%
-  ggplot(mapping = aes(x, cond_x, color = y, group = y)) +
-  geom_line() +
-  scale_color_viridis_c() +
-  labs(
-    x = expression(x),
-    y = expression(f(x ~ "|" ~ y)),
-    color = expression(y)
-  )
-```
-
----
-
-# A (simple) example
-
-```{r joint-pdf-plus-cond, dependson = "joint-pdf-plus-margin"}
-expand_grid(
-  x = seq(from = 0, to = 1, length.out = 101),
-  y = seq(from = 0, to = 1, by = .001)
-) %>%
-  mutate(cond_x = marginal_pdf(x, y)) %>%
-  ggplot(mapping = aes(x, cond_x, color = y, group = y)) +
-  geom_line(alpha = .10) +
-  geom_abline(intercept = 0.5, slope = 1) +
-  scale_color_viridis_c() +
-  labs(
-    x = expression(x),
-    y = expression(f(x)),
-    color = expression(y)
-  )
-```
 
 ---
 
