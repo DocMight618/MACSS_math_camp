@@ -32,8 +32,10 @@ class: center, middle, inverse, title-slide
 
 * ALMOST THERE!
 * MPCS placement exam
-* Career services 9/14
-* Review 9/14
+* Tomorrow: Review!
+  * TA session(s)
+  
+* Name, program, pronouns, fave thing about Chicago so far!
 
 
 ---
@@ -175,14 +177,31 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 ---
 
 # Properties of point estimates 
-##### Consistency: on average, how does it do? 
-*note: efficiency has to do with overall variance across estimators*
+##### Consistency: does it get better with sample size?
+
 
 As the number of observations `\(n\)` increases, the estimator converges towards the true parameter `\(\theta\)`
 
+--
 
+##### Efficiency: does it have small variance?
 
 ---
+# Estimators: best guesses
+
+Think of an estimator for WHAT your best will be. Here are some options (below) and how well they fare on our top 3 qualities we desire.
+
+--
+
+| Estimator | Unbiased    | Consistent | Efficient |
+|-------    |-------------|-------------|------------|
+| `\(\bar{x}\)`  | `\(\checkmark\)` | `\(\checkmark\)`  | `\(\checkmark\)` |
+| `\(x_i\)`      | `\(\checkmark\)`  | `\(\times\)` | `\(\checkmark\)` |
+| `\(4\)`        | `\(\times\)` | `\(\times\)` | `\(\checkmark\)`  | 
+| median  (normal dist) | `\(\checkmark\)` | `\(\checkmark\)`  | `\(\times\)`|
+
+---
+
 
 # Properties of point estimates 
 
@@ -218,31 +237,53 @@ KEY for homework:
 
 `$$E[\bar X] = \frac{1}{n} \sum_{i=1}^n E[X_i]$$`
 --
-Translation: *when we take the expected value of an average of a random variable, we can take the average of the expected value for our random values*
+
+* Translation: *the expected value of an average of a random variable ( `\(\bar{X}\)` ) equals the average of the sum of the expected values for our random variable*
 
 ---
 
 # Bernoulli random variable
+
+Bernoulli refresher: one-shot event with probability `\(\pi\)` of success. 
+
+--
 
 Let `\(X_1, \ldots, X_n ~ \text{Bernoulli}(\pi)\)` and let `\(\hat{\pi}_n = \frac{1}{n} \sum_{i=1}^n X_i\)`. Then
 
-`$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$`. We can then compare our expected value from the distribution `\(\pi\)`, to what we obtained here, to verify they are equal.
+`$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$` 
 
-They are, so `\(\hat{\pi}_n\)` is unbiased
+
+We can then compare our expected value from the distribution `\(\pi\)`, to what we obtained here, to verify they are equal.
+
+--
+
+We are adding up `\(n\)` `\(\hat{\pi}\)` and averaging them, where each of these *is* our `\(\pi\)`. 
+
+--
+
+They are and thus the two are equal; so `\(\hat{\pi}_n\)` is unbiased
 
 ---
 
-# Bernoulli random variable
+# Bernoulli random variable 
 
 The standard error is
 
 `$$\se = \sqrt{\Var (\hat{\pi}_n)}$$`
 --
-We can think of this as: `$$\frac{Var(\pi_n)}{n}$$`. HOW?? We are adding up all the variances across our random variables and averaging them. 
+We can think of this as: `\(\frac{Var(\pi_n)}{n}\)`
+
+HOW?? Recall `\(E(\hat{\pi_n}) = \frac{1}{n} \sum E(X_i)\)`, so `\(Var(\hat{\pi_n})=Var(\frac{1}{n} \sum E(X_i))\)`. Then, `\(Var(\hat{\pi_n})=(\frac{1}{n})^2 \text{ }Var( \sum E(X_i))\)`.
 
 --
-Therefore, we get: 
-`$$\se= \sqrt{\frac{\pi (1 - \pi)}{n}}$$`
+
+So, we can simplify to get `\(Var(\hat{\pi_n})=(\frac{1}{n})^2 \text{ } \sum Var(X_i)\)`. We can re-write this as `\(\frac{n}{n^2} Var(\pi)=\frac{Var(\pi)}{n}\)`. 
+
+--
+We are adding up all the variances across our random variables and averaging them. 
+
+--
+Therefore, we get: `\(\se= \sqrt{\frac{\pi (1 - \pi)}{n}}\)`
 
 --
 
@@ -265,6 +306,26 @@ and
 --
 
 `\(\hat{\pi}_n\)` is a consistent estimator of `\(\pi\)`
+
+---
+
+## Estimators: recap
+
+* Estimators are WHAT/HOW we come to have a best guess of our thing we care about
+--
+
+* We need a way to think about / evaluate if they are good or not
+--
+
+* That way is called 'BLUE' (best, linear, unbiased)
+--
+
+* Using this is how we decided to use the sample mean as the best guess of the population mean (and other similar decisions)
+
+---
+class: center, middle, inverse
+
+# Maximum likelihood
 
 ---
 
@@ -323,7 +384,30 @@ The log-likelihood function is therefore
 
 1. Take the derivative of `\(\lagr_n (\pi)\)`
 1. Set it equal to 0
-1. Solve for `\(\hat{\pi}_n = \frac{S}{n}\)`
+1. Solve to find `\(\hat{\pi}_n = \frac{S}{n}\)`
+
+---
+
+# Bernoulli random variable
+We're going to solve for the 'best' estimator, `\(\hat{\pi}\)`
+`$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$`
+--
+`$$\frac{d\lagr_n (\hat{\pi})}{d \hat{\pi}} = \frac{S}{\hat{\pi}} -  \frac{(n - S)}{1 - \hat{\pi}} = 0$$`
+--
+
+`$$\frac{S}{\hat{\pi}} =  \frac{(n - S)}{1 - \hat{\pi}}$$`
+
+--
+`\(S(1-\hat{\pi}) =  \hat{\pi}(n - S)\)` and `\(S-S\hat{\pi} =  \hat{\pi}(n - S)\)`
+
+We can continue simplifying to get:
+
+--
+`\(\hat{\pi} n - S \hat{\pi} + S\hat{\pi} = S\)` so
+
+--
+
+`$$\hat{\pi} = \frac{S}{n}$$`
 
 ---
 
@@ -356,6 +440,8 @@ The log-likelihood function is therefore
 ##### Consistency
 
 `$$\hat{\theta}_n \xrightarrow{P} \theta_*$$`
+
+Meaning: it converges in probability to the true value
 
 --
 
@@ -533,6 +619,17 @@ $$
 $$
 
 ---
+# CI: when to use
+
+Confidence intervals give you information about your point estimate. You KNOW your point estimate is likely wrong. (very precise but not very accurate). 
+
+You can give a RANGE around your CI to improve your accuracy, at the cost of precision. 
+
+--
+
+There is a delicate balance between accuracy and precision: for accuracy, you want to be as accurate as possible, but this means you have to have a wide range. We have conventionally compromised at 95% for the 'right' balance between the two. 
+
+---
 class: middle
 
 # Hypothesis testing: 
@@ -597,15 +694,15 @@ Truth / Decision | Reject | Fail to Reject
 --------|---------|---------
 `\(H_0\)` True | WRONG! | YES! 
 |(false negative) |
-| type I error |
+| type II error |
 `\(H_0\)` False | YES! |  WRONG! 
 ||(false positive)
-|| type II error
+|| type I error
 
 ---
 # Positives and negative
 
-Example: Suppose our null is that people support a six-hour exam. We need to understand if we have sufficient evidence against this. 
+Example: Suppose our null is that people support a six-hour exam. We need to understand if we have sufficient evidence against this or not. 
 
 --
 
@@ -632,7 +729,7 @@ So, if we had a false negative, we would think that people DO NOT want the exam,
 
 # Power function
 
-Power - probability of correctly rejecting the null hypothesis
+Power - probability of correctly rejecting the null hypothesis. Another way to consider this is to imagine you want to know if you COULD reject the null if it were false. You might now have enough POWER (either your sample size is too small and/or your null is slightly wrong). 
 
 --
 
@@ -651,9 +748,14 @@ The size of a test is defined to be
 A test is said to have **level** `\(\alpha\)` if its size is less than or equal to `\(\alpha\)`
 
 ---
+class: center, middle
 
+## Setting up hypothesis testing
+
+---
 # Sided tests
-
+You are positing 'where' the true value is (larger or smaller) vs 'not here'
+--
 ### Two-sided test
 
 `$$H_0: \theta = \theta_0 \quad \text{versus} \quad H_1: \theta \neq \theta_0$$`
@@ -765,6 +867,10 @@ Suppose the true value of `\(\theta\)` is `\(\theta_* \neq \theta_0\)`. The powe
 * The power is large if the sample size is large
 
 ---
+class: center, middle, inverse
+
+## Details: hypothesis testing
+---
 
 # Example: comparing two means
 
@@ -802,7 +908,7 @@ The size `\(\alpha\)` Wald test rejects `\(H_0\)` when `\(|W| &gt; z_{\alpha / 2
 
 ---
 
-# Understanding `\(p\)`-values
+# Understanding `\(p\)` -values
 
 Generally, if the test rejects at level `\(\alpha\)` it will also reject at level `\(\alpha' &gt; \alpha\)`
 
@@ -868,372 +974,6 @@ where `\(Z \sim N(0,1)\)`
 &lt;img src="13-frequentist-inference_files/figure-html/wald-p-val-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
-class: middle
-# Applications
-
----
-# Misc:
-
-* Career services TODAY!
-* Exam TOMORROW!
-* All calculators claimed -- bring one if you'd like
-* Not yet enough questions to circulate (need ~2 more people)
-
-
----
-class: middle
-
-# Review: theoretical side
-
-
----
-# Understanding expected values of estimators
-
-KEY for homework: 
-
-`$$E[\bar X] = \frac{1}{n} \sum_{i=1}^n E[X_i]$$`
---
-Translation: *when we take the expected value of an average of a random variable, we can take the average of the expected value for our random values*
-
-
----
-# Answering statistical questions
-
-## Descriptive statistics
-
-* describe your data
-* don't come to any conclusions
-* generally give you a sense of what's there
-
---
-
-## Inferential statistics
-
-* test a hypothesis
-* come to a conclusion
-* deal with evidence (sufficient / insufficient) and information
-
----
-# Statistical tests:
-
-* One mean
-* Two means
-  * Group mean
-  * Proportions
-* Counts ( `\(\chi^2\)`) 
-* Multiple means (ANOVA)
-
-
----
-# What is at stake?
-
-## HOW WEIRD IS IT?
-
-Just need the information and framing of our question
-To answer, need the sample size to help figure out appropriate test
-
----
-# Cool, what test do I use? 
-
-* Counts: if only two choices, use z test for proportions, if lots of choices or table, use `\(\chi^2\)`
-* Means: if two groups and small sample, t; if two groups and large-ish sample, z; if multiple groups (and decent sample size) ANOVA
-
----
-# OK SO HOW DO I DO IT????
-
---
-
-General format: (observed mean)-(expected value) / SE
-
---
-Steps: 
-
---
-* Find sample mean (AKA POINT ESTIMATE)
-
---
-* Find expected value
-
---
-* Find SE
-
---
-* Calculate in formula above
-
---
-* Evaluate / make decision
-
---
-* PROFIT???
-
----
-
-# Evaluating a test statistic
-
-* Could use tables
-* Could use statistical software
-* Could use critical value approach: reject when calculated `\(z &gt; z^*\)`
-
---
-  
-  | `\(z^*\)` | `\(1-\alpha\)` | `\(\alpha\)`|
-  | ---|------------|---------|
-  | `\(\pm 1.65\)` | 90% | 0.10 |
-  | `\(\pm 1.96\)` | 95% | 0.05 |
-  | `\(\pm 2.58\)` | 99% | 0.01 |
-  
-  
----
-
-# Example: cholesterol data
-
-Consider a set of 371 individuals in a health study examining cholesterol levels (in mg/dl). 320 individuals have narrowing of the arteries, while 51 patients have no evidence of heart disease. Is the mean cholesterol different in the two groups?
-
---
-
-Let the estimated mean cholesterol levels for the first group be `\(\bar{X} = 216.2\)` and for the second group `\(\bar{Y} = 195.3\)`. Let the estimated standard error for each group be `\(\widehat{\se}(\hat{\mu}_1) = 5.0\)` and `\(\widehat{\se}(\hat{\mu}_2) = 2.4\)`
-
---
-
-The Wald test statistic is
-
-`$$W = \frac{\hat{\delta} - 0}{\widehat{\se}} = \frac{\bar{X} - \bar{Y}}{\sqrt{\widehat{\se}_1^2 + \widehat{\se}_2^2}} = \frac{216.2 - 195.3}{\sqrt{5^2 + 2.4^2}} = 3.78$$`
-
---
-
-To compute the `\(p\)`-value, let `\(Z \sim N(0,1)\)` denote a standard Normal random variable. Then
-
-`$$\text{p-value} = \Pr (|Z| &gt; 3.78) = 2 \Pr(Z &lt; -3.78) = 0.0002$$`
-
----
-# Degrees of freedom and t tests
-
-When dealing with small samples, things get a little bit complicated since it's not *universal* -- it depends on the sample size-ish. It has to do with how many degrees of freedom exist, which is `\(n-1\)`. Therefore, each sample could potentially have a different degree of freedom. 
-
-Otherwise, the process / procedure is exactly the same as before. 
-
----
-
-# PROPORTIONS!
-
-We won't get into this deeply, but you effectively will always use z for proportions. The procedure is the same, BUT you may not receive the SE for a distribution. ...
-
-WHY??
-
---
-
-Because we can think of these as a series of Bernoulli trials with a mean of `\(\pi\)` and var of `\(\pi(1-\pi)\)`. We can use this to determine the standard error!
-
----
-# Confidence intervals
-We can conduct hypothesis testing with confidence intervals as well. 
-
-From our cholesterol example before, suppose: 
-Let the estimated mean cholesterol levels for the first group be `\(\bar{X} = 216.2\)` and for the second group `\(\bar{Y} = 195.3\)`. Let the estimated standard error for each group be `\(\widehat{\se}(\hat{\mu}_1) = 5.0\)` and `\(\widehat{\se}(\hat{\mu}_2) = 2.4\)`
-
---
-`$$3.78 \pm 1.96* \sqrt{5^2 + 2.4^2}$$`
---
-`$$(-7.1, 14.65)$$`
-
-
----
-
-# Pearson's `\(\chi^2\)` test for multinomial data
-
-* Used for multinomial data
-* If `\(X = (X_1, \ldots, X_k)\)` has a multinomial `\((n,p)\)` distribution, then the MLE of `\(p\)` is `\(\hat{p} = (\hat{p}_1, \ldots, \hat{p}_k) = (x_1 / n, \ldots, x_k / n)\)`.
-
---
-
-Let `\(p_0 = (p_{01}, \ldots, p_{0k})\)` be some fixed vector and suppose we want to test
-
-`$$H_0: p = p_0 \quad \text{versus} \quad H_1: p \neq p_0$$`
-
---
-
-Pearson's `\(\chi^2\)` statistic is
-
-`$$T = \sum_{j=1}^k \frac{(X_j - np_{0j})^2}{np_{0j}} = \sum_{j=1}^k \frac{(X_j - \E[X_j])^2}{\E[X_j]}$$`
-
-where `\(\E[X_j] = np_{0j}\)` is the expected value under `\(H_0\)`.
-
----
-
-# Attitudes towards abortion
-
-* `\(H_A\)` - In a comparison of individuals, liberals are more likely to favor allowing a woman to obtain an abortion for any reason than conservatives
-* `\(H_0\)` - There is no difference in support between liberals and conservatives for allowing a woman to obtain an abortion for any reason. Any difference is the result of random sampling error.
-
----
-
-# Attitudes towards abortion
-
-| Right to Abortion | Liberal | Moderate | Conservative | Total |
-|-------------------|----------|----------|--------------|--------|
-| Yes | 40.8% | 40.8% | 40.8% | 40.8% |
-|  | (206.45) | (289.68) | (271.32) | (768) |
-| No | 59.2% | 59.2% | 59.2% | 59.2% |
-|  | (299.55) | (420.32) | (393.68) | (1113) |
-| Total | 26.9% | 37.7% | 35.4% | 100% |
-|  | (506) | (710) | (665) | (1881) |
-
----
-
-# Attitudes towards abortion
-
-| Right to Abortion | Liberal | Moderate | Conservative | Total |
-|-------------------|---------|----------|--------------|--------|
-| Yes | 62.6% | 36.6% | 28.7% | 40.8% |
-|  | (317) | (260) | (191) | (768) |
-| No | 37.4% | 63.4% | 71.28% | 59.2% |
-|  | (189) | (450) | (474) | (1113) |
-| Total | 26.9% | 37.7% | 35.4% | 100% |
-|  | (506) | (710) | (665) | (1881) |
-
----
-
-# Attitudes towards abortion
-
-| Right to Abortion |     | Liberal | Moderate | Conservative |
-|-------------------|---------------|---------|----------|--------------|
-|  Yes | Observed Frequency `\(X_j\)` | 317.0 | 260.0 | 191.0 |
-|     | Expected Frequency `\(\E[X_j]\)` | 206.6 | 289.9 | 271.5 |
-|     | `\(X_j - \E[X_j]\)` | 110.4 | -29.9 | -80.5 |
-|     | `\((X_j - \E[X_j])^2\)` | 12188.9 | 893.3 | 6482.7 |
-|     | `\(\frac{(X_j - \E[X_j])^2}{\E[X_j]}\)` | **59.0** | **4.1** | **23.9** |
-|  No   | Observed Frequency `\(X_j\)` | 189.0 | 450.0 | 474.0 |
-|     | Expected Frequency `\(\E[X_j]\)` | 299.4 | 420.1 | 393.5 |
-|     | `\(X_j - \E[X_j]\)` | -110.4 | 29.9 | 80.5 |
-|     | `\((X_j - \E[X_j])^2\)` | 12188.9 | 893.3 | 6482.7 |
-|     | `\(\frac{(X_j - \E[X_j])^2}{\E[X_j]}\)` | **40.7** | **2.1** | **16.5** |
-
----
-
-# Attitudes towards abortion
-
-Calculating test statistic
-
-* `\(\chi^2=\sum{\frac{(X_j - \E[X_j])^2}{\E[X_j]}}=145.27\)`
-* `\(\text{Degrees of freedom} = (\text{number of rows}-1)(\text{number of columns}-1)=2\)`
-
---
-
-Calculating `\(p\)`-value
-
-* `\(\text{p-value} = \Pr (\chi_2^2 &gt; 145.27) = 0\)`
-
----
-class: middle
-
-# Extended example: one-sample, two-sample, and CIs
-
-
----
-class: middle
-
-# A TL;DR of Bayesian v Frequentist statistics
-
----
-
-&lt;img src="https://imgs.xkcd.com/comics/frequentists_vs_bayesians_2x.png" width="390px" style="display: block; margin: auto;" /&gt;
----
-
-# Bayesian Inference
-
-* Works how you probably *thought* frequentist statistics works
-
---
-* Uses information to provide context for how to understand data
-
---
-* We can make probability statements about parameters, even though they are fixed constants
-
---
-* We make inferences about a parameter `\(\theta\)` by producing a probability distribution for `\(\theta\)`
-
----
-
-# Bayesian inference
-
-1. Choose a prior distribution `\(f(\theta)\)`
-1. Choose a statistical model `\(f(x|\theta)\)`
-    * `\(f(x|\theta) \neq f(x; \theta)\)`
-1. Calculate the posterior distribution `\(f(\theta | X_1, \ldots, X_n)\)`
-
-
----
-
-# Bayesian inference
-
-* Suppose that `\(\theta\)` is discrete and that there is a single, discrete observation `\(X\)`
-* `\(\Theta\)` is a random variable
-
---
-
-##### Discrete random variable
-
-$$
-`\begin{align}
-\Pr(\Theta = \theta | X = x) &amp;= \frac{\Pr(X = x, \Theta = \theta)}{\Pr(X = x)} \\
-&amp;= \frac{\Pr(X = x | \Theta = \theta) \Pr(\Theta = \theta)}{\sum_\theta \Pr (X = x| \Theta = \theta) \Pr (\Theta = \theta)}
-\end{align}`
-$$
-
-##### Continuous random variable
-
-`$$f(\theta | x) = \frac{f(x | \theta) f(\theta)}{\int f(x | \theta) f(\theta) d\theta}$$`
-
-
----
-
-# Critique of Bayesian inference
-
-1. The subjective prior is subjective
-
---
-
-1. Probabilities on hypotheses are wrong. There is only one outcome
-
---
-
-1. For many parametric models with large samples, Bayesian and frequentist methods give approximately the same inferences
-
---
-
-1. Bayesian inference depends entirely on the likelihood function
-
----
-
-# Defense of Bayesian inference
-
-1. The probability of hypotheses is exactly what we need to make decisions
-
---
-
-1. Bayes' theorem is logically rigorous (once we obtain a prior)
-
---
-
-1. By testing different priors we can see how sensitive our results are to the choice of prior
-
---
-
-1. It is easy to communicate a result framed in terms of probabilities of hypotheses
-
---
-
-1. Priors can be defended based on the assumptions made to arrive at it
-
---
-
-1. Evidence derived from the data is independent of notions about "data more extreme" that depend on the exact experimental setup
-
---
-
-1. Data can be used as it comes in. We don't have to wait for every contingency to be planned for ahead of time
-
----
 # Recap
 
 * Estimators: generate our point estimate
@@ -1245,7 +985,7 @@ $$
   * Find SE
   * Calculate in formula above
   * Evaluate / make decision
-* Bayes: different approach to statistics vs frequentist
+* PREVIEW: Bayes: different approach to statistics vs frequentist
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
