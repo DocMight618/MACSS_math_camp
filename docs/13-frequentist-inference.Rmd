@@ -21,8 +21,10 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 
 * ALMOST THERE!
 * MPCS placement exam
-* Career services 9/14
-* Review 9/14
+* Tomorrow: Review!
+  * TA session(s)
+  
+* Name, program, pronouns, fave thing about Chicago so far!
 
 
 ---
@@ -166,14 +168,31 @@ $$\text{bias}(\hat{\theta}_n) = \E_\theta (\hat{\theta_n}) - \theta$$
 ---
 
 # Properties of point estimates 
-##### Consistency: on average, how does it do? 
-*note: efficiency has to do with overall variance across estimators*
+##### Consistency: does it get better with sample size?
+
 
 As the number of observations $n$ increases, the estimator converges towards the true parameter $\theta$
 
+--
 
+##### Efficiency: does it have small variance?
 
 ---
+# Estimators: best guesses
+
+Think of an estimator for WHAT your best will be. Here are some options (below) and how well they fare on our top 3 qualities we desire.
+
+--
+
+| Estimator | Unbiased    | Consistent | Efficient |
+|-------    |-------------|-------------|------------|
+| $\bar{x}$  | $\checkmark$ | $\checkmark$  | $\checkmark$ |
+| $x_i$      | $\checkmark$  | $\times$ | $\checkmark$ |
+| $4$        | $\times$ | $\times$ | $\checkmark$  | 
+| median  (normal dist) | $\checkmark$ | $\checkmark$  | $\times$|
+
+---
+
 
 # Properties of point estimates 
 
@@ -209,31 +228,53 @@ KEY for homework:
 
 $$E[\bar X] = \frac{1}{n} \sum_{i=1}^n E[X_i]$$
 --
-Translation: *when we take the expected value of an average of a random variable, we can take the average of the expected value for our random values*
+
+* Translation: *the expected value of an average of a random variable ( $\bar{X}$ ) equals the average of the sum of the expected values for our random variable*
 
 ---
 
 # Bernoulli random variable
+
+Bernoulli refresher: one-shot event with probability $\pi$ of success. 
+
+--
 
 Let $X_1, \ldots, X_n ~ \text{Bernoulli}(\pi)$ and let $\hat{\pi}_n = \frac{1}{n} \sum_{i=1}^n X_i$. Then
 
-$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$. We can then compare our expected value from the distribution $\pi$, to what we obtained here, to verify they are equal.
+$$\E(\hat{\pi}_n) = \frac{1}{n} \sum_{i=1}^n \E(X_i) = \pi$$ 
 
-They are, so $\hat{\pi}_n$ is unbiased
+
+We can then compare our expected value from the distribution $\pi$, to what we obtained here, to verify they are equal.
+
+--
+
+We are adding up $n$ $\hat{\pi}$ and averaging them, where each of these *is* our $\pi$. 
+
+--
+
+They are and thus the two are equal; so $\hat{\pi}_n$ is unbiased
 
 ---
 
-# Bernoulli random variable
+# Bernoulli random variable 
 
 The standard error is
 
 $$\se = \sqrt{\Var (\hat{\pi}_n)}$$
 --
-We can think of this as: $$\frac{Var(\pi_n)}{n}$$. HOW?? We are adding up all the variances across our random variables and averaging them. 
+We can think of this as: $\frac{Var(\pi_n)}{n}$
+
+HOW?? Recall $E(\hat{\pi_n}) = \frac{1}{n} \sum E(X_i)$, so $Var(\hat{\pi_n})=Var(\frac{1}{n} \sum E(X_i))$. Then, $Var(\hat{\pi_n})=(\frac{1}{n})^2 \text{ }Var( \sum E(X_i))$.
 
 --
-Therefore, we get: 
-$$\se= \sqrt{\frac{\pi (1 - \pi)}{n}}$$
+
+So, we can simplify to get $Var(\hat{\pi_n})=(\frac{1}{n})^2 \text{ } \sum Var(X_i)$. We can re-write this as $\frac{n}{n^2} Var(X_i)=\frac{Var(X_i)}{n} = \frac{\pi(1-\pi)}{n}$. 
+
+--
+We are adding up all the variances across our random variables and averaging them. 
+
+--
+Therefore, we get: $\se= \sqrt{\frac{\pi (1 - \pi)}{n}}$
 
 --
 
@@ -256,6 +297,26 @@ $$\se = \sqrt{\frac{\pi (1 - \pi)}{n}} \rightarrow 0$$
 --
 
 $\hat{\pi}_n$ is a consistent estimator of $\pi$
+
+---
+
+## Estimators: recap
+
+* Estimators are WHAT/HOW we come to have a best guess of our thing we care about
+--
+
+* We need a way to think about / evaluate if they are good or not
+--
+
+* That way is called 'BLUE' (best, linear, unbiased)
+--
+
+* Using this is how we decided to use the sample mean as the best guess of the population mean (and other similar decisions)
+
+---
+class: center, middle, inverse
+
+# Maximum likelihood
 
 ---
 
@@ -314,7 +375,30 @@ $$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$
 
 1. Take the derivative of $\lagr_n (\pi)$
 1. Set it equal to 0
-1. Solve for $\hat{\pi}_n = \frac{S}{n}$
+1. Solve to find $\hat{\pi}_n = \frac{S}{n}$
+
+---
+
+# Bernoulli random variable
+We're going to solve for the 'best' estimator, $\hat{\pi}$
+$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$
+--
+$$\frac{d\lagr_n (\hat{\pi})}{d \hat{\pi}} = \frac{S}{\hat{\pi}} -  \frac{(n - S)}{1 - \hat{\pi}} = 0$$
+--
+
+$$\frac{S}{\hat{\pi}} =  \frac{(n - S)}{1 - \hat{\pi}}$$
+
+--
+$S(1-\hat{\pi}) =  \hat{\pi}(n - S)$ and $S-S\hat{\pi} =  \hat{\pi}(n - S)$
+
+We can continue simplifying to get:
+
+--
+$\hat{\pi} n - S \hat{\pi} + S\hat{\pi} = S$ so
+
+--
+
+$$\hat{\pi} = \frac{S}{n}$$
 
 ---
 
@@ -395,6 +479,8 @@ ggplot(bern, aes(x, lik)) +
 ##### Consistency
 
 $$\hat{\theta}_n \xrightarrow{P} \theta_*$$
+
+Meaning: it converges in probability to the true value
 
 --
 
@@ -598,6 +684,17 @@ $$
 $$
 
 ---
+# CI: when to use
+
+Confidence intervals give you information about your point estimate. You KNOW your point estimate is likely wrong. (very precise but not very accurate). 
+
+You can give a RANGE around your CI to improve your accuracy, at the cost of precision. 
+
+--
+
+There is a delicate balance between accuracy and precision: for accuracy, you want to be as accurate as possible, but this means you have to have a wide range. We have conventionally compromised at 95% for the 'right' balance between the two. 
+
+---
 class: middle
 
 # Hypothesis testing: 
@@ -662,15 +759,15 @@ Truth / Decision | Reject | Fail to Reject
 --------|---------|---------
 $H_0$ True | WRONG! | YES! 
 |(false negative) |
-| type I error |
+| type II error |
 $H_0$ False | YES! |  WRONG! 
 ||(false positive)
-|| type II error
+|| type I error
 
 ---
 # Positives and negative
 
-Example: Suppose our null is that people support a six-hour exam. We need to understand if we have sufficient evidence against this. 
+Example: Suppose our null is that people support a six-hour exam. We need to understand if we have sufficient evidence against this or not. 
 
 --
 
@@ -699,7 +796,7 @@ knitr::include_graphics("https://i.stack.imgur.com/Kq0OH.jpg")
 
 # Power function
 
-Power - probability of correctly rejecting the null hypothesis
+Power - probability of correctly rejecting the null hypothesis. Another way to consider this is to imagine you want to know if you COULD reject the null if it were false. You might now have enough POWER (either your sample size is too small and/or your null is slightly wrong). 
 
 --
 
@@ -718,9 +815,14 @@ $$\alpha = \text{sup}_{\theta \in \Theta_0} \beta(\theta)$$
 A test is said to have **level** $\alpha$ if its size is less than or equal to $\alpha$
 
 ---
+class: center, middle
 
+## Setting up hypothesis testing
+
+---
 # Sided tests
-
+You are positing 'where' the true value is (larger or smaller) vs 'not here'
+--
 ### Two-sided test
 
 $$H_0: \theta = \theta_0 \quad \text{versus} \quad H_1: \theta \neq \theta_0$$
@@ -849,6 +951,10 @@ $$1 - \Phi \left( \frac{\hat{\theta} - \theta_0}{\widehat{\se}} + z_{\alpha/2} \
 * The power is large if the sample size is large
 
 ---
+class: center, middle, inverse
+
+## Details: hypothesis testing
+---
 
 # Example: comparing two means
 
@@ -905,7 +1011,7 @@ knitr::include_graphics("http://www.azquotes.com/picture-quotes/quote-the-absenc
 
 ---
 
-# Understanding $p$-values
+# Understanding $p$ -values
 
 Generally, if the test rejects at level $\alpha$ it will also reject at level $\alpha' > \alpha$
 
@@ -1006,5 +1112,5 @@ tibble(
   * Find SE
   * Calculate in formula above
   * Evaluate / make decision
-* Bayes: different approach to statistics vs frequentist
+* PREVIEW: Bayes: different approach to statistics vs frequentist
 
