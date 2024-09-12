@@ -70,6 +70,18 @@ Translation: *when we take the expected value of an average of a random variable
 * deal with evidence (sufficient / insufficient) and information
 
 ---
+
+# Types of errors: table
+
+Truth / Decision | Reject | Fail to Reject
+--------|---------|---------
+`\(H_0\)` True | WRONG! | YES! 
+| type I error |
+`\(H_0\)` False | YES! |  WRONG! 
+|| type II error
+
+---
+
 # Statistical tests:
 
 * One mean
@@ -91,7 +103,7 @@ To answer, need the sample size to help figure out appropriate test
 ---
 # Cool, what test do I use? 
 
-* Counts: if only two choices, use z test for proportions, if lots of choices or table, use `\(\chi^2\)`
+* Counts: if only two choices, use z test for proportions, if lots of choices or table, use `\(\chi^2\)` (easy to calc, somewhat problematic) or Fisher's exact (better but less frequently used)
 * Means: if two groups and small sample, t; if two groups and large-ish sample, z; if multiple groups (and decent sample size) ANOVA
 
 ---
@@ -104,7 +116,6 @@ General format: (observed mean)-(expected value) / SE
 --
 Steps: 
 
---
 * Find sample mean (AKA POINT ESTIMATE)
 
 --
@@ -291,7 +302,7 @@ class: middle
 Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. In 2004, the average time was 5.9 with a sample SD of 8.86 and a n of 1,574. In 2012 the average was 10.5 with a sample SD of 14.5 and n of 1,019.In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
 --
 
-* First: CI for 2014 (point estimate `\(\pm\)` `\(z^*\)`*se)
+* First: CI for 2014 (point estimate `\(\pm\)` `\(z^* \text{ } *se\)`)
 * Next: Difference of means test (difference - expected / se)
   * Look at 2014 vs 2004
   * Look at 2014 vs 2012
@@ -357,6 +368,18 @@ class: middle
 
 &lt;img src="https://imgs.xkcd.com/comics/frequentists_vs_bayesians_2x.png" width="390px" style="display: block; margin: auto;" /&gt;
 ---
+# Bayesians vs Fequentists
+
+* Frequentists assume the truth is OUT THERE and we are trying to measure it
+* Bayesians use the data as our source of truth
+
+--
+
+* Frequentists live in the land of numbers (calculating probabilities, etc.)
+* Bayesians rely more on distributions (e.g. what is the data generating process vs only probability focus)
+
+
+---
 
 # Bayesian Inference
 
@@ -370,6 +393,10 @@ class: middle
 
 --
 * We make inferences about a parameter `\(\theta\)` by producing a probability distribution for `\(\theta\)`
+
+--
+
+Deals with prior beliefs and how our confidence changes as we gain more information (can think of it as how we deal with uncertainty)
 
 ---
 
