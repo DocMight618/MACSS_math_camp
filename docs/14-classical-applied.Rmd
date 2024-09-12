@@ -22,7 +22,8 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 
 * Exam TOMORROW!
 * All calculators claimed 
-* Rooms assigned!
+* Rooms assigned! Will email assignment. 
+* Accommodations: I need to hear from YOU if you need accommodations --email by 2pm today please!
 
 
 ---
