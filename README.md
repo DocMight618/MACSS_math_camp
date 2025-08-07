@@ -63,7 +63,7 @@ This course is open to all students who meet the academic requirements for parti
 
 ## Core texts: suggested, not required
 
-**Course texts are subject to change for 2024**
+**Course texts are subject to change for 2025**
 
 * Bertsekas, D. P., & Tsitsiklis, J. N. (2008). *Introduction to probability*, 2nd edition. Belmont, MA: Athena Scientific.
 * Pemberton, M., & Rau, N. (2015). *Mathematics for economists: an introductory textbook*, 4th edition. Oxford University Press.
