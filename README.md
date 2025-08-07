@@ -1,4 +1,4 @@
-# MACS 33000 - Computational Mathematics and Statistics Camp (September Term 2024)
+# MACS 33000 - Computational Mathematics and Statistics Camp (September Term 2025)
 
 |  | Jean Clipperton|
 |-|-|
@@ -6,17 +6,16 @@
 | Office | Room 219, 1155 E. 60th St. |
 | GitHub | [jmclip](https://github.com/jmclip) |
 
-* Meeting day: August 26-September 13, MTWThF
+* Meeting day: August 25-September 12, MTWThF
 * Time: 9:00am-1:00pm
-* Location: week of 8.26: 107 Kent Hall
-* Location: 9.2-9/13: IMSI auditorium
+* Location: Social Sciences Rsch Bldg 122
 
 
 ## TA TEAM!
-* Alejandro Sarria: asarria@uchicago.edu	
-* Huanrui Chen: hchen0628@uchicago.edu		
-* Nalin Bhatt: nalinb@uchicago.edu		
-* Charlotte Zhou: jialez@uchicago.edu		
+* Bailey Meche <baileymeche@uchicago.edu>
+* Gabe Reichman <gabereichman@uchicago.edu>
+* Shirley Zhang <xueyan1220@uchicago.edu>
+* Stanley Yi <yijiaying@uchicago.edu>
 
 ## Course description
 
@@ -36,7 +35,7 @@ This course surveys mathematical and statistical tools that are foundational to 
 
 
 ### COURSE: CANVAS
-[Join our canvas classroom by clicking this link](https://canvas.uchicago.edu/enroll/WCWJRE) This code should enable anyone to join. For assignments, please be sure to upload a CLEAR AND READABLE DOCUMENT that is labeled with the assignment name and your name. 
+[Join our canvas classroom by clicking this link](https://canvas.uchicago.edu/enroll/MWWG9D) This code should enable anyone to join. For assignments, please be sure to upload a CLEAR AND READABLE DOCUMENT that is labeled with the assignment name and your name. 
 
 ## Grades
 
@@ -46,10 +45,12 @@ This course may only be taken for pass/fail (non-credit), not for a letter grade
 The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator. The study sheets will be collected at the end of the exam. One example kind of calculator would be [this calculator](https://www.target.com/p/texas-instruments-ti-30xa-scientific-calculator/-/A-14769313). Loaner calculators are available by request if requested by 9/7/23. 
 
 ## To earn credit / pass the course:
-For course credit, students need to complete at least six assignments at or above 70% and get a 70% or higher on the final exam. 
+For course credit, students need to complete at least six assignments at or above 70% and get a 70% or higher on the final exam. If students complete six assignments at or above 70% but score between 50% and 70% on the final exam, the students can complete one additional exam for course credit. Note that if MACSS students do not meet the requirements for passing on the first assessment, they can still earn credit for the course but will still need to take a supplemental methods course per our program policy. 
 
 Attendance is not required with the exception of the final day of class, which has the final exam. The exam is not optional and is in-person only. 
 
+## AI Policy
+AI / generative AI / GPT-like tools are not permitted for any of the content / assessments in this course. Using these tools constitutes academic dishonesty and will be reported to the Dean of Students, Kelly Pollock. Academic integrity is something we take very seriously: violations are not tolerated. 
 
 ### Exam study guide
 [Submit your practice questions here](https://forms.gle/FGmpjwDpHw5mVyVp6). We will use this to generate the final exam and we will circulate the questions here to all students. Note that not all questions here will be on the exam -- it depends upon the quality and variety of submissions. 
@@ -71,18 +72,18 @@ This course is open to all students who meet the academic requirements for parti
 
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
-| 26-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](problem_sets/01-functions-sets.pdf) & [answer key](solutions/Pset1Solutions.pdf)
-| 27-Aug | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2](problem_sets/02-seq-limits-critical-points.pdf) & [answer key](solutions/Pset2Solutions.pdf)
-| 28-Aug | Calculus | [Critical points and approximation + Intro Linear Algebra](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 3](problem_sets/03-critical-points.pdf) & [answer key](solutions/Pset3Solutions.pdf)
-| 29-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [NO HOMEWORK!]
-| 30-Aug | Linear algebra  |  [Systems of linear equations and determinants](https://jmclip.github.io/MACSS_math_camp/06-matrix-inversion-decomposition.html) | [Pset 4](problem_sets/04-linear-algebra.pdf) & [answer key](solutions/Pset4Solutions.pdf)
-| 2-Sep | No class (Labor Day) |  | 
-| 3-Sep | Calculus |[Functions of several variables and optimization with several variables](https://jmclip.github.io/MACSS_math_camp/07-multivariable-differentiation.html)| [NO HMWK]
-| 4-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | [Pset 5/6](problem_sets/05-06-diff-integration.pdf) & [answer key](solutions/Pset56Solutions.pdf)
-| 5-Sep | Calculus |  [Sample space and probability](https://jmclip.github.io/MACSS_math_camp/09-sample-space-probability.html)| [Pset 7](/problem_sets/07-sample-space-probability2.pdf) & [answer key](solutions/Pset7Solutions.pdf)
-| 6-Sep | Probability | [Discrete random variables](https://jmclip.github.io/MACSS_math_camp/10-discrete-random-vars.html) | [Pset 8](problem_sets/08-discrete-random-variables2.pdf) + [Survey](https://forms.gle/8qmgAjFTzWRVRPh29) & [answer key](solutions/Pset8Solutions.pdf)
-| 9-Sep | Probability | [General random variables](https://jmclip.github.io/MACSS_math_camp/11-general-random-vars.html)| [Pset 9](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/09-general-random-variables.pdf) & [answer key](solutions/Pset9Solutions.pdf)
-| 10-Sep | Probability | [Multivariate distributions](https://jmclip.github.io/MACSS_math_camp/12-multivariate-pdf.html)  | [Pset 10](problem_sets/10-multivariate-pdf.pdf) & [answer key](solutions/Pset10Solutions.pdf)
-| 11-Sep | Statistical inference  | [Classical statistical inference](https://jmclip.github.io/MACSS_math_camp/13-frequentist-inference.html)| [Pset 11/12](problem_sets/11-12-frequentist-inference.pdf) & [answer key](solutions/Pset1112Solutions.pdf)
-| 12-Sep | Statistical inference | [Applied Classical Stats and intro to Bayesian statistical inference](https://jmclip.github.io/MACSS_math_camp/14-classical-applied.html) | [Review questions (student submissions)](https://docs.google.com/spreadsheets/d/1GB8BQoK4pZgne3_kgWOgYHYH_ScUGQ4awsMSUsIPO3k/edit?usp=sharing) and [Practice guide (student-created)](solutions/exam_prep_questions.pdf)
-| 13-Sep | Placement exam |  | Placement exam
+| 25-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](problem_sets/01-functions-sets.pdf) & [answer key](solutions/Pset1Solutions.pdf)
+| 26-Aug | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2](problem_sets/02-seq-limits-critical-points.pdf) & [answer key](solutions/Pset2Solutions.pdf)
+| 287Aug | Calculus | [Critical points and approximation + Intro Linear Algebra](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 3](problem_sets/03-critical-points.pdf) & [answer key](solutions/Pset3Solutions.pdf)
+| 28-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [NO HOMEWORK!]
+| 29-Aug | Linear algebra  |  [Systems of linear equations and determinants](https://jmclip.github.io/MACSS_math_camp/06-matrix-inversion-decomposition.html) | [Pset 4](problem_sets/04-linear-algebra.pdf) & [answer key](solutions/Pset4Solutions.pdf)
+| 1-Sep | No class (Labor Day) |  | 
+| 2-Sep | Calculus |[Functions of several variables and optimization with several variables](https://jmclip.github.io/MACSS_math_camp/07-multivariable-differentiation.html)| [NO HMWK]
+| 3-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | [Pset 5/6](problem_sets/05-06-diff-integration.pdf) & [answer key](solutions/Pset56Solutions.pdf)
+| 4-Sep | Calculus |  [Sample space and probability](https://jmclip.github.io/MACSS_math_camp/09-sample-space-probability.html)| [Pset 7](/problem_sets/07-sample-space-probability2.pdf) & [answer key](solutions/Pset7Solutions.pdf)
+| 5-Sep | Probability | [Discrete random variables](https://jmclip.github.io/MACSS_math_camp/10-discrete-random-vars.html) | [Pset 8](problem_sets/08-discrete-random-variables2.pdf) + [Survey](https://forms.gle/8qmgAjFTzWRVRPh29) & [answer key](solutions/Pset8Solutions.pdf)
+| 8-Sep | Probability | [General random variables](https://jmclip.github.io/MACSS_math_camp/11-general-random-vars.html)| [Pset 9](https://github.com/jmclip/MACSS_math_camp/blob/master/problem_sets/09-general-random-variables.pdf) & [answer key](solutions/Pset9Solutions.pdf)
+| 9-Sep | Probability | [Multivariate distributions](https://jmclip.github.io/MACSS_math_camp/12-multivariate-pdf.html)  | [Pset 10](problem_sets/10-multivariate-pdf.pdf) & [answer key](solutions/Pset10Solutions.pdf)
+| 10-Sep | Statistical inference  | [Classical statistical inference](https://jmclip.github.io/MACSS_math_camp/13-frequentist-inference.html)| [Pset 11/12](problem_sets/11-12-frequentist-inference.pdf) & [answer key](solutions/Pset1112Solutions.pdf)
+| 11-Sep | Statistical inference | [Applied Classical Stats and intro to Bayesian statistical inference](https://jmclip.github.io/MACSS_math_camp/14-classical-applied.html) | [Review questions (student submissions)](https://docs.google.com/spreadsheets/d/1GB8BQoK4pZgne3_kgWOgYHYH_ScUGQ4awsMSUsIPO3k/edit?usp=sharing) and [Practice guide (student-created)](solutions/exam_prep_questions.pdf)
+| 12-Sep | Placement exam |  | Placement exam
