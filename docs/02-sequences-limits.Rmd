@@ -43,15 +43,15 @@ $$f(x) = x \times x = x^2$$
 $$f(x) = x \times x \times x = x^3$$
 
 ```{r functions-with-exp}
-{
-  function_plot +
-    stat_function(fun = function(x) x^2) +
-    labs(title = expression(f(x) == x^2))
-} + {
-  function_plot +
-    stat_function(fun = function(x) x^3) +
-    labs(title = expression(f(x) == x^3))
-}
+# {
+#   function_plot +
+#     stat_function(fun = function(x) x^2) +
+#     labs(title = expression(f(x) == x^2))
+# } + {
+#   function_plot +
+#     stat_function(fun = function(x) x^3) +
+#     labs(title = expression(f(x) == x^3))
+# }
 ```
 
 ---
@@ -261,34 +261,34 @@ tibble(
 # Arithmetic progression
 
 ```{r arithmetric-progression}
-{
-  tibble(
-    x = seq(from = 1, to = 100),
-    y = 2 * x
-  ) %>%
-    ggplot(aes(x, y)) +
-    geom_point() +
-    labs(
-      title = expression(f(n) == 2 * n),
-      subtitle = expression(paste(a == 2, ", ", d == 2)),
-      x = "Integers",
-      y = "Sequence"
-    )
-} + {
-  tibble(
-    x = seq(from = 1, to = 100),
-    y = 29 - 9 * x
-  ) %>%
-    ggplot(aes(x, y)) +
-    geom_point() +
-    labs(
-      title = expression(f(n) == 29 - 9 * n),
-      subtitle = expression(paste(a == 20, ", ", d == -9)),
-      x = "Integers",
-      y = "Sequence"
-    )
-} +
-  plot_annotation(title = "Arithmetic progressions")
+# {
+#   tibble(
+#     x = seq(from = 1, to = 100),
+#     y = 2 * x
+#   ) %>%
+#     ggplot(aes(x, y)) +
+#     geom_point() +
+#     labs(
+#       title = expression(f(n) == 2 * n),
+#       subtitle = expression(paste(a == 2, ", ", d == 2)),
+#       x = "Integers",
+#       y = "Sequence"
+#     )
+# } + {
+#   tibble(
+#     x = seq(from = 1, to = 100),
+#     y = 29 - 9 * x
+#   ) %>%
+#     ggplot(aes(x, y)) +
+#     geom_point() +
+#     labs(
+#       title = expression(f(n) == 29 - 9 * n),
+#       subtitle = expression(paste(a == 20, ", ", d == -9)),
+#       x = "Integers",
+#       y = "Sequence"
+#     )
+# } +
+#   plot_annotation(title = "Arithmetic progressions")
 ```
 
 ---
@@ -310,34 +310,34 @@ tibble(
 # Geometric progression
 
 ```{r geometric-progression}
-{
-  tibble(
-    x = seq(from = 1, to = 20),
-    y = -3^x / 5
-  ) %>%
-    ggplot(aes(x, y)) +
-    geom_point() +
-    labs(
-      title = expression(f(n) == frac(-3^n, 5)),
-      subtitle = expression(paste(a == frac(-3, 5), ", ", x == 3)),
-      x = "Integers",
-      y = "Sequence"
-    )
-} + {
-  tibble(
-    x = seq(from = 1, to = 20),
-    y = 8 * (-4)^(1 - x)
-  ) %>%
-    ggplot(aes(x, y)) +
-    geom_point() +
-    labs(
-      title = expression(f(n) == 8 * (-4)^(1 - n)),
-      subtitle = expression(paste(a == 8, ", ", x == frac(-1, 4))),
-      x = "Integers",
-      y = "Sequence"
-    )
-} +
-  plot_annotation(title = "Geometric progressions")
+# {
+#   tibble(
+#     x = seq(from = 1, to = 20),
+#     y = -3^x / 5
+#   ) %>%
+#     ggplot(aes(x, y)) +
+#     geom_point() +
+#     labs(
+#       title = expression(f(n) == frac(-3^n, 5)),
+#       subtitle = expression(paste(a == frac(-3, 5), ", ", x == 3)),
+#       x = "Integers",
+#       y = "Sequence"
+#     )
+# } + {
+#   tibble(
+#     x = seq(from = 1, to = 20),
+#     y = 8 * (-4)^(1 - x)
+#   ) %>%
+#     ggplot(aes(x, y)) +
+#     geom_point() +
+#     labs(
+#       title = expression(f(n) == 8 * (-4)^(1 - n)),
+#       subtitle = expression(paste(a == 8, ", ", x == frac(-1, 4))),
+#       x = "Integers",
+#       y = "Sequence"
+#     )
+# } +
+#   plot_annotation(title = "Geometric progressions")
 ```
 
 ---
@@ -554,6 +554,30 @@ function_plot +
     $$|f(x) - L| < \epsilon \, \forall \, x \backepsilon 0 < |x - x_0 | < \delta$$
 
 --
+
+$$|f(x) - L| < \epsilon \,$$ there's an epsilon larger than the distance between f(x) and the limit 
+
+--
+$$\forall \, x \backepsilon $$ for all x, such that,
+
+--
+$$0 < |x - x_0 | < \delta$$ the difference between x and $x_0$ bounded between 0 and some other delta (it ust be closer to 0 than $\delta$)
+
+
+---
+
+```{r out.width="100%"}
+url <- "https://math.libretexts.org/@api/deki/files/9980/CNX_Calc_Figure_02_05_001.jpeg?revision=1"
+knitr::include_graphics(url)
+
+```
+
+source: [math 210]((https://math.libretexts.org/Courses/Monroe_Community_College/MTH_210_Calculus_I_(Professor_Dean)/Chapter_2_Limits/2.7%3A_The_Precise_Definition_of_a_Limit))
+
+---
+
+# Limits, cont'd
+
 * Limits are about the behavior of functions at **points**. Here $x_{0}$
 * As with sequences, we let $\epsilon$ define an **error rate**
 * $\delta$ defines an area around $x_{0}$ where $f(x)$ is going to be within our error rate

@@ -273,7 +273,7 @@ The standard error is
 --
 We can think of this as: `\(\frac{Var(\pi_n)}{n}\)`
 
-HOW?? Recall `\(E(\hat{\pi_n}) = \frac{1}{n} \sum E(X_i)\)`, so `\(Var(\hat{\pi_n})=Var(\frac{1}{n} \sum E(X_i))\)`. Then, `\(Var(\hat{\pi_n})=(\frac{1}{n})^2 \text{ }Var( \sum E(X_i))\)`.
+HOW?? Recall `\(\hat{\pi}_n = \frac{1}{n} \sum_{i=1}^n X_i\)`, so `\(Var(\hat{\pi_n})=Var(\frac{1}{n} \sum (X_i))\)`. Then, `\(Var(\hat{\pi_n})=(\frac{1}{n})^2 \text{ }Var( \sum (X_i))\)`.
 
 --
 
@@ -282,7 +282,8 @@ So, we can simplify to get `\(Var(\hat{\pi_n})=(\frac{1}{n})^2 \text{ } \sum Var
 --
 We are adding up all the variances across our random variables and averaging them. 
 
---
+---
+
 Therefore, we get: `\(\se= \sqrt{\frac{\pi (1 - \pi)}{n}}\)`
 
 --

@@ -712,6 +712,196 @@ X has two rows and three columms, so is `\(2 \times 3\)`. Y has three rows and t
 Matrices are incredibly helpful, despite also being a bit challenging to get the hang of. We'll talk more about them tomorrow but you will want to note the dimensions of a matrix. You can do some operations with them (addition / subtraction) and they work the way you are probably guessing (need to be the same size). **MULTIPLICATION DOES NOT WORK THAT WAY! WARNING!!!**
 ---
 
+class: center, inverse
+
+# The Matrix, Part I
+&lt;img src="https://media.tenor.com/ang0VzOwbdAAAAAC/the-matrix-reloaded-matrix.gif" style="display: block; margin: auto;" /&gt;
+---
+
+# Matricies
+
+* **Rectangular** arrangement (array) of numbers defined by two **axes**
+    1. Rows
+    1. Columns
+
+`$$\mathbf{A} = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn} \\
+\end{bmatrix}$$`
+
+
+---
+
+# Example matricies: Fun facts
+
+* Dimensionality matters
+* Diagonal from upper left to lower right matters 
+  * Sometimes the opposite diagonal is referred to by a name, but this varies
+* Matrices referred to by their overall properties (elements) and/or behavior of the diagonal 
+* Special names for *special* matrices:
+  * Diagonal matrix (only numbers on diagonal; zero elsewhere)
+    * Identity (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called `\(I\)`)
+  * Square (n rows = n columns)
+  * Triangular matrix (half of matrix has zeros -- see below for lower/upper distinction)
+    * lower triangular (numbers in lower half (diagonal down) and zeros above diagonal)
+    * upper triangular (numbers in upper half (diagonal up) and zeros below diagonal)
+  * Zero matrix (all zeros!)
+  * Matrix of only ones (sometimes given letter J)
+  * Transpose / transposition (mathematical operation on a matrix) (superscript with T)
+  * Inverse (this is a mathematical operation) (superscipt with `\(-1\)`)
+
+---
+
+# Example matricies
+
+Consider the following: 
+
+`$$\mathbf{X} = \begin{bmatrix}1 &amp; 2 &amp; 3 &amp; 4 \\
+2 &amp; 1 &amp; 4 &amp; 3\\
+\end{bmatrix}$$`
+
+`$$\mathbf{Y} = \left[ \begin{array}{rr} 1 &amp; 2 \\3 &amp; 2 \\1 &amp; 4\end{array} \right]\\$$`
+
+`$$\mathbf{Z} = \left[ \begin{array}{rrr}1 &amp; 2 &amp; 3 \\5 &amp; 1 &amp; 4 \\6 &amp; 1 &amp; 7\end{array} \right]$$`   
+
+---
+
+# Matrix oparations: addition
+
+* `\(\mathbf{X}\)` and `\(\mathbf{Y}\)` are `\(m \times n\)` matrices
+
+`$$\begin{aligned} \mathbf{X} + \mathbf{Y} &amp; =  \begin{pmatrix} x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1n} \\ x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2n} \\\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_{m1} &amp; x_{m2} &amp; \ldots &amp; x_{mn} \\ \end{pmatrix} + \begin{pmatrix}  y_{11} &amp; y_{12} &amp; \ldots &amp; y_{1n} \\ y_{21} &amp; y_{22} &amp; \ldots &amp; y_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ y_{m1} &amp; y_{m2} &amp; \ldots &amp; y_{mn} \\ \end{pmatrix} \\ &amp; = \begin{pmatrix}  x_{11} + y_{11} &amp; x_{12} + y_{12} &amp; \ldots &amp; x_{1n} + y_{1n} \\ x_{21} + y_{21} &amp; x_{22} + y_{22} &amp; \ldots &amp; x_{2n} + y_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\ x_{m1} + y_{m1} &amp; x_{m2} + y_{m2} &amp; \ldots &amp; x_{mn} + y_{mn} \\ \end{pmatrix} \end{aligned}$$`
+
+---
+
+# Scalar Multiplication
+You can just multiply the constant (scalar) through the matrix. 
+
+* `\(\mathbf{X}\)` is an `\(m \times n\)` matrix and `\(k \in \Re\)`
+
+`$$k \mathbf{X} = \begin{pmatrix} 
+k x_{11} &amp; k x_{12} &amp; \ldots &amp;  k x_{1n} \\
+k x_{21} &amp; k x_{22} &amp; \ldots &amp; k x_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+k x_{m1} &amp; k x_{m2} &amp; \ldots &amp; k x_{mn} \\
+\end{pmatrix}$$`
+
+---
+
+# Matrix transposition
+
+Transposing a matrix means *flipping* it in a sense -- swapping across the diagonal. 
+
+`$$\mathbf{X} = \begin{pmatrix} x_{11} &amp; x_{12} &amp; \ldots &amp; x_{1n} \\ x_{21} &amp; x_{22} &amp; \ldots &amp; x_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_{m1} &amp; x_{m2} &amp; \ldots &amp; x_{mn} \\ \end{pmatrix}$$` 
+
+`$$\mathbf{X}' = \begin{pmatrix}  x_{11} &amp; x_{21} &amp; \ldots &amp; x_{m1} \\ x_{12} &amp; x_{22} &amp; \ldots &amp; x_{m2} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ x_{1n} &amp; x_{2n} &amp; \ldots &amp; x_{mn}\end{pmatrix}\\$$`
+
+
+
+---
+ 
+# Matrix multiplication
+ 
+This is conceptually a bit hard as I find it really unintuitive (maybe it's not for you!). 
+
+* Step 1: have two (or more matrices to multiply)
+* Step 2: check dimensions (rows vs columns)
+* Step 3: **ORDER MATTERS** the number of COLUMNS of the FIRST matrix MUST MATCH the number of ROWS of the second matrix (YES, I KNOW!! )
+* Step n: final output will have the number of ROWS of the FIRST and the number of COLUMNS of the second matrix. 
+(steps continued on next slide -- just setting up logic here!) \\
+
+&lt;span style = "color: blue;"&gt;
+`$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
+&lt;/span&gt;
+
+&lt;span style = "color: red;"&gt;
+`$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+&lt;/span&gt;
+
+Note our two matrices above. In what order do we multiply them? What dimensions will our final matrix have? 
+
+--
+Well, `\(X\)` is `\(2\times 1\)`, `\(Y \text{ is } 2 \times 2\)`. Since the number of cols of X do not match the number of rows of Y, we can't multiply them. BUT! We **CAN** multiply `\(Y\)` and `\(X\)`! This is because we will have `\(2 \times 2 \text{ and } 2 \times 1\)`, producing a final matrix of `\(2 \times 1\)`.
+
+
+---
+
+# Matrix multiplication: Color-coded example
+To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOWN THE COLUMN of the second matrix. You then add these together. For example, if you have matrix A times matrix B, it would be element `\(a_{1,1}*b_{1,1} + ... + a_{1,n}*b_{n,1}\)`. This sum goes into the first cell in the resulting matrix. This sounds confusing (because it is), so let's see an example. 
+
+--
+
+&lt;span style = "color: blue;"&gt;
+`$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
+&lt;/span&gt;
+
+&lt;span style = "color: red;"&gt;
+`$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+&lt;/span&gt;
+
+--
+
+Here, we have a very simple example -- so, we'll take the row (in this case, the entirety) of X and multiply the pairs (each element with its corresponding partner) of X and Y. So, &lt;span style = "color: red;"&gt; `\(5*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(2*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(5+ 20 = 25\)` &lt;/span&gt; as the first cell in our resulting matrix.  
+
+--
+
+Similarly, we'll multiply the remaining row of our matrix Y by the column in X to produce the following:  &lt;span style = "color: red;"&gt; `\(3*\)` &lt;/span&gt; &lt;span style = "color: blue;"&gt; `\(1\)` &lt;/span&gt; + &lt;span style = "color: red;"&gt; `\(4*\)` &lt;/span&gt; `\(+\)` &lt;span style = "color: blue;"&gt; `\(10\)` &lt;/span&gt;. This will give us &lt;span style = "color: purple;"&gt; `\(3+ 40 = 43\)` &lt;/span&gt; as the first cell in our resulting matrix. 
+
+---
+
+# Matrix multiplication: Color-coded example
+To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOWN THE COLUMN of the second matrix. You then add these together. For example, if you have matrix A times matrix B, it would be element `\(a_{1,1}*b_{1,1} + ... + a_{1,n}*b_{n,1}\)`. This sum goes into the first cell in the resulting matrix. This sounds confusing (because it is), so let's see an example. 
+
+--
+
+&lt;span style = "color: blue;"&gt;
+`$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
+&lt;/span&gt;
+
+&lt;span style = "color: red;"&gt;
+`$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+&lt;/span&gt;
+
+
+**This produces**
+
+&lt;span style = "color: purple;"&gt;
+`$$\mathbf{Z} = \begin{pmatrix} 25 \\ 43 \\ \end{pmatrix}$$`
+&lt;/span&gt;
+
+---
+
+# Matrix multiplication
+
+Try this example and check with a neighbor: `\(\mathbf{XY}\)`
+
+`$$\mathbf{X} = \begin{pmatrix} 1 &amp; 1 \\ 1&amp; 1 \\ \end{pmatrix} , \quad \mathbf{Y} = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+
+--
+
+
+`$$\begin{aligned} \mathbf{A} &amp; = \mathbf{X} \mathbf{Y} \\&amp; = \begin{pmatrix}1 &amp; 1 \\ 1 &amp; 1 \\\end{pmatrix} \begin{pmatrix}1 &amp; 2 \\3 &amp; 4 \\\end{pmatrix} \\&amp;= \begin{pmatrix}1 \times 1 + 1 \times 3 &amp; 1 \times 2 + 1 \times 4 \\1 \times 1 + 1 \times 3 &amp; 1 \times 2 + 1 \times 4\\\end{pmatrix} \\&amp;= \begin{pmatrix}4 &amp; 6 \\4 &amp; 6\end{pmatrix}\end{aligned}$$`
+
+---
+
+# Matrix multiplication: Identity Matrix
+
+Try this example and check with a neighbor: `\(\mathbf{IY}\)` (let's see why `\(I\)` is called the **identity matrix**)
+
+`$$\mathbf{I} = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ \end{pmatrix} , \quad \mathbf{Y} = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+
+--
+
+`$$\begin{aligned} \mathbf{A} &amp; = \mathbf{I} \mathbf{Y} \\&amp; = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; 1 \\\end{pmatrix} \begin{pmatrix}1 &amp; 2 \\3 &amp; 4 \\\end{pmatrix} 
+\\&amp;= \begin{pmatrix}1 \times 1 + 0 \times 3 &amp; 1 \times 2 + 0 \times 4 \\
+0 \times 1 + 1 \times 3 &amp; 0 \times 2 + 1 \times 4\\\end{pmatrix} 
+\\&amp;= \begin{pmatrix}1 &amp; 2 \\3 &amp; 4\end{pmatrix}\end{aligned}$$`
+
+IT'S LIKE MAGIC! (*actually it's just the matrix version of multiplying by 1*)
+
+---
 
 
 # INTROS

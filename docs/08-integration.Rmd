@@ -735,6 +735,86 @@ $$\int_{-\infty}^\infty f(x) \,dx$$
 
     $$\int_{-\infty}^\infty f(x) \,dx = 1$$
 
+---
+<!-- class: middle -->
+
+<!-- # What if your function is not differentiable over the interval?  -->
+
+<!-- --- -->
+
+<!-- # Improper integrals -->
+<!-- * *note: infinite integrals are also technically improper integrals* -->
+<!-- * Integral where the integrand is not defined at one of the limits of integration -->
+
+<!--     $$I = \int_0^1 \frac{1}{\sqrt{x}} \,dx$$ -->
+
+<!--     * $\frac{1}{\sqrt{x}} \rightarrow \infty$ as $x \rightarrow 0$ -->
+
+<!-- --- -->
+<!-- # Improper integrals -->
+<!-- * Define and evaluate $I$ (note: can use $\lim_{\delta \rightarrow0^+}$ notation) -->
+
+<!--     $$I = \lim_{\delta \downarrow0} \int_\delta^1 \frac{1}{\sqrt{x}} \,dx$$ -->
+<!--     -- -->
+
+<!--     $$\begin{aligned} I  &= \lim_{\delta \downarrow0} \left[ 2\sqrt{x} \right]_\delta^1 \\&= \lim_{\delta \downarrow0} (2 - 2\sqrt{\delta}) \\&= 2\end{aligned}$$ -->
+
+
+<!-- --- -->
+
+<!-- # Improper integrals -->
+
+<!-- * Function $f(x)$ is defined and continuous for $a < x \leq b$, but **is not defined for $x = a$** -->
+<!-- -- -->
+
+<!-- * If the integral -->
+
+<!--     $$\int_{a + \delta}^b f(x) \,dx$$ -->
+
+<!--     tends to a finite limit $I$ as $\delta \downarrow 0$, integral $\int_a^b f(x) \,dx$ exists and has the value $I$ -->
+<!-- * Otherwise, integral $\int_a^b f(x) \,dx$ diverges -->
+
+<!-- --- -->
+
+<!-- # Monte Carlo and integration -->
+
+<!-- * Compute some integral $\int_{-\infty}^{\infty} xf(x) \,dx$ -->
+<!-- * $f(x)$ is complicated -->
+
+<!--     $$f(x) = \frac{\exp\left(- \frac{(x- \mu)^2}{2\sigma^2} \right) }{\sqrt{2\pi}}$$ -->
+
+<!-- -- -->
+
+<!-- ## Monte Carlo simulation -->
+
+<!-- * Generate random draws from $f(x)$: -->
+
+<!--     $$d_{1}, d_{2}, d_{3}, ..., d_{T}$$ -->
+
+<!-- * Approximation -->
+
+<!--     $$\text{Expected Value} = \frac{1}{T}\sum_{i =1}^{T} d_{i}$$ -->
+
+<!--     * As $T \rightarrow \infty$, $\text{Expected value} \rightarrow \int_{-\infty}^{\infty} xf(x) \,dx$ -->
+
+<!-- --- -->
+
+<!-- # Monte Carlo simulation -->
+
+<!-- ```{r monte-carlo} -->
+<!-- rerun(.n = 10, tibble(x = rnorm(1000))) %>% -->
+<!--   bind_rows(.id = "id") %>% -->
+<!--   group_by(id) %>% -->
+<!--   mutate(x_bar = cummean(x), -->
+<!--          n_id = row_number()) %>% -->
+<!--   ggplot(mapping = aes(x = n_id, y = x_bar, color = factor(id))) + -->
+<!--   geom_line() + -->
+<!--   scale_color_brewer(type = "qual", palette = "Set3") + -->
+<!--   labs(x = "Number of draws", -->
+<!--        y = "Estimate") + -->
+<!--   theme(legend.position = "none") + -->
+<!--   transition_reveal(along = n_id) -->
+<!-- ``` -->
 
 ---
 class: Middle
