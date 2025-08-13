@@ -163,7 +163,7 @@ function_plot +
 ```
 
 * Natural logarithms are incredibly useful in math
-* Often $\log()$ is assumed to be a natural log
+* Often $\log()$ is assumed to be a natural log (good to assume for homework, too!)
 * Also seen as $\ln()$
 
 ---
@@ -903,7 +903,6 @@ class: center, middle, inverse
 # NEXT UP!
 
 * DERIVATIVES!!!!!!!!
-* Thursday: Academic integrity
 * Check in with any questions! (clipperton@uchicago.edu)
 
 
