@@ -2,7 +2,14 @@
 title: "Linear equations, notation, sets, and functions"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
-  xaringan::moon_reader
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides-menu.css"]
+    includes:
+      after_body: [slides-menu.js]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false 
 ---
 
 ```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
@@ -12,8 +19,7 @@ output:
 ```{r packages, include=FALSE}
 library(tidyverse)
 library(patchwork)
-library(here)
-library(rcis)
+library(here) 
 ```
 
 # Learning objectives
@@ -33,8 +39,6 @@ library(rcis)
 # Computational social science
 
 * Social science - the scientific study of human society and social relationships
-
---
 
 ### Disciplines within social science
 
@@ -152,7 +156,7 @@ knitr::include_graphics("images/ccsvenn.jpeg")
 # Course logistics
 
 * [Course site](https://github.com/math-camp/course)
-* [Canvas course](https://canvas.uchicago.edu/enroll/WCWJRE)
+* [Canvas course](https://canvas.uchicago.edu/enroll/MWWG9D)
 * Gradescope (accessed via Canvas)
 
 --
@@ -160,10 +164,10 @@ knitr::include_graphics("images/ccsvenn.jpeg")
 ## Course staff
 
 * Dr. Jean Clipperton: clipperton@uchicago.edu 
-* Alejandro Sarria: asarria@uchicago.edu
-* Charlotte Zhou: jialez@uchicago.edu
-* Huanrui Chen: hchen0628@uchicago.edu
-* Nalin Bhatt: nalinb@uchicago.edu
+* Bailey Meche baileymeche@uchicago.edu
+* Gabe Reichman gabereichman@uchicago.edu
+* Shirley Zhang xueyan1220@uchicago.edu
+* Stanley Yi yijiaying@uchicago.edu
 
 
 ---
@@ -622,7 +626,7 @@ invertible %>%
 
 $$y = ax^2$$
 
-```{r u-shape}
+```{r u-shape, fig.height=5}
 {
   function_plot +
     stat_function(fun = function(x) x^2) +
@@ -677,7 +681,7 @@ $$
 
 .pull-right[
 
-```{r quad-eq1, fig.width = 6}
+```{r quad-eq1, fig.width = 6, fig.height = 4}
 function_plot +
   stat_function(fun = function(x) x^2 - 7) +
   geom_vline(xintercept = c(-sqrt(7), sqrt(7)), linetype = 4, color = "blue") +
@@ -711,7 +715,7 @@ $$
 
 .pull-right[
 
-```{r quad-eq2, fig.width = 6}
+```{r quad-eq2, fig.width = 6, fig.height=4}
 function_plot +
   stat_function(fun = function(x) -3 * x^2 + 30 * x - 27) +
   geom_vline(xintercept = c(1, 9), linetype = 4, color = "blue") +
@@ -740,7 +744,6 @@ $$ax^2 + bx + c = 0$$
 
 $$x^2 + x - 12 = 0$$
 
-.pull-left[
 
 $$
 \begin{aligned}
@@ -753,11 +756,10 @@ x &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
 \end{aligned}
 $$
 
-]
 
---
 
-.pull-right[
+---
+# Quadratic formula, soln
 
 ```{r quad-eq3, fig.width = 6}
 function_plot +
@@ -775,3 +777,4 @@ function_plot +
 ---
 
 # Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
+

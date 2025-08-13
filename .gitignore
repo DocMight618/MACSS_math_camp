@@ -10,3 +10,4 @@ admin_plannin*
 *.Rmd
 *answers*
 *_cache/
+.Rproj.user
