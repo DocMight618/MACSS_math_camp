@@ -46,8 +46,16 @@ body {
 
 h1, h2, h3 {
   font-family: var(--header-font-family), var(--header-font-family-fallback);
-  font-weight: 600;
+  font-weight: 550;
   color: var(--header-color);
+}
+
+.remark-slide-content h1,
+.remark-slide-content h2,
+.remark-slide-content h3 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  padding: 0; /* if any padding is set */
 }
 
 /* Slide content base */
