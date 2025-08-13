@@ -1,5 +1,6 @@
 ```{r setup, include = FALSE}
-set.seed(123)
+library(tidyverse)
+set.seed(13)
 options(digits = 3)
 options(htmltools.dir.version = FALSE)
 
@@ -20,18 +21,18 @@ knitr::opts_chunk$set(
 #bookdown:::register_eng_math(names(bookdown:::theorem_abbr), bookdown:::eng_theorem)
 #bookdown:::register_eng_math(names(bookdown:::label_names_math2), bookdown:::eng_proof)
 
-# set base theme
-ggplot2::theme_set(ggplot2::theme_minimal())
+theme_set(
+  theme_minimal(base_size = 18) )
 
 # create default plot template for drawing functions
-function_plot <- ggplot2::ggplot(
+function_plot <- ggplot(
   data = tibble::tibble(x = 0),
-  mapping = ggplot2::aes(x = x)
+  mapping = aes(x = x)
 ) +
-  ggplot2::geom_hline(yintercept = 0, linetype = 2, alpha = .5) +
-  ggplot2::geom_vline(xintercept = 0, linetype = 2, alpha = .5) +
-  ggplot2::xlim(-4, 4) +
-  ggplot2::labs(
+  geom_hline(yintercept = 0, linetype = 2, alpha = .5) +
+  geom_vline(xintercept = 0, linetype = 2, alpha = .5) +
+  xlim(-4, 4) +
+  labs(
     x = expression(x),
     y = expression(y)
   )

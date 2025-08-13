@@ -2,7 +2,14 @@
 title: "Logarithms, sequences, and limits"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
-  xaringan::moon_reader
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides-menu.css"]
+    includes:
+      after_body: [slides-menu.js]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false 
 ---
 
 ```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
@@ -14,6 +21,7 @@ library(tidyverse)
 library(patchwork)
 library(here)
 library(gganimate)
+
 ```
 
 # Learning objectives
@@ -43,15 +51,15 @@ $$f(x) = x \times x = x^2$$
 $$f(x) = x \times x \times x = x^3$$
 
 ```{r functions-with-exp}
-# {
-#   function_plot +
-#     stat_function(fun = function(x) x^2) +
-#     labs(title = expression(f(x) == x^2))
-# } + {
-#   function_plot +
-#     stat_function(fun = function(x) x^3) +
-#     labs(title = expression(f(x) == x^3))
-# }
+{
+  function_plot +
+    stat_function(fun = function(x) x^2) +
+    labs(title = expression(f(x) == x^2))
+} + {
+  function_plot +
+    stat_function(fun = function(x) x^3) +
+    labs(title = expression(f(x) == x^3))
+}
 ```
 
 ---
@@ -84,7 +92,7 @@ $$\log_{10}(0.1) = -1 \Rightarrow 10^{-1} = 0.1$$
 ```{r log-base-10}
 function_plot +
   stat_function(fun = function(x) log(x, base = 10), n = 501) +
-  xlim(0, 5) +
+  coord_cartesian(xlim = c(0, 5)) +
   labs(
     title = expression(f(x) == log[10](x)),
     y = expression(f(x))
@@ -113,7 +121,7 @@ function_plot +
     bquote(log[10](x)),
     bquote(log[2](x))
   )) +
-  xlim(0, 5) +
+  coord_cartesian(xlim = c(0, 5)) +
   labs(
     y = expression(f(x)),
     color = NULL
@@ -147,7 +155,7 @@ function_plot +
     bquote(log[2](x)),
     bquote(log[e](x))
   )) +
-  xlim(0, 5) +
+  coord_cartesian(xlim = c(0, 5)) +
   labs(
     y = expression(f(x)),
     color = NULL
@@ -182,14 +190,14 @@ $$\left\{u_{n} \right\}_{n=1}^{\infty} = (u_{1} , u_{2}, \ldots, u_{N}, \ldots )
 
 $$\left\{\frac{1}{n} \right\} = (1, 1/2, 1/3, 1/4, \ldots, 1/N, \ldots, )$$
 
-```{r seq-1}
+```{r seq-1, out.width="80%"}
 tibble(
   x = seq(from = 1, to = 100),
   y = 1 / x
 ) %>%
   ggplot(aes(x, y)) +
   geom_point() +
-  ylim(-1, 1) +
+  coord_cartesian(ylim = c(-1, 1) ) +
   labs(
     title = expression(f(n) == frac(1, n)),
     x = "Integers",
@@ -204,14 +212,14 @@ tibble(
 
 $$\left\{\frac{1}{n^2} \right\} = (1, 1/4, 1/9, 1/16, \ldots, 1/N^2, \ldots, )   \\$$
 
-```{r seq-2}
+```{r seq-2, out.width="80%"}
 tibble(
   x = seq(from = 1, to = 100),
   y = 1 / x^2
 ) %>%
   ggplot(aes(x, y)) +
   geom_point() +
-  ylim(-1, 1) +
+  coord_cartesian(ylim = c(-1, 1)) +
   labs(
     title = expression(f(n) == frac(1, n^2)),
     x = "Integers",
@@ -226,14 +234,14 @@ tibble(
 
 $$\left\{\frac{1 + (-1)^n}{2} \right\} = (0, 1, 0, 1, \ldots, 0,1,0,1 \ldots, ) \\$$
 
-```{r seq-3}
+```{r seq-3, out.width="80%"}
 tibble(
   x = seq(from = 1, to = 100),
   y = (1 + (-1)^x) / 2
 ) %>%
   ggplot(aes(x, y)) +
   geom_point() +
-  ylim(0, 1) +
+  coord_cartesian(ylim = c(0, 1)) +
   labs(
     title = expression(f(n) == frac(1 + (-1)^n, 2)),
     x = "Integers",
@@ -260,7 +268,7 @@ tibble(
 
 # Arithmetic progression
 
-```{r arithmetric-progression}
+```{r arithmetric-progression, out.width="80%"}
 # {
 #   tibble(
 #     x = seq(from = 1, to = 100),
@@ -309,7 +317,7 @@ tibble(
 
 # Geometric progression
 
-```{r geometric-progression}
+```{r geometric-progression, out.width="80%"}
 # {
 #   tibble(
 #     x = seq(from = 1, to = 20),
@@ -346,7 +354,7 @@ tibble(
 
 $$\left\{\frac{(-1)^{n} }{n} \right \} = (-1, \frac{1}{2}, \frac{-1}{3}, \frac{1}{4}, \frac{-1}{5}, \frac{1}{6}, \frac{-1}{7}, \frac{1}{8}, \ldots )$$
 
-```{r seq-convergence}
+```{r seq-convergence, out.width="80%"}
 boundaries <- tibble(
   low = seq(from = -1, to = -0.01, by = 0.02),
   high = abs(low)
@@ -363,12 +371,12 @@ ggplot() +
   ) +
   geom_hline(data = boundaries, mapping = aes(yintercept = low, group = id)) +
   geom_hline(data = boundaries, mapping = aes(yintercept = high, group = id)) +
-  ylim(-1, 1) +
+  coord_cartesian(ylim = c(-1, 1)) +
   labs(
     title = expression(f(n) == frac((-1)^n, n)),
     x = "Integers",
     y = "Sequence"
-  ) +
+  ) + theme_minimal(base_size = 18) +
   transition_states(states = id, wrap = FALSE)
 ```
 
@@ -426,7 +434,7 @@ tibble(
 ) %>%
   ggplot(aes(x, y)) +
   geom_point() +
-  ylim(0, 1) +
+  coord_cartesian(ylim = c(0, 1)) +
   labs(
     title = expression(f(n) == frac(1 + (-1)^n, 2)),
     x = "Integers",
@@ -470,7 +478,7 @@ function_plot +
     mapping = aes(color = "1 / 2x"),
     geom = "point"
   ) +
-  xlim(1, 100) +
+  coord_cartesian(xlim=c(1, 100)) +
   scale_color_brewer(type = "qual", guide = guide_legend(reverse = TRUE)) +
   labs(color = NULL)
 ```
@@ -503,7 +511,7 @@ function_plot +
 
 # Limit of a function
 
-```{r lim-sin-x}
+```{r lim-sin-x, out.width="80%"}
 sin_x <- tibble(
   xmin = seq(from = -1, to = 0, by = 0.025),
   xmax = abs(xmin),
@@ -514,7 +522,7 @@ sin_x <- tibble(
 
 function_plot +
   stat_function(fun = sin) +
-  xlim(-2, 2) +
+  coord_cartesian(xlim =c(-2, 2)) +
   labs(
     title = expression(f(x) == sin(x)),
     y = expression(f(x))
@@ -572,7 +580,8 @@ knitr::include_graphics(url)
 
 ```
 
-source: [math 210]((https://math.libretexts.org/Courses/Monroe_Community_College/MTH_210_Calculus_I_(Professor_Dean)/Chapter_2_Limits/2.7%3A_The_Precise_Definition_of_a_Limit))
+source: [math 210](https://math.libretexts.org/Courses/Monroe_Community_College/MTH_210_Calculus_I_%28Professor_Dean%29/Chapter_2_Limits/2.7%3A_The_Precise_Definition_of_a_Limit)
+
 
 ---
 
@@ -588,10 +597,10 @@ source: [math 210]((https://math.libretexts.org/Courses/Monroe_Community_College
 
 * The function $f(x) = x + 1$ has a limit of $1$ at $x_{0} = 0$
 
-```{r limit-xplus1}
+```{r limit-xplus1, out.width="80%"}
 function_plot +
   stat_function(fun = function(x) x + 1) +
-  xlim(-2, 2) +
+  coord_cartesian(xlim=c(-2, 2)) +
   geom_point(data = tibble(
     x = 0, y = 1
   ), mapping = aes(x, y)) +
@@ -625,10 +634,10 @@ function_plot +
 --
 * The function $f(x) = \frac{x^2 - 1}{x - 1}$ has a limit of $2$ at $x_{0} = 1$
 
-```{r limit-discontinuous}
+```{r limit-discontinuous, out.width="80%"}
 function_plot +
   stat_function(fun = function(x) (x^2 - 1) / (x - 1)) +
-  xlim(-2, 2) +
+  coord_cartesian(xlim=c(-2, 2)) +
   labs(
     title = expression(f(x) == frac(x^2 - 1, x - 1)),
     y = expression(f(x))
@@ -657,10 +666,10 @@ function_plot +
 
 Consider $f:(0,1) \rightarrow \Re$, $f(x) = \frac{1}{x}$.  $f(x)$ does not have a limit at $x_{0}=0$ 
 
-```{r limit-none}
+```{r limit-none, out.width="80%"}
 function_plot +
-  stat_function(fun = function(x) 1 / x, n = 1000, xlim = c(0.001, 1)) +
-  xlim(0, 1) +
+  stat_function(fun = function(x) 1 / x, n = 1000) +
+  coord_cartesian(xlim = c(0.001, 1)) +  # Use this to zoom safely
   labs(
     title = expression(f(x) == frac(1, x)),
     y = expression(f(x))
@@ -683,7 +692,7 @@ function_plot +
 
 ---
 # When there are no limits!
-```{r no-limit-img}
+```{r no-limit-img, out.width="80%"}
 knitr::include_graphics("https://media.giphy.com/media/7JvlHfd7C2GDr7zfZF/giphy.gif")
 ```
 --
@@ -732,7 +741,7 @@ $$\lim_{x \rightarrow x_{0}} \frac{f(x)}{g(x)} =  \frac{\lim_{x\rightarrow x_{0}
 ```{r continuity, fig.height = 6}
 function_plot +
   stat_function(fun = function(x) (x^2 - 1) / (x - 1)) +
-  xlim(-2, 2) +
+  coord_cartesian(xlim=c(-2, 2)) +
   labs(
     title = expression(f(x) == frac(x^2 - 1, x - 1)),
     y = expression(f(x))
@@ -762,35 +771,35 @@ function_plot +
 
 # Examples of continuity
 
-```{r continuity-abs}
+```{r continuity-abs, out.width="80%"}
 function_plot +
   stat_function(fun = abs) +
   labs(
     title = expression(f(x) == abs(x)),
     y = expression(f(x))
   ) +
-  xlim(-2, 2)
+  coord_cartesian(xlim=c(-2, 2))
 ```
 
 ---
 
 # Examples of continuity
 
-```{r continuity-cos}
+```{r continuity-cos, out.width="80%"}
 function_plot +
   stat_function(fun = cos) +
   labs(
     title = expression(f(x) == cos(x)),
     y = expression(f(x))
   ) +
-  xlim(-6, 6)
+  coord_cartesian(xlim=c(-6, 6))
 ```
 
 ---
 
 # Examples of continuity
 
-```{r continuity-x-sq}
+```{r continuity-x-sq, out.width="80%"}
 function_plot +
   stat_function(fun = function(x) x^2) +
   labs(
@@ -837,7 +846,7 @@ function_plot +
 
 # RDD + incumbency advantage
 
-```{r rdd-img"}
+```{r rdd-img", out.width="80%"}
 knitr::include_graphics("images/rdd-incumbency-advantage.png")
 ```
 
@@ -899,8 +908,9 @@ class: center, middle, inverse
 
 
 ### TA TEAM!
-* Alejandro Sarria: asarria@uchicago.edu
-* Huanrui Chen: hchen0628@uchicago.edu
-* Nalin Bhatt: nalinb@uchicago.edu
-* Charlotte Zhou: jialez@uchicago.edu
+* Bailey Meche baileymeche@uchicago.edu
+* Gabe Reichman gabereichman@uchicago.edu
+* Shirley Zhang xueyan1220@uchicago.edu
+* Stanley Yi yijiaying@uchicago.edu
+
   

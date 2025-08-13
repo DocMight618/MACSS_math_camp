@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
-    fontSize: "15px",
+    fontSize: "25px",
     fontFamily: "'Josefin Sans', Georgia, serif",
   });
   document.body.appendChild(toggleBtn);

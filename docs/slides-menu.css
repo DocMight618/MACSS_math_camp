@@ -4,7 +4,7 @@
   left: 15px;
   background-color: #0B6884;
   color: #faf5f6;
-  padding: 6px 12px;
+  padding: 16px 36px;
   cursor: pointer;
   font-weight: bold;
   border-radius: 4px;
@@ -13,12 +13,13 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
+
 #slide-menu {
   position: fixed;
   bottom: 50px;
   left: 10px;
   width: 250px;
-  max-height: 60vh;
+  max-height: 65vh;
   background: #faf5f6;
   border: 1px solid #0B6884;
   border-radius: 6px;
