@@ -50,7 +50,9 @@ For course credit, students need to complete at least six assignments at or abov
 Attendance is not required with the exception of the final day of class, which has the final exam. The exam is not optional and is in-person only. 
 
 ## AI Policy
-AI / generative AI / GPT-like tools are not permitted for any of the content / assessments in this course. Using these tools constitutes academic dishonesty and will be reported to the Dean of Students, Kelly Pollock. Academic integrity is something we take very seriously: violations are not tolerated. 
+AI / generative AI / GPT-like tools are not permitted for any of the assessments in this course. You *may* use it to understand logic of non-assignment questions / sample questions. Each assignment requires a statement of the resources you used in the assigment. 
+
+Using these tools constitutes academic dishonesty and will be reported to the Dean of Students, Kelly Pollock. Academic integrity is something we take very seriously: violations are not tolerated. 
 
 ### Exam study guide
 [Submit your practice questions here](https://forms.gle/FGmpjwDpHw5mVyVp6). We will use this to generate the final exam and we will circulate the questions here to all students. Note that not all questions here will be on the exam -- it depends upon the quality and variety of submissions. 
@@ -69,10 +71,11 @@ This course is open to all students who meet the academic requirements for parti
 * Pemberton, M., & Rau, N. (2015). *Mathematics for economists: an introductory textbook*, 4th edition. Oxford University Press.
 
 ## Course schedule: NOTE contents will change! Check back regularly.
+Note: solutions posted after grades released 
 
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
-| 25-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](problem_sets/01-functions-sets.pdf) & [answer key](solutions/Pset1Solutions.pdf)
+| 25-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1](problem_sets/01-functions-sets.pdf) [.tex file](problem_sets/01-functions-sets.tex) & [answer key](solutions/Pset1Solutions.pdf)
 | 26-Aug | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2](problem_sets/02-seq-limits-critical-points.pdf) & [answer key](solutions/Pset2Solutions.pdf)
 | 27-Aug | Calculus | [Critical points and approximation + Intro Linear Algebra](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 3](problem_sets/03-critical-points.pdf) & [answer key](solutions/Pset3Solutions.pdf)
 | 28-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [NO HOMEWORK!]
