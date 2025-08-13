@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="author" content="MACS 33000   University of Chicago" />
     <script src="05-matrix-algebra_files/header-attrs/header-attrs.js"></script>
-    <link href="05-matrix-algebra_files/remark-css/default.css" rel="stylesheet" />
-    <link href="05-matrix-algebra_files/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides-menu.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -84,25 +84,25 @@ class: center, middle, inverse, title-slide
 
 # One dimensional example
 
-&lt;img src="05-matrix-algebra_files/figure-html/one-d-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/one-d-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Two dimensional example
 
-&lt;img src="05-matrix-algebra_files/figure-html/two-d-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/two-d-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Two dimensional example
 
-&lt;img src="05-matrix-algebra_files/figure-html/two-d2-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/two-d2-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Two dimensional example
 
-&lt;img src="05-matrix-algebra_files/figure-html/two-d3-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/two-d3-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -441,7 +441,7 @@ $$
 # Calculating vector length
 The length of a vector, the vector norm, can be thought of as the distance of the vector from the origin.
 
-&lt;img src="05-matrix-algebra_files/figure-html/pythagorean-theorem-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/pythagorean-theorem-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -533,7 +533,7 @@ $$
     * Increasing when more of the same words are used
     * Normalize for document length
     
-* We can look at the similarity and also calculate the angle between them ($\theta$)
+* We can look at the similarity and also calculate the angle between them (`\(\theta\)`)
 
 ---
 
@@ -541,7 +541,7 @@ $$
 
 `$$(2,1) \cdot (1,4) = 6$$`
 
-&lt;img src="05-matrix-algebra_files/figure-html/inner-product-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/inner-product-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -549,14 +549,14 @@ $$
 
 `$$(4,2) \cdot (1,4) = 12$$`
 
-&lt;img src="05-matrix-algebra_files/figure-html/inner-product-not-same-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/inner-product-not-same-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Cosine similarity
 Allows us to look at the angle between them instead
 
-&lt;img src="05-matrix-algebra_files/figure-html/cosine-sim-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/cosine-sim-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -621,10 +621,10 @@ Interpretation: closer to 1, more similar
 # Exploring similarity: 
 
 .pull-left[
-&lt;img src="05-matrix-algebra_files/figure-html/cosine-simd1-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/cosine-simd1-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="05-matrix-algebra_files/figure-html/cosine-simb-1.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="05-matrix-algebra_files/figure-html/cosine-simb-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -633,7 +633,7 @@ We can see how the similarity of 0.65 has a larger `\(\theta\)` and a similarity
 ---
 class: center, middle, inverse
 # The Matrix, Part I
-&lt;img src="https://media.tenor.com/ang0VzOwbdAAAAAC/the-matrix-reloaded-matrix.gif" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://media.tenor.com/ang0VzOwbdAAAAAC/the-matrix-reloaded-matrix.gif" width="85%" style="display: block; margin: auto;" /&gt;
 ---
 
 # Matricies
@@ -754,14 +754,15 @@ Well, `\(X\)` is `\(2\times 1\)`, `\(Y \text{ is } 2 \times 2\)`. Since the numb
 To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOWN THE COLUMN of the second matrix. You then add these together. For example, if you have matrix A times matrix B, it would be element `\(a_{1,1}*b_{1,1} + ... + a_{1,n}*b_{n,1}\)`. This sum goes into the first cell in the resulting matrix. This sounds confusing (because it is), so let's see an example. 
 
 --
+&lt;span style = "color: red;"&gt;
+`$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
+&lt;/span&gt;
 
 &lt;span style = "color: blue;"&gt;
 `$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
 &lt;/span&gt;
 
-&lt;span style = "color: red;"&gt;
-`$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
-&lt;/span&gt;
+
 
 --
 
@@ -778,13 +779,14 @@ To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOW
 
 --
 
-&lt;span style = "color: blue;"&gt;
-`$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
 &lt;/span&gt;
 
 &lt;span style = "color: red;"&gt;
 `$$\quad \mathbf{Y} = \begin{pmatrix} 5 &amp; 2 \\ 3 &amp; 4 \\ \end{pmatrix}$$`
 &lt;/span&gt;
+
+&lt;span style = "color: blue;"&gt;
+`$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$`
 
 
 **This produces**
@@ -925,7 +927,7 @@ class: center
 
 # Neural networks
 
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Neural_network_example.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Neural_network_example.svg" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -941,7 +943,7 @@ class: center
 ---
 # Social networks
 
-&lt;img src="https://macs40700.netlify.app/slides/13-visualize-text-network/index_files/figure-html/unnamed-chunk-67-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://macs40700.netlify.app/slides/13-visualize-text-network/index_files/figure-html/unnamed-chunk-67-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 ---
 
 # Uses for social networks
@@ -1032,7 +1034,11 @@ class: center
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create();
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
@@ -1110,7 +1116,148 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slideshow = window.slideshow;
+  if (!slideshow) return;
+
+  // Create the toggle button
+  const toggleBtn = document.createElement("button");
+  toggleBtn.textContent = "☰ Menu";
+  Object.assign(toggleBtn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "20px",
+    zIndex: 1000,
+    padding: "6px 10px",
+    background: "#0B6884",
+    color: "#fff",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontSize: "25px",
+    fontFamily: "'Josefin Sans', Georgia, serif",
+  });
+  document.body.appendChild(toggleBtn);
+
+  // Create the menu container
+  const menu = document.createElement("div");
+  Object.assign(menu.style, {
+    position: "fixed",
+    bottom: "60px",
+    left: "20px",
+    width: "260px",
+    maxHeight: "70vh",
+    overflowY: "auto",
+    background: "#f5f5f5",
+    border: "1px solid #ccc",
+    padding: "10px",
+    display: "none",
+    zIndex: 1000,
+    fontFamily: "sans-serif",
+    fontSize: "14px",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+    borderRadius: "4px"
+  });
+
+  // Export to PDF button inside the menu
+  const exportBtn = document.createElement("button");
+  exportBtn.textContent = "📄 Export to PDF";
+  Object.assign(exportBtn.style, {
+    width: "100%",
+    padding: "6px",
+    marginBottom: "8px",
+    border: "none",
+    background: "#0B6884",
+    color: "#fff",
+    borderRadius: "3px",
+    cursor: "pointer"
+  });
+  exportBtn.addEventListener("click", () => {
+    menu.style.display = "none";
+    window.print();
+  });
+  menu.appendChild(exportBtn);
+
+  // Get all slides
+  const allSlides = slideshow.getSlides();
+
+  // Build menu items (skip incremental slides)
+  let displayNumber = 1;
+  allSlides.forEach((slide, internalIndex) => {
+    if (slide.properties.continued === "true") {
+      return; // skip incremental steps
+    }
+
+    const slideElement = document.querySelector(
+      `.remark-slide-container:nth-of-type(${internalIndex + 1})`
+    );
+    const heading = slideElement?.querySelector("h1, h2, h3");
+    const title = heading
+      ? heading.textContent.trim()
+      : `Slide ${displayNumber}`;
+
+    const link = document.createElement("a");
+    link.textContent = `${displayNumber}. ${title}`;
+    Object.assign(link.style, {
+      display: "block",
+      color: "#0B6884",
+      textDecoration: "none",
+      marginBottom: "6px",
+      padding: "4px 6px",
+      borderRadius: "3px",
+      userSelect: "none"
+    });
+
+    link.addEventListener("mouseenter", () => {
+      link.style.background = "#ddd";
+    });
+    link.addEventListener("mouseleave", () => {
+      link.style.background = "transparent";
+    });
+
+    // Use the actual remark.js 1-based slide index
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      menu.style.display = "none";
+      slideshow.gotoSlide(internalIndex + 1);
+    });
+
+    menu.appendChild(link);
+    displayNumber++;
+  });
+
+  document.body.appendChild(menu);
+
+  // Toggle menu
+  toggleBtn.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "none" ? "block" : "none";
+  });
+
+  // Close on slide change
+  slideshow.on("afterShowSlide", () => {
+    menu.style.display = "none";
+  });
+});
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {

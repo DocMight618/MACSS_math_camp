@@ -2,7 +2,14 @@
 title: "Critical points and approximation"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
-  xaringan::moon_reader
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides-menu.css"]
+    includes:
+      after_body: [slides-menu.js]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false 
 ---
 
 ```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
@@ -19,7 +26,7 @@ library(gganimate)
 # Misc
 
 * Gradescope: grading underway -- should be all OK
-* Academic Integrity: 8/29 @ 11:30 am
+* Academic Integrity: 
 * No homework tomorrow (!!)
 
 ---
@@ -44,11 +51,11 @@ library(gganimate)
 
 .pull-left[
 
-```{r rolles-theorem, fig.width = 6}
+```{r rolles-theorem, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(aes(color = "f(x)"), fun = function(x) -1 * (x^2) + 4) +
   geom_hline(aes(color = "f'(x)", yintercept = 4), linetype = 2) +
-  xlim(-3, 3) +
+  coord_cartesian(xlim = c(-3,3)) +
   scale_color_brewer(type = "qual", guide = guide_legend(reverse = TRUE)) +
   labs(
     title = "Rolle's theorem",
@@ -96,8 +103,8 @@ Conceptually, we are thinking about changes (get excited for all the *moments* y
 
 ---
 
-# Higher order derivatives: example
-Suppose we start with a function. $x^3$ -- let's explore the different derivatives we might take. Try it out!    
+# Higher order derivatives:
+Example: Suppose we start with a function. $x^3$ -- let's explore the different derivatives we might take. Try it out!    
 
 --
 $$
@@ -120,7 +127,7 @@ $$
 # Inflection point
 Inflection points are where we move from being concave down to concave up (or vice versa). 
 
-```{r concave-inf}
+```{r concave-inf, fig.width=8, fig.height=6, out.width="85%"}
 concave_func <- function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15
 
 tibble(
@@ -154,12 +161,12 @@ tibble(
 
 > For a given function $y = f(x)$, a point $(x^∗, y^∗)$ where the second derivative immediately on one side of the point is signed oppositely to the second derivative immediately on the other side
 
-```{r inflect, fig.height = 6}
+```{r inflect, fig.width=8, fig.height=6, out.width="85%"}
 fx <- function_plot +
   stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
   geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 4, color = "blue", linewidth = 0.8) +
   labs(y = expression(f(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 
 fx1 <- function_plot +
@@ -168,7 +175,7 @@ fx1 <- function_plot +
   labs(y = expression({
     f * minute
   }(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 
 fx2 <- function_plot +
@@ -177,7 +184,7 @@ fx2 <- function_plot +
   labs(y = expression({
     f * second
   }(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 
 fx + fx1 + fx2 +
@@ -192,12 +199,12 @@ fx + fx1 + fx2 +
 
 Let's start with a basic plot: here, we have a function: $\frac{x^3}{15} - x^2 + 4x +2$. We can see where we might guess there are the concave up / down points and where the inflection point might be. 
 
-```{r inflect-1, fig.height = 5}
+```{r inflect-1, fig.width=8, fig.height=6, out.width="85%"}
 fx <- function_plot +
   stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
   geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 4, color = "blue", linewidth = 0.8) +
   labs(y = expression(f(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 
 
@@ -219,7 +226,7 @@ fx <- function_plot +
   geom_vline(xintercept = 5-5^0.5, color = "black", linetype = 3) +
   geom_vline(xintercept = 5, color = "black", linetype = 3) +
   labs(y = expression(f(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 fx
 ```
@@ -227,7 +234,7 @@ fx
 
 ### Derivative of original function: 
 
-```{r inflect-deriv1, fig.height = 3}
+```{r inflect-deriv1, out.width="55%"}
 fx1 <- function_plot +
   stat_function(fun = function(x) (x^2 / 5) - 2 * x + 4, size = 0.5) +
   geom_abline(slope = 0, intercept = -1, linetype = 4,  color = "gray40", linewidth = 0.8) +
@@ -238,7 +245,7 @@ fx1 <- function_plot +
   labs(y = expression({
     f * minute
   }(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 fx1
 ```
@@ -248,12 +255,12 @@ fx1
 
 > For a given function $y = f(x)$, a point $(x^∗, y^∗)$ where the second derivative immediately on one side of the point is signed oppositely to the second derivative immediately on the other side
 
-```{r inflect-all, fig.height = 5}
+```{r inflect-all, fig.width=8, fig.height=6, out.width="85%"}
 fx <- function_plot +
   stat_function(fun = function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15, size = 0.5) +
   geom_abline(slope = -1, intercept = (10 + (1 / 3)), linetype = 4, color = "blue", linewidth = 0.8) +
   labs(y = expression(f(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 
 fx1 <- function_plot +
@@ -263,7 +270,7 @@ fx1 <- function_plot +
   labs(y = expression({
     f * minute
   }(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 
 fx2 <- function_plot +
@@ -272,7 +279,7 @@ fx2 <- function_plot +
   labs(y = expression({
     f * second
   }(x))) +
-  xlim(0, 10) +
+  coord_cartesian(xlim = c(0,10)) +
   theme_minimal()#base_size = rcfss::base_size * .7)
 
 fx + fx1 + fx2 +
@@ -311,7 +318,7 @@ What does this mean?
 
 * Where a function is twice differentiable and concave over some area, then the function is concave down where $f''(x) < 0$ and concave up where $f''(x) > 0$
 
-```{r concave}
+```{r concave, fig.width=8, fig.height=6, out.width="85%"}
 concave_func <- function(x) (x^3 - 15 * x^2 + 60 * x + 30) / 15
 
 tibble(
@@ -345,11 +352,11 @@ tibble(
 
 .pull-left[
 
-```{r strict-e, fig.width = 6}
+```{r strict-e, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) exp(x), size = 0.5) +
   labs(y = expression(e[x])) +
-  xlim(0, 5)
+  coord_cartesian(xlim = c(0,5))
 ```
 
 ]
@@ -377,11 +384,11 @@ $$
 
 .pull-left[
 
-```{r strict-log, fig.width = 6}
+```{r strict-log, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) log(x), size = 0.5, n = 1000) +
   labs(y = expression(ln[x])) +
-  xlim(0, 5)
+  coord_cartesian(xlim = c(0,5))
 ```
 
 ]
@@ -418,7 +425,7 @@ $$
 # Types of extreme values: Examples
 
 How would we evaluate the extreme values here? 
-```{r endpoints, fig.height = 4}
+```{r endpoints, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) x, size = .5) +
   geom_point(
@@ -433,7 +440,7 @@ function_plot +
     x = expression(x),
     y = expression(f(x))
   ) +
-  xlim(0, 5)
+  coord_cartesian(xlim = c(0,5))
 ```
 
 
@@ -451,7 +458,7 @@ function_plot +
    
 
 Try with a neighbor:    
-```{r max-middle, fig.height=3.85}
+```{r max-middle, fig.height=3.5}
 function_plot +
   stat_function(fun = function(x) -(x^2) + 5, size = .5) +
   geom_hline(yintercept = 5, linetype = 2) +
@@ -489,7 +496,7 @@ Since 4 is less than 5, we know this is a max at x = 0, since $f(x = 0) > f(x=1)
 
 # Types of extreme values
 
-```{r min-middle}
+```{r min-middle, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) x^2 + 9 * x + 9, size = .5) +
   geom_hline(yintercept = -11.25, linetype = 2) +
@@ -497,28 +504,28 @@ function_plot +
     title = expression(f(x) == x^2 + 9 * x + 9),
     y = expression(f(x))
   ) +
-  xlim(-10, 1)
+  coord_cartesian(xlim = c(-10, 1))
 ```
 
 ---
 
 # Types of extreme values
 
-```{r local-all}
+```{r local-all, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) sin(x), size = .5, n = 1000) +
   labs(
     title = expression(f(x) == sin(x)),
     y = expression(f(x))
   ) +
-  xlim(-20, 20)
+  coord_cartesian(xlim = c(-20, 20))
 ```
 
 ---
 
 # Types of extreme values
 
-```{r inflection-point}
+```{r inflection-point, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) x^3, size = .15) +
   geom_hline(yintercept = 0, linetype = 2) +
@@ -539,7 +546,7 @@ function_plot +
 
 ### Function and derivative
 
-```{r inflection-point-2}
+```{r inflection-point-2, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) 3*x^2, size = .5, color = "green") +
   stat_function(fun = function(x) x^3, size = .5) +
@@ -573,37 +580,36 @@ function_plot +
 
 ### Ex: $f(x) = -x^2$,  $x \in [-3, 3]$
 
-```{r ex-1}
+```{r ex-1, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) -x^2, size = .5) +
   labs(
     title = expression(f(x) == -x^2),
     y = expression(f(x))
   ) +
-  xlim(-3, 3)
+  coord_cartesian(xlim = c(-3,3))
 ```
 
 ---
 
 ### Ex:  $f(x) = x^3 - 6x-2$, $x \in [-3, 3]$
 
-```{r ex-2}
+```{r ex-2, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) x^3 - 6*x-2, size = .5) +
   labs(
     title = expression(f(x) == x^3 - 6*x-2),
     y = expression(f(x))
   ) +
-  xlim(-3, 3)
+  coord_cartesian(xlim = c(-3,3))
 ```
 
 ---
+
 class: center, middle, inverse
 
 # CSS Application of optimization: MLE
-You aren't going to have to calculate this, 
-
-but you need to understand the big picture
+###You aren't going to have to calculate this, but you need to understand the big picture
 
 ---
 
@@ -692,6 +698,7 @@ Logit and other limited-dependent variable models: what function creates a curve
 * Trying to determine which function best predicts the outcome for parameter estimates
 
 ---
+
 class: inverse, middle, center
 
 # Optimization in CSS
@@ -723,7 +730,7 @@ In words: $y = mx + b$ where b is our intercept (at $x_0$) and the slope is $f'(
 
 $$g(x) = f^{'}(x_{0}) (x - x_{0} ) + f(x_{0})$$
 
-```{r tangent-anim, fig.height = 6}
+```{r tangent-anim, fig.width=8, fig.height=6, out.width="85%"}
 # tangent lines for f(x) = x^2
 tan_lines <- tibble(
   x_0 = seq(from = -4, to = 4, by = 0.05),
@@ -782,11 +789,11 @@ animate(tan_lines_anim, nframes = nrow(tan_lines) * 2)
 
 .pull-left[
 
-```{r base-plot, fig.width = 6}
+```{r base-plot, fig.width=8, fig.height=6, out.width="85%"}
 f0 <- function_plot +
   stat_function(fun = function(x) -1 * x^2, size = .5) +
   labs(y = expression(f(x))) +
-  xlim(-2, 2)
+  coord_cartesian(xlim = c(-2, 2))
 f0
 ```
 
@@ -809,7 +816,7 @@ $$
 
 .pull-left[
 
-```{r optims, dependson = "base-plot", fig.width = 6}
+```{r optims, dependson = "base-plot", fig.width=8, fig.height=6, out.width="85%"}
 f0 +
   geom_point(
     data =
@@ -871,7 +878,7 @@ $$x_{n+1} = x_n - \frac{-x^2}{-2x}$$
 
 # Implementing Newton-Raphson
 
-```{r newton-raphson}
+```{r newton-raphson, fig.width=8, fig.height=6, out.width="85%"}
 ## function for newton's method
 ## source: https://lovetoken.github.io/r/data_visualization/2018/04/24/netwon_raphson_method.html
 newton <- function(fun, tol = 1e-3, x0 = 1, N = 7){
@@ -891,7 +898,7 @@ newton <- function(fun, tol = 1e-3, x0 = 1, N = 7){
 }
 ```
 
-```{r first-func}
+```{r first-func, fig.width=8, fig.height=6, out.width="85%"}
 ## Let's code three functions R to implement this function and its first and second derivatives
 fun <- function(x) -1 * x^2
 fun.first.deriv <- function(x) -2 * x
@@ -900,7 +907,7 @@ fun.sec.deriv <- function(x) {
 }
 ```
 
-```{r first-func-first-guess, dependson = c("newton-raphson", "first-func")}
+```{r first-func-first-guess, dependson = c("newton-raphson", "first-func"), fig.width=8, fig.height=6, out.width="85%"}
 # generate iterations
 d <- tibble(
   x = newton(fun, x0 = 1),
@@ -913,7 +920,7 @@ function_plot +
   stat_function(fun = fun) +
   geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
   geom_point(data = d, aes(x = x, y = y), color = "red") +
-  xlim(-1, 1) +
+  coord_cartesian(xlim = c(-1, 1)) +
   labs(
     title = expression(-x^2),
     y = expression(f(x)),
@@ -928,11 +935,11 @@ function_plot +
 
 .pull-left[
 
-```{r base-plot-two-points, fig.width = 6}
+```{r base-plot-two-points, fig.width=8, fig.height=6, out.width="85%"}
 f0 <- function_plot +
   stat_function(fun = function(x) x^3 -6*x-2, size = .75) +
   labs(y = expression(f(x))) +
-  xlim(-4, 4)
+  coord_cartesian(xlim = c(-4, 4))
 f0
 ```
 
@@ -958,7 +965,7 @@ fun <- function(x) x^3 -6*x-2
 fun.first.deriv <- function(x) 3 * x^2 -6
 ```
 
-```{r second-func-first-guess, dependson = c("newton-raphson", "second-func")}
+```{r second-func-first-guess, dependson = c("newton-raphson", "second-func"), fig.width=8, fig.height=6, out.width="85%"}
 # generate iterations
 d <- tibble(
   x = newton(fun, tol = 0.01, x0 = 5),
@@ -971,7 +978,7 @@ function_plot +
   stat_function(fun = fun) +
   geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
   geom_point(data = d, aes(x = x, y = y), color = "red") +
-  xlim(-4, 4) +
+  coord_cartesian(xlim = c(-4, 4)) +
   labs(
     title = expression(x^3 -6*x-2),
     y = expression(f (x)),
@@ -984,7 +991,7 @@ function_plot +
 
 # Initial guess $x_0 = -6$
 
-```{r second-func-second-guess, dependson = "first-guess"}
+```{r second-func-second-guess, dependson = "first-guess", fig.width=8, fig.height=6, out.width="85%"}
 # generate iterations
 d <- tibble(
   x = newton(fun, x0 = -6),
@@ -997,7 +1004,7 @@ function_plot +
   stat_function(fun = fun) +
   geom_point(data = d, aes(x = x, y = y, group = seq_along(label))) +
   geom_point(data = d, aes(x = x, y = y), color = "red") +
-  xlim(-4, 4) + ylim(-40, 40) +
+  coord_cartesian(xlim = c(-4, 4)) + coord_cartesian(ylim = c(-40, 40)) +
   labs(
     title = expression(x^3 -6*x-2),
     y = expression(f(x)),
@@ -1034,7 +1041,7 @@ $$y = -x^2$$
 
 --
 
-```{r grid-search, fig.height = 6}
+```{r grid-search, fig.width=8, fig.height=6, out.width="85%"}
 neg_x_2 <- tibble(
   x = seq(from = -2, to = 2, by = 0.01),
   y = -x^2
@@ -1045,7 +1052,7 @@ function_plot +
     data = neg_x_2,
     mapping = aes(x, y), shape = 1
   ) +
-  xlim(-2, 2) +
+  coord_cartesian(xlim = c(-2, 2)) +
   labs(title = expression(f(x) == -x^2))
 ```
 
@@ -1075,10 +1082,10 @@ function_plot +
 
 # Gradient descent
 
-```{r grad-ex}
+```{r grad-ex, fig.width=8, fig.height=6, out.width="85%"}
 function_plot +
   stat_function(fun = function(x) 1.2 * x^2 - 4.8 * x + 8) +
-  xlim(0, 4) +
+  coord_cartesian(xlim = c(0, 4)) +
   labs(
     title = expression(f(x) == 1.2 * x^2 - 4.8 * x + 8),
     y = expression(f(x))
@@ -1102,7 +1109,7 @@ $$x_1 = x_0 - \alpha f'(x_0)$$
 
 # $\alpha = 0.6$
 
-```{r grad-descent-func}
+```{r grad-descent-func, fig.width=8, fig.height=6, out.width="85%"}
 # function for basic gradient descent
 grad_descent <- function(func, deriv, learning_rate = 0.6, x_new = .1, x_old = 0,
                          epsilon = 1e-3, step = 1, iteration = 100) {
@@ -1140,13 +1147,13 @@ grad_func <- function(x) 1.2 * x^2 - 4.8 * x + 8
 grad_deriv <- function(x) 2.4 * x - 4.8
 ```
 
-```{r grad-descent-learn-rate-6, dependson = c("grad-descent-func", "grad-descent-func-example")}
+```{r grad-descent-learn-rate-6, dependson = c("grad-descent-func", "grad-descent-func-example"), fig.width=8, fig.height=6, out.width="85%"}
 # plot the gradient descent
 grad_steps_6 <- grad_descent(func = grad_func, deriv = grad_deriv)
 
 function_plot +
   stat_function(fun = grad_func) +
-  xlim(0, 4) +
+  coord_cartesian(xlim = c(0, 4)) +
   geom_point(data = grad_steps_6, aes(x = x, y = y, group = seq_along(label))) +
   geom_point(data = grad_steps_6, aes(x = x, y = y), color = "red") +
   labs(
@@ -1161,13 +1168,13 @@ function_plot +
 
 # $\alpha = 0.1$
 
-```{r grad-descent-learn-rate-2, dependson = c("grad-descent-func", "grad-descent-func-example")}
+```{r grad-descent-learn-rate-2, dependson = c("grad-descent-func", "grad-descent-func-example"), fig.width=8, fig.height=6, out.width="85%"}
 # plot the gradient descent
 grad_steps_2 <- grad_descent(func = grad_func, deriv = grad_deriv, learning_rate = 0.1)
 
 function_plot +
   stat_function(fun = grad_func) +
-  xlim(0, 4) +
+  coord_cartesian(xlim = c(0, 4)) +
   geom_point(data = grad_steps_2, aes(x = x, y = y, group = seq_along(label))) +
   geom_point(data = grad_steps_2, aes(x = x, y = y), color = "red") +
   labs(
@@ -1210,7 +1217,7 @@ Matrices are incredibly helpful, despite also being a bit challenging to get the
 
 # INTROS
 
-* Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
+## Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
 
 ---
 

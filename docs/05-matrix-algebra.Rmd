@@ -3,7 +3,14 @@ title: "Matrix algebra"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
   xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides-menu.css"]
     math: katex
+    includes:
+      after_body: [slides-menu.js]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false 
 ---
 
 ```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
@@ -74,7 +81,7 @@ library(gganimate)
 
 # One dimensional example
 
-```{r one-d, fig.asp = .65}
+```{r one-d, fig.asp = .65, fig.width=8, fig.height=6, out.width="85%"}
 vector_one <- function(df) {
   ggplot(data = df,
          aes(x = x1, y = y1, xend = x2, yend = y2)) +
@@ -126,7 +133,7 @@ tibble(
 
 # Two dimensional example
 
-```{r two-d}
+```{r two-d, fig.width=8, fig.height=6, out.width="85%"}
 vector_two <- function(df) {
   ggplot(data = df,
          aes(x = x1, y = y1, xend = x2, yend = y2)) +
@@ -161,7 +168,7 @@ tibble(
 
 # Two dimensional example
 
-```{r two-d2, dependson = "two-d"}
+```{r two-d2, dependson = "two-d", fig.width=8, fig.height=6, out.width="85%"}
 tibble(
   x1 = 0,
   x2 = -.5,
@@ -176,7 +183,7 @@ tibble(
 
 # Two dimensional example
 
-```{r two-d3, dependson = "two-d"}
+```{r two-d3, dependson = "two-d",fig.width=8, fig.height=6, out.width="85%"}
 tibble(
   x1 = 0,
   x2 = 0,
@@ -524,7 +531,7 @@ $$\begin{aligned} \mathbf{u} \cdot \mathbf{v} & =  1 \times 2 +  2 \times 3 +  3
 # Calculating vector length
 The length of a vector, the vector norm, can be thought of as the distance of the vector from the origin.
 
-```{r pythagorean-theorem}
+```{r pythagorean-theorem, fig.width=8, fig.height=6, out.width="85%"}
 tribble(
 ~x1, ~x2, ~y1, ~y2,
 0, 3, 0, 0,
@@ -639,7 +646,7 @@ $$
 
 $$(2,1) \cdot (1,4) = 6$$
 
-```{r inner-product}
+```{r inner-product, fig.width=8, fig.height=6, out.width="85%"}
 tribble(
 ~x1, ~x2, ~y1, ~y2, ~notorig,
 0, 2, 0, 1, FALSE,
@@ -661,7 +668,7 @@ tribble(
 
 $$(4,2) \cdot (1,4) = 12$$
 
-```{r inner-product-not-same}
+```{r inner-product-not-same, fig.width=8, fig.height=6, out.width="85%"}
 tribble(
 ~x1, ~x2, ~y1, ~y2, ~notorig,
 0, 4, 0, 2, TRUE,
@@ -683,7 +690,7 @@ tribble(
 # Cosine similarity
 Allows us to look at the angle between them instead
 
-```{r cosine-sim}
+```{r cosine-sim, fig.width=8, fig.height=6, out.width="85%"}
 # hacky way to create angle visual
 circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
   r = diameter / 2
@@ -777,7 +784,7 @@ Interpretation: closer to 1, more similar
 # Exploring similarity: 
 
 .pull-left[
-```{r cosine-simd1}
+```{r cosine-simd1, fig.width=8, fig.height=6, out.width="85%"}
 # hacky way to create angle visual
 circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
   r = diameter / 2
@@ -809,7 +816,7 @@ tribble(
 ```
 ]
 .pull-right[
-```{r cosine-simb}
+```{r cosine-simb, fig.width=8, fig.height=6, out.width="85%"}
 # hacky way to create angle visual
 circleFun <- function(center = c(0,0), diameter = 1, npoints = 1000){
   r = diameter / 2
@@ -846,7 +853,7 @@ We can see how the similarity of 0.65 has a larger $\theta$ and a similarity of 
 ---
 class: center, middle, inverse
 # The Matrix, Part I
-```{r no-limit-img, fig.height=8}
+```{r no-limit-img, fig.width=8, fig.height=6, out.width="85%"}
 knitr::include_graphics("https://media.tenor.com/ang0VzOwbdAAAAAC/the-matrix-reloaded-matrix.gif")
 ```
 ---
@@ -969,14 +976,15 @@ Well, $X$ is $2\times 1$, $Y \text{ is } 2 \times 2$. Since the number of cols o
 To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOWN THE COLUMN of the second matrix. You then add these together. For example, if you have matrix A times matrix B, it would be element $a_{1,1}*b_{1,1} + ... + a_{1,n}*b_{n,1}$. This sum goes into the first cell in the resulting matrix. This sounds confusing (because it is), so let's see an example. 
 
 --
+<span style = "color: red;">
+$$\quad \mathbf{Y} = \begin{pmatrix} 5 & 2 \\ 3 & 4 \\ \end{pmatrix}$$
+</span>
 
 <span style = "color: blue;">
 $$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$
 </span>
 
-<span style = "color: red;">
-$$\quad \mathbf{Y} = \begin{pmatrix} 5 & 2 \\ 3 & 4 \\ \end{pmatrix}$$
-</span>
+
 
 --
 
@@ -993,13 +1001,14 @@ To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOW
 
 --
 
-<span style = "color: blue;">
-$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$
 </span>
 
 <span style = "color: red;">
 $$\quad \mathbf{Y} = \begin{pmatrix} 5 & 2 \\ 3 & 4 \\ \end{pmatrix}$$
 </span>
+
+<span style = "color: blue;">
+$$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$
 
 
 **This produces**
@@ -1140,7 +1149,7 @@ class: center
 
 # Neural networks
 
-```{r neural-network, fig.caption = "Source: Wikipedia"}
+```{r neural-network, fig.caption = "Source: Wikipedia", out.width="55%"}
 knitr::include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/9/99/Neural_network_example.svg")
 ```
 
@@ -1158,7 +1167,7 @@ knitr::include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/9
 ---
 # Social networks
 
-```{r office-network, fig.caption = "Source: Data Viz"}
+```{r office-network, fig.caption = "Source: Data Viz", fig.width=8, fig.height=6, out.width="85%"}
 knitr::include_graphics(path = "https://macs40700.netlify.app/slides/13-visualize-text-network/index_files/figure-html/unnamed-chunk-67-1.png")
 ```
 ---
