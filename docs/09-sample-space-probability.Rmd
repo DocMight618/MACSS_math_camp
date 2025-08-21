@@ -3,7 +3,15 @@ title: "Sample space and probability"
 subtitle: "Funky Cats and Their Feisty Stats"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
-  xaringan::moon_reader
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides-menu.css"]
+    math: katex
+    includes:
+      after_body: [slides-menu.js]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false 
 ---
 
 ```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
@@ -53,7 +61,7 @@ $$
 
 * $1 \in \{ 1, 2, 3\}$
 * $4 \in \{4, 5, 6\}$
-* $\text{Hanrui} \notin \{ \text{First year cohort} \}$
+* $\text{Stanley} \notin \{ \text{First year cohort} \}$
 * $\text{Jean} \in \{ \text{U of Chicago SIPs} \}$
 
 --
@@ -649,18 +657,23 @@ $$\begin{aligned}\Pr (A_1 | B) &= \frac{\Pr (A_1) \Pr (B | A_1)}{\Pr (A_1) \Pr (
 
 ---
 
-# Identifying racial groups by name
+# Identifying gender by name
 
-* Racial distribution of names
-* $\Pr (\text{black}) = 0.126$
-* $\Pr (\text{not black}) = 1 - \Pr (\text{black}) = 0.874$
-* $\Pr (\text{Washington} | \text{black}) = 0.00378$
-* $\Pr (\text{Washington} | \text{not black}) = 0.000060615$
-* What is the probability of being black conditional on having the name "Washington"?
+* Gender distribution of names
+* $\Pr (\text{woman}) = 0.509$
+* $\Pr (\text{not woman}) = 1 - \Pr (\text{woman}) = 0.491$
+* $\Pr (\text{Taylor} | \text{woman}) = 0.00191$
+* $\Pr (\text{Taylor} | \text{not woman}) = 0.00064$
+* What is the probability of being a woman conditional on having the name "Taylor"?
 
+Source:[name stats](https://www.mynamestats.com/First-Names/T/TA/TAYLOR/index.html)
 --
 
-$$\begin{aligned}\Pr(\text{black}|\text{Wash} ) & = \frac{\Pr(\text{black}) \Pr(\text{Wash}| \text{black}) }{\Pr(\text{Wash} ) } \\ & = \frac{\Pr(\text{black}) \Pr(\text{Wash}| \text{black}) }{\Pr(\text{black})\Pr(\text{Wash}|\text{black}) + \Pr(\text{nb})\Pr(\text{Wash}| \text{nb}) } \\ & = \frac{0.126 \times 0.00378}{0.126\times 0.00378 + 0.874 \times 0.000060616} \\ & \approx 0.9   \end{aligned}$$
+$$\begin{aligned}\Pr(\text{woman}|\text{Taylor} ) 
+& = \frac{\Pr(\text{woman}) \Pr(\text{Taylor}| \text{woman}) }{\Pr(\text{Taylor} ) } \\ 
+& = \frac{\Pr(\text{woman}) \Pr(\text{Taylor}| \text{woman}) }{\Pr(\text{woman})\Pr(\text{Taylor}|\text{woman}) + \Pr(\text{nw})\Pr(\text{Taylor}| \text{nw}) } \\ 
+& = \frac{0.509 \times 0.00191}{0.509\times 0.00191 + 0.491 \times 0.00064} \\ 
+& \approx 0.756   \end{aligned}$$
 
 
 
@@ -668,7 +681,7 @@ $$\begin{aligned}\Pr(\text{black}|\text{Wash} ) & = \frac{\Pr(\text{black}) \Pr(
 
 # Let's Make a Deal
 
-```{r monty-hall-b99}
+```{r monty-hall-b99, out.width="75%"}
 vembedr::embed_url("https://www.youtube.com/watch?v=QGxyIQzLeUc")
 ```
 
@@ -685,7 +698,7 @@ vembedr::embed_url("https://www.youtube.com/watch?v=QGxyIQzLeUc")
 
 * Suppose we have three doors $A, B, C$
 * Contestant guesses $A$
-* $\Pr(A) = 1/3 \leadsto$ chance of winning without switch
+* $\Pr(A) = 1/3 \leadsto$ where the car is located
 * If $C$ is revealed to not have a car:
 
 --
@@ -694,13 +707,19 @@ $$\begin{aligned}\Pr(B| C \text{ revealed} ) & = \frac{\Pr(B)\Pr(C \text{ reveal
 
 --
 
-$$\begin{aligned}\Pr(A| C \text{ revealed} ) & = \frac{\Pr(A) \Pr(C \text{ revealed} | A)}{ \Pr(B)\Pr(C \text{ revealed} | B) + \Pr(A) \Pr(C \text{ revealed} | A) } \\& = \frac{1/3 \times 1/2}{1/3 \times 1 + 1/3 \times 1/2} = \frac{1}{3} \end{aligned}$$
+$$\begin{aligned}\Pr(A| C \text{ revealed} ) 
+& = \frac{\Pr(A) \Pr(C \text{ revealed} | A)}{ \Pr(C)\Pr(C \text{ revealed} | C) + \Pr(B)\Pr(C \text{ revealed} | B) + \Pr(A) \Pr(C \text{ revealed} | A) } \\
+& = \frac{\Pr(A) \Pr(C \text{ revealed} | A)}{ \Pr(B)\Pr(C \text{ revealed} | B) + \Pr(A) \Pr(C \text{ revealed} | A) } \\
+& = \frac{1/3 \times 1/2}{1/3 \times 1 + 1/3 \times 1/2} = \frac{1}{3} \end{aligned}$$
+
+Key: PROBABILITY is where the car *IS*
+
 ---
 # Monty Hall
 Moral: ALWAYS* SWITCH! (non-random revelation!)
 
 --
-```{r}
+```{r, out.width = "90%"}
 include_graphics("https://imgs.xkcd.com/comics/monty_hall_2x.png")
 ```
 
