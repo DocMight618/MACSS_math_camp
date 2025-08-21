@@ -5,8 +5,6 @@
     <meta charset="utf-8" />
     <meta name="author" content="MACS 33000   University of Chicago" />
     <script src="07-multivariable-differentiation_files/header-attrs/header-attrs.js"></script>
-    <link href="07-multivariable-differentiation_files/remark-css/default.css" rel="stylesheet" />
-    <link href="07-multivariable-differentiation_files/remark-css/default-fonts.css" rel="stylesheet" />
     <script src="07-multivariable-differentiation_files/htmlwidgets/htmlwidgets.js"></script>
     <script src="07-multivariable-differentiation_files/plotly-binding/plotly.js"></script>
     <script src="07-multivariable-differentiation_files/typedarray/typedarray.min.js"></script>
@@ -16,6 +14,8 @@
     <link href="07-multivariable-differentiation_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
     <script src="07-multivariable-differentiation_files/plotly-main/plotly-latest.min.js"></script>
     <link href="07-multivariable-differentiation_files/vembedr/css/vembedr.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides-menu.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -765,7 +765,11 @@ $$
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create();
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
@@ -843,7 +847,148 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slideshow = window.slideshow;
+  if (!slideshow) return;
+
+  // Create the toggle button
+  const toggleBtn = document.createElement("button");
+  toggleBtn.textContent = "☰ Menu";
+  Object.assign(toggleBtn.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "20px",
+    zIndex: 1000,
+    padding: "6px 10px",
+    background: "#0B6884",
+    color: "#fff",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontSize: "25px",
+    fontFamily: "'Josefin Sans', Georgia, serif",
+  });
+  document.body.appendChild(toggleBtn);
+
+  // Create the menu container
+  const menu = document.createElement("div");
+  Object.assign(menu.style, {
+    position: "fixed",
+    bottom: "60px",
+    left: "20px",
+    width: "260px",
+    maxHeight: "70vh",
+    overflowY: "auto",
+    background: "#f5f5f5",
+    border: "1px solid #ccc",
+    padding: "10px",
+    display: "none",
+    zIndex: 1000,
+    fontFamily: "sans-serif",
+    fontSize: "14px",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+    borderRadius: "4px"
+  });
+
+  // Export to PDF button inside the menu
+  const exportBtn = document.createElement("button");
+  exportBtn.textContent = "📄 Export to PDF";
+  Object.assign(exportBtn.style, {
+    width: "100%",
+    padding: "6px",
+    marginBottom: "8px",
+    border: "none",
+    background: "#0B6884",
+    color: "#fff",
+    borderRadius: "3px",
+    cursor: "pointer"
+  });
+  exportBtn.addEventListener("click", () => {
+    menu.style.display = "none";
+    window.print();
+  });
+  menu.appendChild(exportBtn);
+
+  // Get all slides
+  const allSlides = slideshow.getSlides();
+
+  // Build menu items (skip incremental slides)
+  let displayNumber = 1;
+  allSlides.forEach((slide, internalIndex) => {
+    if (slide.properties.continued === "true") {
+      return; // skip incremental steps
+    }
+
+    const slideElement = document.querySelector(
+      `.remark-slide-container:nth-of-type(${internalIndex + 1})`
+    );
+    const heading = slideElement?.querySelector("h1, h2, h3");
+    const title = heading
+      ? heading.textContent.trim()
+      : `Slide ${displayNumber}`;
+
+    const link = document.createElement("a");
+    link.textContent = `${displayNumber}. ${title}`;
+    Object.assign(link.style, {
+      display: "block",
+      color: "#0B6884",
+      textDecoration: "none",
+      marginBottom: "6px",
+      padding: "4px 6px",
+      borderRadius: "3px",
+      userSelect: "none"
+    });
+
+    link.addEventListener("mouseenter", () => {
+      link.style.background = "#ddd";
+    });
+    link.addEventListener("mouseleave", () => {
+      link.style.background = "transparent";
+    });
+
+    // Use the actual remark.js 1-based slide index
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      menu.style.display = "none";
+      slideshow.gotoSlide(internalIndex + 1);
+    });
+
+    menu.appendChild(link);
+    displayNumber++;
+  });
+
+  document.body.appendChild(menu);
+
+  // Toggle menu
+  toggleBtn.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "none" ? "block" : "none";
+  });
+
+  // Close on slide change
+  slideshow.on("afterShowSlide", () => {
+    menu.style.display = "none";
+  });
+});
+</script>
 
 <script>
 slideshow._releaseMath = function(el) {
