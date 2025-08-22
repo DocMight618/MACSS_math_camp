@@ -2,7 +2,15 @@
 title: "Discrete random variables"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
-  xaringan::moon_reader
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides-menu.css"]
+    math: katex
+    includes:
+      after_body: [slides-menu.js]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false 
 ---
 
 ```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
@@ -24,9 +32,9 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
   * Please BE SPECIFIC so I can address concerns!
     * instead of 'more examples', try 'lecture X was challenging. more examples on Y'
 * **Upcoming dates:**
-  * career services (9/10) (tentative: 11-1)
-  * MACSS Econ orientation (9/20)
-  * orientation (9/23) + rest of week
+  * career services (9/17) (tentative: 11-1)
+  * MACSS Econ orientation (9/12)
+  * orientation (tbd) + rest of week
   * pub night (tbd)
 
 ---
