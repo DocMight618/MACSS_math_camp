@@ -1211,13 +1211,6 @@ X has two rows and three columms, so is $2 \times 3$. Y has three rows and two c
 --
 
 Matrices are incredibly helpful, despite also being a bit challenging to get the hang of. We'll talk more about them tomorrow but you will want to note the dimensions of a matrix. You can do some operations with them (addition / subtraction) and they work the way you are probably guessing (need to be the same size). **MULTIPLICATION DOES NOT WORK THAT WAY! WARNING!!!**
----
-
----
-
-# INTROS
-
-## Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
 
 ---
 
@@ -1234,3 +1227,7 @@ class: inverse, middle, center
 * Grid search 
 * Gradient descent
 * Matrices
+
+---
+class: center, middle, inverse
+## Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies

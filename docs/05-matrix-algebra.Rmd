@@ -1216,6 +1216,10 @@ knitr::include_graphics(path = "https://macs40700.netlify.app/slides/13-visualiz
   * **Transpose** / transposition (mathematical operation on a matrix) (superscript with T)
   * **Inverse** (this is a mathematical operation) (superscipt with $-1$)
 
+---
+class: center, middle, inverse
+## Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
+
 
 <!--
 

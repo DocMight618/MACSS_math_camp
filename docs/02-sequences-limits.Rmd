@@ -912,4 +912,8 @@ class: center, middle, inverse
 * Shirley Zhang xueyan1220@uchicago.edu
 * Stanley Yi yijiaying@uchicago.edu
 
+---
+class: center, middle, inverse
+## Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
+
   
