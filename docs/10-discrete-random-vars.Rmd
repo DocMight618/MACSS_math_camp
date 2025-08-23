@@ -27,12 +27,12 @@ library(gganimate)
 $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$
 # Misc
 
-* CALCULATORS CLAIMED (need your own if you want it!)
+* CALCULATORS (X left) (need your own if you want it!)
 * Survey: https://forms.gle/CyQnBsq7hbLtmpfX6
   * Please BE SPECIFIC so I can address concerns!
     * instead of 'more examples', try 'lecture X was challenging. more examples on Y'
 * **Upcoming dates:**
-  * career services (9/17) (tentative: 11-1)
+  * career services (9/17) (tentative: 9-12)
   * MACSS Econ orientation (9/12)
   * orientation (tbd) + rest of week
   * pub night (tbd)
