@@ -1,0 +1,379 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={PSET 5: Functions of several variables and optimization with several variables},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{PSET 5: Functions of several variables and optimization with
+several variables}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\textbf{Note: all homework uploads should be as a PDF \emph{and} have
+the questions identified}. We'll be giving zero credit for submissions
+that don't follow this protocol as it adds considerable time to grading.
+Thank you!
+
+\begin{itemize}
+\item
+  Name
+\item
+  How long did this problem set take you?
+\item
+  How difficult was this problem set? very easy 1 2 3 4 5 very
+  challenging
+\end{itemize}
+
+\section{Find first partial
+derivatives}\label{find-first-partial-derivatives}
+
+Find all of the first partial derivatives of each function.\footnote{Grimmer
+  HW6.3}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(f(x,y) = 3x - 2y^4\)
+
+  ~ ~\\
+  \strut \\
+\item
+  \(f(x,y) = x^5 + 3x^3y^2 + 3xy^4\)
+
+  ~ ~\\
+  \strut \\
+\item
+  \(g(x,y) = xe^{3y}\)
+
+  ~ ~\\
+  \strut \\
+\item
+  \(k(x,y) = \frac{x-y}{x+y}\)
+
+  ~\\
+\item
+  \(h(x,y,z) = x^2 e^{yz}\)
+
+  ~\\
+  \newpage
+\end{enumerate}
+
+\section{Find the gradient}\label{find-the-gradient}
+
+Find the gradient \(\nabla f\) of the following functions and evaluate
+them at the given points.\footnote{Grimmer HW6.4}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(f(x,y) = \sqrt{x^2 + y^2}\), \quad \((x,y) = (3,4)\)
+
+  ~\\
+  \strut \\
+\item
+  \(f(x,y,z) = (x+z)e^{x-y}\), \quad \((x,y,z) = (1,1,1)\)
+
+  ~\\
+  \strut \\
+\end{enumerate}
+
+\section{Find the Hessian}\label{find-the-hessian}
+
+Find the Hessian \(H\) for the following functions.\footnote{Grimmer
+  HW7.3}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(g(x,y) = x^4 - 3x^2 y^3\)
+
+  \strut \\
+  \strut ~\\
+  \strut ~ ~\\
+  \strut ~
+\item
+  \(f(x,y,z) = xyz - x^2\)
+
+  \strut \\
+  \strut ~\\
+  \strut ~ ~\\
+  \strut \\
+\end{enumerate}
+
+\section{Find the critical points}\label{find-the-critical-points}
+
+Find the local minimum values, local maximum values, and saddle point(s)
+of the function. Remember the process we discussed in class: Calculate
+the gradient, set it equal to zero to solve the system of equations,
+calculate the Hessian, and assess the Hessian at critical values. Be
+sure to show your work on each of these steps.\footnote{Grimmer HW7.4}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(f(x,y) = x^4 + y^4 - 4xy + 2\)
+
+  ~ ~ ~\\
+\item
+  \(k(x,y) = (1+xy)(x+y)\)
+
+  ~\\
+  \newpage
+\end{enumerate}
+
+\section{Definite integrals}\label{definite-integrals}
+
+Solve the following definite integrals using the antiderivative
+method.\footnote{Gill 5.10 and Grimmer HW4.1}
+
+For all these problems, the basic approach to compute the definite
+integral of \(f(x)\) from \(a\) to \(b\) is by using the formula
+\(F(b) - F(a)\), where \(F(x)\) is the \textbf{antiderivative} of \(f\).
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(\int_6^8 x^3 \,dx\)
+
+  ~\\
+\item
+  \(\int_{-1}^{0} (3x^2 -1) \,dx\)
+
+  ~\\
+\item
+  \(\int_0^1 x^{\frac{3}{7}} \,dx\)
+
+  ~\\
+\item
+  \(\int_1^2 \dfrac{1}{t^2} \,dt\)
+
+  ~\\
+\item
+  \(\int_2^4 e^y \,dy\)
+
+  ~\\
+\item
+  \(\int_8^9 2^x \,dx\)
+
+  ~\\
+\item
+  \(\int_3^3 \sqrt{x^5 + 2} \,dx\)
+
+  ~\\
+  \newpage
+\end{enumerate}
+
+\section{Applied integration}\label{applied-integration}
+
+A group of three unidentified first-year graduate students at the
+University of Chicago are worn out after a week of math camp. Wanting to
+unwind, the students agree to not talk about math and decide to chat
+over some casual drinks at Medici.
+
+After five shots of tequila each, two pitchers of beer, a bottle of
+wine, and a large Chicago-style pizza, the three students have had
+enough fun and decide to start the trip back home.
+
+\begin{itemize}
+\tightlist
+\item
+  Student \(A\) gets on a bike and starts pedaling away at a velocity of
+  \(v_A(t) = 2t^4 + t\), where \(t\) represents minutes. However, the
+  student crashes into the side of an Uber and ends the journey after
+  only 2 minutes.
+\item
+  Student \(B\) has no bike, so starts running at a velocity of
+  \(v_B(t) = 4\sqrt{t}\). Sadly, after only 4 minutes, the student's
+  legs give out and the student decides to sing a song, instead.
+\item
+  Student \(C\) can't even stand up, so has no choice but to slowly
+  crawl at a velocity of \(v_C(t) = 2e^{-t}\). Student \(C\) steadily
+  plods along for 20 minutes before falling asleep on the sidewalk.
+\end{itemize}
+
+Generally, if an object moves along a straight line with position
+function \(s(t)\), then its velocity is \(v(t) = s'(t)\). The
+Fundamental Theorem of Calculus then tells us that
+
+\[
+\begin{aligned}
+\textrm{Total distance traveled} &= \int_{t_1}^{t_2} v(t) \,dt\\
+s(t_2) - s(t_1) &= \int_{t_1}^{t_2} v(t) \,dt
+\end{aligned}
+\]
+
+Without using a calculator, use this formula to find the distance
+traveled by Students \(A\), \(B\), and \(C\). (Assume, however
+unrealistic in may be, that all three students traveled in a straight
+line.) Who traveled the farthest? The least far?\footnote{Grimmer HW4.2}
+
+~\\
+\newpage
+
+\section{Indefinite integrals}\label{indefinite-integrals}
+
+Calculate the following indefinite integrals:\footnote{Gill 5.13 and
+  5.14}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(\int (x^2-x^{-\frac{1}{2}}) \,dx\)
+
+  ~\\
+\item
+  \(\int 360t^6 \,dt\)
+
+  ~\\
+\item
+  \(\int 2x\log(x^2) \,dx\)
+
+  ~\\
+\end{enumerate}
+
+\section{Determining convergence}\label{determining-convergence}
+
+Determine whether each integral is convergent or divergent. Evaluate
+those that are convergent.\footnote{Grimmer HW 4.3}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(\int_1^{\infty} \left(\frac{1}{3x}\right)^2 \,dx\)
+
+  ~\\
+\item
+  \(\int_0^{\infty} \cos (x) \, dx\)
+
+  \strut \\
+  \strut ~ ~ ~ ~
+\item
+  \(\int_0^{\infty} e^{-x} \,dx\)
+
+  \strut \\
+  \strut ~ ~ ~ ~
+\item
+  \(\int_{-\infty}^0 x^3 \,dx\)
+
+  \strut \\
+  \strut ~ ~ ~ ~
+\end{enumerate}
+
+\section{More integrals}\label{more-integrals}
+
+Calculate the following integrals:\footnote{Grimmer HW7.5}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(\int_{0}^1 \int_{2}^{3} x^2y^3 \,\, dxdy\)
+
+  \strut \\
+  \strut ~ ~ ~\\
+  \strut \\
+\item
+  \(\int_{2}^{3} \int_{0}^1 x^2y^3 \,\, dy dx\)
+
+  \textless!--
+
+  \[
+   \begin{aligned}
+    \int_{2}^3 \int_{0}^{1} x^2y^3 dydx &= \int_2^3 [\frac{1}{4} x^2y^4 |^{y=1}_{y=0}]dx\\
+    &= \int_{2}^{3} [\frac{1}{4} 1^4 x^2 - \frac{1}{4} 0^4 x^2 ] dx = \int_{2}^{3} \frac{1}{4} x^2 dx\\
+    &= \frac{1}{12}x^3 |_{x=2}^{x=3} = \frac{19}{12}
+   \end{aligned}
+   \]
+
+  A and B demonstrate the order of integration doesn't matter, you
+  should get the same answer either way.
+\end{enumerate}
+
+\#\# AI and Resources statement * Please list (in detail) all resources
+you used for this assignment. If you worked with people, list them here
+as well. It is not enough to say that you used a resource for help, you
+need to be specific on the link and \emph{how} it was helpful. W/R/T gen
+AI tools (including GPT, etc. ) you cannot use them to do work on your
+behalf -- you cannot put in any of the questions, etc. You can ask for
+help on logic / sample problems. If you do use GPT or other AI tools,
+you need to provide a link to your chat transcript. Any suspected
+academic integrity violations will be immediately reported.
+
+\begin{verbatim}
+    -->      
+    \     \  \     
+    \ 
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(\int_{0}^1 \int_0^{\sqrt{1-x^2}} 2x^3y \, \, dy dx\)
+
+  \strut \\
+  \strut ~ ~ ~\\
+  \strut ~
+\end{enumerate}
+
+\end{document}
