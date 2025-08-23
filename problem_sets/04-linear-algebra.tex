@@ -6,7 +6,7 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -59,11 +59,11 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Linear algebra},
+  pdftitle={PSET 4: Linear algebra},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Linear algebra}
+\title{PSET 4: Linear algebra}
 \author{}
 \date{\vspace{-2.5em}}
 
@@ -80,7 +80,32 @@
   challenging
 \end{itemize}
 
-\section{Matrix arithmetic}\label{matrix-arithmetic}
+\section{Basic matrix arithmetic}\label{basic-matrix-arithmetic}
+
+If
+
+\[\mathbf{a} = \begin{bmatrix}
+    2 \\
+    2
+\end{bmatrix} \quad \mbox{and} \quad \mathbf{b} = \begin{bmatrix}
+    3 \\
+    1
+\end{bmatrix}\]
+
+find:\footnote{inspired by Pemberton and Rau 11.1.2}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(\mathbf{a} - \mathbf{b}\)
+\item
+  \(-4 \mathbf{b}\)
+\item
+  \(3 \mathbf{a} +3 \mathbf{b}\)
+\end{enumerate}
+
+\section{More complex matrix
+arithmetic}\label{more-complex-matrix-arithmetic}
 
 Suppose
 
@@ -153,9 +178,11 @@ between radians and degrees:\footnote{inspired by Simon and Blume 10.12}
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \item
-  \(\mathbf{v} = (4, 1), \quad \mathbf{w} = (2, 8)\)
+  \(\mathbf{v} = (1, 0), \quad \mathbf{w} = (2, 2)\)
 \item
-  \(\mathbf{v} = (1, 1, 0), \quad \mathbf{w} = (2,1, 2)\)
+  \(\mathbf{v} = (4, 1), \quad \mathbf{w} = (2, -8)\)
+\item
+  \(\mathbf{v} = (1, 1, 0), \quad \mathbf{w} = (1, 2, 2)\)
 \end{enumerate}
 
 \section{Matrix algebra}\label{matrix-algebra}
@@ -167,7 +194,7 @@ defined; if that is the case, say so.\footnote{inspired by Grimmer HW5.3}
 \mathbf{A} = \left[
   \begin{array}{r}
     3 \\
-    2 \\
+    -2 \\
     9
   \end{array}
 \right]
@@ -223,10 +250,10 @@ defined; if that is the case, say so.\footnote{inspired by Grimmer HW5.3}
 \right]
 \quad
 \mathbf{K} = \left[
-  \begin{array}{rrrr}
-    9 & 
-    -2 &
-    -1 &
+  \begin{array}{r}
+    9 \\
+    -2 \\
+    -1 \\
     0
   \end{array}
 \right]
@@ -234,13 +261,13 @@ defined; if that is the case, say so.\footnote{inspired by Grimmer HW5.3}
 
 \[
 \mathbf{L} = \left[
-  \begin{array}{r}
-    5 \\ 0 \\ 3 \\ 1
+  \begin{array}{rrrr}
+    5 & 0 & 3 & 1
   \end{array}
 \right]
 \quad
 \mathbf{M} = \begin{bmatrix}
--1 & 1 \\
+1 & -1 \\
 -1 & 3
 \end{bmatrix}
 \]
@@ -280,7 +307,7 @@ invertible - if not, show why.\footnote{inspired by Simon and Blume 8.19}
 \item
   \(\left[ \begin{array}{rr} 2 & 1 \\ 1 & 1 \end{array}\right]\)
 \item
-  \(\left[ \begin{array}{rr} 2 & 1 \\ 4 & -2 \end{array}\right]\)
+  \(\left[ \begin{array}{rr} 2 & 1 \\ -4 & -2 \end{array}\right]\)
 \item
   \(\left[ \begin{array}{rrr} 2 & 4 & 0 \\ 4 & 6 & 3 \\ -6 & -10 & 0 \end{array}\right]\)
 \end{enumerate}
@@ -323,7 +350,7 @@ matrix inversion or substitution:\footnote{inspired by Gill 4.19}
   \[
    \begin{aligned}
        x +   y + 2z &=  2 \\
-       3x -  2y -  z &= 1 \\
+       3x -  2y +  z &= 1 \\
        y -  z &= 3
    \end{aligned}
    \]
