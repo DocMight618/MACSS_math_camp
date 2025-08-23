@@ -2,7 +2,15 @@
 title: "Classical statistical inference: Applications"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
-  xaringan::moon_reader
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides-menu.css"]
+    math: katex
+    includes:
+      after_body: [slides-menu.js]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false 
 ---
 
 ```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
@@ -27,7 +35,7 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 
 
 ---
-class: middle
+class: middle, inverse
 
 # Review: theoretical side
 
@@ -283,7 +291,7 @@ Calculating $p$-value
 * $\text{p-value} = \Pr (\chi_2^2 > 145.27) = `r 1 - pchisq(q = 145.27, df = 2)`$
 
 ---
-class: middle
+class: middle, inverse
 
 # Extended example: one-sample, two-sample, and CIs
 
@@ -350,7 +358,7 @@ $$z = \frac{( 11.6 - 10.5)-0}{\sqrt{\frac{15.02^2}{1399} + \frac{14.5^2}{1019}}}
 $$z = 1.81$$ BUT HOW? WHY do we see that this value is smaller than what we would use to reject? 
 
 ---
-class: middle
+class: middle, inverse
 
 # A TL;DR of Bayesian v Frequentist statistics
 

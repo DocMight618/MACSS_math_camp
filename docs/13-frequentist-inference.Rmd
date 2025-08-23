@@ -2,7 +2,15 @@
 title: "Classical statistical inference"
 author: "[MACS 33000](https://jmclip.github.io/MACSS_math_camp/) <br /> University of Chicago"
 output:
-  xaringan::moon_reader
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "slides-menu.css"]
+    math: katex
+    includes:
+      after_body: [slides-menu.js]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false 
 ---
 
 ```{r child = here::here("_common-slides.Rmd"), cache = FALSE}
@@ -20,7 +28,7 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 # Misc
 
 * ALMOST THERE!
-* MPCS placement exam
+* Placement exams
 * Tomorrow: Review!
   * TA session(s)
   
@@ -233,7 +241,7 @@ $$E[\bar X] = \frac{1}{n} \sum_{i=1}^n E[X_i]$$
 
 ---
 
-# Bernoulli random variable
+# Bernoulli random variable: refresher
 
 Bernoulli refresher: one-shot event with probability $\pi$ of success. 
 
@@ -256,7 +264,7 @@ They are and thus the two are equal; so $\hat{\pi}_n$ is unbiased
 
 ---
 
-# Bernoulli random variable 
+# Bernoulli random variable: SE
 
 The standard error is
 
@@ -403,9 +411,9 @@ $$\hat{\pi} = \frac{S}{n}$$
 
 ---
 
-# Bernoulli random variable
+# Bernoulli random variable: plot
 
-```{r loglik-bern}
+```{r loglik-bern, fig.height=6, out.width="95%"}
 # loglikelihood function for plotting
 lik_bern <- function(p, S, n) {
   p^S * (1 - p)^(n - S)
@@ -532,7 +540,7 @@ $$\sqrt{n} (\tilde{\theta}_n - \theta) \leadsto N \left(0, \sigma^2 \frac{\pi}{2
 
 $$\Pr(X_i = x_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]$$
 
-```{r plot-normal}
+```{r plot-normal, fig.height = 5.5}
 tibble(x = rnorm(1000, 0, 1)) %>%
   ggplot(aes(x)) +
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
@@ -696,7 +704,7 @@ You can give a RANGE around your CI to improve your accuracy, at the cost of pre
 There is a delicate balance between accuracy and precision: for accuracy, you want to be as accurate as possible, but this means you have to have a wide range. We have conventionally compromised at 95% for the 'right' balance between the two. 
 
 ---
-class: middle
+class: middle, inverse
 
 # Hypothesis testing: 
 ## Am I right or am I right? 
@@ -853,7 +861,7 @@ $$R = \left\{(x_1, \ldots, x_n): T(x_1, \ldots, x_n) > c \right\}$$
 
 ---
 
-# Example hypothesis test
+# Example hypothesis test: formula
 
 Let $Z$ denote the standard Normal random variable. The power function is
 
@@ -868,16 +876,16 @@ $$
 
 ---
 
-# Example hypothesis test
+# Example hypothesis test: cdf
 
-```{r normal-cdf}
+```{r normal-cdf, fig.height=6}
 tibble(
   x = seq(-3, 3, by = 0.01),
   y = pnorm(x),
   h = x > -0
 ) %>%
   ggplot(aes(x, y, color = h)) +
-  geom_line(size = 1) +
+  geom_line(size = 1.5) +
   geom_vline(xintercept = 0) +
   scale_color_brewer(type = "qual", labels = expression(H[0], H[1])) +
   annotate(geom = "text", x = -0.25, y = .8, label = expression(beta(mu)), size = 7) +
@@ -976,9 +984,9 @@ $$W = \frac{\hat{\delta} - 0}{\widehat{\se}} = \frac{\bar{X} - \bar{Y}}{\sqrt{\f
 
 ---
 
-# $t$-test
+# Illustration: $t$-test
 
-```{r t-dist}
+```{r t-dist, out.width = "90%"}
 expand.grid(
   x = seq(from = -6, 6, length.out = 201),
   df = seq(from = 1, to = 50)
