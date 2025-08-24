@@ -794,25 +794,26 @@ Steps:
 # Gradescope: labeling
 
 
-```{r, fig.height=6}
-knitr::include_graphics("images/labeling_1.png")
+```{r, fig.height=6, out.width = "90%"}
+knitr::include_graphics("../images/labeling1.png")
 ```
 
 ---
 
 
 # Gradescope: labeling in action
+How to label: 
 
-
-```{r, fig.height=6}
-knitr::include_graphics("images/labeling_2.png")
+```{r, fig.height=6, out.width = "90%"}
+knitr::include_graphics("../images/labeling_2.png")
 ```
 
-
+---
 
 # Gradescope: views
 
+Please label or we get stuck with this!!
 
-```{r, fig.height=6}
-knitr::include_graphics("images/no_label.png")
+```{r, fig.height=6, out.width = "90%"}
+knitr::include_graphics("../images/no_label.png")
 ```
