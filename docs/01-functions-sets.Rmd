@@ -772,3 +772,47 @@ function_plot +
 ]
 
 
+---
+class: center, middle, inverse
+# Pause + Gradescope
+
+---
+
+# Gradescope:
+Online system for grading. 
+
+Steps:
+
+* Download assignment (pdf or tex file)
+* Complete assignment by deadilne (due that night)
+* Upload to gradescope (navigate through Canvas)
+* Label questions
+* Yes, it is annoying and I am sorry! 
+
+---
+
+# Gradescope: labeling
+
+
+```{r, fig.height=6}
+knitr::include_graphics("images/labeling_1.png")
+```
+
+---
+
+
+# Gradescope: labeling in action
+
+
+```{r, fig.height=6}
+knitr::include_graphics("images/labeling_2.png")
+```
+
+
+
+# Gradescope: views
+
+
+```{r, fig.height=6}
+knitr::include_graphics("images/no_label.png")
+```
