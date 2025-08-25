@@ -17,12 +17,14 @@
 * Shirley Zhang <xueyan1220@uchicago.edu>
 * Stanley Yi <yijiaying@uchicago.edu>
 
-## Office Houra
-* Monday 12-1pm(Stanley in-person)
-* Tuesday 7-8pm(Stanley Zoom)
-* Wednesday 12-1pm(Shirley and Stanley in-person) 8-10pm(Shirley Zoom)
-* Thursday 12-1pm(Shirley in-person) 7-8pm(Stanley Zoom)
-* Friday 
+## Office Hours
+|  | In-person | Zoom
+|-|-|-|
+| Monday | 12-1 PM (Stanley) | |
+| Tuesday | 5-7 PM (Gabe) | 7-8 PM (Stanley) | 2:30-4:30 PM (Bailey)
+| Wednesday | 12-1 PM (Shirley & Stanley) | 8-10 PM (Shirley) |
+| Thursday | 12-1 PM(Shirley) | 2:30-4:30 PM (Bailey), 7-8 PM (Stanley) |
+| Friday | |5-7 PM (Gabe) |
 
 ## Course description
 
