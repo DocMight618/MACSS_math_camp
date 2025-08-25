@@ -17,6 +17,13 @@
 * Shirley Zhang <xueyan1220@uchicago.edu>
 * Stanley Yi <yijiaying@uchicago.edu>
 
+## Office Houra
+* Monday 12-1pm(Stanley in-person)
+* Tuesday 7-8pm(Stanley Zoom)
+* Wednesday 12-1pm(Shirley and Stanley in-person) 8-10pm(Shirley Zoom)
+* Thursday 12-1pm(Shirley in-person) 7-8pm(Stanley Zoom)
+* Friday 
+
 ## Course description
 
 This course surveys mathematical and statistical tools that are foundational to computational social science. Topics to be reviewed include mathematical notation and linear equations, calculus, linear algebra, probability theory, and statistical inference. Students are assumed to have encountered most of these topics previously, so that the camp serves as a refresher rather than teaching entirely new topics. Class sessions will emphasize problem solving and in-class exercises applying these techniques. Students who successfully complete the camp are situated to pass the MACSS math and statistics placement exam and enroll in computationally-enhanced course offerings at the University of Chicago without prior introductory coursework.
