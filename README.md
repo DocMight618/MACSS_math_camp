@@ -21,9 +21,9 @@
 |  | In-person | Zoom
 |-|-|-|
 | Monday | 12-1 PM (Stanley) | |
-| Tuesday | 5-7 PM (Gabe) | 2:30-4:30 PM (Bailey), 7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
+| Tuesday | 5-7 PM (Gabe) | 2:30-4:30 PM ([Bailey](https://uchicago.zoom.us/meetings/6363783755/invitations?signature=PXFiZZEP_hmnh2FfTsnN8FWF9YOG9VUI2M-mTMT5tlo), 7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
 | Wednesday | 12-1 PM (Shirley & Stanley) | 8-10 PM (Shirley) |
-| Thursday | 12-1 PM(Shirley) | 2:30-4:30 PM (Bailey), 7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
+| Thursday | 12-1 PM(Shirley) | 2:30-4:30 PM ([Bailey](https://uchicago.zoom.us/meetings/6363783755/invitations?signature=PXFiZZEP_hmnh2FfTsnN8FWF9YOG9VUI2M-mTMT5tlo)), 7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
 | Friday | |5-7 PM (Gabe) |
 
 ## Course description
