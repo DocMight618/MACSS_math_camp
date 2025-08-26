@@ -269,34 +269,34 @@ tibble(
 # Arithmetic progression
 
 ```{r arithmetric-progression, out.width="80%"}
-# {
-#   tibble(
-#     x = seq(from = 1, to = 100),
-#     y = 2 * x
-#   ) %>%
-#     ggplot(aes(x, y)) +
-#     geom_point() +
-#     labs(
-#       title = expression(f(n) == 2 * n),
-#       subtitle = expression(paste(a == 2, ", ", d == 2)),
-#       x = "Integers",
-#       y = "Sequence"
-#     )
-# } + {
-#   tibble(
-#     x = seq(from = 1, to = 100),
-#     y = 29 - 9 * x
-#   ) %>%
-#     ggplot(aes(x, y)) +
-#     geom_point() +
-#     labs(
-#       title = expression(f(n) == 29 - 9 * n),
-#       subtitle = expression(paste(a == 20, ", ", d == -9)),
-#       x = "Integers",
-#       y = "Sequence"
-#     )
-# } +
-#   plot_annotation(title = "Arithmetic progressions")
+{
+  tibble(
+    x = seq(from = 1, to = 100),
+    y = 2 * x
+  ) %>%
+    ggplot(aes(x, y)) +
+    geom_point() +
+    labs(
+      title = expression(f(n) == 2 * n),
+      subtitle = expression(paste(a == 2, ", ", d == 2)),
+      x = "Integers",
+      y = "Sequence"
+    )
+} + {
+  tibble(
+    x = seq(from = 1, to = 100),
+    y = 29 - 9 * x
+  ) %>%
+    ggplot(aes(x, y)) +
+    geom_point() +
+    labs(
+      title = expression(f(n) == 29 - 9 * n),
+      subtitle = expression(paste(a == 20, ", ", d == -9)),
+      x = "Integers",
+      y = "Sequence"
+    )
+} +
+  plot_annotation(title = "Arithmetic progressions")
 ```
 
 ---
@@ -318,34 +318,34 @@ tibble(
 # Geometric progression
 
 ```{r geometric-progression, out.width="80%"}
-# {
-#   tibble(
-#     x = seq(from = 1, to = 20),
-#     y = -3^x / 5
-#   ) %>%
-#     ggplot(aes(x, y)) +
-#     geom_point() +
-#     labs(
-#       title = expression(f(n) == frac(-3^n, 5)),
-#       subtitle = expression(paste(a == frac(-3, 5), ", ", x == 3)),
-#       x = "Integers",
-#       y = "Sequence"
-#     )
-# } + {
-#   tibble(
-#     x = seq(from = 1, to = 20),
-#     y = 8 * (-4)^(1 - x)
-#   ) %>%
-#     ggplot(aes(x, y)) +
-#     geom_point() +
-#     labs(
-#       title = expression(f(n) == 8 * (-4)^(1 - n)),
-#       subtitle = expression(paste(a == 8, ", ", x == frac(-1, 4))),
-#       x = "Integers",
-#       y = "Sequence"
-#     )
-# } +
-#   plot_annotation(title = "Geometric progressions")
+{
+  tibble(
+    x = seq(from = 1, to = 20),
+    y = -3^x / 5
+  ) %>%
+    ggplot(aes(x, y)) +
+    geom_point() +
+    labs(
+      title = expression(f(n) == frac(-3^n, 5)),
+      subtitle = expression(paste(a == frac(-3, 5), ", ", x == 3)),
+      x = "Integers",
+      y = "Sequence"
+    )
+} + {
+  tibble(
+    x = seq(from = 1, to = 20),
+    y = 8 * (-4)^(1 - x)
+  ) %>%
+    ggplot(aes(x, y)) +
+    geom_point() +
+    labs(
+      title = expression(f(n) == 8 * (-4)^(1 - n)),
+      subtitle = expression(paste(a == 8, ", ", x == frac(-1, 4))),
+      x = "Integers",
+      y = "Sequence"
+    )
+} +
+  plot_annotation(title = "Geometric progressions")
 ```
 
 ---
@@ -478,7 +478,7 @@ function_plot +
     mapping = aes(color = "1 / 2x"),
     geom = "point"
   ) +
-  coord_cartesian(xlim=c(1, 10)) +
+  coord_cartesian(xlim=c(1, 5)) + coord_cartesian(ylim=c(-2, 4)) +
   scale_color_brewer(type = "qual", guide = guide_legend(reverse = TRUE)) +
   labs(color = NULL)
 ```
@@ -553,27 +553,19 @@ function_plot +
 ```
 
 ---
+# Limits
 
-# Limit of a function
+We need to talk about our functions and how they behave. We're going to be interested in talking about what they do, but we need to make sure they are 'predictable' in a way that makes sense for our analysis. 
 
-* Suppose $f: \Re \rightarrow \Re$
-* We say that $f$ has a limit $L$ at $x_{0}$ if, for $\epsilon>0$, there is a $\delta>0$ such that
 
-    $$|f(x) - L| < \epsilon \, \forall \, x \backepsilon 0 < |x - x_0 | < \delta$$
-
---
-
-$$|f(x) - L| < \epsilon \,$$ there's an epsilon larger than the distance between f(x) and the limit 
-
---
-$$\forall \, x \backepsilon $$ for all x, such that,
-
---
-$$0 < |x - x_0 | < \delta$$ the difference between x and $x_0$ bounded between 0 and some other delta (it ust be closer to 0 than $\delta$)
-
+We've seen how things do/not converge, and so we want to have a way to talk about this in the land of functions. 
 
 ---
 
+## Limit: Visual
+We can think about our definition as speaking to what a function is doing around any of its points in the domain. For a limit, if we make some bounds around our variable of interest (e.g. in the domain), and similarly 'arbitrarily small' bounds around our corresponding y, then the graph/function/line for y will lie within the bounds of our range of our variable. 
+
+--
 ```{r out.width="100%"}
 url <- "https://math.libretexts.org/@api/deki/files/9980/CNX_Calc_Figure_02_05_001.jpeg?revision=1"
 knitr::include_graphics(url)
@@ -581,6 +573,29 @@ knitr::include_graphics(url)
 ```
 
 source: [math 210](https://math.libretexts.org/Courses/Monroe_Community_College/MTH_210_Calculus_I_%28Professor_Dean%29/Chapter_2_Limits/2.7%3A_The_Precise_Definition_of_a_Limit)
+
+
+---
+
+# Limit of a function: Formal (DO NOT NEED TO KNOW THIS!)
+
+* Suppose $f: \Re \rightarrow \Re$
+
+
+--
+*Pieces of a limit*
+$$|f(x) - L| < \epsilon \,$$ there's an epsilon larger than the distance between f(x) and the limit 
+
+--
+$$\forall \, x \backepsilon $$ for all x, such that,
+
+--
+$$0 < |x - x_0 | < \delta$$ the difference between x and $x_0$ bounded between 0 and some other delta 
+--
+
+* We say that $f$ has a limit $L$ at $x_{0}$ if, for $\epsilon>0$, there is a $\delta>0$ such that
+
+    $$|f(x) - L| < \epsilon \, \forall \,x \backepsilon 0 < |x - x_0 | < \delta$$
 
 
 ---

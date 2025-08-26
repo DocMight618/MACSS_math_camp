@@ -168,7 +168,7 @@ class: center, middle, inverse, title-slide
 
 # Arithmetic progression
 
-
+&lt;img src="02-sequences-limits_files/figure-html/arithmetric-progression-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -188,7 +188,7 @@ class: center, middle, inverse, title-slide
 
 # Geometric progression
 
-
+&lt;img src="02-sequences-limits_files/figure-html/geometric-progression-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -292,30 +292,45 @@ Suppose `\(\left\{a_{n} \right \}\)` converges to `\(A\)` and `\(\left\{b_{n} \r
 &lt;img src="02-sequences-limits_files/figure-html/lim-sin-x-1.gif" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
+# Limits
 
-# Limit of a function
+We need to talk about our functions and how they behave. We're going to be interested in talking about what they do, but we need to make sure they are 'predictable' in a way that makes sense for our analysis. 
 
-* Suppose `\(f: \Re \rightarrow \Re\)`
-* We say that `\(f\)` has a limit `\(L\)` at `\(x_{0}\)` if, for `\(\epsilon&gt;0\)`, there is a `\(\delta&gt;0\)` such that
 
-    `$$|f(x) - L| &lt; \epsilon \, \forall \, x \backepsilon 0 &lt; |x - x_0 | &lt; \delta$$`
+We've seen how things do/not converge, and so we want to have a way to talk about this in the land of functions. 
+
+---
+
+## Limit: Visual
+We can think about our definition as speaking to what a function is doing around any of its points in the domain. For a limit, if we make some bounds around our variable of interest (e.g. in the domain), and similarly 'arbitrarily small' bounds around our corresponding y, then the graph/function/line for y will lie within the bounds of our range of our variable. 
 
 --
+&lt;img src="https://math.libretexts.org/@api/deki/files/9980/CNX_Calc_Figure_02_05_001.jpeg?revision=1" width="100%" style="display: block; margin: auto;" /&gt;
 
+source: [math 210](https://math.libretexts.org/Courses/Monroe_Community_College/MTH_210_Calculus_I_%28Professor_Dean%29/Chapter_2_Limits/2.7%3A_The_Precise_Definition_of_a_Limit)
+
+
+---
+
+# Limit of a function: Formal (DO NOT NEED TO KNOW THIS!)
+
+* Suppose `\(f: \Re \rightarrow \Re\)`
+
+
+--
+*Pieces of a limit*
 `$$|f(x) - L| &lt; \epsilon \,$$` there's an epsilon larger than the distance between f(x) and the limit 
 
 --
 $$\forall \, x \backepsilon $$ for all x, such that,
 
 --
-`$$0 &lt; |x - x_0 | &lt; \delta$$` the difference between x and `\(x_0\)` bounded between 0 and some other delta (it ust be closer to 0 than `\(\delta\)`)
+`$$0 &lt; |x - x_0 | &lt; \delta$$` the difference between x and `\(x_0\)` bounded between 0 and some other delta 
+--
 
+* We say that `\(f\)` has a limit `\(L\)` at `\(x_{0}\)` if, for `\(\epsilon&gt;0\)`, there is a `\(\delta&gt;0\)` such that
 
----
-
-&lt;img src="https://math.libretexts.org/@api/deki/files/9980/CNX_Calc_Figure_02_05_001.jpeg?revision=1" width="100%" style="display: block; margin: auto;" /&gt;
-
-source: [math 210](https://math.libretexts.org/Courses/Monroe_Community_College/MTH_210_Calculus_I_%28Professor_Dean%29/Chapter_2_Limits/2.7%3A_The_Precise_Definition_of_a_Limit)
+    `$$|f(x) - L| &lt; \epsilon \, \forall \,x \backepsilon 0 &lt; |x - x_0 | &lt; \delta$$`
 
 
 ---
