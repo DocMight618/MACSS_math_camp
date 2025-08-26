@@ -602,9 +602,15 @@ For each value, measure distance from the center. Recall that `\(E[X]\)` is a SE
 
 --
 
+`$$\begin{aligned} \E[(X - \E[X])^2] &amp; = \sum_{x:p_X(x)&gt;0} (x  - \E[X])^2p_X(x)\end{aligned}$$`
+`$$=\sum_{x:p_X(x)&gt;0} p_X(x)[\left(x^2 \right)- 2 \E[X] \left(x  \right) + \E[X]^2  ]$$`
+`$$=\sum_{x:p_X(x)&gt;0} [\left(x^2 p_X(x)\right)- 2 \E[X] \left(x p_X(x)\right) + \E[X]^2  p_X(x)]$$`
+
+---
+
 Weighted average of these distances
     
-`$$\begin{aligned} \E[(X - \E[X])^2] &amp; = \sum_{x:p_X(x)&gt;0} (x  - \E[X])^2p_X(x)\end{aligned}$$`
+`$$\sum_{x:p_X(x)&gt;0} [\left(x^2 p_X(x)\right)- 2 \E[X] \left(x p_X(x)\right) + \E[X]^2  p_X(x)]$$`
 --
 
 `$$\sum_{x:p_X(x)&gt;0} \left(x^2 p_X(x)\right)- 2 \E[X]\sum_{x:p_X(x)&gt;0} \left(x p_X(x)\right) + \E[X]^2\sum_{x:p_X(x)&gt;0} p_X(x)$$`
@@ -771,10 +777,8 @@ Let `\(X\)` be a random variable with PMF `\(p_X\)`, and let `\(g(X)\)` be a fun
 
 * Random variables: `\(P(X=x)\)`
 * DISCRETE VARIABLES: **different from continuous**
-* PMF: probability mass function
-  * Probability for a particular value
-* CDF: cumulative distribution function
-  * ADD UP VALUES (akin to a sum)
+* PMF: probability mass function, Probability for a particular value
+* CDF: cumulative distribution function, ADD UP VALUES (akin to a sum)
 * **Distributions**: 
   * Bernoulli: 
       * pmf: `\(1-p\)` for k = 0; `\(p\)` for `\(k = 1\)`
