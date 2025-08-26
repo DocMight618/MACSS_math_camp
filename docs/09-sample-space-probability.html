@@ -43,7 +43,7 @@ class: center, middle, inverse, title-slide
 
 ---
 
-# Sets
+# Refresher: Sets
 
 * Collection of objects
 
@@ -57,7 +57,7 @@ D &amp; = \{ \text{U of Chicago SIPs} \}
 $$
 ---
 
-# Sets
+# Refresher: Sets
 
 * If `\(A\)` is a set, we say that `\(x\)` is an element of `\(A\)` by writing `\(x \in A\)`
 * If `\(x\)` is not an element of `\(A\)` then, we write `\(x \notin A\)`
@@ -78,7 +78,7 @@ Why do we care about sets?
 
 ---
 
-# Subsets
+# Refresher: Subsets
 
 * If `\(A\)` and `\(B\)` are sets, then we say that `\(A = B\)` if, for all `\(x \in A\)` then `\(x \in B\)` and for all `\(y \in B\)` then `\(y \in A\)`
 * Test to determine equality:
@@ -94,7 +94,7 @@ Why do we care about sets?
 
 ---
 
-# Set builder notation
+# Refresher: Set builder notation
 
 Some famous sets:
 
@@ -114,7 +114,7 @@ Use **set builder notation** to identify subsets:
 
 ---
 
-# Union
+# Refresher: Union
 
 * `\(A\)` and `\(B\)` are sets
 * New set that contains all elements in set `\(A\)` *or* in set `\(B\)`
@@ -128,7 +128,7 @@ Use **set builder notation** to identify subsets:
 
 ---
 
-# Intersection
+# Refresher: Intersection
 
 * New set that contains all elements in set `\(A\)` *and* set `\(B\)`
 
@@ -141,7 +141,7 @@ Use **set builder notation** to identify subsets:
 
 ---
 
-# Some facts about sets
+# Refresher: Some facts about sets
 
 1. `\(A \cap B = B \cap A\)`
 1. `\(A \cup B = B \cup A\)`
@@ -275,9 +275,9 @@ The sample space must define all possible realizations
 * Mutual exclusivity `\(\neq\)` independence
 * `\(E\)` and `\(E^{c}\)` are mutually exclusive events
 
---
+---
 
-## Examples
+## Mutual exclusivity: Examples
 
 Suppose `\(S = \{H, T\}\)`. Then `\(E = H\)` and `\(F = T\)`, then `\(E \cap F = \emptyset\)`
 
@@ -399,14 +399,14 @@ Helps us to avoid silly reasoning
 
 "Group A has a higher rate of some behavior, therefore most of the behavior is from group A" `\(\leadsto\)` confuses two different problems
 
---
 
------------------------------
 
-"This is a low probability event, therefore God designed it" `\(\leadsto\)`
+&lt;!-- ----------------------------- --&gt;
 
-1. Even if we stipulate to a low probability event, intelligent design is an assumption
-1. Low probability obviously doesn't imply divine intervention. Take 100 balls and let them sort into 2 bins. You'll get a result, but probability of that result `\(= 1/(10^{29} \times \text{Number of Atoms in Universe})\)`
+&lt;!-- "This is a low probability event, therefore God designed it" `\(\leadsto\)` --&gt;
+
+&lt;!-- 1. Even if we stipulate to a low probability event, intelligent design is an assumption --&gt;
+&lt;!-- 1. Low probability obviously doesn't imply divine intervention. Take 100 balls and let them sort into 2 bins. You'll get a result, but probability of that result `\(= 1/(10^{29} \times \text{Number of Atoms in Universe})\)` --&gt;
 
 ---
 
@@ -431,7 +431,7 @@ Helps us to avoid silly reasoning
 
 --
 
-To math it even more, think about it: suppose you have one person's birthday. Now, it has to be the case that each other person does not share thair birthday. When it's you and another person, that means there are only two days that are off limits. However, if you have 50 people, it would have to be the case that you have fifty separate days, which is pretty unlikely (about 3% likelihood). 
+**To math it even more**, think about it: suppose you have one person's birthday. Now, it has to be the case that each other person does not share thair birthday. When it's you and another person, that means there are only two days that are off limits. However, if you have 50 people, it would have to be the case that you have fifty separate days, which is pretty unlikely (about 3% likelihood). 
 
 ---
 # Combining Birthdays: Passwords and Committees
@@ -564,7 +564,9 @@ Sample space (one person) = `\(\{\)` (mobilized, vote), (mobilized, not vote), (
 
 * Apply the law of total probability
 
-    `$$\begin{aligned}\Pr(\text{vote} ) &amp; = \Pr(\text{vote}| \text{mob.} ) \times \Pr(\text{mob.} ) + \Pr(\text{vote} | \text{not mob} ) \times \Pr(\text{not mob}) \\ &amp; = 0.75 \times 0.6  + 0.25 \times 0.4   \\  &amp; = 0.55  \end{aligned}$$`
+    `$$\begin{aligned}\Pr(\text{vote} ) &amp; = \Pr(\text{vote}| \text{mob.} ) \times \Pr(\text{mob.} ) + \\
+       \Pr(\text{vote} | \text{not mob} ) \times \Pr(\text{not mob}) \\ 
+    &amp; = 0.75 \times 0.6  + 0.25 \times 0.4   \\  &amp; = 0.55  \end{aligned}$$`
         
 ---
 
@@ -704,7 +706,7 @@ Key: PROBABILITY is where the car *IS*
 
 ---
 # Monty Hall
-Moral: ALWAYS* SWITCH! (non-random revelation!)
+Moral: **ALWAYS** SWITCH! (non-random revelation!)
 
 --
 &lt;img src="https://imgs.xkcd.com/comics/monty_hall_2x.png" width="90%" style="display: block; margin: auto;" /&gt;
@@ -738,7 +740,7 @@ $$
 `$$\begin{aligned}\Pr (A|B) &amp;= \frac{\Pr (A) \Pr (B|A)}{\Pr (A) \Pr (B|A) + \Pr (A^c) \Pr (B | A^c)} \\&amp;= \frac{0.001 \times 0.95}{0.001 \times 0.95 + 0.999 \times 0.05} \\&amp;= 0.0187\end{aligned}$$`
 --
 
-### Bonus: what is the probability that someone does NOT have the disease given that they have a positive result? 
+**Bonus: what is the probability that someone does NOT have the disease given that they have a positive result?** 
 --
 
 *Ans*: `\((0.999*0.05)/(0.001*0.95+0.999*0.05)\)` OR `\(1-0.0187=0.9813\)`
@@ -936,7 +938,7 @@ $$
 * Sequence of independent trials
 
     
-&lt;img src="../images/bernoulli.png" width="35%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/bernoulli.png" width="35%" style="display: block; margin: auto;" /&gt;
 * Bernoulli trials - sequence of independent binary trials
     * Heads or tails
     * Success or fail
@@ -1051,6 +1053,8 @@ Then, the total number of possible results of the `\(r\)`-stage process is
 
         `$$AB, AC, AD, BC, BD, CD$$`
 
+---
+# Combinations: General formula
 * General formula
 
     `$$\frac{n!}{k!(n-k)!}$$`

@@ -414,16 +414,13 @@ for `\(k \in \{0, 1, \ldots, \}\)` and `\(0\)` otherwise. (Here, `\(\lambda\)` i
 
 ---
 # Example: working backwards
-
-* Suppose we have an event which we believe follows a Poisson distribution. Perhaps this is the number of students who forget their calculator for the exam. If we observed that last year, about `\(4.979\%\)` of the time all students remembered their calculator. How could we figure out the likelihood that exactly one student forgets theirs in the upcoming exam?
+Suppose we have an event which we believe follows a Poisson distribution. Perhaps this is the number of students who forget their calculator for the exam. If we observed that last year, about `\(4.979\%\)` of the time all students remembered their calculator. How could we figure out the likelihood that exactly one student forgets theirs in the upcoming exam?
 
 --
 
 `$$p_X(0) = e^{-\lambda} \frac{\lambda^{x}}{x!}$$`
 --
-`$$p_X(0) = e^{-\lambda} \frac{\lambda^{0}}{0!}=0.04979$$`
---
-`$$0.04979 = e^{-\lambda}$$`
+`$$p_X(0) = e^{-\lambda} \frac{\lambda^{0}}{0!}=0.04979= e^{-\lambda}$$`
 --
 `$$log(0.0479) = - \lambda \, \text{ therefore } \lambda \approx 3.0$$`
 ---
@@ -500,7 +497,7 @@ Given a random variable `\(X\)`, you may wish to create a new random variable `\
 
 ---
 
-# Motivation
+# Mean and Variance: Motivation
 
 * Consider spinning a wheel of fortune many times
 * At each spin, one of the numbers `\(m_1, m_2, \ldots, m_n\)` comes up with corresponding probability `\(p_1, p_2, \ldots, p_n\)`, and this is your monetary reward from that spin
@@ -508,8 +505,7 @@ Given a random variable `\(X\)`, you may wish to create a new random variable `\
 
 --
 
-* Spin `\(k\)` times
-* `\(k_i\)` and `\(m_i\)`
+* Spin `\(k\)` times: `\(k_i\)` and `\(m_i\)`
 * `\(m_1 k_1 + m_2 k_2 + \ldots + m_n k_n\)`
 
     `$$M = \frac{m_1 k_1 + m_2 k_2 + \ldots + m_n k_n}{k}$$`
