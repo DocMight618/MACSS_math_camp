@@ -146,7 +146,7 @@ $$1 = \int_{-\infty}^{\infty} f_X(x)\,dx = \int_0^1 c \,dx = c \int_0^1 \,dx = c
 
 ---
 
-# Uniform random variable
+# Uniform random variable: plot
 
 ```{r unif}
 tibble(
@@ -167,8 +167,7 @@ tibble(
 
 $$\begin{aligned}
 \Pr(X \in [0.2, 0.5]) & = \int_{0.2}^{0.5} 1 \,dx \\
-& = X |^{0.5}_{0.2} \\
-& = 0.5  - 0.2  \\
+& = X |^{0.5}_{0.2} = 0.5  - 0.2  \\
 & = 0.3 
 \end{aligned}$$
 
@@ -176,8 +175,7 @@ $$\begin{aligned}
 
 $$\begin{aligned}
 \Pr(X \in [0.5, 0.5]) & = \int_{0.5}^{0.5} 1\,dx \\
-& = X|^{0.5}_{0.5} \\
-& = 0.5 - 0.5 \\
+& = X|^{0.5}_{0.5} = 0.5 - 0.5 \\
 & = 0 
 \end{aligned}$$
 
@@ -185,8 +183,7 @@ $$\begin{aligned}
 
 $$\begin{aligned}
 \Pr(X \in \{[0, 0.2]\cup[0.5, 1]\}) & = \int_{0}^{0.2} 1\,dx + \int_{0.5}^{1} 1\,dx \\
- & = X_{0}^{0.2} + X_{0.5}^{1} \\
- & = 0.2 - 0 + 1 - 0.5 \\
+ & = X_{0}^{0.2} + X_{0.5}^{1}  = 0.2 - 0 + 1 - 0.5 \\
  & = 0.7 
 \end{aligned}$$
 
@@ -205,7 +202,7 @@ $$f_X(x) = \left\{    \begin{array}{ll}        \frac{1}{b-a} & \quad \text{if } 
 * If $F$ is antiderivative of $f$, then $\Pr(X \in [c,d]) = F(d) - F(c)$
 
 ---
-class: middle
+class: middle, center, inverse
 
 # Having a moment
 
@@ -219,8 +216,6 @@ Moments help us understand the shape of the distribution
 1. Tail-y-ness (kurtosis): $E[X^4]$
 
 ---
-class: middle, inverse
-
 # Great expectations: first moment
 
 --
@@ -539,11 +534,11 @@ $$\E[Y] = a\mu + b, \quad \Var(Y) = a^2 \sigma^2$$
 
 ---
 
-# Support for President Biden
+# Support for President 
 
 Suppose we are interested in modeling presidential approval
 
-* $Y$: proportion of population who "approves job president is doing"
+* $Y$: proportion of population who "approves of the job the president is doing"
 * Individual responses are independent and identically distributed
 * Average of those individual binary responses
 * $N\rightarrow \infty$
@@ -587,14 +582,14 @@ animate(clt_plot, nframes = 600)
 
 ---
 
-# Back to Biden
+# Back to polling: presidential approval
 
-* Suppose $\mu = 0.39$ and $\sigma^2 = 0.0025$
-* $\Pr(Y\geq 0.45)$ 
+* Suppose $\mu = 0.44$ and $\sigma^2 = 0.0025$
+* $\Pr(Y\geq 0.49)$ 
 
 --
 
-$$\begin{aligned} \Pr(Y \geq 0.45)  & = 1 - \Pr(Y \leq 0.45 ) \\& = 1 - \Pr(0.05 Z + 0.39 \leq  0.45) \\& = 1 - \Pr(Z \leq \frac{0.45-0.39 }{0.05} ) \\& = 1 - \frac{1}{\sqrt{2\pi} } \int_{-\infty}^{6/5} \exp(-z^2/2) \,dz \\& = 1 - F_{Z} (\frac{6}{5} ) \\& = 0.1150697\end{aligned}$$
+$$\begin{aligned} \Pr(Y \geq 0.49)  & = 1 - \Pr(Y \leq 0.49 ) \\& = 1 - \Pr(0.05 \leq + 0.44 \leq  0.49) \\& = 1 - \Pr(Z \leq \frac{0.49-0.44 }{0.05} ) \\& = 1 - \frac{1}{\sqrt{2\pi} } \int_{-\infty}^{1} \exp(-z^2/2) \,dz \\& = 1 - F_{Z} (1 ) \\& = 0.159\end{aligned}$$
 
 ---
 # Gamma distribution: def
@@ -605,7 +600,7 @@ Example: waiting time between events
 
 ---
 
-# Gamma distribution: formual
+# Gamma distribution: formula
 
 Suppose $\alpha>0$. Define $\Gamma(\alpha)$ as
 
@@ -622,16 +617,14 @@ $$
 
 ---
 
-# Gamma distribution
+# Gamma distribution: simplified formula
 
 Suppose we have $\Gamma(\alpha)$
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \frac{\Gamma(\alpha)}{\Gamma(\alpha)} & = \frac{\int_{0}^{\infty} y^{\alpha-1} e^{-y} dy}{\Gamma(\alpha)} \\
 1 & = \int_{0}^{\infty} \frac{1}{\Gamma(\alpha)} y^{\alpha-1} e^{-y} \,dy 
-\end{aligned}
-$$
+\end{aligned}$$
 
 --
 
@@ -639,14 +632,12 @@ Set $X = Y/\beta$
 
 --
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 F(x) = \Pr(X \leq x) & = \Pr(Y/\beta \leq x ) \\
 & = \Pr(Y \leq x \beta ) \\
 & = F_{Y} (x \beta) \\
 \frac{\partial F_{Y} (x \beta) }{\partial x} & = f_{Y} (x \beta) \beta
-\end{aligned}
-$$
+\end{aligned}$$
 
 --
 
@@ -672,23 +663,19 @@ $$X \sim \text{Gamma}(\alpha, \beta)$$
 
 Suppose $X \sim \text{Gamma}(\alpha, \beta)$
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 \E[X] & = \frac{\alpha}{\beta} \\
 \Var(X) & = \frac{\alpha}{\beta^2}
-\end{aligned}
-$$
+\end{aligned}$$
 
 --
 
 Suppose $\alpha = 1$ and $\beta = \lambda$. If
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 X & \sim \text{Gamma}(1, \lambda) \\
 f(x|1, \lambda ) & = \lambda e^{- x \lambda}
-\end{aligned}
-$$
+\end{aligned}$$
 
 $$X \sim \text{Exponential}(\lambda)$$
 
@@ -785,15 +772,13 @@ function_plot +
 
 Suppose $Z \sim \text{Normal}(0,1)$. Consider $X = Z^2$
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 F_{X}(x)   & =  \Pr(X \leq x) \\
 & = \Pr(Z^2 \leq x ) \\
 & = \Pr(-\sqrt{x} \leq Z \leq \sqrt{x}) \\
 & = \frac{1}{\sqrt{2\pi}} \int_{-\sqrt{x}}^{\sqrt{x} } e^{-\frac{z^2}{2}} \,dz\\
 & = F_{Z} (\sqrt{x}) - F_{Z} (-\sqrt{x})
-\end{aligned}
-$$
+\end{aligned}$$
 
 ---
 
@@ -840,7 +825,7 @@ $$X \sim \chi^{2}(n)$$
 
 # $\chi^2$ distribution: plot
 
-```{r chi-sq, out.width="00%", fig.height = 6}
+```{r chi-sq, out.width="90%", fig.height = 6}
 expand.grid(
   x = seq(from = 0, to = 100, length.out = 201),
   df = seq(from = 1, to = 50)
@@ -934,6 +919,49 @@ expand.grid(
   view_follow(fixed_x = TRUE)
 ```
 
+---
+# HOW DO I DO THIS?!!!
+
+--
+
+In all cases with the continuous random variable, we are going to be using an integral OR a table (it just does the math for you!). 
+
+You can expect to see problems where a probability distribution is given by a function (sometimes explicitly stated as a type of function (and then you need in use it) or just as the function)
+
+---
+
+## Example: 
+After an election in a parliamentary system, a government (consisting of a prime minister and a cabinet) is formed by gathering the support of a majority of newly elected members of parliament. Typically a government is allowed to remain in power for a certain number of years before new elections must be called but elections can be called earlier. In Country Z, governments must call elections at least every 5 years, but they could be called sooner if there is a vote of no confidence or the prime minister dissolves the government. Let the continuous random variable $X$ denote the amount of time (measured in years) between the last election and the calling of the next election. $X$ has support on all real numbers between 0 and 5. Suppose we know that $X$ has the probability density function
+
+$$f(x) = \begin{cases}
+kx^3 &  0 < x < 5, \\
+0 & \text{otherwise}
+\end{cases}$$
+
+where $k$ is some constant. **Find $k$.**
+
+---
+
+# Example: Answer
+
+**Solution:** Recall that a valid PDF must sum up to 1. So we have to find a $k$ such that the integral of the PDF equals 1.
+    
+$$\begin{aligned}
+\int_0^5 kx^3 dx &= 1 \\
+k \int_0^5 x^3 dx &= 1 \\
+k \left[ \frac{x^4}{4} \right]\bigg|_0^5 &= 1 \\
+k \left[ \frac{5^4}{4} - \frac{0^4}{4} \right] &= 1 \\
+\frac{625k}{4} &= 1 \\
+k &= \frac{4}{625}
+\end{aligned}$$
+    
+---
+
+## Other question types: 
+
+* Find the CDF
+* What function is (description of scenario)
+* Does the avarible fall in this range? What are the chances?
 
 ---
 
