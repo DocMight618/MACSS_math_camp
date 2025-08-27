@@ -21,9 +21,9 @@
 |  | In-person | Zoom
 |-|-|-|
 | Monday | 12-1 PM (Stanley) | |
-| Tuesday | 5-7 PM (Gabe) | 2:30-4:30 PM ([Bailey](https://uchicago.zoom.us/meetings/6363783755/invitations?signature=PXFiZZEP_hmnh2FfTsnN8FWF9YOG9VUI2M-mTMT5tlo), 7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
+| Tuesday | 5-7 PM (Gabe) | 2:30-4:30 PM ([Bailey](https://uchicago.zoom.us/j/6363783755?pwd=YynAgxHtitqOxQsWbaiWev3s1acKIe.1)), 7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
 | Wednesday | 12-1 PM (Shirley & Stanley) | 8-10 PM (Shirley) |
-| Thursday | 12-1 PM(Shirley) | 2:30-4:30 PM ([Bailey](https://uchicago.zoom.us/meetings/6363783755/invitations?signature=PXFiZZEP_hmnh2FfTsnN8FWF9YOG9VUI2M-mTMT5tlo)), 7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
+| Thursday | 12-1 PM(Shirley) | 2:30-4:30 PM ([Bailey](https://uchicago.zoom.us/j/6363783755?pwd=YynAgxHtitqOxQsWbaiWev3s1acKIe.1)), 7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
 | Friday | |5-7 PM (Gabe) |
 
 ## Course description
@@ -84,7 +84,7 @@ Note: solutions posted after grades released
 
 | Date | Topic | Subtopic/Slides | Assignment
 |-|-|-|-|
-| 25-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1 pdf](problem_sets/01-functions-sets.pdf) [.tex file](problem_sets/01-functions-sets.tex) & [answer key](solutions/Pset1Solutions.pdf)
+| 25-Aug | Linear equations | [Linear equations, inequalities, and sets and functions](https://jmclip.github.io/MACSS_math_camp/01-functions-sets.html) | [Pset 1 pdf](problem_sets/01-functions-sets.pdf) [.tex file](problem_sets/01-functions-sets.tex) & [answer key](solutions/pset1_answerkey.pdf)
 | 26-Aug | Linear equations | [Quadratics, logarithms, sequences, and limits](https://jmclip.github.io/MACSS_math_camp/02-sequences-limits.html) and [Differentiation](https://jmclip.github.io/MACSS_math_camp/03-differentiation.html)  | [Pset 2 pdf](problem_sets/02-seq-limits-critical-points.pdf),[.tex file](problem_sets/02-seq-limits-critical-points.tex) & [answer key](solutions/Pset2Solutions.pdf)
 | 27-Aug | Calculus | [Critical points and approximation + Intro Linear Algebra](https://jmclip.github.io/MACSS_math_camp/04-critical-points.html) | [Pset 3 pdf](problem_sets/03-critical-points.pdf),[.tex file](problem_sets/03-critical-points.tex) & [answer key](solutions/Pset3Solutions.pdf)
 | 28-Aug | Matrix algebra | [Matrix algebra](https://jmclip.github.io/MACSS_math_camp/05-matrix-algebra.html) | [NO HOMEWORK!]
