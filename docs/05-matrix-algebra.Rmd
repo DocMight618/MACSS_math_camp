@@ -28,7 +28,7 @@ library(gganimate)
 
 * Grading up
 * Check github for updates
-* Academic integrity session @ 11:30 
+
 
 ---
 
@@ -340,6 +340,15 @@ If we're not sure what to do, we set this up as trying to solve for our variable
 # Solve the system of equations
 Let's work through an example to evaluate whether our matrices are linearly independent or dependent. 
 
+* **Step 1:** We re-write our matrices from the previous slide, setting each equal to zero. Note that we've named them to make following along a little easier. 
+
+* **Step 2:** We leave our first equation $\mathbf{h}$ as-is. We then take our second equation and calculate: $h-k$ and replace that result in the third row. We can see from the third row that $\beta = \gamma$.
+
+
+---
+# Solve the system of equations - example
+Let's work through an example to evaluate whether our matrices are linearly independent or dependent. 
+
 .pull-left[
 * **Step 1: write out equations**
 
@@ -362,10 +371,6 @@ $$
 ]
 
 .pull-right[
-
-* **Step 1:** We re-write our matrices from the previous slide, setting each equal to zero. Note that we've named them to make following along a little easier. 
-
-* **Step 2:** We leave our first equation $\mathbf{h}$ as-is. We then take our second equation and calculate: $h-k$ and replace that result in the third row. We can see from the third row that $\beta = \gamma$.
 
 
 ]
@@ -437,10 +442,18 @@ $$
 
 * **Step 4**:  We can then take 2 times our middle row (j) from the top row (replacing h) to get $\gamma = 0$. As $\gamma = \beta = 0$, we can substitute those in to our middle equation. 
 
-* **Conclusion**: This means that ... $\alpha = 0$ as well. Therefore, these equations (and matrices) are linearly independent as the only possible solution that satisfies our requirements is for all variables to be zero (trivial). 
 
 
 ]
+
+---
+
+## So what? Conclusion
+
+
+* **Conclusion**: This means that ... $\alpha = 0$ as well. Therefore, these equations (and matrices) are linearly independent as the only possible solution that satisfies our requirements is for all variables to be zero (trivial). 
+
+
 ---
 
 # Example
@@ -887,7 +900,7 @@ a_{m1} & a_{m2} & \ldots & a_{mn} \\
 # Special matrices
 
   * **Diagonal matrix** (only numbers on diagonal; zero elsewhere)
-    * Identity** (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called $I$)
+    * **Identity** (only 1s on diagonal; zero elsewhere -- special case of diagonal -- called $I$)
   * **Square** (n rows = n columns)
   * **Triangular matri**x (half of matrix has zeros -- see below for lower/upper distinction)
     * **lower triangular** (numbers in lower half (diagonal down) and zeros above diagonal)
@@ -990,7 +1003,13 @@ $$\mathbf{X} = \begin{pmatrix} 1 \\ 10\end{pmatrix}$$
 
 Here, we have a very simple example -- so, we'll take the row (in this case, the entirety) of X and multiply the pairs (each element with its corresponding partner) of X and Y. So, <span style = "color: red;"> $5*$ </span> <span style = "color: blue;"> $1$ </span> + <span style = "color: red;"> $2*$ </span> <span style = "color: blue;"> $10$ </span>. This will give us <span style = "color: purple;"> $5+ 20 = 25$ </span> as the first cell in our resulting matrix.  
 
+---
+# Matrix multiplication: Color-coded example, 2
+To multiply, you go ACROSS the ROW of the first matrix and multiply pairwise DOWN THE COLUMN of the second matrix. You then add these together. For example, if you have matrix A times matrix B, it would be element $a_{1,1}*b_{1,1} + ... + a_{1,n}*b_{n,1}$. This sum goes into the first cell in the resulting matrix. This sounds confusing (because it is), so let's see an example. 
+
 --
+<span style = "color: red;">
+$$\quad \mathbf{Y} = \begin{pmatrix} 5 & 2 \\ 3 & 4 \\ \end{pmatrix}$$
 
 Similarly, we'll multiply the remaining row of our matrix Y by the column in X to produce the following:  <span style = "color: red;"> $3*$ </span> <span style = "color: blue;"> $1$ </span> + <span style = "color: red;"> $4*$ </span> $+$ <span style = "color: blue;"> $10$ </span>. This will give us <span style = "color: purple;"> $3+ 40 = 43$ </span> as the second cell in our resulting matrix. 
 
@@ -1029,7 +1048,8 @@ $$\mathbf{X} = \begin{pmatrix} 1 & 1 \\ 1& 1 \\ \end{pmatrix} , \quad \mathbf{Y}
 
 
 $$\begin{aligned} \mathbf{A} & = \mathbf{X} \mathbf{Y} \\& = \begin{pmatrix}1 & 1 \\ 1 & 1 \\\end{pmatrix} \begin{pmatrix}1 & 2 \\3 & 4 \\\end{pmatrix} \\&= \begin{pmatrix}1 * 1 + 1 * 3 & 1 * 2 + 1 * 4 \\1 * 1 + 1 * 3 & 1 * 2 + 1 * 4\\\end{pmatrix} \\&= \begin{pmatrix}4 & 6 \\4 & 6\end{pmatrix}\end{aligned}$$
-
+--
+For extra fun, try $$ \mathbf{Y} \mathbf{X}$$ and see how this answer is different!!
 ---
 
 # Matrix multiplication: Identity Matrix
@@ -1076,12 +1096,12 @@ $$\begin{aligned} \mathbf{A} & =
 ## Answers:
 
 * What is $\boldsymbol{A} \boldsymbol{v}$?
-$$\begin{aligned} \mathbf{A}*\mathbf{v}  & = 
+$$\tiny{\begin{aligned} \mathbf{A}*\mathbf{v}  & = 
 \begin{pmatrix}   2 & 3 & 4 & 5 \\
 	1 & 5 & 1 & 2\\
 	3 & 5 & 3 & 4 \\\end{pmatrix}  \begin{pmatrix}3 \\ 3 \\ 4 \\10
  \\\end{pmatrix} = \begin{pmatrix}2*3 + 3*3+4*4+5*10 \\ 1*3+5*3+1*4+2*10 \\ 3*3+5*3+3*4+4*10 \end{pmatrix} \\
- &= \begin{pmatrix} 81 \\ 42 \\ 76 \\ \end{pmatrix}\end{aligned}$$
+ &= \begin{pmatrix} 81 \\ 42 \\ 76 \\ \end{pmatrix}\end{aligned}}$$
  
 
 
