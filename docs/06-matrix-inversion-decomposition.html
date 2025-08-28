@@ -557,6 +557,7 @@ In this situation, we would want to combine these into a matrix. However, if we 
 
 `$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\1 &amp; 7 &amp; 2 &amp; 0 &amp; 1 &amp; 0 \\1 &amp; 4 &amp; 5 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$`
 --
+
 ##### Subtract row 3 from row 2 and row 1 from row 3:
 
 `$$\left[\begin{array}{rrr|rrr}1 &amp; 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 \\0 &amp; 3 &amp; -3 &amp; 0 &amp; 1 &amp; -1 \\0 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; 1\end{array}\right]$$`
@@ -594,14 +595,14 @@ Note: by hand, really a `\(3\times 3\)` matrix is the absolute limit for finding
 # Application: Regression analysis
 In some methods/quantitative classes you learn about linear regression. For each `\(i\)` (individual) we observe covariates `\(x_{i1}, x_{i2}, \ldots, x_{ik}\)` and dependent variable `\(Y_{i}\)`. Then,
 
-`$$\begin{aligned}
+`$$\small{\begin{aligned}
 Y_{1} &amp; = \beta_{0} + \beta_{1} x_{11} + \beta_{2} x_{12} + \ldots + \beta_{k} x_{1k} \\
 Y_{2} &amp; = \beta_{0} + \beta_{1} x_{21} + \beta_{2} x_{22} + \ldots + \beta_{k} x_{2k} \\
 \vdots &amp; \vdots &amp; \vdots \\
 Y_{i} &amp; = \beta_{0} + \beta_{1} x_{i1} + \beta_{2} x_{i2} + \ldots + \beta_{k} x_{ik} \\
 \vdots &amp; \vdots &amp; \vdots \\
 Y_{n} &amp; = \beta_{0} + \beta_{1} x_{n1} + \beta_{2} x_{n2} + \ldots + \beta_{k} x_{nk}
-\end{aligned}$$`
+\end{aligned}}$$`
 
 * `\(\mathbf{x}_{i} = (1, x_{i1}, x_{i2}, \ldots, x_{ik})\)`
 
@@ -678,7 +679,7 @@ More formally, suppose we have a matrix `\(\mathbf{X}\)`. If we multiply that by
 ---
 # Calculating eigenvalues
 
-An *eigenvector* of a matrix, `\(\mathbf{A}\)` is a nonzero vector \mathbf{v} where `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)`, for some scalar `\(\lambda\)`. 
+An *eigenvector* of a matrix, `\(\mathbf{A}\)` is a nonzero vector `\(\mathbf{v}\)` where `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)`, for some scalar `\(\lambda\)`. 
 
 An *eigenvalue* of `\(\mathbf{A}\)` is a scalar `\(\lambda\)` where `\(\mathbf{A}\mathbf{v}= \lambda \mathbf{v}\)` has a nontrivial solution. 
 
@@ -702,6 +703,8 @@ Additionally, this matrix needs a zero determinant, so we also know:
 `\(det(\lambda \mathbf{I}−\mathbf{A})=0\)`
 
 
+---
+# Eigenvalues: example 2x2
 
 Example: start with `\(\begin{pmatrix} 0 &amp; 4 \\ 1 &amp; 0 \end{pmatrix}\)`. 
 
@@ -730,11 +733,7 @@ We can start with our eigenvalue (let's begin with `\(\lambda = -2\)`). We then 
 
 --
 
-`\(\begin{pmatrix}\lambda &amp; -4 \\ -1 &amp; \lambda\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix}\)` becomes
-
---
-
-`\(-2v_1 - 4v_2 =0 \\\)`
+`\(\begin{pmatrix}\lambda &amp; -4 \\ -1 &amp; \lambda\end{pmatrix}\begin{pmatrix}v_1 \\ v_2\end{pmatrix}\)` becomes `\(-2v_1 - 4v_2 =0\)` and
 `\(-v_1 - 2v_2 = 0\)`
 
 --
