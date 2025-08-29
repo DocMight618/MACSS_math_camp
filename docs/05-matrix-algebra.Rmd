@@ -1096,7 +1096,7 @@ $$\begin{aligned} \mathbf{A} & =
 ## Answers:
 
 * What is $\boldsymbol{A} \boldsymbol{v}$?
-$$\tiny{\begin{aligned} \mathbf{A}*\mathbf{v}  & = 
+$$\small{\begin{aligned} \mathbf{A}*\mathbf{v}  & = 
 \begin{pmatrix}   2 & 3 & 4 & 5 \\
 	1 & 5 & 1 & 2\\
 	3 & 5 & 3 & 4 \\\end{pmatrix}  \begin{pmatrix}3 \\ 3 \\ 4 \\10
@@ -1143,7 +1143,7 @@ $$\begin{aligned}
 
 * What is $\boldsymbol{A}^{'}\boldsymbol{A}$?
 $$\begin{aligned} 
-  & = 	\begin{pmatrix}
+  & = \begin{pmatrix}
 	2 & 1 & 3 \\
 	3 & 5 & 5 \\
 	4 & 1 & 3 \\
@@ -1156,7 +1156,7 @@ $$\begin{aligned}
   14 & 26 & 18 & 24 \\
 	26 & 59 & 32 & 45\\
 	18 & 32 & 26 & 34 \\
-	24 & 45 & 34 & 45 \end{pmatrix}  \\
+	24 & 45 & 34 & 45 \end{pmatrix}}  \\
 	\end{aligned}$$
 	
 ---

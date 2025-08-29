@@ -139,7 +139,7 @@ x_{41} &amp; x_{42} &amp; x_{43}  \\
 
 # Determinant: `\(3 \times 3\)` matrix
 
-`$$\begin{aligned}
+`$$\small{\begin{aligned}
 \mathbf{X} &amp;= \begin{bmatrix}
 x_{11} &amp; x_{12} &amp; x_{13} \\
 x_{21} &amp; x_{22} &amp; x_{23} \\
@@ -154,7 +154,7 @@ x_{31} &amp; x_{33} \\
 \end{matrix} \right| + (-1^{1+3})x_{13} \left| \begin{matrix}
 x_{21} &amp; x_{22} \\
 x_{31} &amp; x_{32} \\
-\end{matrix} \right|\end{aligned}$$`
+\end{matrix} \right|\end{aligned}}$$`
 `$$= (-1)^2x_{11}\mathbf{M_{11}}+(-1)^3x_{12}\mathbf{M_{12}}+(-1)^4x_{13}\mathbf{M_{13}}$$`
 --
 NO YOU DO NOT NEED TO BE ABLE TO DO THIS GENERALLY (just for the homework today!)
@@ -228,7 +228,7 @@ Let's live life on the edge and each compute the determiniant differently. I wil
 Recall that what we do is we basically choose a row or column, and then multiply the corresponding row/column from the original matrix. 
 
 ---
-# Example: row (i =2)
+# Example: **ROW** (i =2)
 `$$\begin{aligned}\mathbf{A}=
 \begin{bmatrix}1 &amp; 2 &amp; 3 \\ 
 2 &amp; 1 &amp; 3 \\ 
@@ -246,12 +246,12 @@ Determinant:
 &amp;=-2-10+21\\
 &amp;=9 \end{aligned}$$`
 
--- 
+--
 
-Alternatively, for `\(3 x 3\)` ONLY: `\(det(\mathbf{A}) = a_{11}a_{22}a_{33} − a_{11}a_{23}a_{32} − a_{12}a_{21}a_{33} +a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} − a_{13}a_{22}a_{31}\)`
+Alternatively, for `\(3 x 3\)` ONLY: `\(\small{det(\mathbf{A}) = a_{11}a_{22}a_{33} − a_{11}a_{23}a_{32} − a_{12}a_{21}a_{33} +a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} − a_{13}a_{22}a_{31}}\)`
 
 ---
-# Example: column (j = 2)
+# Example: **COLUMN** (j = 2)
 `$$\begin{aligned}\mathbf{A}=
 \begin{bmatrix}1 &amp; 2 &amp; 3 \\ 
 2 &amp; 1 &amp; 3 \\ 
@@ -274,6 +274,16 @@ Determinant:
 Help you break down the matrix, learn about its components, get a sense of it in space. 
 
 * Zero determinant is important (ominous foreshadowing)
+
+---
+
+# Cofactors WHY WOULD I CARE?????
+
+
+--
+
+* we want to get a determinant (how much 'volume'-ish a matrix takes up)
+* we want to be able to find the inverse of our matrix
 
 ---
 
@@ -400,14 +410,13 @@ x_{1} + x_{2} + x_{3} &amp;= 0 \\
 ## [3,]    0  0.0  0.333
 ```
 
---
+&lt;!-- -- --&gt;
 
-* `\(\mathbf{x}\)`
-    
+&lt;!-- * `\(\mathbf{x}\)` --&gt;
 
-```
-## [1] -3  1  2
-```
+&lt;!-- ```{r matrix-solve, dependson = "matrix-inverse"} --&gt;
+&lt;!-- solve(A, b) --&gt;
+&lt;!-- ``` --&gt;
 
 ---
 
@@ -423,7 +432,7 @@ Remember when our determinant was zero?
 6 &amp; 9
 \end{matrix} \right| = (2)(9) - (3)(6) = 18 - 18 = 0$$`
 
-Here, we can see that our two vectors are not linearly independent.(for example, try `\(x=-3, y=2\)`) 
+Here, we can see that our two vectors are not linearly independent.
 
 --
 
@@ -661,7 +670,7 @@ d &amp; -b \\
 Note that singular matrices also have the unique property whereby their determinant is `\(0\)`. This is also important as we move into eigenvectors and diagonalization.
 
 ---
-class: middle
+class: middle, center, inverse
 
 # matrices: eigenvalues and vectors!!!!
 
@@ -768,7 +777,7 @@ Another way to consider eigenvalues and eigenvectors is as a way to understand h
 A way to conceptualize this is we want maximum information for minimum effort. Which dimensions are giving us the most variation here? 
 
 ---
-class: middle
+class: middle, center, inverse
 
 #decomposition and dimension reduction
 
