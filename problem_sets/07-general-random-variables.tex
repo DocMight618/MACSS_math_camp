@@ -1,0 +1,318 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={PSET 7: General random variables},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{PSET 7: General random variables}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\textbf{Note: all homework uploads should be as a PDF \emph{and} have
+the questions identified}. We'll be giving zero credit for submissions
+that don't follow this protocol as it adds considerable time to grading.
+Thank you!
+
+\begin{itemize}
+\item
+  Name
+\item
+  How long did this problem set take you?
+\item
+  How difficult was this problem set? very easy 1 2 3 4 5 very
+  challenging
+\end{itemize}
+
+\section{Identifying the PDF}\label{identifying-the-pdf}
+
+A recent college graduate is moving to Des Moines, Iowa to take a new
+job, and is looking to purchase a home. When searching for properties on
+the real estate websites, it is possible to select the price range of
+housing in which one is most interested. Suppose the potential buyer
+specifies a price range of \$150,000 to \$300,000, and the result of the
+search returns a thousand homes with prices distributed uniformly
+throughout that range. Identify \(E[X]\) and \(\sigma\) of the
+probability density function associated with this random
+variable.\footnote{Inspired by Stinerock 6.1}
+
+\section{Moments}\label{moments}
+
+We discussed moments in class and the slides. Suppose someone were
+asking you about our class content. How would you explain the following
+in a non-technical way? Approx 2 sentences each.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  What is an expected value and how does it relate to a moment?
+\item
+  What is the first moment and why do we care about it?
+\item
+  What is the second moment and how does it add additional information
+  to the first moment?
+\end{enumerate}
+
+\section{Calculating ideal points}\label{calculating-ideal-points}
+
+Suppose An is a voter living in the country of Freedonia, and suppose
+that in Freedonia, all sets of public policies can be thought of as
+representing points on a single axis (e.g.~a line running from more
+liberal to more conservative). An has a certain set of public policies
+that they want to see enacted. This is represented by point \(v\), which
+we will call An's \textbf{ideal point}. The utility, or happiness, that
+An receives from a set of policies at point \(l\) is \(U(l)=-(l-v)^2\).
+In other words, An is happiest if the policies enacted are the ones at
+their ideal point, and they get less and less happy as policies get
+farther away from this ideal point. When they vote, An will pick the
+candidate whose policies will make them happiest. However, An does not
+know exactly what policies each candidate will enact if elected -- they
+have some guesses, but can't be certain. Each candidate's future
+policies can therefore be represented by a continuous random variable
+\(L\) with expected value \(\mu_l\) and variance \(Var(L)\).\footnote{Inspired
+  by Grimmer HW11.2}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Express \(E(U(L))\) as a function of \(\mu_l\), \(Var(L)\), and \(v\).
+  Why might we say that An is \textbf{risk averse} -- that is, that An
+  gets less happy as outcomes get more uncertain?
+
+  \hfill\break
+  \hfill\break
+  \hfill\break
+  \hfill\break
+  \hfill\break
+  \hfill\break
+\item
+  Suppose An is deciding whether to vote for one of two candidates:
+  Dwight Schrute or Leslie Knope Suppose An's ideal point is at 1,
+  Schrute's policies can be represented by a continuous random variable
+  \(L_S\) with expected value at 1 and variance equal to 6, and Knope's
+  policies can be represented by a continuous random variable \(L_K\)
+  with expected value at 3 and variance equal to 1. Which candidate
+  would An vote for and why? What (perhaps surprising) effect of risk
+  aversion on voting behavior does this example demonstrate?
+\end{enumerate}
+
+\section{Parliamentary elections}\label{parliamentary-elections}
+
+After an election in a parliamentary system, a government (consisting of
+a prime minister and a cabinet) is formed by gathering the support of a
+majority of newly elected members of parliament. Typically a government
+is allowed to remain in power for a certain number of years before new
+elections must be called. However, elections can be held earlier if the
+Parliament passes a vote of no confidence or the prime minster decides
+to dissolve the government. Suppose we are studying Country Z (which
+uses a parliamentary system) and we are interested in the duration of
+governments. In Country Z, governments must call elections at least
+every 5 years, but they could be called sooner if there is a vote of no
+confidence or the prime minister dissolves the government. Let the
+continuous random variable \(X\) denote the amount of time (measured in
+years) between the last election and the calling of the next election.
+\(X\) has support on all real numbers between 0 and 5. Suppose we know
+that \(X\) has the probability density function
+
+\[
+f(x) = \begin{cases}
+kx^4 &  0 < x < 4 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+where \(k\) is some constant.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Find \(k\).
+\item
+  Find the CDF of \(X\).
+\item
+  Find \(E(X)\) and \(Var(X)\).
+\item
+  Find the median of \(X\) (the value of \(x\) at which
+  \(\Pr(X \leq x) = \frac{1}{2}\)).
+\item
+  What is the probability that the government remains in power for
+  exactly 5 years? Why?
+\item
+  What is the probability that the government remains in power between 3
+  and 5 years?
+\item
+  What is the probability that the government remains in power for less
+  than 3 years or more than 5 years?
+\end{enumerate}
+
+\section{Calculating the CDF}\label{calculating-the-cdf}
+
+Z is distributed according to the following PDF
+
+\[
+f(z) = \begin{cases}
+\gamma \exp(-\gamma z) &  0 \le z \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  What is \(F(z)\), the CDF of this distribution?
+\item
+  Using your answer to the previous question, evaluate the CDF for the
+  interval from 7 to 12.
+\item
+  Suppose \(\gamma\) is 3. Given this, what is \(q\), the 10th
+  percentile value of Z?
+\item
+  We observe a single random draw from \(Z\), what is the probability
+  this observation is less than .5? Again suppose that \(\gamma\) = 3.
+\end{enumerate}
+
+\section{Working with normal random
+variables}\label{working-with-normal-random-variables}
+
+Let \(X\) and \(Y\) be normal random variables with means 0 and 1,
+respectively, and variances 1 and 4, respectively.\footnote{Inspired by
+  BT 3.11}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Find \(\Pr(X \leq 1.5)\) and \(\Pr(X \leq -1)\).
+\item
+  Find the pdf of \((Y - 1) / 2\).
+\end{enumerate}
+
+\section{Spot the CDF/pdf}\label{spot-the-cdfpdf}
+
+From the following, identify functions as either pdfs, CDFs, or neither.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \[
+  f(x) = \begin{cases}
+  x^2 &  0 < x < 4 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \]
+\item
+  \[
+  f(x) = \begin{cases}
+  0.25 &  0 < x < 4 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \]
+\item
+  \[
+  f(x) = \begin{cases}
+  0.25x &  0 < x < 4 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \]
+\item
+  \[
+  f(x) = \begin{cases}
+  x^2 &  0 < x < 1 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \]
+\end{enumerate}
+
+\section{Functions}\label{functions}
+
+We discussed the following functions in class: Uniform Exponential,
+Gamma, Normal, \(\chi^2\), Student's t
+
+Provide a one-sentence summary of the general shape and expected value
+of:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Exponential
+\item
+  Normal
+\item
+  Student's t
+\end{enumerate}
+
+\section{AI and Resources statement}\label{ai-and-resources-statement}
+
+Please list (in detail) all resources you used for this assignment. If
+you worked with people, list them here as well. It is not enough to say
+that you used a resource for help, you need to be specific on the link
+and \emph{how} it was helpful. W/R/T gen AI tools (including GPT, etc. )
+you cannot use them to do work on your behalf -- you cannot put in any
+of the questions, etc. You can ask for help on logic / sample problems.
+If you do use GPT or other AI tools, you need to provide a link to your
+chat transcript. Any suspected academic integrity violations will be
+immediately reported.
+
+\end{document}

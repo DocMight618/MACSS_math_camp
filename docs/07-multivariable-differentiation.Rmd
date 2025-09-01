@@ -345,7 +345,7 @@ If you have more than one variable changing simultaneously, you will need to eva
 
 * Let $f$ be a function of the variables $(x_1,\ldots,x_n)$. Partial derivative of $f$ with respect to $x_i$ is 
 
-    $$\frac{\partial f}{\partial x_i} (x_1,\ldots,x_n) = \lim\limits_{h\to 0} \frac{f(x_1,\ldots,x_i+h,\ldots,x_n)-f(x_1,\ldots,x_i,\ldots,x_n)}{h}$$
+    $$\frac{\partial f}{\partial x_i} (x_1,\ldots,x_n) = \lim\limits_{h\to 0} \frac{f(x_1,\ldots,\mathbf{x_i+h},\ldots,x_n)-f(x_1,\ldots,\mathbf{x_i},\ldots,x_n)}{h}$$
 
 --
     * NOTICE: only the $i$th variable changes. Same basic concept as derivatives!
@@ -598,6 +598,8 @@ Like before, we are also interested in where and how our function changes. We wa
 # Second derivative test: Hessian
 
 * $f:X \rightarrow \Re^{1}$, $X \subset \Re^{n}$, with $f$ a twice differentiable function
+  * Aside: *we are still building on all our prior content re: what differentiable means*
+--
 * Hessian matrix of second derivatives at $\mathbf{x}^{*} \in X$
 
     $$\mathbf{H}(f)(\mathbf{x}^{*} ) = \begin{bmatrix} 		\frac{\partial^{2} f }{\partial x_{1} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{1} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{1} \partial x_{n} } (\mathbf{x}^{*} ) \\		\frac{\partial^{2} f }{\partial x_{2} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{2} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{2} \partial x_{n} } (\mathbf{x}^{*} ) \\		\vdots & \vdots & \ddots & \vdots \\		\frac{\partial^{2} f }{\partial x_{n} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{n} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{n} \partial x_{n} } (\mathbf{x}^{*} ) \\\end{bmatrix}$$
@@ -631,7 +633,7 @@ $$\begin{aligned}f(x,y) &= x^3 y^4 +e^x -\log y \\\nabla f(x,y) &= (3x^2 y^4 + e
 ---
 
 # Definiteness of a matrix
-This is important and tells us about the matrix and can give indications regarding how the underlying function is changing. A positive definite matrix has positive eigenvalues (but those are a pain to calculate!). We can also approach it y looking at our matrix through multiplication. 
+This is important and tells us about the matrix and can give indications regarding how the underlying function is changing. A positive definite matrix has positive eigenvalues (but eigenvalues are a pain to calculate!). We can also approach it y looking at our matrix through multiplication. 
 
 --
 
