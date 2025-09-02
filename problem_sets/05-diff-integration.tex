@@ -6,7 +6,7 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -89,32 +89,32 @@ Thank you!
 \section{Find first partial
 derivatives}\label{find-first-partial-derivatives}
 
-Find all of the first partial derivatives of each function.\footnote{Grimmer
-  HW6.3}
+Find all of the first partial derivatives of each function.\footnote{Inspired
+  by Grimmer HW6.3}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \item
-  \(f(x,y) = 3x - 2y^4\)
+  \(f(x,y) = 3x + 2y^4\)
 
   ~ ~\\
   \strut \\
 \item
-  \(f(x,y) = x^5 + 3x^3y^2 + 3xy^4\)
+  \(f(x,y) = \frac{1}{3}x^5 - 3x^3y^2 + 3xy^4\)
 
   ~ ~\\
   \strut \\
 \item
-  \(g(x,y) = xe^{3y}\)
+  \(g(x,y) = xe^{4y}\)
 
   ~ ~\\
   \strut \\
 \item
-  \(k(x,y) = \frac{x-y}{x+y}\)
+  \(k(x,y) = \frac{x+y}{x-y}\)
 
   ~\\
 \item
-  \(h(x,y,z) = x^2 e^{yz}\)
+  \(h(x,y,z) = x^3 e^{yz}\)
 
   ~\\
   \newpage
@@ -123,7 +123,7 @@ Find all of the first partial derivatives of each function.\footnote{Grimmer
 \section{Find the gradient}\label{find-the-gradient}
 
 Find the gradient \(\nabla f\) of the following functions and evaluate
-them at the given points.\footnote{Grimmer HW6.4}
+them at the given points.\footnote{Inspired by Grimmer HW6.4}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -141,8 +141,8 @@ them at the given points.\footnote{Grimmer HW6.4}
 
 \section{Find the Hessian}\label{find-the-hessian}
 
-Find the Hessian \(H\) for the following functions.\footnote{Grimmer
-  HW7.3}
+Find the Hessian \(H\) for the following functions.\footnote{Inspired by
+  Grimmer HW7.3}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -156,10 +156,12 @@ Find the Hessian \(H\) for the following functions.\footnote{Grimmer
 \item
   \(f(x,y,z) = xyz - x^2\)
 
-  \strut \\
-  \strut ~\\
-  \strut ~ ~\\
-  \strut \\
+\begin{verbatim}
+ \     
+ \  
+ \     
+ \
+\end{verbatim}
 \end{enumerate}
 
 \section{Find the critical points}\label{find-the-critical-points}
@@ -168,7 +170,8 @@ Find the local minimum values, local maximum values, and saddle point(s)
 of the function. Remember the process we discussed in class: Calculate
 the gradient, set it equal to zero to solve the system of equations,
 calculate the Hessian, and assess the Hessian at critical values. Be
-sure to show your work on each of these steps.\footnote{Grimmer HW7.4}
+sure to show your work on each of these steps.\footnote{Inspired by
+  Grimmer HW7.4}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -186,7 +189,7 @@ sure to show your work on each of these steps.\footnote{Grimmer HW7.4}
 \section{Definite integrals}\label{definite-integrals}
 
 Solve the following definite integrals using the antiderivative
-method.\footnote{Gill 5.10 and Grimmer HW4.1}
+method.\footnote{Inspired by Gill 5.10 and Grimmer HW4.1}
 
 For all these problems, the basic approach to compute the definite
 integral of \(f(x)\) from \(a\) to \(b\) is by using the formula
@@ -203,27 +206,59 @@ integral of \(f(x)\) from \(a\) to \(b\) is by using the formula
 
   ~\\
 \item
-  \(\int_0^1 x^{\frac{3}{7}} \,dx\)
-
-  ~\\
-\item
-  \(\int_1^2 \dfrac{1}{t^2} \,dt\)
-
-  ~\\
-\item
   \(\int_2^4 e^y \,dy\)
-
-  ~\\
-\item
-  \(\int_8^9 2^x \,dx\)
 
   ~\\
 \item
   \(\int_3^3 \sqrt{x^5 + 2} \,dx\)
 
   ~\\
-  \newpage
 \end{enumerate}
+
+\section{Indefinite integrals}\label{indefinite-integrals}
+
+Calculate the following indefinite integrals:\footnote{Inspired by Gill
+  5.13 and 5.14}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(\int (x^2-x^{-\frac{1}{2}}) \,dx\)
+
+  ~\\
+\item
+  \(\int 360t^6 \,dt\)
+\item
+  \(\int 2x\log(x^2) \,dx\)
+\end{enumerate}
+
+\section{Determining convergence}\label{determining-convergence}
+
+Determine whether each integral is convergent or divergent. Evaluate
+those that are convergent.\footnote{Inspired by Grimmer HW 4.3}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(\int_1^{\infty} \left(\frac{1}{3x}\right)^2 \,dx\)
+
+\begin{verbatim}
+ \     \  \     \ 
+\end{verbatim}
+\item
+  \(\int_0^{\infty} e^{-x} \,dx\)
+
+  \strut \\
+  \strut ~ ~ ~ ~
+\item
+  \(\int_{-\infty}^0 x^3 \,dx\)
+\item
+  \(\int_{0}^1 \int_{2}^{3} x^2y^3 \,\, dxdy\)
+\item
+  \(\int_{0}^2 \int_0^{\sqrt{1-x^2}} 2x^3y \, \, dy dx\)
+\end{enumerate}
+
+\newpage
 
 \section{Applied integration}\label{applied-integration}
 
@@ -257,123 +292,26 @@ Generally, if an object moves along a straight line with position
 function \(s(t)\), then its velocity is \(v(t) = s'(t)\). The
 Fundamental Theorem of Calculus then tells us that
 
-\[
-\begin{aligned}
-\textrm{Total distance traveled} &= \int_{t_1}^{t_2} v(t) \,dt\\
-s(t_2) - s(t_1) &= \int_{t_1}^{t_2} v(t) \,dt
-\end{aligned}
-\]
-
 Without using a calculator, use this formula to find the distance
 traveled by Students \(A\), \(B\), and \(C\). (Assume, however
 unrealistic in may be, that all three students traveled in a straight
-line.) Who traveled the farthest? The least far?\footnote{Grimmer HW4.2}
+line.) Who traveled the farthest? The least far?\footnote{Inspired by
+  Grimmer HW4.2}
 
-~\\
-\newpage
+\section{AI and Resources statement}\label{ai-and-resources-statement}
 
-\section{Indefinite integrals}\label{indefinite-integrals}
-
-Calculate the following indefinite integrals:\footnote{Gill 5.13 and
-  5.14}
-
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
+\begin{itemize}
+\tightlist
 \item
-  \(\int (x^2-x^{-\frac{1}{2}}) \,dx\)
-
-  ~\\
-\item
-  \(\int 360t^6 \,dt\)
-
-  ~\\
-\item
-  \(\int 2x\log(x^2) \,dx\)
-
-  ~\\
-\end{enumerate}
-
-\section{Determining convergence}\label{determining-convergence}
-
-Determine whether each integral is convergent or divergent. Evaluate
-those that are convergent.\footnote{Grimmer HW 4.3}
-
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\item
-  \(\int_1^{\infty} \left(\frac{1}{3x}\right)^2 \,dx\)
-
-  ~\\
-\item
-  \(\int_0^{\infty} \cos (x) \, dx\)
-
-  \strut \\
-  \strut ~ ~ ~ ~
-\item
-  \(\int_0^{\infty} e^{-x} \,dx\)
-
-  \strut \\
-  \strut ~ ~ ~ ~
-\item
-  \(\int_{-\infty}^0 x^3 \,dx\)
-
-  \strut \\
-  \strut ~ ~ ~ ~
-\end{enumerate}
-
-\section{More integrals}\label{more-integrals}
-
-Calculate the following integrals:\footnote{Grimmer HW7.5}
-
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\item
-  \(\int_{0}^1 \int_{2}^{3} x^2y^3 \,\, dxdy\)
-
-  \strut \\
-  \strut ~ ~ ~\\
-  \strut \\
-\item
-  \(\int_{2}^{3} \int_{0}^1 x^2y^3 \,\, dy dx\)
-
-  \textless!--
-
-  \[
-   \begin{aligned}
-    \int_{2}^3 \int_{0}^{1} x^2y^3 dydx &= \int_2^3 [\frac{1}{4} x^2y^4 |^{y=1}_{y=0}]dx\\
-    &= \int_{2}^{3} [\frac{1}{4} 1^4 x^2 - \frac{1}{4} 0^4 x^2 ] dx = \int_{2}^{3} \frac{1}{4} x^2 dx\\
-    &= \frac{1}{12}x^3 |_{x=2}^{x=3} = \frac{19}{12}
-   \end{aligned}
-   \]
-
-  A and B demonstrate the order of integration doesn't matter, you
-  should get the same answer either way.
-\end{enumerate}
-
-\#\# AI and Resources statement * Please list (in detail) all resources
-you used for this assignment. If you worked with people, list them here
-as well. It is not enough to say that you used a resource for help, you
-need to be specific on the link and \emph{how} it was helpful. W/R/T gen
-AI tools (including GPT, etc. ) you cannot use them to do work on your
-behalf -- you cannot put in any of the questions, etc. You can ask for
-help on logic / sample problems. If you do use GPT or other AI tools,
-you need to provide a link to your chat transcript. Any suspected
-academic integrity violations will be immediately reported.
-
-\begin{verbatim}
-    -->      
-    \     \  \     
-    \ 
-\end{verbatim}
-
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\item
-  \(\int_{0}^1 \int_0^{\sqrt{1-x^2}} 2x^3y \, \, dy dx\)
-
-  \strut \\
-  \strut ~ ~ ~\\
-  \strut ~
-\end{enumerate}
+  Please list (in detail) all resources you used for this assignment. If
+  you worked with people, list them here as well. It is not enough to
+  say that you used a resource for help, you need to be specific on the
+  link and \emph{how} it was helpful. W/R/T gen AI tools (including GPT,
+  etc. ) you cannot use them to do work on your behalf -- you cannot put
+  in any of the questions, etc. You can ask for help on logic / sample
+  problems. If you do use GPT or other AI tools, you need to provide a
+  link to your chat transcript. Any suspected academic integrity
+  violations will be immediately reported.
+\end{itemize}
 
 \end{document}
