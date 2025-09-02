@@ -20,8 +20,8 @@
 ## Office Hours
 |  | In-person | Zoom
 |-|-|-|
-| Monday | 12-1 PM (Stanley) | |
-| Tuesday | 5-7 PM (Gabe) |  7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
+| Monday | | |
+| Tuesday | 12-1 PM (Stanley), 5-7 PM (Gabe) |  7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
 | Wednesday | 12-1 PM (Shirley & Stanley) | 8-10 PM ([Shirley](https://uchicago.zoom.us/j/3651008105?pwd=bV8LM2XF7KDJRV1Eg7lVJTyYWFFy4a.1&omn=96139174716)) |
 | Thursday | 12-1 PM(Shirley) |7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
 | Friday | |5-7 PM ([Gabe](https://uchicago.zoom.us/j/96214894952?pwd=6jwTx5DF0dGbMtbVTPJ0Xi8BlaNW3n.1) code 33000 if needed) |
