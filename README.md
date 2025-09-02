@@ -51,6 +51,12 @@ This course surveys mathematical and statistical tools that are foundational to 
 
 This course may only be taken for pass/fail (non-credit), not for a letter grade or audit. Assignments are comprised of daily problem sets. You are encouraged to work in groups, and the instructional staff is available for consultation during class hours. We expect most students should be able to finish the problem sets during class hours. Grades will be based upon performance on the problem sets and in the final exam.
 
+### Regrades: 
+
+We have regrading open on Gradescope. You should request a regrade if there is an error in the grading (e.g. something was marked as incorrect but it was actually correct). Regrades are open for approximately one week or 9/16, whichever is sooner. Note that there are required portions that must be tagged (e.g. name and AI/resources statement). Failure to tag them (even if they are there) after PSET 2 will result in a forfeit of those points. 
+
+The regrade space is pretty limited -- you need to be clear, professional, and direct. Note that tone can come across very differently in writing versus in person so please be mindful. I (Jean) will step in as needed if you have questions.  
+
 ## Final Placement Exam
 The final exam is in-person, on paper only. You may bring one double sided sheet of notes and a non-graphing calculator. The study sheets will be collected at the end of the exam. One example kind of calculator would be [this calculator](https://www.target.com/p/texas-instruments-ti-30xa-scientific-calculator/-/A-14769313). Loaner calculators (total of about 11) are available by request if requested by 9/9/25. [Exam questions + Calc request](https://forms.gle/sskPerZjthPYPbVt7)
 
