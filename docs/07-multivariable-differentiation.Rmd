@@ -484,6 +484,10 @@ class: middle
 --
 * $B(\mathbf{x}, \delta)$ is the set of points where the vector $\mathbf{y}$ is a vector in n-dimensional space such that vector norm of $\mathbf{x} - \mathbf{y}$  is less than $\delta$
 
+--
+
+*Need a neighborhood to evaluate our max/mins*
+
 ---
 
 # Maxima/minima
@@ -578,9 +582,18 @@ $$\mathbf{H_{ij}} = \begin{bmatrix}\frac{\partial f }{\partial x_{i}\partial x_{
 # Example with functions
 
 $$ 2xy^2+3x+4y-yx^3$$
-Gradient: $$\nabla f (\mathbf{x}_{0}) = \left(2y^2+3-3yx^2, 4xy+4-x^3 \right)$$
-Jacobian: $$\begin{bmatrix} 2y^2+3-3yx^2 & 4xy+4-x^3 \end{bmatrix}$$
-Hessian: $$\begin{bmatrix} -6yx & 4y-3x^2 \\ 4y-3x^2 & 4x \end{bmatrix}$$
+--
+
+Gradient: 
+$$\nabla f (\mathbf{x}_{0}) = \left(2y^2+3-3yx^2, 4xy+4-x^3 \right)$$
+--
+
+Jacobian: 
+$$\begin{bmatrix} 2y^2+3-3yx^2 & 4xy+4-x^3 \end{bmatrix}$$
+--
+
+Hessian: 
+$$\begin{bmatrix} -6yx & 4y-3x^2 \\ 4y-3x^2 & 4x \end{bmatrix}$$
 
 ---
 
@@ -598,8 +611,10 @@ Like before, we are also interested in where and how our function changes. We wa
 # Second derivative test: Hessian
 
 * $f:X \rightarrow \Re^{1}$, $X \subset \Re^{n}$, with $f$ a twice differentiable function
-  * Aside: *we are still building on all our prior content re: what differentiable means*
+  * Aside:  *we are still building on all our prior content re: what differentiable means*
+  
 --
+
 * Hessian matrix of second derivatives at $\mathbf{x}^{*} \in X$
 
     $$\mathbf{H}(f)(\mathbf{x}^{*} ) = \begin{bmatrix} 		\frac{\partial^{2} f }{\partial x_{1} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{1} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{1} \partial x_{n} } (\mathbf{x}^{*} ) \\		\frac{\partial^{2} f }{\partial x_{2} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{2} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{2} \partial x_{n} } (\mathbf{x}^{*} ) \\		\vdots & \vdots & \ddots & \vdots \\		\frac{\partial^{2} f }{\partial x_{n} \partial x_{1} } (\mathbf{x}^{*} ) & \frac{\partial^{2} f }{\partial x_{n} \partial x_{2} } (\mathbf{x}^{*} ) & \ldots & \frac{\partial^{2} f }{\partial x_{n} \partial x_{n} } (\mathbf{x}^{*} ) \\\end{bmatrix}$$
@@ -683,7 +698,7 @@ $$\begin{aligned}\mathbf{x}^{'} \mathbf{A} \mathbf{x} &> 0, \quad \mathbf{A} \te
 
 ---
 
-# A simple optimization example
+# A (relatively) simple optimization example
 
 * $f:\Re^{2} \rightarrow \Re$ with 
 
@@ -861,3 +876,8 @@ vembedr::embed_url("http://www.youtube.com/watch?v=DpdndQUZKqs")
   1. Calculate Hessian
   1. Assess Hessian at critical values
   1. Boundary values? (if relevant)
+  
+
+---
+class: center, middle, inverse
+## Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
