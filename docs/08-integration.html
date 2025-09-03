@@ -37,14 +37,14 @@ class: center, middle, inverse, title-slide
 
   * US (MACSS)
   * ECON
-  * Poli Sci
+  * SOSC 30100 
 --
 
 * Exams:
   * US (math camp!)
   * US (boot camp!)
   * **OPTIONAL**: [see MPCS website for more information](https://masters.cs.uchicago.edu/student-resources/placement-exams/) 
-      * MPCS: math
+      * MPCS: math [do not need]
       * MPCS: programming (re: 30121) 
       * MPCS: (advanced) programming (subsequent coursework)
       * MACSS: (advanced) TBD but reach out to Jon Clindaniel
@@ -113,7 +113,7 @@ F(x) = \int\limits f(x) \,dx = \frac{x^3}{3}-4x+c$$`
 
 # Common rules of integration
 
-1. Constants are allowed to slip out: `\(\int a f(x)\,dx = a\int f(x)\,dx\)`
+1. Constants are allowed to move out: `\(\int a f(x)\,dx = a\int f(x)\,dx\)`
 --
 
 1. Integration of the sum is sum of integrations:  `\(\int [f(x)+g(x)]\,dx=\int f(x)\,dx + \int g(x)\,dx\)`
@@ -122,7 +122,7 @@ F(x) = \int\limits f(x) \,dx = \frac{x^3}{3}-4x+c$$`
 1. Reverse Power-rule:  `\(\int x^n \,dx = \frac{1}{n+1} x^{n+1} + c\)`
 --
 
-1. Exponents are still exponents:  `\(\int e^x \,dx = e^x +c\)`
+1. Euler's `\(e\)` is still itself:  `\(\int e^x \,dx = e^x +c\)`
 --
 
 1. Recall the derivative of (natural) `\(\log(x)\)` is one over `\(x\)`, and so:   `\(\int \frac{1}{x} \,dx = \log x + c\)`
@@ -147,10 +147,12 @@ F(x) = \int\limits f(x) \,dx = \frac{x^3}{3}-4x+c$$`
 --
 
 
-Answers: 
-1. `\(\int 3x^2 \,dx=\mathbf{x^3 + c}\)`
-1. `\(\int (2x+1) \,dx = \mathbf{x^2 + x + c}\)`
-1. `\(\int e^x e^{e^x} \,dx = \mathbf{e^{e^x}+c}\)`
+Answers:  
+ `\(\int 3x^2 \,dx=\mathbf{x^3 + c}\)`  
+ 
+ `\(\int (2x+1) \,dx = \mathbf{x^2 + x + c}\)`  
+ 
+ `\(\int e^x e^{e^x} \,dx = \mathbf{e^{e^x}+c}\)`
 ---
 
 # Definite integral
@@ -211,7 +213,7 @@ Answers:
     `$$\lim\limits_{\Delta x\to 0} \sum\limits_{i=1}^n f(x_i)\Delta x = \int\limits_a^b f(x) \,dx$$`
 
 * Suppose `\(f:[a,b] \rightarrow \Re\)` is a continuous function. Then `\(f\)` is integrable
-* Suppose `\(f:[a,b]\rightarrow \Re\)` is a monotonic function.  Then `\(f\)` is integrable
+&lt;!-- * Suppose `\(f:[a,b]\rightarrow \Re\)` is a monotonic function.  Then `\(f\)` is integrable --&gt;
 
 ---
 
@@ -237,7 +239,7 @@ Answers:
 Helps make all the math we're about to do that much easier (!). 
 
 --
-* Riemann sum = antiderivative
+* Riemann sum =&gt; antiderivative
 --
 
 * Function `\(f\)` bounded on `\([a,b]\)` and continuous on `\((a,b)\)`
