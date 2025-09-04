@@ -23,8 +23,8 @@
 | Monday | | |
 | Tuesday | 12-1 PM (Stanley), 5-7 PM (Gabe) |  7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
 | Wednesday | 12-1 PM (Shirley & Stanley) | 8-10 PM ([Shirley](https://uchicago.zoom.us/j/3651008105?pwd=bV8LM2XF7KDJRV1Eg7lVJTyYWFFy4a.1&omn=96139174716)) |
-| Thursday | 12-1 PM(Shirley) |7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
-| Friday | |5-7 PM ([Gabe](https://uchicago.zoom.us/j/96214894952?pwd=6jwTx5DF0dGbMtbVTPJ0Xi8BlaNW3n.1) code 33000 if needed) |
+| Thursday | 12-1 PM(Shirley), 5-7 PM (Gabe-9/11 only)|7-8 PM ([Stanley](https://uchicago.zoom.us/j/7341771008?pwd=08dicxuFS1VC6gtpx6PMxqYbmV1Jdp.1)) |
+| Friday | |4-6 PM ([Gabe](https://uchicago.zoom.us/j/96214894952?pwd=6jwTx5DF0dGbMtbVTPJ0Xi8BlaNW3n.1)) |
 | Saturday | |9 AM - 12 PM ([Bailey](https://uchicago.zoom.us/j/6363783755?pwd=YynAgxHtitqOxQsWbaiWev3s1acKIe.1)) |
 
 ## Course description
@@ -98,7 +98,7 @@ Note: solutions posted after grades released
 | 29-Aug | Linear algebra  |  [Systems of linear equations and determinants](https://jmclip.github.io/MACSS_math_camp/06-matrix-inversion-decomposition.html) | [Pset 4](problem_sets/04-linear-algebra.pdf) & [answer key](solutions/pset4_answerkey.pdf)
 | 1-Sep | No class (Labor Day) |  | 
 | 2-Sep | Calculus |[Functions of several variables and optimization with several variables](https://jmclip.github.io/MACSS_math_camp/07-multivariable-differentiation.html)| [NO HOMEWORK!]
-| 3-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | [Pset 5 pdf](problem_sets/05-diff-integration.pdf),  [tex](problem_sets/05-diff-integration.tex) & [answer key](solutions/Pset56Solutions.pdf)
+| 3-Sep | Calculus | [Integration and integral calculus](https://jmclip.github.io/MACSS_math_camp/08-integration.html) | [Pset 5 pdf](problem_sets/05-diff-integration.pdf),  [tex](problem_sets/05-diff-integration.tex) & [answer key](solutions/pset5_answerkey.pdf)
 | 4-Sep | Calculus |  [Sample space and probability](https://jmclip.github.io/MACSS_math_camp/09-sample-space-probability.html)| [NO HOMEWORK!  ] [Survey](https://forms.gle/8qmgAjFTzWRVRPh29) 
 | 5-Sep | Probability | [Discrete random variables](https://jmclip.github.io/MACSS_math_camp/10-discrete-random-vars.html) | [Pset 6 pdf](problem_sets/06-discrete-random-variables.pdf), [tex](problem_sets/06-discrete-random-variables.tex) + & [answer key](solutions/Pset6Solutions.pdf)
 | 8-Sep | Probability | [General random variables](https://jmclip.github.io/MACSS_math_camp/11-general-random-vars.html)| [Pset 7 pdf](problem_sets/07-general-random-variables.pdf), [text](problem_sets/07-general-random-variables.tex)  & [answer key](solutions/Pset7Solutions.pdf) & [Exam questions+Calc request](https://forms.gle/sskPerZjthPYPbVt7)
