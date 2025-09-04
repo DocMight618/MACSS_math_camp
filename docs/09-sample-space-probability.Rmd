@@ -182,25 +182,21 @@ The sample space must define all possible realizations
 
 # Events
 
-* Subset of the sample space
-
-    $$E \subset \Omega$$
+* Subset of the sample space: $E \subset \Omega$
 
 * Congressional election example
-    * One incumbent
+    * One incumbent, we observe event E or event F.
         * $E = W$
         * $F = N$
-    * Two incumbents
-        * $E = \{(W, N), (W, W) \}$
+    * Two incumbents, observe event E or event F
+        * $E = \{(W, N), (N, W), (W, W) \}$
         * $F = \{(N, N)\}$
     * 435 incumbents
         * Outcome of 2016 election - one event
         * All outcomes where Dems retake control of the House - one event
-* $x$ is an **element** of a set $E$
-
-    $$x \in E$$
+* $x$ is an **element** of a set $F$: $x \in F$
     
-    $$\{N, N\} \in E$$
+    $$\{N, N\} \in F$$
 
 ---
 
@@ -208,8 +204,8 @@ The sample space must define all possible realizations
 
 * Perform operations on sets to create new sets
 
-    * $E = \{ (W,W), (W,N) \}$
-    * $F  = \{ (N, N), (W,N) \}$
+    * $E = \{ (W,W), (W,N), (W,N) \}$
+    * $F  = \{ (N, N) \}$
     * $\Omega = \{(W,W), (W,N), (N,W), (N,N) \}$
 
 --
@@ -218,45 +214,45 @@ The sample space must define all possible realizations
 
 ---
 
-# Event operations
+# Event operations: example sets
 
-* $E = \{ (W,W), (W,N) \}$
-* $F  = \{ (N, N), (W,N) \}$
+* $A = \{ (W,W), (W,N) \}$
+* $B  = \{ (N, N), (W,N) \}$
 * $\Omega = \{(W,W), (W,N), (N,W), (N,N) \}$
 
 ## Union: $\cup$
 
 * All objects that appear in either set (OR)
-* $E^{\text{new}} = E \cup F  = \{(W,W), (W,N), (N,N) \}$
+* $A^{\text{new}} = A \cup B  = \{(W,W), (W,N), (N,N) \}$
 
 ---
 
 # Event operations
 
-* $E = \{ (W,W), (W,N) \}$
-* $F  = \{ (N, N), (W,N) \}$
+* $A = \{ (W,W), (W,N) \}$
+* $B  = \{ (N, N), (W,N) \}$
 * $\Omega = \{(W,W), (W,N), (N,W), (N,N) \}$
 
 ## Intersection: $\cap$
 
 * All objects that appear in both sets (AND)
-* $E^{\text{new}} = E \cap F = \{(W,N)\}$
+* $A^{\text{new}} = A \cap B = \{(W,N)\}$
 
 ---
 
 # Event operations
 
-* $E = \{ (W,W), (W,N) \}$
-* $F  = \{ (N, N), (W,N) \}$
+* $A = \{ (W,W), (W,N) \}$
+* $B  = \{ (N, N), (W,N) \}$
 * $\Omega = \{(W,W), (W,N), (N,W), (N,N) \}$
 
-## Complement of set $E$: $E^{c}$
+## Complement of set $A$: $A^{c}$
 
-* All objects in $S$ that are not in $E$
-* $E^{c} = \{(N, W) , (N, N) \}$
-* $F^{c} = \{(N, W) , (W, W) \}$
+* All objects in $\Omega$ that are not in $A$
+* $A^{c} = \{(N, W) , (N, N) \}$
+* $B^{c} = \{(N, W) , (W, W) \}$
 * What is $\Omega^{c}$? - an **empty set** $\emptyset$
-* Suppose $E = {W}$, $F = {N}$.  Then  $E \cap F = \emptyset$
+* Suppose $A = {W}$, $B = {N}$.  Then  $A \cap B = \emptyset$
 
 ---
 
@@ -274,7 +270,7 @@ The sample space must define all possible realizations
 
 ## Mutual exclusivity: Examples
 
-Suppose $S = \{H, T\}$. Then $E = H$ and $F = T$, then $E \cap F = \emptyset$
+Suppose $S = \{H, T\}$. Further suppose $E = H$ and $F = T$, then $E \cap F = \emptyset$
 
 --
 
@@ -547,7 +543,7 @@ $$\begin{aligned}\Pr(\text{Seeing the Eras tour}| \text{Swiftie}) & = 0.1  \\\Pr
  
 ---
 
-# Law of total probability
+# Law of total probability: BAYES relevant
 
 Suppose that we have a set of events $F_{1}, F_{2}, \ldots, F_{N}$ such that the events are mutually exclusive and together comprise the entire sample space $\cup_{i=1}^{N} F_{i} = \Omega$. 
 
@@ -1096,3 +1092,8 @@ $$\binom{n}{k} = \binom{4}{2} = \frac{4!}{2!2!} = 6$$
 * Conditional probability and independence
 * Bayes' Rule: $\Pr(A|B) = \frac{\Pr(A)\times \Pr(B|A)}{\Pr(B)}$
 * INFORMATION: if independent, it does not give you more information
+
+
+---
+class: center, middle, inverse
+## Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
