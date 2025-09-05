@@ -137,7 +137,7 @@ pmf %>%
   geom_col() +
   labs(
     title = "Probability mass function",
-    x = "Number of treated",
+    x = "Number treated",
     y = "Probability"
   )
 ```
@@ -180,8 +180,7 @@ To calculate the PMF of a random variable $X$
 
 # Topic model example
 
-* Topics: distinct concepts (war in Ukraine, national debt, fire department grants)
-* Mathematically: PMF on words
+* Topics: distinct concepts (war in Ukraine, national debt, fire department grants)... Mathematically: PMF on words
 * Set of words $\{ \text{ukraine, fire, department, soldier, troop, war, grant}\}$
 
 --
@@ -283,7 +282,7 @@ This is a selection of distributions -- each has certain properties that can be 
 ---
 # Bernoulli
 
-Suppose $X$ is a random variable, with $X \in \{0, 1\}$ and $\Pr(X = 1) = \pi$. Then we will say that $X$ is **Bernoulli** random variable,
+Suppose $X$ is a random variable, with $X \in \{0, 1\}$ and $\Pr(X = 1) = \pi$. Then we will say that $X$ is a **Bernoulli** random variable,
 
 $$p_X(k)= \pi^{k} (1- \pi)^{1 - k}$$
 
@@ -405,7 +404,7 @@ $$
 
 # Geometric
 
-* A model to **count the number of trials** of a Bernoulli outcome **before success occurs the FIRST time**
+* A model to **count the number of trials** of a Bernoulli **before success occurs the FIRST time**
 --
 
 * Suppose $X$ is a random variable that counts the number of tosses needed for a head to come up the first time. Its PMF is 
@@ -525,15 +524,15 @@ tibble(
 
 ---
 # Example: working backwards
-Suppose we have an event which we believe follows a Poisson distribution. Perhaps this is the number of students who forget their calculator for the exam. If we observed that last year, about $4.979\%$ of the time all students remembered their calculator. How could we figure out the likelihood that exactly one student forgets theirs in the upcoming exam?
+Suppose we have an event which we believe follows a Poisson distribution. Perhaps this is the number of students who forget their calculator for the exam. If we observed that last year, about $5\%$ of the time all students remembered their calculator. How could we figure out the likelihood that exactly one student forgets theirs in the upcoming exam?
 
 --
 
 $$p_X(0) = e^{-\lambda} \frac{\lambda^{x}}{x!}$$
 --
-$$p_X(0) = e^{-\lambda} \frac{\lambda^{0}}{0!}=0.04979= e^{-\lambda}$$
+$$p_X(0) = e^{-\lambda} \frac{\lambda^{0}}{0!}=0.05= e^{-\lambda}$$
 --
-$$log(0.0479) = - \lambda \, \text{ therefore } \lambda \approx 3.0$$
+$$log(0.05) = - \lambda \, \text{ therefore } \lambda \approx 3.0$$
 ---
 # Poisson plot
 
@@ -760,15 +759,17 @@ $$\begin{aligned}\Var(X) &= \E[(X - \E[X])^2] \\&= \E[X^2] - \E[X]^2\end{aligned
 
 --
 
-### Expected value rule for functions of random variables
+$$\begin{align}\Var(X) &= \E[(X - \E[X])^2] \\\Var(X) &= \E[X^2] - \E[X]^2\end{align}$$
+
+---
+
+## Expected value rule for functions of random variables
 
 Let $X$ be a random variable with PMF $p_X$, and let $g(X)$ be a function of $X$. Then, the expected value of the random variable $g(X)$ is given by
 
 $$\E[g(X)] = \sum_{x} g(x) p_X(x)$$
 
---
 
-$$\begin{align}\Var(X) &= \E[(X - \E[X])^2] \\\Var(X) &= \E[X^2] - \E[X]^2\end{align}$$
     
 ---
 
@@ -786,7 +787,8 @@ $$\begin{align}\Var(X) &= \E[(X - \E[X])^2] \\\Var(X) &= \E[X^2] - \E[X]^2\end{a
 
 --
 
-$$\begin{aligned} \Var(Y) & = \pi(1- \pi) \nonumber \\& = 0.5(1 - 0.5 ) \\& = 0.25\end{aligned}$$
+$Var(Y) = \pi(1- \pi)$ Derivative and set to zero: $1-2\pi = 0 \rightarrow \pi = 0.5$
+So: max variance at $0.5(1 - 0.5 ) = 0.2$
 
 ---
 
