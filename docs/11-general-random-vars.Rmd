@@ -27,7 +27,7 @@ library(gganimate)
 $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{\mathrm{Cov}}$$
 # Misc
 
-* Homework moving along
+* Assigned rooms for final exam (two locations -- other is on other side of the quad)
 
 
 
@@ -40,6 +40,11 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 ---
 # Survey:
 
+Overall course is going well. 
+
+* Immediate changes: more mindful of boardwork, no blue/purple chalk (sorry!)
+* Later changes: revisit pretest idea (excellent critique for why not, however!), final exam timing
+* Eventual changes: more practice questions with worked solutions
 
 
 ---
@@ -977,3 +982,8 @@ k &= \frac{4}{625}
   * Normal
   * $\chi^2$ 
   * Student's t
+
+
+---
+class: center, middle, inverse
+## Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
