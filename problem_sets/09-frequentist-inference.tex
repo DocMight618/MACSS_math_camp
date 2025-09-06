@@ -1,0 +1,291 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={PSET 9: Classical statistical inference},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{PSET 9: Classical statistical inference}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\textbf{Note: all homework uploads should have the questions
+identified}. We'll be giving zero credit for submissions that don't
+follow this protocol as it adds considerable time to grading. Thank you!
+
+\begin{itemize}
+\item
+  Name
+\item
+  How long did this problem set take you?
+\item
+  How difficult was this problem set? very easy 1 2 3 4 5 very
+  challenging
+\end{itemize}
+
+\section{Properties of estimators}\label{properties-of-estimators}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Let \(X_1, \ldots, X_n \sim \text{Poisson}(\lambda)\) and let
+  \(\hat{\lambda} = \dfrac{\sum_{i=1}^n X_i}{2n}\). Find the bias,
+  standard error, and MSE of this estimator.\footnote{Inspired by
+    Wasserman 6.6.1}
+\item
+  Let \(X_1, \ldots, X_n \sim \text{Uniform}(0, \theta)\) and let
+  \(\hat{\theta} = 3 \bar{X}_n\). Find the bias, standard error, and MSE
+  of this estimator.\footnote{Inspired by Wasserman 6.6.3}
+\end{enumerate}
+
+\section{Social newsing}\label{social-newsing}
+
+A poll conducted in 2025 found that 12\% of U.S. adults users get at
+least some news on TikTok. The standard error for this estimate was
+2.4\%, and a normal distribution may be used to model the sample
+proportion.\footnote{Inspired byOI 4.8 and 4.10}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Construct a 95\% confidence interval for the fraction of U.S. adult
+  users who get some news on TikTok, and interpret the confidence
+  interval in context.
+\end{enumerate}
+
+\section{(T/F) Social Newsing}\label{tf-social-newsing}
+
+Identify the following statements as true or false using the above
+information. Provide an explanation to justify each of your answers.
+Explain in approx 75 words.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  The data provide statistically significant evidence that more than
+  16\% of U.S. adults get some news through TikTok Use a significance
+  level of \(\alpha = 0.05\).
+\item
+  Since the standard error is 2.4\%, we can conclude that 97.6\% of all
+  U.S. adults were included in the study.
+\item
+  If we want to reduce the standard error of the estimate, we should
+  collect less data.
+\item
+  If we construct a 90\% confidence interval for the percentage of U.S.
+  adults who get some news through TikTok, this confidence interval will
+  be wider than a corresponding 99\% confidence interval.
+\end{enumerate}
+
+\section{Dating on college campuses}\label{dating-on-college-campuses}
+
+A survey conducted on a reasonably random sample of 200 undergraduates
+asked, among many other questions, about the number of exclusive
+relationships these students have been in. The histogram below shows the
+distribution of the data from this sample.
+
+The sample average is 3.2 with a standard deviation of 2.17.
+
+\begin{center}\includegraphics[width=0.9\linewidth]{09-frequentist-inference_files/figure-latex/survey-1} \end{center}
+
+Estimate the average number of exclusive relationships undergraduate
+students have been in using the Normal distribution and a 95\%
+confidence interval and interpret this interval in context.\footnote{Inspired
+  byOI 4.15}
+
+\section{Statistical significance}\label{statistical-significance}
+
+Determine whether the following statement is true or false, and explain
+your reasoning: ``With large sample sizes, even small differences
+between the null value and the point estimate can be statistically
+significant.''\footnote{Inspired byOI 4.47}
+
+\section{Sleep deprivation}\label{sleep-deprivation}
+
+New York is known as ``the city that never sleeps''. A random sample of
+25 New Yorkers were asked how much sleep they get per night. Statistical
+summaries of these data are shown below. Do these data provide strong
+evidence that New Yorkers sleep less than 8 hours a night on
+average?\footnote{Inspired byOI 5.7}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+\(n\) & \(\bar{x}\) & \(s\) & \(\min\) & \(\max\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(25\) & \(7.63\) & \(0.87\) & \(6.17\) & \(9.78\) \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Write the hypotheses in symbols and in words.
+\item
+  Calculate the test statistic, \(T\), and the associated degrees of
+  freedom.
+\item
+  Find and interpret the p-value in this context.
+\item
+  What is the conclusion of the hypothesis test?
+\item
+  If you were to construct a 90\% confidence interval that corresponded
+  to this hypothesis test, would you expect 8 hours to be in the
+  interval?
+\end{enumerate}
+
+\section{Interpreting public opinion
+polls}\label{interpreting-public-opinion-polls}
+
+On June 28, 2012 the U.S. Supreme Court upheld the much debated 2010
+healthcare law, declaring it constitutional. A Gallup poll released the
+day after this decision indicates that 46\% of 1,012 Americans agree
+with this decision. At a 95\% confidence level, this sample has a 3\%
+margin of error. Based on this information, determine if the following
+statements are true or false, and explain your reasoning.\footnote{Inspired
+  by OI 6.6}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  We are 95\% confident that between 43\% and 49\% of Americans in this
+  sample support the decision of the U.S. Supreme Court on the 2010
+  healthcare law.
+\item
+  We are 95\% confident that between 43\% and 49\% of Americans support
+  the decision of the U.S. Supreme Court on the 2010 healthcare law.
+\item
+  If we considered many random samples of 1,012 Americans, and we
+  calculated the sample proportions of those who support the decision of
+  the U.S. Supreme Court, 95\% of those sample proportions will be
+  between 43\% and 49\%.
+\item
+  The margin of error at a 90\% confidence level would be higher than
+  3\%.
+\end{enumerate}
+
+\section{Power and sample size.}\label{power-and-sample-size.}
+
+Suppose you have two samples: one with a sample mean of 12, standard
+deviation of of 2.13 and \(n_1\) of 87 and a second with a sample mean
+of 12.8, standard deviation of 3.25 and an \(n_2\) of 89.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Is it statistically significant?
+\item
+  What is the smallest \(n_2\) you could have if you want to reject the
+  null hypothesis at \(\alpha < 0.05\)?
+\item
+  Darn it! Your \(n_2\) is actually only 85! What should your goal be:
+  smaller sample deviation by 10\% or larger sample by 10? Explain your
+  reasoning and provide mathematical support.
+\end{enumerate}
+
+\section{AI and Resources statement}\label{ai-and-resources-statement}
+
+\begin{itemize}
+\tightlist
+\item
+  Please list (in detail) all resources you used for this assignment. If
+  you worked with people, list them here as well. It is not enough to
+  say that you used a resource for help, you need to be specific on the
+  link and \emph{how} it was helpful. W/R/T gen AI tools (including GPT,
+  etc. ) you cannot use them to do work on your behalf -- you cannot put
+  in any of the questions, etc. You can ask for help on logic / sample
+  problems. If you do use GPT or other AI tools, you need to provide a
+  link to your chat transcript. Any suspected academic integrity
+  violations will be immediately reported.
+\end{itemize}
+
+\subsection{Survey Qs:}\label{survey-qs}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  How prepared do you feel for the final exam? not prepared (1) 2 3 4
+  (5) very prepared
+\item
+  Which content area of the course was the easiest for you? Why? Please
+  be specific.
+\item
+  Which content area of the course was the most challenging for you?
+  Why? Please be specific.
+\end{enumerate}
+
+\end{document}
