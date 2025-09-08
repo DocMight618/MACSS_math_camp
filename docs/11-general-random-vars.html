@@ -31,11 +31,14 @@ class: center, middle, inverse, title-slide
 # Misc
 
 * Assigned rooms for final exam (two locations -- other is on other side of the quad)
-
+* Calculators: 5 left! 
+* Will be drafting exam questions today and tomorrow -- submit your questions!
 
 
 
 ---
+class: center, middle, inverse
+
 # Survey Results
 
 
@@ -43,11 +46,12 @@ class: center, middle, inverse, title-slide
 ---
 # Survey:
 
-Overall course is going well. 
+Overall course is going well. Wide range of thoughts on pacing from "it's great!" to "way too fast!"
 
-* Immediate changes: more mindful of boardwork, no blue/purple chalk (sorry!)
-* Later changes: revisit pretest idea (excellent critique for why not, however!), final exam timing
-* Eventual changes: more practice questions with worked solutions
+* **Immediate changes**: more mindful of boardwork, no blue/purple chalk (sorry!)
+* **Later changes**: revisit pretest idea (excellent critique for why not, however!), final exam timing, notation explanation
+* **Eventual changes**: more practice questions with worked solutions
+* **Suggestions I'm thinking about**: case studies for context, other ideas for pacing, different feelings about first couple of days
 
 
 ---
@@ -476,34 +480,6 @@ $$
 --
 
 * `\(\Gamma(\frac{1}{2}) = \sqrt{\pi}\)`
-
----
-
-# Gamma distribution: simplified formula
-
-Suppose we have `\(\Gamma(\alpha)\)`
-
-`$$\begin{aligned}
-\frac{\Gamma(\alpha)}{\Gamma(\alpha)} &amp; = \frac{\int_{0}^{\infty} y^{\alpha-1} e^{-y} dy}{\Gamma(\alpha)} \\
-1 &amp; = \int_{0}^{\infty} \frac{1}{\Gamma(\alpha)} y^{\alpha-1} e^{-y} \,dy 
-\end{aligned}$$`
-
---
-
-Set `\(X = Y/\beta\)`
-
---
-
-`$$\begin{aligned}
-F(x) = \Pr(X \leq x) &amp; = \Pr(Y/\beta \leq x ) \\
-&amp; = \Pr(Y \leq x \beta ) \\
-&amp; = F_{Y} (x \beta) \\
-\frac{\partial F_{Y} (x \beta) }{\partial x} &amp; = f_{Y} (x \beta) \beta
-\end{aligned}$$`
-
---
-
-`$$f(x|\alpha, \beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha - 1} e^{-x\beta}$$`
 
 ---
 
