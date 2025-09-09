@@ -573,7 +573,7 @@ All this to say, that if we wanted to have a matrix of derivatives of our gradie
 ---
 # Hessian 
 
-The Hessian is a matrix that has all the second derivatives of our gradient vector (as we just stated, it's the Jacobian of the gradient). 
+The Hessian is a matrix that has all the derivatives of our gradient vector (as we just stated, it's the Jacobian of the gradient). This is second derivatives of our original function. 
 
 $$\mathbf{H_{ij}} = \begin{bmatrix}\frac{\partial f }{\partial x_{i}\partial x_{j} } \end{bmatrix}$$
 
