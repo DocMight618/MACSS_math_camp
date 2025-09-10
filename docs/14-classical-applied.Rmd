@@ -30,8 +30,8 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 
 * Exam TOMORROW!
 * All calculators claimed 
-* Rooms assigned! Will email assignment. 
-* Accommodations: I need to hear from YOU if you need accommodations --email by 2pm today please!
+* Rooms assigned! Have emailed assignment in Canvas!
+* Accommodations: I need to hear from YOU if you need accommodations -- I have talked with all people who I know have accommodations 
 
 
 ---
@@ -142,11 +142,11 @@ Steps:
 --
   
   
-  | $z^*$ | $1-\alpha$| $\alpha$| 
+  | $z^*$ | $1-\alpha$| $\alpha/2$ | $\alpha$| 
   | ---|------------|---------|
-  | $\pm 1.65$ | 90% | 0.10 | 
-  | $\pm 1.96$ | 95% | 0.05 | 
-  | $\pm 2.58$ | 99% | 0.01 | 
+  | $\pm 1.65$ | 90% | 0.05 | 0.10 | 
+  | $\pm 1.96$ | 95% | 0.025 | 0.05 | 
+  | $\pm 2.58$ | 99% | 0.005 | 0.01 | 
   
   * $z^*$ is the critical value while $z$ is the test statistic we calculate!
 ---
@@ -191,6 +191,47 @@ WHY??
 Because we can think of these as a series of Bernoulli trials with a mean of $\pi$ and var of $\pi(1-\pi)$. We can use this to determine the standard error!
 
 ---
+# Proportions: example
+
+Suppose we want to test whether support for a ballot measure differs between two groups.
+
+-- Group 1 ($n_1 = 100$) has $\hat{p}_1 = 0.55$ in favor.  
+-- Group 2 ($n_2 = 120$) has $\hat{p}_2 = 0.47$ in favor.  
+
+--
+
+Null hypothesis: $H_0: p_1 - p_2 = 0$  
+Alternative: $H_a: p_1 - p_2 \neq 0$  
+
+--
+
+Pooled proportion:  
+$\hat{p} = \dfrac{55 + 56}{220} = 0.505$  
+
+--
+
+Standard error:  
+$SE = \sqrt{\hat{p}(1-\hat{p})\left(\dfrac{1}{n_1} + \dfrac{1}{n_2}\right)}$  
+$= \sqrt{0.5(0.5)\left(\dfrac{1}{100} + \dfrac{1}{120}\right)} \approx 0.064$  
+
+---
+## Ex: cont'd
+Standard error:  
+$SE = \sqrt{\hat{p}(1-\hat{p})\left(\dfrac{1}{n_1} + \dfrac{1}{n_2}\right)}$  
+$= \sqrt{0.5(0.5)\left(\dfrac{1}{100} + \dfrac{1}{120}\right)} \approx 0.064$  
+
+
+Test statistic:  
+$z = \dfrac{0.55 - 0.47}{0.064} \approx 1.25$  
+
+--
+
+$p$-value = $P(Z < -1.25) \approx 0.21$  **Note: this is kind of a funky way to write this -- I just prefer doing the left-hand side of things in z-tables. 
+
+Conclusion: Not statistically significant at $\alpha = 0.05$.
+
+
+---
 # Confidence intervals
 We can conduct hypothesis testing with confidence intervals as well. 
 
@@ -233,42 +274,42 @@ where $\E[X_j] = np_{0j}$ is the expected value under $H_0$.
 
 ---
 
-# Attitudes towards abortion
+# Attitudes towards tea: If ideology did not matter
 
-| Abortion Right | Liberal | Moderate | Conservative | Total |
+| Tea > coffee | MAPSS | MACSS | CIR | Total |
 |-------------------|----------|----------|--------------|--------|
-| Yes | 40.8% | 40.8% | 40.8% | 40.8% |
+| No | 40.8% | 40.8% | 40.8% | 40.8% |
 |  | (206.45) | (289.68) | (271.32) | (768) |
-| No | 59.2% | 59.2% | 59.2% | 59.2% |
+| Yes | 59.2% | 59.2% | 59.2% | 59.2% |
 |  | (299.55) | (420.32) | (393.68) | (1113) |
 | Total | 26.9% | 37.7% | 35.4% | 100% |
 |  | (506) | (710) | (665) | (1881) |
 
 ---
 
-# Attitudes towards abortion
+# Attitudes towards tea: Observed data
 
-| Abortion Right  | Liberal | Moderate | Conservative | Total |
+| Tea > coffee | MAPSS | MACSS | CIR | Total |
 |-------------------|---------|----------|--------------|--------|
-| Yes | 62.6% | 36.6% | 28.7% | 40.8% |
+| No | 62.6% | 36.6% | 28.7% | 40.8% |
 |  | (317) | (260) | (191) | (768) |
-| No | 37.4% | 63.4% | 71.28% | 59.2% |
+| Yes | 37.4% | 63.4% | 71.28% | 59.2% |
 |  | (189) | (450) | (474) | (1113) |
 | Total | 26.9% | 37.7% | 35.4% | 100% |
 |  | (506) | (710) | (665) | (1881) |
 
 ---
 
-# Attitudes towards abortion
+# Attitudes towards tea
 
-| Abortion Right  |     | Liberal | Moderate | Conservative |
+| Tea > coffee | MAPSS | MACSS | CIR | Total |
 |-------------------|---------------|---------|----------|--------------|
-|  Yes | Obs Frequency $X_j$ | 317.0 | 260.0 | 191.0 |
+|  No | Obs Frequency $X_j$ | 317.0 | 260.0 | 191.0 |
 |     | Exp Frequency $\E[X_j]$ | 206.6 | 289.9 | 271.5 |
 |     | $X_j - \E[X_j]$ | 110.4 | -29.9 | -80.5 |
 |     | $(X_j - \E[X_j])^2$ | 12188.9 | 893.3 | 6482.7 |
 |     | $\frac{(X_j - \E[X_j])^2}{\E[X_j]}$ | **59.0** | **4.1** | **23.9** |
-|  No   | Obs Frequency $X_j$ | 189.0 | 450.0 | 474.0 |
+|  Yes   | Obs Frequency $X_j$ | 189.0 | 450.0 | 474.0 |
 |     | Exp Frequency $\E[X_j]$ | 299.4 | 420.1 | 393.5 |
 |     | $X_j - \E[X_j]$ | -110.4 | 29.9 | 80.5 |
 |     | $(X_j - \E[X_j])^2$ | 12188.9 | 893.3 | 6482.7 |
@@ -276,7 +317,7 @@ where $\E[X_j] = np_{0j}$ is the expected value under $H_0$.
 
 ---
 
-# Attitudes towards abortion
+# Attitudes towards tea
 
 Calculating test statistic
 
@@ -290,7 +331,19 @@ Calculating $p$-value
 
 * $\text{p-value} = \Pr (\chi_2^2 > 145.27) = `r 1 - pchisq(q = 145.27, df = 2)`$
 
+--
+Thus, we can reject the null that there's no association between our rows and columns. 
+
 ---
+# A brief aside on degrees of freedom
+
+We can think of degrees of freedom as independent pieces of information we have. 
+
+If we want to estimate a particular thing, like a mean, then we can have all of our observations vary except the last one so that we still have the correct mean. We're using up one piece of information for the mean. This isn't fully technically correct, but it is the correct intuition. 
+
+
+---
+
 class: middle, inverse
 
 # Extended example: one-sample, two-sample, and CIs

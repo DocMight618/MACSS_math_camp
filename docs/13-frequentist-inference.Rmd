@@ -45,7 +45,6 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 * Identify confidence intervals
 * Define hypothesis testing and $p$-value
 * Explain the Wald test
-* Summarize the $\chi^2$ test of significance
 
 ---
 
