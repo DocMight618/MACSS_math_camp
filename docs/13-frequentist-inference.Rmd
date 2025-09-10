@@ -946,7 +946,7 @@ $= \sqrt{0.1977 + 0.2054} \approx 0.635$
 ## Step 3: Test Statistic 
 
 $z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE}$
-$= \frac{-0.8}{0.414} \approx -1.26$
+$= \frac{-0.8}{0.635} \approx -1.26$
 
 
 - Observed difference is 1.26 standard errors below 0  
