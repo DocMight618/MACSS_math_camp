@@ -920,6 +920,7 @@ tibble(
 - Women ($n_₂$ = 90): $\bar{x}_2 = 15.0$, $s_2 = 4.3$
 
 -- 
+
 ## Step 1: Point Estimate 
 
 --
@@ -934,13 +935,10 @@ $SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$
 $= \sqrt{\frac{4.1^2}{85} + \frac{4.3^2}{90}}$
 $= \sqrt{0.1977 + 0.2054} \approx 0.635$
 
---
-
-## Step 3: Test Statistic 
-
 
 
 ---
+
 ## Example: Interpretation 
 
 ## Step 3: Test Statistic 
