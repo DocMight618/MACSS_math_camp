@@ -30,6 +30,8 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 * ALMOST THERE!
 * Tomorrow: Review!
   * TA session(s)
+* Calculators!
+* Recordings!
 
 
 
