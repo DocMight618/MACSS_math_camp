@@ -938,8 +938,6 @@ $= \sqrt{0.1977 + 0.2054} \approx 0.635$
 
 ## Step 3: Test Statistic 
 
-$ z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE}$
-$= \frac{-0.8}{0.414} \approx -1.93$
 
 
 ---
@@ -947,13 +945,13 @@ $= \frac{-0.8}{0.414} \approx -1.93$
 
 ## Step 3: Test Statistic 
 
-$ z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE}$
-$= \frac{-0.8}{0.414} \approx -1.93$
+$z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE}$
+$= \frac{-0.8}{0.414} \approx -1.26$
 
 
-- Observed difference is 1.93 standard errors below 0  
-- Two-tailed test p-value ≈ 0.053  
-- Slight evidence that women do more chores, but not statistically significant at 5%
+- Observed difference is 1.26 standard errors below 0  
+- Two-tailed test p-value ≈ 0.2077
+- Insufficient evidence to reject the null hypotehsis that women and men do equal chores; not statistically significant at 5%
 
 ---
 
@@ -977,22 +975,22 @@ $\bar{x}_1 - \bar{x}_2 = 0.52 - 0.55 = -0.03$
 
 ## Step 2: Standard Error
 
-$SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} = \sqrt{\frac{0.06^2}{120} + \frac{0.055^2}{130}} = \sqrt{0.00003 + 0.000023} \approx 0.00757$
+$SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} = \sqrt{\frac{0.06^2}{120} + \frac{0.055^2}{130}} = \sqrt{0.00003 + 0.000023} \approx 0.0073$
 
 ---
 ## Ex, cont'd
 
 ## Step 3: Test Statistic
 
-$z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE} = \frac{-0.03}{0.0152} \approx -1.97$
+$z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE} = \frac{-0.03}{0.0152} \approx -4.125$
 
 --
 
 ## Interpretation
 
-- Observed difference is 1.97 standard errors below 0  
-- Two-tailed p-value ≈ 0.049  
-- Slightly significant difference: Urban support slightly lower than Rural
+- Observed difference is 4.125 standard errors below 0  
+- Two-tailed p-value < 0.0001
+- Significant difference: Urban support is lower than Rural
 
 
 ---
@@ -1016,14 +1014,17 @@ $\bar{x}_1 - \bar{x}_2 = 0.48 - 0.52 = -0.04$
 
 ## Step 2: Standard Error
 
-$SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} = \sqrt{\frac{0.06^2}{100} + \frac{0.055^2}{120}} = \sqrt{0.000036 + 0.000025} \approx 0.0080$
-
 ---
 ## Ex, power, cont'd:
 
+## Step 2: Standard Error
+
+$SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} = \sqrt{\frac{0.06^2}{100} + \frac{0.055^2}{120}} = \sqrt{0.000036 + 0.000025} \approx 0.0080$
+
+--
 ## Step 3: Test Statistic
 
-$z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE} = \frac{-0.04}{0.0080} \approx -5.0$
+$z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE} = \frac{-0.04}{0.0080} \approx -5$
 
 --
 
