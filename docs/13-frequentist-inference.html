@@ -31,11 +31,9 @@ class: center, middle, inverse, title-slide
 # Misc
 
 * ALMOST THERE!
-* Placement exams
 * Tomorrow: Review!
   * TA session(s)
-  
-* Name, program, pronouns, fave thing about Chicago so far!
+
 
 
 ---
@@ -44,9 +42,7 @@ class: center, middle, inverse, title-slide
 
 * Define classical statistical inference
 * Summarize core concepts of point estimates
-* Define maximum likelihood estimation (MLE)
-* Review the properties of the maximum likelihood estimator
-* Demonstrate MLE for basic estimators
+* Define estimators
 * Identify confidence intervals
 * Define hypothesis testing and `\(p\)`-value
 * Explain the Wald test
@@ -112,7 +108,7 @@ Suppose that `\(X_1, \ldots, X_n \sim F\)` and we assume that the PDF `\(f \in \
 
 ---
 
-# Point estimates
+# Point estimates from point estimatORS
 
 A single "best guess" of some quantity of interest
 
@@ -139,13 +135,13 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 
 ---
 
-# Properties of point estimates
+# Properties of point estimators
 
 &lt;img src="https://www.bluey.tv/wp-content/themes/bbc-bluey/assets/images/characters/bluey-star@2x.png" width="300px" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Properties of point estimates: BLUE (OLS)
+# Properties of point estimators: BLUE (OLS)
 --
 
 ## Best
@@ -163,7 +159,7 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 
 ---
 
-# Properties of point estimates 
+# Properties of point estimators 
 
 ##### Bias: does it give you what you expect? 
 
@@ -176,7 +172,7 @@ Let `\(X_1, \ldots, X_n\)` be `\(n\)` IID data points from some distribution `\(
 
 ---
 
-# Properties of point estimates 
+# Properties of point estimators 
 ##### Consistency: does it get better with sample size?
 
 
@@ -203,7 +199,7 @@ Think of an estimator for WHAT your best will be. Here are some options (below) 
 ---
 
 
-# Properties of point estimates 
+# Properties of point estimators 
 
 ##### Sampling distribution
 
@@ -323,236 +319,9 @@ and
 
 * Using this is how we decided to use the sample mean as the best guess of the population mean (and other similar decisions)
 
----
-class: center, middle, inverse
-
-# Maximum likelihood
 
 ---
-
-# Maximum likelihood
-
-Let `\(X_1, \ldots, X_n\)` be IID with PDF `\(f(x; \theta)\)`. The **likelihood function** is defined by
-
-`$$\Lagr_n(\theta) = \prod_{i=1}^n f(X_i; \theta)$$`
-
---
-
-The **log-likelihood function** is defined by `\(\lagr_n (\theta) = \log \Lagr_n(\theta)\)`
-
---
-
-* Likelihood function is the joint density of the data
-* Not the same as a PDF - it is a likelihood function
-
---
-
-The **maximum likelihood estimator** `\(\hat{\theta}_n\)` is the value of `\(\theta\)` that maximizes `\(\Lagr_n(\theta)\)`
-
---
-
-`$$\max (\Lagr_n(\theta)) \equiv \max (\lagr_n(\theta))$$`
-
----
-
-# Bernoulli random variable
-
-Suppose that `\(X_1, \ldots, X_n \sim \text{Bernoulli} (\pi)\)`. The probability function is
-
-`$$f(x; \pi) = \pi^x (1 - \pi)^{1 - x}$$`
-
-for `\(x = 0,1\)`. The unknown parameter is `\(\pi\)`.
-
---
-
-$$
-`\begin{align}
-\Lagr_n(\pi) &amp;= \prod_{i=1}^n f(X_i; \pi) \\
-&amp;= \prod_{i=1}^n \pi^{X_i} (1 - \pi)^{1 - X_i} \\
-&amp;= \pi^S (1 - \pi)^{n - S}
-\end{align}`
-$$
-
-where `\(S = \sum_{i} X_i\)`.
-
---
-
-The log-likelihood function is therefore
-
-`$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$`
-
---
-
-1. Take the derivative of `\(\lagr_n (\pi)\)`
-1. Set it equal to 0
-1. Solve to find `\(\hat{\pi}_n = \frac{S}{n}\)`
-
----
-
-# Bernoulli random variable
-We're going to solve for the 'best' estimator, `\(\hat{\pi}\)`
-`$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$`
---
-`$$\frac{d\lagr_n (\hat{\pi})}{d \hat{\pi}} = \frac{S}{\hat{\pi}} -  \frac{(n - S)}{1 - \hat{\pi}} = 0$$`
---
-
-`$$\frac{S}{\hat{\pi}} =  \frac{(n - S)}{1 - \hat{\pi}}$$`
-
---
-`\(S(1-\hat{\pi}) =  \hat{\pi}(n - S)\)` and `\(S-S\hat{\pi} =  \hat{\pi}(n - S)\)`
-
-We can continue simplifying to get:
-
---
-`\(\hat{\pi} n - S \hat{\pi} + S\hat{\pi} = S\)` so
-
---
-
-`$$\hat{\pi} = \frac{S}{n}$$`
-
----
-
-# Bernoulli random variable: plot
-
-&lt;img src="13-frequentist-inference_files/figure-html/loglik-bern-1.png" width="95%" style="display: block; margin: auto;" /&gt;
-
----
-# Log-likelihood close-up
-
-&lt;img src="13-frequentist-inference_files/figure-html/unnamed-chunk-3-1.png" width="864" style="display: block; margin: auto;" /&gt;
----
-
-# Properties of maximum likelihood estimators
-
-1. Consistency
-1. Equivariant
-1. Asymptotically Normal
-1. Asymptotically optimal or efficient
-
---
-
-* Large sample sizes
-* Smooth conditions for `\(f(x; \theta)\)`
-
----
-
-# Properties of maximum likelihood estimators
-
-##### Consistency
-
-`$$\hat{\theta}_n \xrightarrow{P} \theta_*$$`
-
-Meaning: it converges in probability to the true value
-
---
-
-##### Equivariance
-
-If `\(\hat{\theta}_n\)` is the MLE of `\(\theta\)`, then `\(g(\hat{\theta}_n)\)` is the MLE of `\(g(\theta)\)`
-
---
-
-##### Asymptotic normality
-
-Let `\(\se = \sqrt{\Var (\hat{\sigma}_n)}\)`
-
-`$$\frac{\hat{\theta}_n - \theta_*}{\se} \leadsto N(0,1)$$`
-
---
-
-`$$\frac{\hat{\theta}_n - \theta_*}{\widehat{\se}} \leadsto N(0,1)$$`
-
----
-
-# Properties of maximum likelihood estimators
-
-##### Optimality
-
-Suppose that `\(X_1, \ldots, X_n \sim N(\theta, \sigma^2)\)`. The MLE is `\(\hat{\sigma}_n = \bar{X}_n\)`
-
---
-
-Another reasonable estimator of `\(\theta\)` is the sample median `\(\tilde{\theta}_n\)`. The MLE satisfies
-
-`$$\sqrt{n} (\hat{\theta}_n - \theta) \leadsto N(0, \sigma^2)$$`
-
---
-
-Median satisfies
-
-`$$\sqrt{n} (\tilde{\theta}_n - \theta) \leadsto N \left(0, \sigma^2 \frac{\pi}{2} \right)$$`
-
---
-
-* The MLE has the smallest (asymptotic) variance
-* No other estimator produces smaller variance
-
----
-
-# MLE of the mean of the Normal variable
-
-`$$\Pr(X_i = x_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]$$`
-
-&lt;img src="13-frequentist-inference_files/figure-html/plot-normal-1.png" width="864" style="display: block; margin: auto;" /&gt;
-
----
-
-# MLE of the mean of the Normal variable
-
-$$
-`\begin{align}
-\lagr_n(\mu, \sigma^2 | X) &amp;= \log \prod_{i = 1}^{N}{\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]} \\
-&amp;= \sum_{i=1}^{N}{\log\left(\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]\right)} \\
-&amp;= -\frac{N}{2} \log(2\pi) - \left[ \sum_{i = 1}^{N} \log{\sigma^2 - \frac{1}{2\sigma^2}} (X_i - \mu)^2 \right]
-\end{align}`
-$$
-
----
-
-# MLE of the mean of the Normal variable
-
-&lt;table&gt;
-&lt;caption&gt;Salaries of assistant professors&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; salary &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-
----
-
-# MLE of the mean of the Normal variable
-
-&lt;img src="13-frequentist-inference_files/figure-html/loglik-normal-1.png" width="864" style="display: block; margin: auto;" /&gt;
-
----
-class: middle
+class: middle, center, inverse
 
 # Confidence: Precision vs accuracy
 
@@ -562,7 +331,7 @@ class: middle
 
 A ( `\(1 - \alpha\)` ) **confidence interval** for a parameter `\(\theta\)` is an interval `\(C_n = (a,b)\)` where `\(a = a(X_1, \ldots, X_n)\)` and `\(b = b(X_1, \ldots, X_n)\)` are functions of the data such that
 
-`$$\Pr_{\theta} (\theta \in C_n) \geq 1 - \alpha, \quad \forall \, \theta \in \Theta$$`
+`$$\Pr_{\theta} (\theta \in C_n) \geq 1 - \alpha, \quad \forall \, \theta \in \Theta$$` where `\(\Theta\)` is our universe. 
 
 --
 
@@ -597,8 +366,7 @@ Suppose that `\(\hat{\theta}_n \approx N(\theta, \widehat{\se}^2)\)`. Let `\(\Ph
 --
 
 `$$\Pr (Z &gt; \frac{\alpha}{2}) = \frac{\alpha}{2}$$`
-
-and
+and 
 
 `$$\Pr (-z_{\frac{\alpha}{2}} \leq Z \leq z_{\frac{\alpha}{2}}) = 1 - \alpha$$`
 
@@ -608,7 +376,9 @@ where `\(Z \sim N(0,1)\)`
 
 `$$C_n = (\hat{\theta}_n - z_{\frac{\alpha}{2}} \widehat{\se}, \hat{\theta}_n + z_{\frac{\alpha}{2}} \widehat{\se})$$`
 
---
+---
+
+## Confidence intervals: calculation
 
 $$
 `\begin{align}
@@ -618,6 +388,45 @@ $$
 &amp;= 1 - \alpha
 \end{align}`
 $$
+
+--
+
+Thus, we have a rejection region of size `\(\alpha\)` and a confidence interval that contains or captures `\(1-\alpha\)` in mass.
+
+---
+### Confidence interval formula
+
+`$$C_n = (\hat{\theta}_n - z_{\frac{\alpha}{2}} \widehat{\se}, \hat{\theta}_n + z_{\frac{\alpha}{2}} \widehat{\se})$$`
+`$$C_n = (\bar x - z_{\frac{\alpha}{2}} \widehat{\se}, \bar x_n + z_{\frac{\alpha}{2}} \widehat{\se})$$`
+or
+
+`$$(\bar x \pm z_{\frac{\alpha}{2}} \widehat{\se})$$`
+where `\(z_{\frac{\alpha}{2}}\)` is our cutoff point from a z-table
+
+---
+
+# Z tables: how to read
+
+* We are looking for the area under the tail of the curve where there is `\(\frac{\alpha}{2}\)`
+* Rows are integer values and first decimal (tenths)
+* Columns are second decimal (hundredths)
+
+
+---
+
+# Z tables: Example
+
+&lt;img src="https://www.ztable.net/wp-content/uploads/2018/11/negativeztable.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Common z values needed for CI:
+
+CI level | `\(\frac{\alpha}{2}\)` | z
+--------|-----------|---------
+90% | 0.05 | 1.645
+95% | 0.025 | 1.96
+99% | 0.025 | 2.58
 
 ---
 # CI: when to use
@@ -629,6 +438,31 @@ You can give a RANGE around your CI to improve your accuracy, at the cost of pre
 --
 
 There is a delicate balance between accuracy and precision: for accuracy, you want to be as accurate as possible, but this means you have to have a wide range. We have conventionally compromised at 95% for the 'right' balance between the two. 
+
+---
+
+## CI: Example
+
+Suppose you have a point estimate of 0.65 with an SE of 0.03. Find a 90%, 95%, and 99% CI. 
+
+CI level | `\(\frac{\alpha}{2}\)` | z
+--------|-----------|---------
+90% | 0.05 | 1.645
+95% | 0.025 | 1.96
+99% | 0.025 | 2.58
+
+`$$(\bar x \pm z_{\frac{\alpha}{2}} \widehat{\se})$$`
+--
+
+- **90% CI:** `\(0.65 \pm 1.645 \times 0.03 = 0.65 \pm 0.049 = (0.601,\ 0.699)\)`  
+- **95% CI:** `\(0.65 \pm 1.96 \times 0.03 = 0.65 \pm 0.059 = (0.591,\ 0.709)\)`  
+- **99% CI:** `\(0.65 \pm 2.576 \times 0.03 = 0.65 \pm 0.077 = (0.573,\ 0.727)\)`  
+
+
+
+--
+
+#### NOTE: Our POINT ESTIMATE is in the center of the CI
 
 ---
 class: middle, inverse
@@ -744,14 +578,16 @@ The size of a test is defined to be
 A test is said to have **level** `\(\alpha\)` if its size is less than or equal to `\(\alpha\)`
 
 ---
-class: center, middle
+class: center, middle, inverse
 
 ## Setting up hypothesis testing
 
 ---
 # Sided tests
 You are positing 'where' the true value is (larger or smaller) vs 'not here'
+
 --
+
 ### Two-sided test
 
 `$$H_0: \theta = \theta_0 \quad \text{versus} \quad H_1: \theta \neq \theta_0$$`
@@ -982,6 +818,283 @@ where `\(Z \sim N(0,1)\)`
   * Calculate in formula above
   * Evaluate / make decision
 * PREVIEW: Bayes: different approach to statistics vs frequentist
+
+---
+class: center, middle, inverse
+## Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
+
+---
+class: center, middle, inverse
+
+# Bonus!
+
+---
+
+# Topics covered here (optional!)
+
+* Define maximum likelihood estimation (MLE)
+* Review the properties of the maximum likelihood estimator
+* Demonstrate MLE for basic estimators
+
+
+---
+class: center, middle, inverse
+
+# Maximum likelihood
+
+---
+
+# Maximum likelihood
+
+Let `\(X_1, \ldots, X_n\)` be IID with PDF `\(f(x; \theta)\)`. The **likelihood function** is defined by
+
+`$$\Lagr_n(\theta) = \prod_{i=1}^n f(X_i; \theta)$$`
+
+--
+
+The **log-likelihood function** is defined by `\(\lagr_n (\theta) = \log \Lagr_n(\theta)\)`
+
+--
+
+* Likelihood function is the joint density of the data
+* Not the same as a PDF - it is a likelihood function
+
+--
+
+The **maximum likelihood estimator** `\(\hat{\theta}_n\)` is the value of `\(\theta\)` that maximizes `\(\Lagr_n(\theta)\)`
+
+--
+
+`$$\max (\Lagr_n(\theta)) \equiv \max (\lagr_n(\theta))$$`
+
+---
+---
+
+# MLE of the mean of the Normal variable
+
+`$$\Pr(X_i = x_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]$$`
+
+&lt;img src="13-frequentist-inference_files/figure-html/plot-normal-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+
+# MLE of the mean of the Normal variable
+
+$$
+`\begin{align}
+\lagr_n(\mu, \sigma^2 | X) &amp;= \log \prod_{i = 1}^{N}{\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]} \\
+&amp;= \sum_{i=1}^{N}{\log\left(\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]\right)} \\
+&amp;= -\frac{N}{2} \log(2\pi) - \left[ \sum_{i = 1}^{N} \log{\sigma^2 - \frac{1}{2\sigma^2}} (X_i - \mu)^2 \right]
+\end{align}`
+$$
+
+---
+
+# MLE of the mean of the Normal variable
+
+&lt;table&gt;
+&lt;caption&gt;Salaries of assistant professors&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; id &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; salary &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+---
+
+# MLE of the mean of the Normal variable
+
+&lt;img src="13-frequentist-inference_files/figure-html/loglik-normal-1.png" width="864" style="display: block; margin: auto;" /&gt;
+---
+class: center, middle, inverse
+
+# Maximum likelihood
+
+---
+
+# Maximum likelihood
+
+Let `\(X_1, \ldots, X_n\)` be IID with PDF `\(f(x; \theta)\)`. The **likelihood function** is defined by
+
+`$$\Lagr_n(\theta) = \prod_{i=1}^n f(X_i; \theta)$$`
+
+--
+
+The **log-likelihood function** is defined by `\(\lagr_n (\theta) = \log \Lagr_n(\theta)\)`
+
+--
+
+* Likelihood function is the joint density of the data
+* Not the same as a PDF - it is a likelihood function
+
+--
+
+The **maximum likelihood estimator** `\(\hat{\theta}_n\)` is the value of `\(\theta\)` that maximizes `\(\Lagr_n(\theta)\)`
+
+--
+
+`$$\max (\Lagr_n(\theta)) \equiv \max (\lagr_n(\theta))$$`
+
+---
+
+# Bernoulli random variable
+
+Suppose that `\(X_1, \ldots, X_n \sim \text{Bernoulli} (\pi)\)`. The probability function is
+
+`$$f(x; \pi) = \pi^x (1 - \pi)^{1 - x}$$`
+
+for `\(x = 0,1\)`. The unknown parameter is `\(\pi\)`.
+
+--
+
+$$
+`\begin{align}
+\Lagr_n(\pi) &amp;= \prod_{i=1}^n f(X_i; \pi) \\
+&amp;= \prod_{i=1}^n \pi^{X_i} (1 - \pi)^{1 - X_i} \\
+&amp;= \pi^S (1 - \pi)^{n - S}
+\end{align}`
+$$
+
+where `\(S = \sum_{i} X_i\)`.
+
+--
+
+The log-likelihood function is therefore
+
+`$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$`
+
+--
+
+1. Take the derivative of `\(\lagr_n (\pi)\)`
+1. Set it equal to 0
+1. Solve to find `\(\hat{\pi}_n = \frac{S}{n}\)`
+
+---
+
+# Bernoulli random variable
+We're going to solve for the 'best' estimator, `\(\hat{\pi}\)`
+`$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$`
+--
+`$$\frac{d\lagr_n (\hat{\pi})}{d \hat{\pi}} = \frac{S}{\hat{\pi}} -  \frac{(n - S)}{1 - \hat{\pi}} = 0$$`
+--
+
+`$$\frac{S}{\hat{\pi}} =  \frac{(n - S)}{1 - \hat{\pi}}$$`
+
+--
+`\(S(1-\hat{\pi}) =  \hat{\pi}(n - S)\)` and `\(S-S\hat{\pi} =  \hat{\pi}(n - S)\)`
+
+We can continue simplifying to get:
+
+--
+`\(\hat{\pi} n - S \hat{\pi} + S\hat{\pi} = S\)` so
+
+--
+
+`$$\hat{\pi} = \frac{S}{n}$$`
+
+---
+
+# Bernoulli random variable: plot
+
+&lt;img src="13-frequentist-inference_files/figure-html/loglik-bern-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+
+---
+# Log-likelihood close-up
+
+&lt;img src="13-frequentist-inference_files/figure-html/unnamed-chunk-5-1.png" width="864" style="display: block; margin: auto;" /&gt;
+---
+
+# Properties of maximum likelihood estimators
+
+1. Consistency
+1. Equivariant
+1. Asymptotically Normal
+1. Asymptotically optimal or efficient
+
+--
+
+* Large sample sizes
+* Smooth conditions for `\(f(x; \theta)\)`
+
+---
+
+# Properties of maximum likelihood estimators
+
+##### Consistency
+
+`$$\hat{\theta}_n \xrightarrow{P} \theta_*$$`
+
+Meaning: it converges in probability to the true value
+
+--
+
+##### Equivariance
+
+If `\(\hat{\theta}_n\)` is the MLE of `\(\theta\)`, then `\(g(\hat{\theta}_n)\)` is the MLE of `\(g(\theta)\)`
+
+--
+
+##### Asymptotic normality
+
+Let `\(\se = \sqrt{\Var (\hat{\sigma}_n)}\)`
+
+`$$\frac{\hat{\theta}_n - \theta_*}{\se} \leadsto N(0,1)$$`
+
+--
+
+`$$\frac{\hat{\theta}_n - \theta_*}{\widehat{\se}} \leadsto N(0,1)$$`
+
+---
+
+# Properties of maximum likelihood estimators
+
+##### Optimality
+
+Suppose that `\(X_1, \ldots, X_n \sim N(\theta, \sigma^2)\)`. The MLE is `\(\hat{\sigma}_n = \bar{X}_n\)`
+
+--
+
+Another reasonable estimator of `\(\theta\)` is the sample median `\(\tilde{\theta}_n\)`. The MLE satisfies
+
+`$$\sqrt{n} (\hat{\theta}_n - \theta) \leadsto N(0, \sigma^2)$$`
+
+--
+
+Median satisfies
+
+`$$\sqrt{n} (\tilde{\theta}_n - \theta) \leadsto N \left(0, \sigma^2 \frac{\pi}{2} \right)$$`
+
+--
+
+* The MLE has the smallest (asymptotic) variance
+* No other estimator produces smaller variance
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

@@ -28,11 +28,9 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 # Misc
 
 * ALMOST THERE!
-* Placement exams
 * Tomorrow: Review!
   * TA session(s)
-  
-* Name, program, pronouns, fave thing about Chicago so far!
+
 
 
 ---
@@ -41,9 +39,7 @@ $$\newcommand{\E}{\mathrm{E}} \newcommand{\Var}{\mathrm{Var}} \newcommand{\Cov}{
 
 * Define classical statistical inference
 * Summarize core concepts of point estimates
-* Define maximum likelihood estimation (MLE)
-* Review the properties of the maximum likelihood estimator
-* Demonstrate MLE for basic estimators
+* Define estimators
 * Identify confidence intervals
 * Define hypothesis testing and $p$-value
 * Explain the Wald test
@@ -109,7 +105,7 @@ $$\xi \equiv f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left[ -\fra
 
 ---
 
-# Point estimates
+# Point estimates from point estimatORS
 
 A single "best guess" of some quantity of interest
 
@@ -136,7 +132,7 @@ $$\hat{\theta}_n = g(X_1, \ldots, X_n)$$
 
 ---
 
-# Properties of point estimates
+# Properties of point estimators
 
 ```{r, out.width = "300px"}
 knitr::include_graphics("https://www.bluey.tv/wp-content/themes/bbc-bluey/assets/images/characters/bluey-star@2x.png")
@@ -144,7 +140,7 @@ knitr::include_graphics("https://www.bluey.tv/wp-content/themes/bbc-bluey/assets
 
 ---
 
-# Properties of point estimates: BLUE (OLS)
+# Properties of point estimators: BLUE (OLS)
 --
 
 ## Best
@@ -162,7 +158,7 @@ knitr::include_graphics("https://www.bluey.tv/wp-content/themes/bbc-bluey/assets
 
 ---
 
-# Properties of point estimates 
+# Properties of point estimators 
 
 ##### Bias: does it give you what you expect? 
 
@@ -175,7 +171,7 @@ $$\text{bias}(\hat{\theta}_n) = \E_\theta (\hat{\theta_n}) - \theta$$
 
 ---
 
-# Properties of point estimates 
+# Properties of point estimators 
 ##### Consistency: does it get better with sample size?
 
 
@@ -202,7 +198,7 @@ Think of an estimator for WHAT your best will be. Here are some options (below) 
 ---
 
 
-# Properties of point estimates 
+# Properties of point estimators 
 
 ##### Sampling distribution
 
@@ -322,310 +318,9 @@ $\hat{\pi}_n$ is a consistent estimator of $\pi$
 
 * Using this is how we decided to use the sample mean as the best guess of the population mean (and other similar decisions)
 
----
-class: center, middle, inverse
-
-# Maximum likelihood
 
 ---
-
-# Maximum likelihood
-
-Let $X_1, \ldots, X_n$ be IID with PDF $f(x; \theta)$. The **likelihood function** is defined by
-
-$$\Lagr_n(\theta) = \prod_{i=1}^n f(X_i; \theta)$$
-
---
-
-The **log-likelihood function** is defined by $\lagr_n (\theta) = \log \Lagr_n(\theta)$
-
---
-
-* Likelihood function is the joint density of the data
-* Not the same as a PDF - it is a likelihood function
-
---
-
-The **maximum likelihood estimator** $\hat{\theta}_n$ is the value of $\theta$ that maximizes $\Lagr_n(\theta)$
-
---
-
-$$\max (\Lagr_n(\theta)) \equiv \max (\lagr_n(\theta))$$
-
----
-
-# Bernoulli random variable
-
-Suppose that $X_1, \ldots, X_n \sim \text{Bernoulli} (\pi)$. The probability function is
-
-$$f(x; \pi) = \pi^x (1 - \pi)^{1 - x}$$
-
-for $x = 0,1$. The unknown parameter is $\pi$.
-
---
-
-$$
-\begin{align}
-\Lagr_n(\pi) &= \prod_{i=1}^n f(X_i; \pi) \\
-&= \prod_{i=1}^n \pi^{X_i} (1 - \pi)^{1 - X_i} \\
-&= \pi^S (1 - \pi)^{n - S}
-\end{align}
-$$
-
-where $S = \sum_{i} X_i$.
-
---
-
-The log-likelihood function is therefore
-
-$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$
-
---
-
-1. Take the derivative of $\lagr_n (\pi)$
-1. Set it equal to 0
-1. Solve to find $\hat{\pi}_n = \frac{S}{n}$
-
----
-
-# Bernoulli random variable
-We're going to solve for the 'best' estimator, $\hat{\pi}$
-$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$
---
-$$\frac{d\lagr_n (\hat{\pi})}{d \hat{\pi}} = \frac{S}{\hat{\pi}} -  \frac{(n - S)}{1 - \hat{\pi}} = 0$$
---
-
-$$\frac{S}{\hat{\pi}} =  \frac{(n - S)}{1 - \hat{\pi}}$$
-
---
-$S(1-\hat{\pi}) =  \hat{\pi}(n - S)$ and $S-S\hat{\pi} =  \hat{\pi}(n - S)$
-
-We can continue simplifying to get:
-
---
-$\hat{\pi} n - S \hat{\pi} + S\hat{\pi} = S$ so
-
---
-
-$$\hat{\pi} = \frac{S}{n}$$
-
----
-
-# Bernoulli random variable: plot
-
-```{r loglik-bern, fig.height=6, out.width="95%"}
-# loglikelihood function for plotting
-lik_bern <- function(p, S, n) {
-  p^S * (1 - p)^(n - S)
-}
-
-log_lik_bern <- function(p, S, n) {
-  S * log(p) + (n - S) * log(1 - p)
-}
-
-
-# calculate likelihood values
-bern <- tibble(
-  x = seq(0, 1, by = 0.001),
-  lik = lik_bern(x, 12, 20),
-  loglik = log_lik_bern(x, 12, 20)
-)
-
-ggplot(bern, aes(x, lik)) +
-  geom_line() +
-  geom_vline(xintercept = (12 / 20), linetype = 2) +
-  labs(
-    title = "Likelihood function \n for Bernoulli random var",
-    subtitle = "20 trials and 12 successes",
-    x = expression(hat(pi)),
-    y = expression(L[n](pi))
-  ) +
-  ggplot(bern, aes(x, loglik)) +
-  geom_line() +
-  geom_vline(xintercept = (12 / 20), linetype = 2) +
-  labs(
-    title = "Log-likelihood function \n for Bernoulli random var",
-    subtitle = "20 trials and 12 successes",
-    x = expression(hat(pi)),
-    y = expression(l[n](pi))
-  ) +
-  plot_layout(ncol = 2)
-```
-
----
-# Log-likelihood close-up
-
-```{r}
-  ggplot(bern, aes(x, loglik)) +
-  geom_line() +
-  geom_vline(xintercept = (12 / 20), linetype = 2) +
-  labs(
-    title = "Log-likelihood function for Bernoulli random variable",
-    subtitle = "20 trials and 12 successes",
-    x = expression(hat(pi)),
-    y = expression(l[n](pi))
-  ) +
-  ylim(-20, -13)
-```
----
-
-# Properties of maximum likelihood estimators
-
-1. Consistency
-1. Equivariant
-1. Asymptotically Normal
-1. Asymptotically optimal or efficient
-
---
-
-* Large sample sizes
-* Smooth conditions for $f(x; \theta)$
-
----
-
-# Properties of maximum likelihood estimators
-
-##### Consistency
-
-$$\hat{\theta}_n \xrightarrow{P} \theta_*$$
-
-Meaning: it converges in probability to the true value
-
---
-
-##### Equivariance
-
-If $\hat{\theta}_n$ is the MLE of $\theta$, then $g(\hat{\theta}_n)$ is the MLE of $g(\theta)$
-
---
-
-##### Asymptotic normality
-
-Let $\se = \sqrt{\Var (\hat{\sigma}_n)}$
-
-$$\frac{\hat{\theta}_n - \theta_*}{\se} \leadsto N(0,1)$$
-
---
-
-$$\frac{\hat{\theta}_n - \theta_*}{\widehat{\se}} \leadsto N(0,1)$$
-
----
-
-# Properties of maximum likelihood estimators
-
-##### Optimality
-
-Suppose that $X_1, \ldots, X_n \sim N(\theta, \sigma^2)$. The MLE is $\hat{\sigma}_n = \bar{X}_n$
-
---
-
-Another reasonable estimator of $\theta$ is the sample median $\tilde{\theta}_n$. The MLE satisfies
-
-$$\sqrt{n} (\hat{\theta}_n - \theta) \leadsto N(0, \sigma^2)$$
-
---
-
-Median satisfies
-
-$$\sqrt{n} (\tilde{\theta}_n - \theta) \leadsto N \left(0, \sigma^2 \frac{\pi}{2} \right)$$
-
---
-
-* The MLE has the smallest (asymptotic) variance
-* No other estimator produces smaller variance
-
----
-
-# MLE of the mean of the Normal variable
-
-$$\Pr(X_i = x_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]$$
-
-```{r plot-normal, fig.height = 5.5}
-tibble(x = rnorm(1000, 0, 1)) %>%
-  ggplot(aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
-  labs(
-    title = "Normal distribution",
-    subtitle = expression(paste(mu == 0, " , ", sigma^{
-      2
-    } == 1))
-  )
-```
-
----
-
-# MLE of the mean of the Normal variable
-
-$$
-\begin{align}
-\lagr_n(\mu, \sigma^2 | X) &= \log \prod_{i = 1}^{N}{\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]} \\
-&= \sum_{i=1}^{N}{\log\left(\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]\right)} \\
-&= -\frac{N}{2} \log(2\pi) - \left[ \sum_{i = 1}^{N} \log{\sigma^2 - \frac{1}{2\sigma^2}} (X_i - \mu)^2 \right]
-\end{align}
-$$
-
----
-
-# MLE of the mean of the Normal variable
-
-```{r prof, echo = FALSE}
-prof <- tibble(
-  id = 1:5,
-  years = c(3, 2, 4, 1, 5),
-  salary = 45 + 5 * years
-)
-
-prof %>%
-  select(-years) %>%
-  knitr::kable(caption = "Salaries of assistant professors", format = "html")
-```
-
----
-
-# MLE of the mean of the Normal variable
-
-```{r loglik-normal}
-likelihood.normal.mu <- function(mu, sig2 = 1, x) {
-  # mu      mean of normal distribution for given sig
-  # x       vector of data
-  n <- length(x)
-  a1 <- (2 * pi * sig2)^-(n / 2)
-  a2 <- -1 / (2 * sig2)
-  y <- (x - mu)^2
-  ans <- a1 * exp(a2 * sum(y))
-  return(log(ans))
-}
-
-tibble(
-  mu_hat = seq(57, 63, by = .05),
-  logLik = map_dbl(mu_hat, likelihood.normal.mu, x = prof$salary)
-) %>%
-  ggplot(aes(mu_hat, logLik)) +
-  geom_line() +
-  geom_vline(xintercept = mean(prof$salary), linetype = 2) +
-  labs(
-    subtitle = expression(sigma^2 == 1),
-    x = expression(hat(mu)),
-    y = expression(l[n](mu))
-  ) +
-  tibble(
-  mu_hat = seq(57, 63, by = .05),
-  logLik = map_dbl(mu_hat, likelihood.normal.mu, x = prof$salary, sig2 = 4)
-) %>%
-  ggplot(aes(mu_hat, logLik)) +
-  geom_line() +
-  geom_vline(xintercept = mean(prof$salary), linetype = 2) +
-  labs(
-    subtitle = expression(sigma^2 == 4),
-    x = expression(hat(mu)),
-    y = expression(l[n](mu))
-  ) +
-  plot_layout(ncol = 1) +
-  plot_annotation(title = "Log-likelihood function for Normal random variable")
-```
-
----
-class: middle
+class: middle, center, inverse
 
 # Confidence: Precision vs accuracy
 
@@ -635,7 +330,7 @@ class: middle
 
 A ( $1 - \alpha$ ) **confidence interval** for a parameter $\theta$ is an interval $C_n = (a,b)$ where $a = a(X_1, \ldots, X_n)$ and $b = b(X_1, \ldots, X_n)$ are functions of the data such that
 
-$$\Pr_{\theta} (\theta \in C_n) \geq 1 - \alpha, \quad \forall \, \theta \in \Theta$$
+$$\Pr_{\theta} (\theta \in C_n) \geq 1 - \alpha, \quad \forall \, \theta \in \Theta$$ where $\Theta$ is our universe. 
 
 --
 
@@ -670,8 +365,7 @@ $$z_{\frac{\alpha}{2}} = \Phi^{-1} \left(1 - \frac{\alpha}{2} \right)$$
 --
 
 $$\Pr (Z > \frac{\alpha}{2}) = \frac{\alpha}{2}$$
-
-and
+and 
 
 $$\Pr (-z_{\frac{\alpha}{2}} \leq Z \leq z_{\frac{\alpha}{2}}) = 1 - \alpha$$
 
@@ -681,7 +375,9 @@ where $Z \sim N(0,1)$
 
 $$C_n = (\hat{\theta}_n - z_{\frac{\alpha}{2}} \widehat{\se}, \hat{\theta}_n + z_{\frac{\alpha}{2}} \widehat{\se})$$
 
---
+---
+
+## Confidence intervals: calculation
 
 $$
 \begin{align}
@@ -691,6 +387,47 @@ $$
 &= 1 - \alpha
 \end{align}
 $$
+
+--
+
+Thus, we have a rejection region of size $\alpha$ and a confidence interval that contains or captures $1-\alpha$ in mass.
+
+---
+### Confidence interval formula
+
+$$C_n = (\hat{\theta}_n - z_{\frac{\alpha}{2}} \widehat{\se}, \hat{\theta}_n + z_{\frac{\alpha}{2}} \widehat{\se})$$
+$$C_n = (\bar x - z_{\frac{\alpha}{2}} \widehat{\se}, \bar x_n + z_{\frac{\alpha}{2}} \widehat{\se})$$
+or
+
+$$(\bar x \pm z_{\frac{\alpha}{2}} \widehat{\se})$$
+where $z_{\frac{\alpha}{2}}$ is our cutoff point from a z-table
+
+---
+
+# Z tables: how to read
+
+* We are looking for the area under the tail of the curve where there is $\frac{\alpha}{2}$
+* Rows are integer values and first decimal (tenths)
+* Columns are second decimal (hundredths)
+
+
+---
+
+# Z tables: Example
+
+```{r}
+knitr::include_graphics("https://www.ztable.net/wp-content/uploads/2018/11/negativeztable.png")
+```
+
+---
+
+# Common z values needed for CI:
+
+CI level | $\frac{\alpha}{2}$ | z
+--------|-----------|---------
+90% | 0.05 | 1.645
+95% | 0.025 | 1.96
+99% | 0.025 | 2.58
 
 ---
 # CI: when to use
@@ -702,6 +439,31 @@ You can give a RANGE around your CI to improve your accuracy, at the cost of pre
 --
 
 There is a delicate balance between accuracy and precision: for accuracy, you want to be as accurate as possible, but this means you have to have a wide range. We have conventionally compromised at 95% for the 'right' balance between the two. 
+
+---
+
+## CI: Example
+
+Suppose you have a point estimate of 0.65 with an SE of 0.03. Find a 90%, 95%, and 99% CI. 
+
+CI level | $\frac{\alpha}{2}$ | z
+--------|-----------|---------
+90% | 0.05 | 1.645
+95% | 0.025 | 1.96
+99% | 0.025 | 2.58
+
+$$(\bar x \pm z_{\frac{\alpha}{2}} \widehat{\se})$$
+--
+
+- **90% CI:** $0.65 \pm 1.645 \times 0.03 = 0.65 \pm 0.049 = (0.601,\ 0.699)$  
+- **95% CI:** $0.65 \pm 1.96 \times 0.03 = 0.65 \pm 0.059 = (0.591,\ 0.709)$  
+- **99% CI:** $0.65 \pm 2.576 \times 0.03 = 0.65 \pm 0.077 = (0.573,\ 0.727)$  
+
+
+
+--
+
+#### NOTE: Our POINT ESTIMATE is in the center of the CI
 
 ---
 class: middle, inverse
@@ -819,14 +581,16 @@ $$\alpha = \text{sup}_{\theta \in \Theta_0} \beta(\theta)$$
 A test is said to have **level** $\alpha$ if its size is less than or equal to $\alpha$
 
 ---
-class: center, middle
+class: center, middle, inverse
 
 ## Setting up hypothesis testing
 
 ---
 # Sided tests
 You are positing 'where' the true value is (larger or smaller) vs 'not here'
+
 --
+
 ### Two-sided test
 
 $$H_0: \theta = \theta_0 \quad \text{versus} \quad H_1: \theta \neq \theta_0$$
@@ -1117,4 +881,355 @@ tibble(
   * Calculate in formula above
   * Evaluate / make decision
 * PREVIEW: Bayes: different approach to statistics vs frequentist
+
+---
+class: center, middle, inverse
+## Let’s get to know each other a bit more – Name, pronouns, subfield/research area, where you are currently, something fun/interesting about you and/or your hobbies
+
+---
+class: center, middle, inverse
+
+# Bonus!
+
+---
+
+# Topics covered here (optional!)
+
+* Define maximum likelihood estimation (MLE)
+* Review the properties of the maximum likelihood estimator
+* Demonstrate MLE for basic estimators
+
+
+---
+class: center, middle, inverse
+
+# Maximum likelihood
+
+---
+
+# Maximum likelihood
+
+Let $X_1, \ldots, X_n$ be IID with PDF $f(x; \theta)$. The **likelihood function** is defined by
+
+$$\Lagr_n(\theta) = \prod_{i=1}^n f(X_i; \theta)$$
+
+--
+
+The **log-likelihood function** is defined by $\lagr_n (\theta) = \log \Lagr_n(\theta)$
+
+--
+
+* Likelihood function is the joint density of the data
+* Not the same as a PDF - it is a likelihood function
+
+--
+
+The **maximum likelihood estimator** $\hat{\theta}_n$ is the value of $\theta$ that maximizes $\Lagr_n(\theta)$
+
+--
+
+$$\max (\Lagr_n(\theta)) \equiv \max (\lagr_n(\theta))$$
+
+---
+---
+
+# MLE of the mean of the Normal variable
+
+$$\Pr(X_i = x_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]$$
+
+```{r plot-normal, fig.height = 5.5}
+tibble(x = rnorm(1000, 0, 1)) %>%
+  ggplot(aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
+  labs(
+    title = "Normal distribution",
+    subtitle = expression(paste(mu == 0, " , ", sigma^{
+      2
+    } == 1))
+  )
+```
+
+---
+
+# MLE of the mean of the Normal variable
+
+$$
+\begin{align}
+\lagr_n(\mu, \sigma^2 | X) &= \log \prod_{i = 1}^{N}{\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]} \\
+&= \sum_{i=1}^{N}{\log\left(\frac{1}{\sqrt{2\pi\sigma^2}} \exp \left[\frac{(X_i - \mu)^2}{2\sigma^2}\right]\right)} \\
+&= -\frac{N}{2} \log(2\pi) - \left[ \sum_{i = 1}^{N} \log{\sigma^2 - \frac{1}{2\sigma^2}} (X_i - \mu)^2 \right]
+\end{align}
+$$
+
+---
+
+# MLE of the mean of the Normal variable
+
+```{r prof, echo = FALSE}
+prof <- tibble(
+  id = 1:5,
+  years = c(3, 2, 4, 1, 5),
+  salary = 45 + 5 * years
+)
+
+prof %>%
+  select(-years) %>%
+  knitr::kable(caption = "Salaries of assistant professors", format = "html")
+```
+
+---
+
+# MLE of the mean of the Normal variable
+
+```{r loglik-normal}
+likelihood.normal.mu <- function(mu, sig2 = 1, x) {
+  # mu      mean of normal distribution for given sig
+  # x       vector of data
+  n <- length(x)
+  a1 <- (2 * pi * sig2)^-(n / 2)
+  a2 <- -1 / (2 * sig2)
+  y <- (x - mu)^2
+  ans <- a1 * exp(a2 * sum(y))
+  return(log(ans))
+}
+
+tibble(
+  mu_hat = seq(57, 63, by = .05),
+  logLik = map_dbl(mu_hat, likelihood.normal.mu, x = prof$salary)
+) %>%
+  ggplot(aes(mu_hat, logLik)) +
+  geom_line() +
+  geom_vline(xintercept = mean(prof$salary), linetype = 2) +
+  labs(
+    subtitle = expression(sigma^2 == 1),
+    x = expression(hat(mu)),
+    y = expression(l[n](mu))
+  ) +
+  tibble(
+  mu_hat = seq(57, 63, by = .05),
+  logLik = map_dbl(mu_hat, likelihood.normal.mu, x = prof$salary, sig2 = 4)
+) %>%
+  ggplot(aes(mu_hat, logLik)) +
+  geom_line() +
+  geom_vline(xintercept = mean(prof$salary), linetype = 2) +
+  labs(
+    subtitle = expression(sigma^2 == 4),
+    x = expression(hat(mu)),
+    y = expression(l[n](mu))
+  ) +
+  plot_layout(ncol = 1) +
+  plot_annotation(title = "Log-likelihood function for Normal random variable")
+```
+---
+class: center, middle, inverse
+
+# Maximum likelihood
+
+---
+
+# Maximum likelihood
+
+Let $X_1, \ldots, X_n$ be IID with PDF $f(x; \theta)$. The **likelihood function** is defined by
+
+$$\Lagr_n(\theta) = \prod_{i=1}^n f(X_i; \theta)$$
+
+--
+
+The **log-likelihood function** is defined by $\lagr_n (\theta) = \log \Lagr_n(\theta)$
+
+--
+
+* Likelihood function is the joint density of the data
+* Not the same as a PDF - it is a likelihood function
+
+--
+
+The **maximum likelihood estimator** $\hat{\theta}_n$ is the value of $\theta$ that maximizes $\Lagr_n(\theta)$
+
+--
+
+$$\max (\Lagr_n(\theta)) \equiv \max (\lagr_n(\theta))$$
+
+---
+
+# Bernoulli random variable
+
+Suppose that $X_1, \ldots, X_n \sim \text{Bernoulli} (\pi)$. The probability function is
+
+$$f(x; \pi) = \pi^x (1 - \pi)^{1 - x}$$
+
+for $x = 0,1$. The unknown parameter is $\pi$.
+
+--
+
+$$
+\begin{align}
+\Lagr_n(\pi) &= \prod_{i=1}^n f(X_i; \pi) \\
+&= \prod_{i=1}^n \pi^{X_i} (1 - \pi)^{1 - X_i} \\
+&= \pi^S (1 - \pi)^{n - S}
+\end{align}
+$$
+
+where $S = \sum_{i} X_i$.
+
+--
+
+The log-likelihood function is therefore
+
+$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$
+
+--
+
+1. Take the derivative of $\lagr_n (\pi)$
+1. Set it equal to 0
+1. Solve to find $\hat{\pi}_n = \frac{S}{n}$
+
+---
+
+# Bernoulli random variable
+We're going to solve for the 'best' estimator, $\hat{\pi}$
+$$\lagr_n (\pi) = S \log(\pi) + (n - S) \log(1 - \pi)$$
+--
+$$\frac{d\lagr_n (\hat{\pi})}{d \hat{\pi}} = \frac{S}{\hat{\pi}} -  \frac{(n - S)}{1 - \hat{\pi}} = 0$$
+--
+
+$$\frac{S}{\hat{\pi}} =  \frac{(n - S)}{1 - \hat{\pi}}$$
+
+--
+$S(1-\hat{\pi}) =  \hat{\pi}(n - S)$ and $S-S\hat{\pi} =  \hat{\pi}(n - S)$
+
+We can continue simplifying to get:
+
+--
+$\hat{\pi} n - S \hat{\pi} + S\hat{\pi} = S$ so
+
+--
+
+$$\hat{\pi} = \frac{S}{n}$$
+
+---
+
+# Bernoulli random variable: plot
+
+```{r loglik-bern, fig.height=6, out.width="95%"}
+# loglikelihood function for plotting
+lik_bern <- function(p, S, n) {
+  p^S * (1 - p)^(n - S)
+}
+
+log_lik_bern <- function(p, S, n) {
+  S * log(p) + (n - S) * log(1 - p)
+}
+
+
+# calculate likelihood values
+bern <- tibble(
+  x = seq(0, 1, by = 0.001),
+  lik = lik_bern(x, 12, 20),
+  loglik = log_lik_bern(x, 12, 20)
+)
+
+ggplot(bern, aes(x, lik)) +
+  geom_line() +
+  geom_vline(xintercept = (12 / 20), linetype = 2) +
+  labs(
+    title = "Likelihood function \n for Bernoulli random var",
+    subtitle = "20 trials and 12 successes",
+    x = expression(hat(pi)),
+    y = expression(L[n](pi))
+  ) +
+  ggplot(bern, aes(x, loglik)) +
+  geom_line() +
+  geom_vline(xintercept = (12 / 20), linetype = 2) +
+  labs(
+    title = "Log-likelihood function \n for Bernoulli random var",
+    subtitle = "20 trials and 12 successes",
+    x = expression(hat(pi)),
+    y = expression(l[n](pi))
+  ) +
+  plot_layout(ncol = 2)
+```
+
+---
+# Log-likelihood close-up
+
+```{r}
+  ggplot(bern, aes(x, loglik)) +
+  geom_line() +
+  geom_vline(xintercept = (12 / 20), linetype = 2) +
+  labs(
+    title = "Log-likelihood function for Bernoulli random variable",
+    subtitle = "20 trials and 12 successes",
+    x = expression(hat(pi)),
+    y = expression(l[n](pi))
+  ) +
+  ylim(-20, -13)
+```
+---
+
+# Properties of maximum likelihood estimators
+
+1. Consistency
+1. Equivariant
+1. Asymptotically Normal
+1. Asymptotically optimal or efficient
+
+--
+
+* Large sample sizes
+* Smooth conditions for $f(x; \theta)$
+
+---
+
+# Properties of maximum likelihood estimators
+
+##### Consistency
+
+$$\hat{\theta}_n \xrightarrow{P} \theta_*$$
+
+Meaning: it converges in probability to the true value
+
+--
+
+##### Equivariance
+
+If $\hat{\theta}_n$ is the MLE of $\theta$, then $g(\hat{\theta}_n)$ is the MLE of $g(\theta)$
+
+--
+
+##### Asymptotic normality
+
+Let $\se = \sqrt{\Var (\hat{\sigma}_n)}$
+
+$$\frac{\hat{\theta}_n - \theta_*}{\se} \leadsto N(0,1)$$
+
+--
+
+$$\frac{\hat{\theta}_n - \theta_*}{\widehat{\se}} \leadsto N(0,1)$$
+
+---
+
+# Properties of maximum likelihood estimators
+
+##### Optimality
+
+Suppose that $X_1, \ldots, X_n \sim N(\theta, \sigma^2)$. The MLE is $\hat{\sigma}_n = \bar{X}_n$
+
+--
+
+Another reasonable estimator of $\theta$ is the sample median $\tilde{\theta}_n$. The MLE satisfies
+
+$$\sqrt{n} (\hat{\theta}_n - \theta) \leadsto N(0, \sigma^2)$$
+
+--
+
+Median satisfies
+
+$$\sqrt{n} (\tilde{\theta}_n - \theta) \leadsto N \left(0, \sigma^2 \frac{\pi}{2} \right)$$
+
+--
+
+* The MLE has the smallest (asymptotic) variance
+* No other estimator produces smaller variance
+
 
