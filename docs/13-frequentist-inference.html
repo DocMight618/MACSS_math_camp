@@ -496,10 +496,7 @@ If `\(X \subset R\)` we reject the null hypothesis, otherwise we do not reject t
 
 `$$R = \left\{ x: T(x) &gt; c \right\}$$`
 
---
 
-* `\(T\)`
-* `\(c\)`
 
 ---
 
@@ -552,7 +549,7 @@ Truth / Decision | Reject | Fail to Reject
 
 # Types of errors: visual
 
-&lt;img src="https://i.stack.imgur.com/Kq0OH.jpg" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/typei_ii.jpg" width="95%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -622,7 +619,7 @@ where `\(T = \bar{X}\)`. The rejection region is
 
 ---
 
-# Example hypothesis test: formula
+# Example hypothesis test: power formula
 
 Let `\(Z\)` denote the standard Normal random variable. The power function is
 
@@ -635,6 +632,11 @@ $$
 \end{align}`
 $$
 
+
+--
+
+Think of this as the alternative universe where there is a different truth. 
+
 ---
 
 # Example hypothesis test: cdf
@@ -643,7 +645,7 @@ $$
 
 ---
 
-# Example hypothesis test
+# Example hypothesis test: formula
 
 `$$\alpha = \text{sup}_{\mu \leq 0} \beta(\mu) = \beta(0) = 1 - \Phi \left( \frac{\sqrt{n} (c)}{\sigma} \right)$$`
 
@@ -664,6 +666,43 @@ Equivalently, we reject when
 `$$\frac{\sqrt{n}(\bar{X} - 0)}{\sigma} &gt; z_\alpha$$`
 
 where `\(z_\alpha = \Phi^{-1} (1 - \alpha)\)`.
+
+---
+
+# Example hypothesis test: formula, simplified
+
+Two ways to approach:
+
+* Cutoff: calculate your z and compare your z to your threshold
+* Calculation: calculate your z and look up its probability relative to your alpha
+
+--
+
+Example:
+
+`$$z=\frac{\bar x - \mu}{\sigma/\sqrt{n}}$$`
+
+Note: we have two defaults that you can assume:
+
+`\(z\)` cutoff is 1.96 and `\(\alpha\)` is 0.05. 
+
+
+---
+
+# Example hypothesis test: formula, simplified ex
+Example:
+
+`$$z=\frac{\bar x - \mu}{\sigma/\sqrt{n}}$$`
+
+Try: `\(\bar x = 4.3\)`, `\(\mu = 4.1\)`, `\(\sigma = 0.89\)`, `\(n = 103\)`. 
+
+--
+
+`\(z = \frac{4.3 - 4.1}{0.89 / \sqrt{103}} = \frac{0.2}{0.0877} \approx 2.28\)`
+
+--
+So, reject b/c 2.28 is larger than our (default) cutoff of 1.96 OR calculate the p-value of 2.28 or more extreme using a z-table (approx 0.0226). This is less than our (default) `\(\alpha\)`, which is 0.05, so we reject it (too weird!). 
+
 
 ---
 
@@ -787,7 +826,7 @@ If `\(\Theta_0 = \{ \theta_0 \}\)` then
 
 ---
 
-# `\(p\)`-value for Wald test
+# `\(p\)` -value for Wald test
 
 Let
 
@@ -801,9 +840,136 @@ where `\(Z \sim N(0,1)\)`
 
 ---
 
-# `\(p\)`-value for Wald test
+# `\(p\)` -value for Wald test
 
 &lt;img src="13-frequentist-inference_files/figure-html/wald-p-val-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+---
+# Working some examples (time permitting!)
+
+# Two-Sample Difference of Means
+
+**Sociology Example: Weekly household chores**
+
+- Men (`\(n_₁\)` = 85): `\(\bar{x}_1 = 14.2\)`, `\(s_1 = 4.1\)`  
+- Women (`\(n_₂\)` = 90): `\(\bar{x}_2 = 15.0\)`, `\(s_2 = 4.3\)`
+
+-- 
+## Step 1: Point Estimate 
+
+--
+
+`\(\bar{x}_1 - \bar{x}_2 = 14.2 - 15.0 = -0.8\)`
+
+--
+
+## Step 2: Standard Error 
+
+`\(SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}\)`
+`\(= \sqrt{\frac{4.1^2}{85} + \frac{4.3^2}{90}}\)`
+`\(= \sqrt{0.1977 + 0.2054} \approx 0.635\)`
+
+--
+
+## Step 3: Test Statistic 
+
+$ z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE}$
+`\(= \frac{-0.8}{0.414} \approx -1.93\)`
+
+
+---
+## Example: Interpretation 
+
+## Step 3: Test Statistic 
+
+$ z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE}$
+`\(= \frac{-0.8}{0.414} \approx -1.93\)`
+
+
+- Observed difference is 1.93 standard errors below 0  
+- Two-tailed test p-value ≈ 0.053  
+- Slight evidence that women do more chores, but not statistically significant at 5%
+
+---
+
+# Example: Polling with margins
+
+# Difference of Means Test: Polling Example
+
+A polling organization is comparing support for a policy between **Urban** and **Rural** residents.
+
+- Urban sample: `\(n_1 = 120\)`, `\(\bar{x}_1 = 0.52\)`, `\(s_1 = 0.06\)`  
+- Rural sample: `\(n_2 = 130\)`, `\(\bar{x}_2 = 0.55\)`, `\(s_2 = 0.055\)`  
+- Goal: Test whether the support differs between groups
+
+--
+
+## Step 1: Point Estimate
+
+`\(\bar{x}_1 - \bar{x}_2 = 0.52 - 0.55 = -0.03\)`
+
+--
+
+## Step 2: Standard Error
+
+`\(SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} = \sqrt{\frac{0.06^2}{120} + \frac{0.055^2}{130}} = \sqrt{0.00003 + 0.000023} \approx 0.00757\)`
+
+---
+## Ex, cont'd
+
+## Step 3: Test Statistic
+
+`\(z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE} = \frac{-0.03}{0.0152} \approx -1.97\)`
+
+--
+
+## Interpretation
+
+- Observed difference is 1.97 standard errors below 0  
+- Two-tailed p-value ≈ 0.049  
+- Slightly significant difference: Urban support slightly lower than Rural
+
+
+---
+## Power: ex calculation
+
+# Difference of Means and Power: Polling Example
+
+A polling organization is comparing support for a new policy between **Urban** and **Suburban** residents.
+
+- Urban sample: `\(n_1 = 100\)`, `\(\bar{x}_1 = 0.48\)`, `\(s_1 = 0.06\)`  
+- Suburban sample: `\(n_2 = 120\)`, `\(\bar{x}_2 = 0.52\)`, `\(s_2 = 0.055\)`  
+- Goal: Test whether the support differs between groups and illustrate power
+
+--
+
+## Step 1: Point Estimate
+
+`\(\bar{x}_1 - \bar{x}_2 = 0.48 - 0.52 = -0.04\)`
+
+--
+
+## Step 2: Standard Error
+
+`\(SE = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} = \sqrt{\frac{0.06^2}{100} + \frac{0.055^2}{120}} = \sqrt{0.000036 + 0.000025} \approx 0.0080\)`
+
+---
+## Ex, power, cont'd:
+
+## Step 3: Test Statistic
+
+`\(z = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{SE} = \frac{-0.04}{0.0080} \approx -5.0\)`
+
+--
+
+## Step 4: Power Illustration
+
+- Suppose the true difference is actually `\(\delta = 0.03\)` (Urban slightly lower)  
+- Power is the probability that `\(z\)` would exceed the critical value in the correct direction  
+
+- Critical `\(z\)` for `\(\alpha = 0.05\)` (two-tailed) is `\(z_{0.975} = 1.96\)`  
+- With this sample size, even small differences like `\(\delta = 0.03\)` give high `\(z\)` values → **high power**
+
 
 ---
 # Recap
