@@ -368,7 +368,7 @@ Suppose you are interested in how many hours people spend online per week. In 20
 
 # CI for 2014:
 
-Suppose you are interested in how many hours people spend online per week. In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02. In 2004, the average time was 5.9 with a sample SD of 8.86 and a n of 1,574. In 2012 the average was 10.5 with a sample SD of 14.5 and n of 1,019.In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
+Suppose you are interested in how many hours people spend online per week. **In 2014 the average was 11.6 hours in a sample of 1,399 with a sample SD of 15.02**. In **2004, the average time was 5.9 with a sample SD of 8.86 and a n of 1,574**. In **2012 the average was 10.5 with a sample SD of 14.5 and n of 1,019**. In both cases, can do hypothesis testing regarding whether the value from other years a) falls in the CI for the 2014 value or b) conduct a hypothesis test to determine whether the difference in values is statistically significant.
 
 $$11.6 \pm 1.96 \frac{15.02}{\sqrt{1399}}$$
 
