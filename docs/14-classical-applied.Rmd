@@ -101,8 +101,8 @@ To answer, need the sample size to help figure out appropriate test
 ---
 # Cool, what test do I use? 
 
-* Counts: if only two choices, use z test for proportions, if lots of choices or table, use $\chi^2$ (easy to calc, somewhat problematic) or Fisher's exact (better but less frequently used)
-* Means: if two groups and small sample, t; if two groups and large-ish sample, z; if multiple groups (and decent sample size) ANOVA
+* **Counts**: if only two choices, use z test for proportions, if lots of choices or table, use $\chi^2$ (easy to calc, somewhat problematic) or Fisher's exact (better but less frequently used)
+* **Means**: if two groups and small sample, t; if two groups and large-ish sample, z; if multiple groups (and decent sample size) ANOVA
 
 ---
 # OK SO HOW DO I DO IT????
@@ -153,7 +153,7 @@ Steps:
 
 # Example: cholesterol data
 
-Consider a set of 371 individuals in a health study examining cholesterol levels (in mg/dl). 320 individuals have narrowing of the arteries, while 51 patients have no evidence of heart disease. Is the mean cholesterol different in the two groups?
+Consider a set of 371 individuals in a health study examining cholesterol levels (in mg/dl). 320 individuals have narrowing of the arteries, while 51 patients have no evidence of heart disease. **Is the mean cholesterol different in the two groups?**
 
 --
 
@@ -172,11 +172,18 @@ To compute the $p$-value, let $Z \sim N(0,1)$ denote a standard Normal random va
 $$\text{p-value} = \Pr (|Z| > 3.78) = 2 \Pr(Z < -3.78) = 0.0002$$
 
 ---
-# Degrees of freedom and t tests
+# Confidence intervals
+We can conduct hypothesis testing with confidence intervals as well. 
 
-When dealing with small samples, things get a little bit complicated since it's not *universal* -- it depends on the sample size-ish. It has to do with how many degrees of freedom exist, which is $n-1$. Therefore, each sample could potentially have a different degree of freedom. 
+From our cholesterol example before, suppose: 
+Let the estimated mean cholesterol levels for the first group be $\bar{X} = 216.2$ and for the second group $\bar{Y} = 195.3$. Let the estimated standard error for each group be $\widehat{\se}(\hat{\mu}_1) = 5.0$ and $\widehat{\se}(\hat{\mu}_2) = 2.4$
 
-Otherwise, the process / procedure is exactly the same as before. 
+--
+$$(216.2-195.3) \pm 1.96* \sqrt{5^2 + 2.4^2}$$
+--
+$$(10.03, 31.8)$$
+
+
 
 ---
 
@@ -231,21 +238,8 @@ $p$-value = $P(Z < -1.25) \approx 0.21$  **Note: this is kind of a funky way to 
 Conclusion: Not statistically significant at $\alpha = 0.05$.
 
 
----
-# Confidence intervals
-We can conduct hypothesis testing with confidence intervals as well. 
-
-From our cholesterol example before, suppose: 
-Let the estimated mean cholesterol levels for the first group be $\bar{X} = 216.2$ and for the second group $\bar{Y} = 195.3$. Let the estimated standard error for each group be $\widehat{\se}(\hat{\mu}_1) = 5.0$ and $\widehat{\se}(\hat{\mu}_2) = 2.4$
-
---
-$$(216.2-195.3) \pm 1.96* \sqrt{5^2 + 2.4^2}$$
---
-$$(10.03, 31.8)$$
-
 
 ---
-
 # Pearson's $\chi^2$ test for multinomial data
 
 * Used for multinomial data
@@ -265,12 +259,22 @@ $$T = \sum_{j=1}^k \frac{(X_j - np_{0j})^2}{np_{0j}} = \sum_{j=1}^k \frac{(X_j -
 
 where $\E[X_j] = np_{0j}$ is the expected value under $H_0$.
 
+
+
+---
+# Degrees of freedom and t tests
+
+When dealing with small samples, things get a little bit complicated since it's not *universal* -- it depends on the sample size-ish. It has to do with how many degrees of freedom exist, which is $n-1$. Therefore, each sample could potentially have a different degree of freedom. 
+
+Otherwise, the process / procedure is exactly the same as before. 
+
+
 ---
 
-# Attitudes towards abortion
+# Attitudes towards tea
 
-* $H_A$ - In a comparison of individuals, liberals are more likely to favor allowing a woman to obtain an abortion for any reason than conservatives
-* $H_0$ - There is no difference in support between liberals and conservatives for allowing a woman to obtain an abortion for any reason. Any difference is the result of random sampling error.
+* $H_A$ - In a comparison of individuals, MAPSS students are more likely to favor coffee than tea relative to MACSS and CIR students
+* $H_0$ - There is no difference in support between these groups for coffee vs tea. Any difference is the result of random sampling error.
 
 ---
 
